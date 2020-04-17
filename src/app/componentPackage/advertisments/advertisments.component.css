@@ -1,0 +1,193 @@
+/* card css */
+
+.card-wrapper {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+.card-wrapper img {
+    max-width: 100%;
+    width: 220px;
+    padding-bottom: 10px;
+    padding-top: 10px;
+    margin: 0 auto;
+}
+
+.card-wrapper .imageBottom {
+    padding-bottom: 15px;
+}
+
+.card-wrapper .imageBottom img {
+    width: 270px;
+}
+
+.card-wrapper .card {
+    width: 100%;
+    border-radius: 5px;
+    text-align: center;
+    margin-right: 15px;
+    margin-bottom: 10px;
+    transition: 0.3s all;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.card-wrapper .card:hover {
+    transform: scale(1.02);
+    transition: 0.3s all;
+}
+
+.card-wrapper .card h2 {
+    font-size: 22px;
+    padding: 0;
+    font-style: italic;
+    background: #e92330;
+    margin-bottom: 0px;
+    padding: 10px;
+    color: #fff;
+}
+
+.card-wrapper .action-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-color: #70707050;
+    z-index: 0;
+}
+
+.card-wrapper .action-btn {
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    flex-flow: row wrap;
+    align-items: center;
+    visibility: hidden;
+    transition: 0.3s all;
+}
+
+.card-wrapper .action-btn a {
+    width: auto;
+    display: inline-block;
+    text-align: center;
+    padding: 10px;
+    border-radius: 50%;
+    color: #fff;
+    text-decoration: none;
+    margin: 0 5px;
+    height: 50px;
+    width: 50px;
+    position: relative;
+    cursor: pointer;
+}
+
+.card-wrapper .action-btn a i {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 22px;
+}
+
+.card-wrapper .action-btn .btns {
+    position: relative;
+    z-index: 1;
+    width: 80%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.card-wrapper .action-btn .delete-btn {
+    background: #e92330;
+}
+
+.card-wrapper .action-btn .edit-btn {
+    background: green;
+}
+
+.card-wrapper .card:hover .action-btn {
+    visibility: visible;
+    transition: 0.3s all;
+}
+
+.card-wrapper .big-stuff {
+    color: #e92330;
+    font-size: 22px;
+    font-weight: 800;
+    letter-spacing: 2px;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+}
+
+.card-wrapper .title-1 {
+    font-size: 17px;
+    font-weight: 800;
+    padding: 6px 0;
+    margin-bottom: 5px;
+    text-transform: uppercase;
+}
+
+.card-wrapper .title-2 {
+    margin-bottom: 12px;
+    font-size: 20px;
+    font-weight: 800;
+    text-transform: uppercase;
+}
+
+.card-wrapper .title-3 {
+    color: #e92330;
+    font-size: 22px;
+    font-style: italic;
+    font-weight: 800;
+    padding-top: 10px;
+    text-transform: uppercase;
+}
+
+.card-wrapper .bottom-title {
+    margin: 0;
+    padding: 10px;
+    font-size: 16px;
+    color: #fff;
+    background: #444;
+}
+
+.cardButton {
+    position: absolute;
+    width: 500px;
+    left: 0;
+    top: 180px;
+    text-align: center;
+    opacity: 0;
+    transition: opacity .35s ease;
+}
+
+.bodyCenter {
+    padding: 15px 0;
+}
+
+
+@media (max-width: 1025px){
+    .card-wrapper .card h2{font-size: 18px;}
+    .card-wrapper img{width: 180px;padding: 15px 0;}
+    .card-wrapper .big-stuff{font-size: 20px;letter-spacing: 1px;}
+    .card-wrapper .title-1{font-size: 16px;}
+    .card-wrapper .title-2{font-size: 18px;}
+    .card-wrapper .title-3{font-size: 18px;}
+    .card-wrapper .imageBottom img{width: 220px;}
+    .bodyCenter{padding: 10px;}
+}
+
+@media (max-width: 767px){
+    
+}

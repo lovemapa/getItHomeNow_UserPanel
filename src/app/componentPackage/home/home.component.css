@@ -1,0 +1,164 @@
+header {
+    align-items: center;
+    display: flex;
+    font-size: 18px;
+    min-height: 100vh;
+    justify-content: center;
+    overflow: hidden;
+    position: relative;
+    text-align: center;
+    flex-flow: row wrap;
+    background-image: url('/assets/imgs/homebackLogo.jpg');
+    background-size: cover;
+    z-index: 0;
+    padding: 50px 20px;
+    padding-top: 130px;
+    text-align: left;
+    justify-content: flex-start;
+}
+
+header .banner-content {
+    margin: 0;
+}
+
+header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.3);
+    z-index: 1;
+}
+
+
+/* top Content */
+
+.banner-content {
+    padding: 50px;
+    max-width: 800px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 2;
+    color: #fff;
+}
+
+.banner-content h1 {
+    font-size: 42px;
+    letter-spacing: 1.5px;
+}
+
+.banner-content p {
+    font-size: 18px;
+    margin-top: 40px;
+    line-height: 28px;
+}
+
+.banner-content .common-btn {
+    display: inline-block;
+    font-size: 14px;
+    margin-top: 30px;
+    padding: 15px 20px;
+    min-width: 150px;
+    text-align: center;
+    text-decoration: none;
+    text-transform: uppercase;
+    background: #e92330;
+    border-radius: 4px;
+    transition: 0.3s all;
+    cursor: pointer;
+    animation: scale 2s infinite;
+}
+
+
+/* @keyframes scale {
+    0% {
+        background: #d6504f;
+        transform: scale(1);
+    }
+    35% {
+        background: #4e040a;
+    }
+    50% {
+        transform: scale(1.04);
+    }
+    70% {
+        background: #333;
+    }
+    100% {
+        background: #d6504f;
+        transform: scale(1);
+    }
+} */
+
+.banner-content .common-btn:hover {
+    background: #333;
+    transition: 0.3s all;
+}
+
+h2,
+a,
+p {
+    color: #fff;
+    font-family: Roboto;
+    text-decoration: none;
+}
+
+p>a {
+    color: #fd084a;
+}
+
+.blink {
+    animation: blink 0.5s infinite;
+}
+
+@keyframes blink {
+    to {
+        opacity: .0;
+    }
+}
+
+.flex {
+    display: flex;
+}
+
+.header-sub-title {
+    color: #fff;
+    font-family: "Courier";
+    font-size: 20px;
+    padding: 0.1em;
+}
+
+@media (max-width: 1025px) {
+    .banner-content {
+        padding: 30px;
+    }
+    .banner-content h1 {
+        font-size: 36px;
+        letter-spacing: 1px;
+    }
+    .banner-content p {
+        font-size: 16px;
+        margin-top: 25px;
+    }
+}
+
+@media (max-width: 576px) {
+    .banner-content {
+        padding: 30px 15px;
+        margin: 0;
+    }
+    .banner-content h1 {
+        font-size: 24px;
+        letter-spacing: normal;
+    }
+    .banner-content p {
+        margin-top: 10px;
+    }
+    header {
+        text-align: left;
+        padding: 40px 10px;
+        padding-top: 100px;
+    }
+}

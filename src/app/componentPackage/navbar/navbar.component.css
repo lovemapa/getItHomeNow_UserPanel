@@ -1,0 +1,62 @@
+.mat-icon {
+    color: #fff
+}
+
+/* .active {
+    color: #d6504f !important;
+    border-bottom: 2px solid #d6504f;
+    transition: 0.3s auto;
+} */
+
+.navbar-nav .nav-link.active{background: #e92330;color: #fff;}
+.navbutton {
+    background: initial;
+    padding: 9px;
+    color: #d6504f;
+    border-bottom: 2px solid #d6504f;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.btn2nd {
+    margin-left: 10px;
+}
+
+.navbar-dark.navbar-transparent .navbar-toggler{border: 1px solid #fff;color: #fff;}
+.navbar-dark .navbar-toggler{padding: 5px 10px;border: 1px solid #e92330;color: #e92330;font-size: 22px;font-weight: 300;}
+
+@media screen and (max-width:340px) {
+    .btn2nd {
+        margin-top: 10px;
+        margin-left: 0px;
+    }
+}
+
+@media screen and (max-width:600px) {
+    .btn2nd {
+        margin-top: 10px;
+        margin-left: 0px;
+    }
+}
+
+@media screen and (max-width:762px) {
+    .btn2nd {
+        margin-top: 10px;
+        margin-left: 0px;
+    }
+}
+
+
+@media (max-width: 575px){
+    .navbar{padding: 0;}
+
+    .navbar-collapse{position: absolute;top: 100%;
+        background: #fff;
+        width: 100%;
+        left: 0;}
+        .navbar .navbar-nav .nav-item .nav-link{color: #1b1b1b;}
+        .navbar .navbar-nav .nav-item .nav-link.active{color: #fff;}
+        .navbar-nav .nav-item{margin: 0;}
+
+
+}
