@@ -1,9 +1,11 @@
 .footer-section{padding: 25px 20px;display: flex;justify-content: center;align-items: center;background: #1b1b1b;flex-flow: row wrap;margin-top: 50px;} 
 .footer-section p{font-size: 14px;color: #fff;width:100%;text-align: center;padding-bottom: 10px;margin-bottom: 0;}
 .icons{margin-bottom: 0;}
+.colorless-icons{color: inherit;text-decoration: none;}
 .icons .social-icon{padding: 0 10px;font-size: 20px;cursor: pointer;transition: 0.3s all;}
-.icons .social-icon:hover{color: #e92330;transition: 0.3s all;}
-
+.icons .instagram:hover{color: #e1306c;transition: 0.3s all;}
+.icons .facebook:hover{color: #0077fb;transition: 0.3s all;}
+.icons .google:hover{color: #DD4B39;;transition: 0.3s all;}
 
 @media (max-width: 576px){
     .footer-section{margin-top: 0;}

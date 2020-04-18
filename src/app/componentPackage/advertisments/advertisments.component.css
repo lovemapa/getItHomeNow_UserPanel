@@ -1,4 +1,7 @@
 /* card css */
+.card-fixedheight{
+    height:190px ! important;
+}
 
 .card-wrapper {
     display: flex;

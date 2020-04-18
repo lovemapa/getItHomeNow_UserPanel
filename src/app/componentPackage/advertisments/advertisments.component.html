@@ -8,15 +8,15 @@
 
         <owl-carousel-o [options]="customOptions" class="adv-slider"  *ngIf="showTable">
             <ng-template carouselSlide class="container" *ngFor="let ads of adsList">
-                <div class="card-wrapper">
-                    <div class=" card">
+                <div class="card-wrapper ">
+                    <div class=" card ">
                         <div class="topStatic">
                             <h2>Store,Estate,Garage Sales</h2>
 
                             <div class="Image">
                                 <img src="./assets/imgs/logoSmall3.png" alt="" class="imageLogo">
                             </div>
-                            <div class="bodyCenter">
+                            <div class="bodyCenter card-fixedheight">
                                 <h4 class="big-stuff">{{ads.name}}</h4>
                                 <ng-container>
                                     <p class="title-1">{{createContent(ads.mainContent)[0]}} </p>
