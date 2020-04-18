@@ -15,6 +15,7 @@ import { ContactusComponent } from './componentPackage/contactus/contactus.compo
 import { FullComponent } from './layout/full/full.component';
 import { FooterComponent } from './componentPackage/footer/footer.component';
 import { FaqComponent } from './componentPackage/faq/faq.component';
+import { HttpClientModule } from '@angular/common/http';
 @NgModule({
   declarations: [
     AppComponent,
@@ -30,6 +31,7 @@ import { FaqComponent } from './componentPackage/faq/faq.component';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    HttpClientModule,
     NgbModule,
     CarouselModule
   ],
