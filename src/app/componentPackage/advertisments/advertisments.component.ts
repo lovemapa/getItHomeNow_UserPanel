@@ -12,7 +12,7 @@ import { AdvertisementModel } from 'src/app/modalPackages/advertisement';
 })
 export class AdvertismentsComponent implements OnInit {
   customOptions: OwlOptions = {
-    loop: false,
+    loop: true,
     mouseDrag: true,
     touchDrag: true,
     pullDrag: false,
@@ -42,10 +42,11 @@ export class AdvertismentsComponent implements OnInit {
 
 
   constructor(public router: Router, public userpanelServiceService: UserpanelServiceService, public modalService: NgbModal) {
+    this.getAdvertisment();
   }
 
   ngOnInit(): void {
-    this.getAdvertisment();
+  
   }
 
 
