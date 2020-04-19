@@ -8,7 +8,7 @@ header {
     position: relative;
     text-align: center;
     flex-flow: row wrap;
-    background-image: url('/assets/imgs/homebackLogo.jpg');
+    background-image: url('../../../assets/imgs/homebackLogo.jpg');
     background-size: cover;
     z-index: 0;
     padding: 50px 20px;

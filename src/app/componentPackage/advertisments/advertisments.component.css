@@ -214,6 +214,10 @@
 @media (max-width: 767px) {} */
 
 
+.top-n-margin{
+    margin-top: -65px;
+}
+
 /* card css */
 
 .card-wrapper {
