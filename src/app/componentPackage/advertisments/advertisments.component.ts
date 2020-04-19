@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { UserpanelServiceService } from 'src/app/backendServices/userpanel-service.service';
 import { AdvertisementModel } from 'src/app/modalPackages/advertisement';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-advertisments',
@@ -11,37 +12,18 @@ import { AdvertisementModel } from 'src/app/modalPackages/advertisement';
   styleUrls: ['./advertisments.component.css']
 })
 export class AdvertismentsComponent implements OnInit {
-  customOptions: OwlOptions = {
-    loop: true,
-    mouseDrag: true,
-    touchDrag: true,
-    pullDrag: false,
-    dots: false,
-    navSpeed: 700,
-    navText: ['', ''],
-    responsive: {
-      250: {
-        items: 1
-      },
-      576: {
-        items: 2
-      },
-      767: {
-        items: 3
-      },
-      991: {
-        items: 3
-      }
-    },
-    nav: true
-  }
+ 
   public searchString: string = "";
   public noDataFound: boolean = false;
   public adsList: Array<AdvertisementModel> = [];
   public showTable = false;
 
 
-  constructor(public router: Router, public userpanelServiceService: UserpanelServiceService, public modalService: NgbModal) {
+  constructor(public router: Router, public userpanelServiceService: UserpanelServiceService, public modalService: NgbModal,
+    public spinner: NgxSpinnerService) {
+    this.showTable = false;
+    this.noDataFound=false;
+      spinner.show();
     this.getAdvertisment();
   }
 
@@ -60,6 +42,9 @@ export class AdvertismentsComponent implements OnInit {
       if (response.success) {
         this.adsList = response.data;
         this.showTable = true;
+         setTimeout(() => {
+            this.spinner.hide();
+         }, 500);
         if (this.adsList.length == 0) {
           this.showTable = false;
         }
@@ -69,6 +54,8 @@ export class AdvertismentsComponent implements OnInit {
       }
     });
   }
+
+ 
 
   createContent(content: string): Array<string> {
     let contentArray: Array<string> = content.split("%");

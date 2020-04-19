@@ -1,6 +1,9 @@
 /* card css */
-.card-fixedheight{
-    height:190px ! important;
+
+
+/* 
+.card-fixedheight {
+    height: 190px ! important;
 }
 
 .card-wrapper {
@@ -179,18 +182,461 @@
     padding: 15px 0;
 }
 
-
-@media (max-width: 1025px){
-    .card-wrapper .card h2{font-size: 18px;}
-    .card-wrapper img{width: 180px;padding: 15px 0;}
-    .card-wrapper .big-stuff{font-size: 20px;letter-spacing: 1px;}
-    .card-wrapper .title-1{font-size: 16px;}
-    .card-wrapper .title-2{font-size: 18px;}
-    .card-wrapper .title-3{font-size: 18px;}
-    .card-wrapper .imageBottom img{width: 220px;}
-    .bodyCenter{padding: 10px;}
+@media (max-width: 1025px) {
+    .card-wrapper .card h2 {
+        font-size: 18px;
+    }
+    .card-wrapper img {
+        width: 180px;
+        padding: 15px 0;
+    }
+    .card-wrapper .big-stuff {
+        font-size: 20px;
+        letter-spacing: 1px;
+    }
+    .card-wrapper .title-1 {
+        font-size: 16px;
+    }
+    .card-wrapper .title-2 {
+        font-size: 18px;
+    }
+    .card-wrapper .title-3 {
+        font-size: 18px;
+    }
+    .card-wrapper .imageBottom img {
+        width: 220px;
+    }
+    .bodyCenter {
+        padding: 10px;
+    }
 }
 
-@media (max-width: 767px){
-    
+@media (max-width: 767px) {} */
+
+
+/* card css */
+
+.card-wrapper {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+.card-wrapper img {
+    max-width: 100%;
+    width: 220px;
+    padding-bottom: 10px;
+    padding-top: 10px;
+}
+
+.card-wrapper .imageBottom img {
+    width: 270px;
+}
+
+.card-wrapper .card {
+    width: calc(33.3% - 10px);
+    border-radius: 5px;
+    text-align: center;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    transition: 0.3s all;
+    border-bottom-left-radius: 50px;
+    border-top-right-radius: 50px;
+    position: relative;
+    overflow: hidden;
+}
+
+.card-wrapper .card:hover {
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+    transform: scale(1.02);
+    transition: 0.3s all;
+}
+
+.card-wrapper .card h2 {
+    font-size: 22px;
+    padding: 0;
+    font-style: italic;
+    background: #e92330;
+    margin-bottom: 0px;
+    padding: 10px;
+    color: #fff;
+    border-top-right-radius: 50px;
+}
+
+.card-wrapper .card.card-2,
+.card-wrapper .card.card-2 h2 {
+    border-top-right-radius: 50px;
+}
+
+.card-wrapper .action-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-color: #70707050;
+    z-index: 0;
+}
+
+.card-wrapper .action-btn {
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    flex-flow: row wrap;
+    align-items: center;
+    visibility: hidden;
+    transition: 0.3s all;
+}
+
+.card-wrapper .action-btn a {
+    width: auto;
+    display: inline-block;
+    text-align: center;
+    padding: 10px;
+    border-radius: 50%;
+    color: #fff;
+    text-decoration: none;
+    margin: 0 5px;
+    height: 50px;
+    width: 50px;
+    position: relative;
+    cursor: pointer;
+}
+
+.card-wrapper .action-btn a i {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 22px;
+}
+
+.card-wrapper .action-btn .btns {
+    position: relative;
+    z-index: 1;
+    width: 80%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.card-wrapper .action-btn .delete-btn {
+    background: #e92330;
+}
+
+.card-wrapper .action-btn .edit-btn {
+    background: green;
+}
+
+.card-wrapper .card:hover .action-btn {
+    visibility: visible;
+    transition: 0.3s all;
+}
+
+.card-wrapper .big-stuff {
+    color: #e92330;
+    font-size: 22px;
+    font-weight: 800;
+    letter-spacing: 2px;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+}
+
+.card-wrapper .title-1 {
+    font-size: 17px;
+    font-weight: 800;
+    padding: 6px 0;
+    margin-bottom: 5px;
+    text-transform: uppercase;
+}
+
+.card-wrapper .title-2 {
+    margin-bottom: 12px;
+    font-size: 20px;
+    font-weight: 800;
+    text-transform: uppercase;
+}
+
+.card-wrapper .title-3 {
+    color: #e92330;
+    font-size: 22px;
+    font-style: italic;
+    font-weight: 800;
+    padding-top: 10px;
+    text-transform: uppercase;
+}
+
+.card-wrapper .bottom-title {
+    margin: 0;
+    padding: 10px;
+    font-size: 16px;
+    color: #fff;
+    background: #444;
+    border-bottom-left-radius: 50px;
+}
+
+.cardButton {
+    position: absolute;
+    width: 500px;
+    left: 0;
+    top: 180px;
+    text-align: center;
+    opacity: 0;
+    transition: opacity .35s ease;
+}
+
+.bodyCenter {
+    padding: 0 15px;
+}
+
+.cardButton a {
+    width: 200px;
+    padding: 12px 48px;
+    text-align: center;
+    color: white;
+    border: solid 2px white;
+    z-index: 1;
+}
+
+.card:hover .cardButton {
+    opacity: 1;
+}
+
+.form-outer {
+    padding: 20px 0;
+}
+
+.form-outer .form-element {
+    margin-bottom: 25px;
+    display: block;
+}
+
+.form-outer .col-12 {
+    padding: 0;
+    display: flex;
+    justify-content: space-between;
+}
+
+.form-outer .col-12 .form-element {
+    width: 48%;
+}
+
+.form-outer .form-element.submit-btn {
+    width: 100%;
+    margin-bottom: 0;
+}
+
+.form-outer .form-element label {
+    font-size: 14px;
+    margin-bottom: 4px;
+    text-align: left;
+    display: block;
+}
+
+.form-outer .form-element input {
+    width: 100%;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 6px 15px;
+}
+
+.form-outer .form-element .submit-btn {
+    background: #e92330;
+    border-radius: 4px;
+    text-align: center;
+    padding: 12px 10px;
+    min-width: 300px;
+    display: inline-block;
+    color: #fff;
+    margin-top: 15px;
+    text-decoration: none;
+    transition: 0.3s all;
+    font-size: 16px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    cursor: pointer;
+}
+
+.form-outer .form-element .submit-btn:hover {
+    background: #444;
+    transition: 0.3s all;
+}
+
+::placeholder {
+    color: #707070;
+}
+
+.search-box-outer {
+    height: 40px;
+    border-radius: 5px;
+    padding: 0 40px 0px 5px;
+    -webkit-transition: .3s;
+    -o-transition: .3s;
+    transition: .3s;
+    width: 100%;
+    max-width: 300px;
+    background-color: #fff;
+    border: 1px solid #d7d7e3;
+    position: relative;
+    max-width: 300px;
+}
+
+.search-box-outer:after {
+    content: '';
+    display: block;
+    clear: both;
+}
+
+.search-box-outer input.search-box {
+    background: none;
+    border: none;
+    color: #666;
+    border: none;
+    padding-left: 10px;
+    outline: none;
+    width: 100%;
+    height: 38px;
+    font-size: 15px
+}
+
+.search-box-outer .search {
+    /* background: url('../../../assets/imgs/search.png') no-repeat; */
+    width: 0;
+    height: 0;
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    cursor: pointer;
+    margin-top: -17.5px;
+    margin-left: -8px;
+    border: none;
+    background-size: contain;
+}
+
+.search-icon {
+    font-size: x-large;
+}
+
+.getAllAd-btn {
+    position: relative;
+    margin-right: 15px;
+    /* right: 265px;
+    top: -38px; */
+}
+
+.header-left-outer {
+    display: flex;
+    position: relative;
+    top: 0;
+    justify-content: flex-end;
+    text-align: right;
+    margin-bottom: 35px;
+}
+
+#advertisments .title-heading {
+    margin-bottom: 0;
+}
+
+@media (max-width: 1279px) {
+    .card-wrapper .card h2 {
+        font-size: 18px;
+        border-top-right-radius: 20px;
+    }
+    .card-wrapper .card {
+        border-bottom-left-radius: 20px;
+        border-top-right-radius: 20px;
+        margin-right: 10px;
+        margin-bottom: 10px;
+    }
+    .card-wrapper img {
+        width: 180px;
+        padding: 15px 0;
+    }
+    .card-wrapper .big-stuff {
+        font-size: 20px;
+        letter-spacing: 1px;
+    }
+    .bodyCenter {
+        padding: 0 10px;
+    }
+    .card-wrapper .title-1 {
+        font-size: 14px;
+    }
+    .card-wrapper .title-2 {
+        font-size: 17px;
+    }
+    .card-wrapper .title-3 {
+        font-size: 20px;
+        margin-bottom: 8px;
+    }
+    .card-wrapper .imageBottom img {
+        width: 230px;
+        max-width: 80%;
+    }
+    .card-wrapper .bottom-title {
+        font-size: 14px;
+        border-bottom-left-radius: 20px;
+    }
+}
+
+@media (max-width: 991px) {
+    .card-wrapper .card h2 {
+        font-size: 16px;
+    }
+    .card-wrapper .title-2 {
+        margin-bottom: 8px;
+    }
+}
+
+@media (max-width: 767px) {
+    .card-wrapper .card {
+        width: calc(50% - 10px);
+    }
+    .form-outer .form-element .submit-btn {
+        min-width: auto;
+        padding: 10px 15px;
+        width: 100%;
+    }
+    .search-box-outer {
+        max-width: 200px;
+    }
+    .getAllAd-btn {
+        margin-right: 8px;
+        margin-top: 3px;
+    }
+    .getAllAd-btn button {
+        font-size: 14px;
+        width: 100px;
+        padding: 6px 5px;
+    }
+    .search-box-outer {
+        max-width: 100%;
+        top: 0;
+        margin-bottom: 20px;
+    }
+    .header-left-outer {
+        top: 0;
+        justify-content: flex-start;
+        margin: 25px 0;
+    }
+}
+
+@media (max-width: 576px) {
+    .card-wrapper .card {
+        width: 100%;
+        margin-right: 0;
+    }
+    .form-outer .col-12 {
+        display: block
+    }
+    .form-outer .col-12 .form-element {
+        width: 100%;
+    }
 }

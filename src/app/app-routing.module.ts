@@ -1,7 +1,8 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { FullComponent } from './layout/full/full.component'
-
+import { BlankComponent } from './layout/blank/blank.component';
+import{AdvertismentsComponent} from './componentPackage/advertisments/advertisments.component'
 const routes: Routes = [
 
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -13,16 +14,16 @@ const routes: Routes = [
 
     ]
   },
-  // {
-  //   path: '',
-  //   component: BlankComponent,
-  //   children: [
-  //     // { path: 'terms', component: TeamConditionComponent },
-  //     // { path: 'privacy', component: PrivacyPolicyComponent },
-  //     // { path: 'share/:name/:username', component: ShareComponent },
-  //   ]
+  {
+    path: '',
+    component: BlankComponent,
+    children: [
+      { path: 'advertisment', component: AdvertismentsComponent },
+      // { path: 'privacy', component: PrivacyPolicyComponent },
+      // { path: 'share/:name/:username', component: ShareComponent },
+    ]
 
-  // },
+  },
   { path: '***', redirectTo: 'home' }
 ];
 

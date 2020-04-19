@@ -16,6 +16,10 @@ import { FullComponent } from './layout/full/full.component';
 import { FooterComponent } from './componentPackage/footer/footer.component';
 import { FaqComponent } from './componentPackage/faq/faq.component';
 import { HttpClientModule } from '@angular/common/http';
+import { BlankComponent } from './layout/blank/blank.component';
+import { AboutusComponent } from './componentPackage/aboutus/aboutus.component';
+import { NgxSpinnerModule } from "ngx-spinner";
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 @NgModule({
   declarations: [
     AppComponent,
@@ -25,7 +29,9 @@ import { HttpClientModule } from '@angular/common/http';
     ContactusComponent,
     FullComponent,
     FooterComponent,
-    FaqComponent
+    FaqComponent,
+    BlankComponent,
+    AboutusComponent
   ],
   imports: [
     BrowserModule,
@@ -33,7 +39,10 @@ import { HttpClientModule } from '@angular/common/http';
     BrowserAnimationsModule,
     HttpClientModule,
     NgbModule,
-    CarouselModule
+    CarouselModule,
+    NgxSpinnerModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [
     { provide: AosToken, useValue: aos },

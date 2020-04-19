@@ -1,39 +1,54 @@
-<div class="site-section contact-us-section">
+<div class="site-section">
     <div class="container">
-        <div class="row mb-5">
+        <div class="row">
             <div class="col-12 text-center">
                 <h2 class="title-heading" data-aos="fade-left">Advertisments</h2>
             </div>
         </div>
 
-        <owl-carousel-o [options]="customOptions" class="adv-slider"  *ngIf="showTable">
-            <ng-template carouselSlide class="container" *ngFor="let ads of adsList">
-                <div class="card-wrapper ">
-                    <div class=" card ">
-                        <div class="topStatic">
-                            <h2>Store,Estate,Garage Sales</h2>
+        <div class="header-left-outer">
+            <div class="getAllAd-btn" *ngIf="searchString != ''">
+                <button type="button" class="btn btn-outline-danger" (click)="getAdvertisment('')">Show All Ads</button>
+            </div>
+            <div class="search-box-outer">
+                <input name="searchBar" id="searchBarforAds" class="search-box" value="" placeholder="Search.." type="text" [(ngModel)]="searchString" (keyup.enter)="getAdvertisment()" (keyup)="getAdvertisment()" autocomplete="off">
+                <button id="search-box-icon" type="submit" class="search btn btn-link text-danger" (click)="getAdvertisment()"><i class="fa fa-search search-icon"></i></button>
+            </div>
 
-                            <div class="Image">
-                                <img src="./assets/imgs/logoSmall3.png" alt="" class="imageLogo">
-                            </div>
-                            <div class="bodyCenter card-fixedheight">
-                                <h4 class="big-stuff">{{ads.name}}</h4>
-                                <ng-container>
-                                    <p class="title-1">{{createContent(ads.mainContent)[0]}} </p>
-                                    <p class="title-2">{{createContent(ads.mainContent)[1]}}</p>
-                                    <p class="title-3">{{createContent(ads.mainContent)[2]}}</p>
-                                </ng-container>
-                            </div>
-                        </div>
-                        <div class="bottom">
-                            <div class="imageBottom">
-                                <img src="./assets/imgs/contact.png" alt="">
-                            </div>
-                            <p class="bottom-title">The Uber® of Moving Stuff</p>
-                        </div>
+        </div>
+
+        <div *ngIf="!showTable">
+            <h1>No Advertisement Found</h1>
+        </div>
+
+        <div class="card-wrapper" *ngIf="showTable">
+            <div class=" card" *ngFor="let ads of adsList">
+                <div class="topStatic">
+                    <h2>Store,Estate,Garage Sales</h2>
+
+                    <div class="Image">
+                        <img src="./assets/imgs/logoSmall3.png" alt="" class="imageLogo">
+                    </div>
+                    <div class="bodyCenter">
+                        <h4 class="big-stuff">{{ads.name}}</h4>
+                        <ng-container>
+                            <p class="title-1">{{createContent(ads.mainContent)[0]}} </p>
+                            <p class="title-2">{{createContent(ads.mainContent)[1]}}</p>
+                            <p class="title-3">{{createContent(ads.mainContent)[2]}}</p>
+                        </ng-container>
                     </div>
                 </div>
-            </ng-template>
-        </owl-carousel-o>
+                <div class="bottom">
+                    <div class="imageBottom">
+                        <img src="./assets/imgs/contact.png" alt="">
+                    </div>
+                    <p class="bottom-title">The Uber® of Moving Stuff</p>
+                </div>
+
+
+            </div>
+        </div>
+
+
     </div>
 </div>

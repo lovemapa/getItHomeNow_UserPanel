@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-navbar',
@@ -7,9 +9,28 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavbarComponent implements OnInit {
 
-  constructor() { }
+   showAdvertisment=false;
+  constructor(public router:Router,public location:Location) {
+    this.showAdvertisment=false
+     
+      // console.log("Current Url:- "+this.router.url)
+
+       if(this.router.url == "/advertisment")
+       {
+        this.showAdvertisment=true
+       }else{
+        this.showAdvertisment=false
+       }
+
+
+   }
 
   ngOnInit(): void {
   }
+
+  goBack(){
+       this.location.back();
+       window.scrollTo(0, 0)
+      }
 
 }
