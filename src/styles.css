@@ -251,6 +251,19 @@ button:focus {
     font-weight: 600;
 }
 
+/* Error and Success Modal Css */
+.blue-snackbar {
+    background: #bd1a1a;
+    color: #fff;
+    padding: 15px !important;
+}
+
+.sucess-snackbar {
+    background: #1eb71e;
+    color: #fff;
+    padding: 15px !important;
+}
+
 
 /* ends */
 
