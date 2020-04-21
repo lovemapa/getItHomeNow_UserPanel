@@ -18,7 +18,7 @@ const routes: Routes = [
     path: '',
     component: BlankComponent,
     children: [
-      { path: 'advertisment', component: AdvertismentsComponent },
+      { path: 'advertisement', component: AdvertismentsComponent },
       // { path: 'privacy', component: PrivacyPolicyComponent },
       // { path: 'share/:name/:username', component: ShareComponent },
     ]

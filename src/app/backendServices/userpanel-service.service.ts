@@ -17,10 +17,10 @@ export class UserpanelServiceService {
     * mw=ethod to create new advertisement
     * @param searchString string to search in advertisements
   */
-  getAdvertisement(searchString: string): Observable<any> {
+  getAdvertisement(searchString: string,pageNo:Number): Observable<any> {
     //for setting token in headers
     let searchurl: string = '';
-    searchurl = this.getAdvertisementUrl + searchString;
+    searchurl = this.getAdvertisementUrl + searchString+"&page="+pageNo;;
     return this.http.get(searchurl).pipe(map(data => { return data; }));
   }
 

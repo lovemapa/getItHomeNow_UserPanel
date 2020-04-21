@@ -15,7 +15,7 @@ export class NavbarComponent implements OnInit {
      
       // console.log("Current Url:- "+this.router.url)
 
-       if(this.router.url == "/advertisment")
+       if(this.router.url == "/advertisement")
        {
         this.showAdvertisment=true
        }else{

@@ -2,18 +2,18 @@
     <div class="container">
         <div class="row">
             <div class="col-12 text-center">
-                <h2 class="title-heading" data-aos="fade-left">Advertisments</h2>
+                <h2 class="title-heading" data-aos="fade-left">Advertisement</h2>
             </div>
         </div>
 
         <div>
             <div class="header-left-outer">
                 <div class="getAllAd-btn" *ngIf="searchString != ''">
-                    <button type="button" class="btn btn-outline-danger" (click)="getAdvertisment('')">Show All Ads</button>
+                    <button type="button" class="btn btn-outline-danger" (click)="clickOnshowAll()">Show All Ads</button>
                 </div>
                 <div class="search-box-outer">
-                    <input name="searchBar" id="searchBarforAds" class="search-box" value="" placeholder="Search.." type="text" [(ngModel)]="searchString" (keyup.enter)="getAdvertisment()" (keyup)="getAdvertisment()" autocomplete="off">
-                    <button id="search-box-icon" type="submit" class="search btn btn-link text-danger" (click)="getAdvertisment()"><i class="fa fa-search search-icon"></i></button>
+                    <input name="searchBar" id="searchBarforAds" class="search-box" value="" placeholder="Search.." type="text" [(ngModel)]="searchString" (keyup.enter)="onKeypressSearch()" (keyup)="onKeypressSearch()" autocomplete="off">
+                    <button id="search-box-icon" type="submit" class="search btn btn-link text-danger" (click)="onKeypressSearch()"><i class="fa fa-search search-icon"></i></button>
                 </div>
 
             </div>
@@ -49,6 +49,12 @@
 
 
                 </div>
+            </div>
+            <!-- Pagination -->
+            <div class="pagination-wrapper" *ngIf="adsList.length != 0">
+                <button class="paginate_btn previous " (click)="previous()" [ngClass]="{'disabled': previousButton}" [disabled]="previousButton">Previous</button>
+                <a class="paginate_btn " *ngFor=" let page of paggination" [ngClass]="{'current': page.status == true}" (click)="pageNumberClick(page.pageNo)">{{page.pageNo}}</a>
+                <button class="paginate_btn next" (click)="next()" [ngClass]="{'disabled': nextButton}" [disabled]="nextButton">Next</button>
             </div>
         </div>
 

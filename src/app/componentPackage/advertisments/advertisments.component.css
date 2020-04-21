@@ -478,6 +478,88 @@
     color: #707070;
 }
 
+
+/*pagination*/
+
+.pagination-wrapper {
+    text-align: center;
+    padding: 20px 0px;
+    padding-bottom: 0;
+}
+
+.pagination-wrapper .paginate_btn.current {
+    background: #e92330;
+    color: #fff;
+    border-color: #e92330;
+}
+
+.pagination-wrapper .paginate_btn:hover {
+    background: #e92330;
+    color: #fff;
+}
+
+.pagination-wrapper .paginate_btn {
+    display: inline-block;
+    min-width: 35px;
+    line-height: 33px;
+    text-align: center;
+    margin-left: 0px;
+    text-align: center;
+    cursor: pointer;
+    color: #585050;
+    vertical-align: top;
+    font-size: 13px;
+    border: 1px solid #ddd;
+}
+
+.pagination-wrapper .paginate_btn.disabled:hover,
+.pagination-wrapper .paginate_btn.disabled {
+    background: none;
+    color: #2f2f2f;
+    border-color: #ddd;
+}
+
+.pagination-wrapper .previous,
+.pagination-wrapper .next {
+    position: relative;
+    font-size: 0px;
+}
+
+.pagination-wrapper .next:after {
+    transform: rotate(135deg);
+    left: 14px;
+}
+
+.pagination-wrapper .previous:after,
+.pagination-wrapper .next:after {
+    content: "";
+    position: absolute;
+    border-top: 2px solid #2f2f2f;
+    border-left: 2px solid #2f2f2f;
+    width: 6px;
+    height: 6px;
+    top: 50%;
+    left: 12.5px;
+    margin-top: -4px;
+}
+
+.pagination-wrapper .previous:after {
+    transform: rotate(-45deg);
+}
+
+.pagination-wrapper .paginate_btn:hover:after {
+    border-color: #fff;
+}
+
+.pagination-wrapper .paginate_btn.disabled:hover:after {
+    background: none;
+    color: #2f2f2f;
+    border-color: #2f2f2f;
+}
+
+
+/*ends*/
+
 .search-box-outer {
     height: 40px;
     border-radius: 5px;
