@@ -9,16 +9,16 @@
             <span class="paper-clip"></span>
             <h2>Need consultation? We provide it for free!</h2>
             <div class="form-wrapper">
-                <input type="text" placeholder="Name"  [(ngModel)]="userName" autocomplete="off"  />
+                <input type="text" placeholder="Name" [(ngModel)]="userName" autocomplete="off" />
             </div>
             <div class="form-wrapper">
-                <input type="email" placeholder="Email"  [(ngModel)]="userEmail" autocomplete="off"  />
+                <input type="email" placeholder="Email" [(ngModel)]="userEmail" autocomplete="off" />
             </div>
             <div class="form-wrapper">
-                <input type="tel" placeholder="Contact Number"  [(ngModel)]="userContactNo" autocomplete="off"  />
+                <input type="tel" placeholder="Contact Number" (keypress)="keyPress($event)" [(ngModel)]="userContactNo" onkeypress="" autocomplete="off" maxlength="11" />
             </div>
             <div class="form-wrapper">
-                <textarea placeholder="Message"  [(ngModel)]="userMessage" autocomplete="off" ></textarea>
+                <textarea placeholder="Message" [(ngModel)]="userMessage" autocomplete="off"></textarea>
             </div>
             <div class="form-wrapper submit-btn">
                 <a (click)="sendDetails()">Submit</a>

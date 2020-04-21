@@ -14,6 +14,8 @@ export class AppComponent {
     aos.init({ disable: 'tablet' });
   }
 
+  
+
   ngOnInit(){
   }
   

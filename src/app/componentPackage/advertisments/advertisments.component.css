@@ -213,10 +213,10 @@
 
 @media (max-width: 767px) {} */
 
-
-.top-n-margin{
+.top-n-margin {
     margin-top: -65px;
 }
+
 
 /* card css */
 
@@ -224,7 +224,7 @@
     display: flex;
     flex-flow: row wrap;
     justify-content: flex-start;
-    align-items: flex-start;
+    /* align-items: flex-start; */
 }
 
 .card-wrapper img {
@@ -249,6 +249,7 @@
     border-top-right-radius: 50px;
     position: relative;
     overflow: hidden;
+    justify-content: space-between;
 }
 
 .card-wrapper .card:hover {

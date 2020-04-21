@@ -23,7 +23,7 @@ export class AdvertismentsComponent implements OnInit {
     public spinner: NgxSpinnerService) {
     this.showTable = false;
     this.noDataFound=false;
-      spinner.show();
+      
     this.getAdvertisment();
   }
 
@@ -35,6 +35,7 @@ export class AdvertismentsComponent implements OnInit {
 
   /**GEt AdverTisMEnt List */
   getAdvertisment(searchTerm?: string) {
+    this.spinner.show();
     if (searchTerm || searchTerm == '') {
       this.searchString = searchTerm;
     }
@@ -44,7 +45,7 @@ export class AdvertismentsComponent implements OnInit {
         this.showTable = true;
          setTimeout(() => {
             this.spinner.hide();
-         }, 500);
+         }, 1000);
         if (this.adsList.length == 0) {
           this.showTable = false;
         }

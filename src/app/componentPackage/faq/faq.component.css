@@ -93,6 +93,8 @@ a:hover {
     letter-spacing: 0.8px;
     line-height: 24px;
     color: #fff;
+    font-family: serif;
+    padding-left: 15px;
 }
 
 @media (max-width: 767px) {

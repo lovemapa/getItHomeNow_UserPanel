@@ -251,17 +251,25 @@ button:focus {
     font-weight: 600;
 }
 
+
 /* Error and Success Modal Css */
+
 .blue-snackbar {
-    background: #bd1a1a;
+    background: #d20b18;
     color: #fff;
     padding: 15px !important;
+    margin-top: 87px !important;
+    border: 1px solid #fff;
 }
 
 .sucess-snackbar {
     background: #1eb71e;
     color: #fff;
     padding: 15px !important;
+}
+
+.swal2-styled.swal2-confirm {
+    background-color: #d20b18 !important;
 }
 
 
