@@ -139,8 +139,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       pathMatch: 'full'
     }, {
       path: 'home',
-      component: _layout_full_full_component__WEBPACK_IMPORTED_MODULE_2__["FullComponent"],
-      children: []
+      component: _layout_full_full_component__WEBPACK_IMPORTED_MODULE_2__["FullComponent"]
     }, {
       path: '',
       component: _layout_blank_blank_component__WEBPACK_IMPORTED_MODULE_3__["BlankComponent"],
@@ -148,9 +147,6 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         path: 'advertisement',
         component: _componentPackage_advertisments_advertisments_component__WEBPACK_IMPORTED_MODULE_4__["AdvertismentsComponent"]
       }]
-    }, {
-      path: '***',
-      redirectTo: 'home'
     }];
 
     var AppRoutingModule = function AppRoutingModule() {
@@ -389,85 +385,79 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     /* harmony import */
 
 
-    var _angular_common__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(
-    /*! @angular/common */
-    "./node_modules/@angular/common/__ivy_ngcc__/fesm2015/common.js");
-    /* harmony import */
-
-
-    var ngx_owl_carousel_o__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(
+    var ngx_owl_carousel_o__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(
     /*! ngx-owl-carousel-o */
     "./node_modules/ngx-owl-carousel-o/__ivy_ngcc__/fesm2015/ngx-owl-carousel-o.js");
     /* harmony import */
 
 
-    var _componentPackage_navbar_navbar_component__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(
+    var _componentPackage_navbar_navbar_component__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(
     /*! ./componentPackage/navbar/navbar.component */
     "./src/app/componentPackage/navbar/navbar.component.ts");
     /* harmony import */
 
 
-    var _componentPackage_home_home_component__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(
+    var _componentPackage_home_home_component__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(
     /*! ./componentPackage/home/home.component */
     "./src/app/componentPackage/home/home.component.ts");
     /* harmony import */
 
 
-    var _componentPackage_advertisments_advertisments_component__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(
+    var _componentPackage_advertisments_advertisments_component__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(
     /*! ./componentPackage/advertisments/advertisments.component */
     "./src/app/componentPackage/advertisments/advertisments.component.ts");
     /* harmony import */
 
 
-    var _componentPackage_contactus_contactus_component__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(
+    var _componentPackage_contactus_contactus_component__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(
     /*! ./componentPackage/contactus/contactus.component */
     "./src/app/componentPackage/contactus/contactus.component.ts");
     /* harmony import */
 
 
-    var _layout_full_full_component__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(
+    var _layout_full_full_component__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(
     /*! ./layout/full/full.component */
     "./src/app/layout/full/full.component.ts");
     /* harmony import */
 
 
-    var _componentPackage_footer_footer_component__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(
+    var _componentPackage_footer_footer_component__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(
     /*! ./componentPackage/footer/footer.component */
     "./src/app/componentPackage/footer/footer.component.ts");
     /* harmony import */
 
 
-    var _componentPackage_faq_faq_component__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(
+    var _componentPackage_faq_faq_component__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(
     /*! ./componentPackage/faq/faq.component */
     "./src/app/componentPackage/faq/faq.component.ts");
     /* harmony import */
 
 
-    var _angular_common_http__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(
+    var _angular_common_http__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(
     /*! @angular/common/http */
     "./node_modules/@angular/common/__ivy_ngcc__/fesm2015/http.js");
     /* harmony import */
 
 
-    var _layout_blank_blank_component__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(
+    var _layout_blank_blank_component__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(
     /*! ./layout/blank/blank.component */
     "./src/app/layout/blank/blank.component.ts");
     /* harmony import */
 
 
-    var _componentPackage_aboutus_aboutus_component__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(
+    var _componentPackage_aboutus_aboutus_component__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(
     /*! ./componentPackage/aboutus/aboutus.component */
     "./src/app/componentPackage/aboutus/aboutus.component.ts");
     /* harmony import */
 
 
-    var ngx_spinner__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(
+    var ngx_spinner__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(
     /*! ngx-spinner */
     "./node_modules/ngx-spinner/__ivy_ngcc__/fesm2015/ngx-spinner.js");
     /* harmony import */
 
 
-    var _angular_forms__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(
+    var _angular_forms__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(
     /*! @angular/forms */
     "./node_modules/@angular/forms/__ivy_ngcc__/fesm2015/forms.js");
 
@@ -486,17 +476,14 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       providers: [{
         provide: _aos__WEBPACK_IMPORTED_MODULE_7__["AosToken"],
         useValue: _aos__WEBPACK_IMPORTED_MODULE_7__["aos"]
-      }, {
-        provide: _angular_common__WEBPACK_IMPORTED_MODULE_8__["LocationStrategy"],
-        useClass: _angular_common__WEBPACK_IMPORTED_MODULE_8__["HashLocationStrategy"]
       }],
-      imports: [[_angular_platform_browser__WEBPACK_IMPORTED_MODULE_0__["BrowserModule"], _app_routing_module__WEBPACK_IMPORTED_MODULE_3__["AppRoutingModule"], _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_5__["BrowserAnimationsModule"], _angular_common_http__WEBPACK_IMPORTED_MODULE_17__["HttpClientModule"], _ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_6__["NgbModule"], _material_material__WEBPACK_IMPORTED_MODULE_2__["MaterialModule"], ngx_owl_carousel_o__WEBPACK_IMPORTED_MODULE_9__["CarouselModule"], ngx_spinner__WEBPACK_IMPORTED_MODULE_20__["NgxSpinnerModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_21__["FormsModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_21__["ReactiveFormsModule"]]]
+      imports: [[_angular_platform_browser__WEBPACK_IMPORTED_MODULE_0__["BrowserModule"], _app_routing_module__WEBPACK_IMPORTED_MODULE_3__["AppRoutingModule"], _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_5__["BrowserAnimationsModule"], _angular_common_http__WEBPACK_IMPORTED_MODULE_16__["HttpClientModule"], _ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_6__["NgbModule"], _material_material__WEBPACK_IMPORTED_MODULE_2__["MaterialModule"], ngx_owl_carousel_o__WEBPACK_IMPORTED_MODULE_8__["CarouselModule"], ngx_spinner__WEBPACK_IMPORTED_MODULE_19__["NgxSpinnerModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_20__["FormsModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_20__["ReactiveFormsModule"]]]
     });
 
     (function () {
       (typeof ngJitMode === "undefined" || ngJitMode) && _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵsetNgModuleScope"](AppModule, {
-        declarations: [_app_component__WEBPACK_IMPORTED_MODULE_4__["AppComponent"], _componentPackage_navbar_navbar_component__WEBPACK_IMPORTED_MODULE_10__["NavbarComponent"], _componentPackage_home_home_component__WEBPACK_IMPORTED_MODULE_11__["HomeComponent"], _componentPackage_advertisments_advertisments_component__WEBPACK_IMPORTED_MODULE_12__["AdvertismentsComponent"], _componentPackage_contactus_contactus_component__WEBPACK_IMPORTED_MODULE_13__["ContactusComponent"], _layout_full_full_component__WEBPACK_IMPORTED_MODULE_14__["FullComponent"], _componentPackage_footer_footer_component__WEBPACK_IMPORTED_MODULE_15__["FooterComponent"], _componentPackage_faq_faq_component__WEBPACK_IMPORTED_MODULE_16__["FaqComponent"], _layout_blank_blank_component__WEBPACK_IMPORTED_MODULE_18__["BlankComponent"], _componentPackage_aboutus_aboutus_component__WEBPACK_IMPORTED_MODULE_19__["AboutusComponent"]],
-        imports: [_angular_platform_browser__WEBPACK_IMPORTED_MODULE_0__["BrowserModule"], _app_routing_module__WEBPACK_IMPORTED_MODULE_3__["AppRoutingModule"], _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_5__["BrowserAnimationsModule"], _angular_common_http__WEBPACK_IMPORTED_MODULE_17__["HttpClientModule"], _ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_6__["NgbModule"], _material_material__WEBPACK_IMPORTED_MODULE_2__["MaterialModule"], ngx_owl_carousel_o__WEBPACK_IMPORTED_MODULE_9__["CarouselModule"], ngx_spinner__WEBPACK_IMPORTED_MODULE_20__["NgxSpinnerModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_21__["FormsModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_21__["ReactiveFormsModule"]]
+        declarations: [_app_component__WEBPACK_IMPORTED_MODULE_4__["AppComponent"], _componentPackage_navbar_navbar_component__WEBPACK_IMPORTED_MODULE_9__["NavbarComponent"], _componentPackage_home_home_component__WEBPACK_IMPORTED_MODULE_10__["HomeComponent"], _componentPackage_advertisments_advertisments_component__WEBPACK_IMPORTED_MODULE_11__["AdvertismentsComponent"], _componentPackage_contactus_contactus_component__WEBPACK_IMPORTED_MODULE_12__["ContactusComponent"], _layout_full_full_component__WEBPACK_IMPORTED_MODULE_13__["FullComponent"], _componentPackage_footer_footer_component__WEBPACK_IMPORTED_MODULE_14__["FooterComponent"], _componentPackage_faq_faq_component__WEBPACK_IMPORTED_MODULE_15__["FaqComponent"], _layout_blank_blank_component__WEBPACK_IMPORTED_MODULE_17__["BlankComponent"], _componentPackage_aboutus_aboutus_component__WEBPACK_IMPORTED_MODULE_18__["AboutusComponent"]],
+        imports: [_angular_platform_browser__WEBPACK_IMPORTED_MODULE_0__["BrowserModule"], _app_routing_module__WEBPACK_IMPORTED_MODULE_3__["AppRoutingModule"], _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_5__["BrowserAnimationsModule"], _angular_common_http__WEBPACK_IMPORTED_MODULE_16__["HttpClientModule"], _ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_6__["NgbModule"], _material_material__WEBPACK_IMPORTED_MODULE_2__["MaterialModule"], ngx_owl_carousel_o__WEBPACK_IMPORTED_MODULE_8__["CarouselModule"], ngx_spinner__WEBPACK_IMPORTED_MODULE_19__["NgxSpinnerModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_20__["FormsModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_20__["ReactiveFormsModule"]]
       });
     })();
     /*@__PURE__*/
@@ -506,14 +493,11 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵsetClassMetadata"](AppModule, [{
         type: _angular_core__WEBPACK_IMPORTED_MODULE_1__["NgModule"],
         args: [{
-          declarations: [_app_component__WEBPACK_IMPORTED_MODULE_4__["AppComponent"], _componentPackage_navbar_navbar_component__WEBPACK_IMPORTED_MODULE_10__["NavbarComponent"], _componentPackage_home_home_component__WEBPACK_IMPORTED_MODULE_11__["HomeComponent"], _componentPackage_advertisments_advertisments_component__WEBPACK_IMPORTED_MODULE_12__["AdvertismentsComponent"], _componentPackage_contactus_contactus_component__WEBPACK_IMPORTED_MODULE_13__["ContactusComponent"], _layout_full_full_component__WEBPACK_IMPORTED_MODULE_14__["FullComponent"], _componentPackage_footer_footer_component__WEBPACK_IMPORTED_MODULE_15__["FooterComponent"], _componentPackage_faq_faq_component__WEBPACK_IMPORTED_MODULE_16__["FaqComponent"], _layout_blank_blank_component__WEBPACK_IMPORTED_MODULE_18__["BlankComponent"], _componentPackage_aboutus_aboutus_component__WEBPACK_IMPORTED_MODULE_19__["AboutusComponent"]],
-          imports: [_angular_platform_browser__WEBPACK_IMPORTED_MODULE_0__["BrowserModule"], _app_routing_module__WEBPACK_IMPORTED_MODULE_3__["AppRoutingModule"], _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_5__["BrowserAnimationsModule"], _angular_common_http__WEBPACK_IMPORTED_MODULE_17__["HttpClientModule"], _ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_6__["NgbModule"], _material_material__WEBPACK_IMPORTED_MODULE_2__["MaterialModule"], ngx_owl_carousel_o__WEBPACK_IMPORTED_MODULE_9__["CarouselModule"], ngx_spinner__WEBPACK_IMPORTED_MODULE_20__["NgxSpinnerModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_21__["FormsModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_21__["ReactiveFormsModule"]],
+          declarations: [_app_component__WEBPACK_IMPORTED_MODULE_4__["AppComponent"], _componentPackage_navbar_navbar_component__WEBPACK_IMPORTED_MODULE_9__["NavbarComponent"], _componentPackage_home_home_component__WEBPACK_IMPORTED_MODULE_10__["HomeComponent"], _componentPackage_advertisments_advertisments_component__WEBPACK_IMPORTED_MODULE_11__["AdvertismentsComponent"], _componentPackage_contactus_contactus_component__WEBPACK_IMPORTED_MODULE_12__["ContactusComponent"], _layout_full_full_component__WEBPACK_IMPORTED_MODULE_13__["FullComponent"], _componentPackage_footer_footer_component__WEBPACK_IMPORTED_MODULE_14__["FooterComponent"], _componentPackage_faq_faq_component__WEBPACK_IMPORTED_MODULE_15__["FaqComponent"], _layout_blank_blank_component__WEBPACK_IMPORTED_MODULE_17__["BlankComponent"], _componentPackage_aboutus_aboutus_component__WEBPACK_IMPORTED_MODULE_18__["AboutusComponent"]],
+          imports: [_angular_platform_browser__WEBPACK_IMPORTED_MODULE_0__["BrowserModule"], _app_routing_module__WEBPACK_IMPORTED_MODULE_3__["AppRoutingModule"], _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_5__["BrowserAnimationsModule"], _angular_common_http__WEBPACK_IMPORTED_MODULE_16__["HttpClientModule"], _ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_6__["NgbModule"], _material_material__WEBPACK_IMPORTED_MODULE_2__["MaterialModule"], ngx_owl_carousel_o__WEBPACK_IMPORTED_MODULE_8__["CarouselModule"], ngx_spinner__WEBPACK_IMPORTED_MODULE_19__["NgxSpinnerModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_20__["FormsModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_20__["ReactiveFormsModule"]],
           providers: [{
             provide: _aos__WEBPACK_IMPORTED_MODULE_7__["AosToken"],
             useValue: _aos__WEBPACK_IMPORTED_MODULE_7__["aos"]
-          }, {
-            provide: _angular_common__WEBPACK_IMPORTED_MODULE_8__["LocationStrategy"],
-            useClass: _angular_common__WEBPACK_IMPORTED_MODULE_8__["HashLocationStrategy"]
           }],
           bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_4__["AppComponent"]]
         }]

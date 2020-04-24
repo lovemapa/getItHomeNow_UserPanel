@@ -5,14 +5,11 @@ import { BlankComponent } from './layout/blank/blank.component';
 import{AdvertismentsComponent} from './componentPackage/advertisments/advertisments.component'
 const routes: Routes = [
 
+ 
   { path: '', redirectTo: 'home', pathMatch: 'full' },
-
   {
     path: 'home',
-    component: FullComponent,
-    children: [
-
-    ]
+    component: FullComponent
   },
   {
     path: '',
@@ -24,7 +21,7 @@ const routes: Routes = [
     ]
 
   },
-  { path: '***', redirectTo: 'home' }
+  // { path: '**', redirectTo: 'home' }
 ];
 
 @NgModule({
