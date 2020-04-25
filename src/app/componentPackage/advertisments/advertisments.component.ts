@@ -185,4 +185,8 @@ onKeypressSearch(){
   }
 
 
+  gotoInstaPage(){
+    window.open('https://www.instagram.com/getithomenow/','_blank')
+  }
+
 }

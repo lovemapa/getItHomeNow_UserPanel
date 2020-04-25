@@ -19,6 +19,9 @@
 
 .icons {
     margin-bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .colorless-icons {
@@ -28,9 +31,12 @@
 
 .icons .social-icon {
     padding: 0 10px;
-    font-size: 20px;
     cursor: pointer;
     transition: 0.3s all;
+}
+
+.icons .social-icon i:before {
+    font-size: 24px;
 }
 
 .icons .instagram:hover {

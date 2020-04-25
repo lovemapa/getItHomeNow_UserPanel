@@ -5,7 +5,7 @@ export class CommonMethods {
 
 
     public static showconsole(tag: string, message: string) {
-        console.log(tag, message);
+        // console.log(tag, message);
     }
 
 

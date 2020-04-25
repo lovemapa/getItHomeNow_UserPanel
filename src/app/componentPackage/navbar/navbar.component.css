@@ -32,6 +32,12 @@
     color: #fff;
 }
 
+.navbar-transparent .faltu-text {
+    color: #fff;
+    font-size: 16px;
+    padding-left: 10px;
+}
+
 .navbar-dark .navbar-toggler {
     padding: 5px 10px;
     border: 1px solid #e92330;
@@ -58,7 +64,14 @@
     }
 }
 
-@media screen and (max-width:762px) {
+@media (max-width: 991px) {
+    .navbar .navbar-nav .nav-item .nav-link {
+        font-size: 13px;
+        padding: 10px 6px;
+    }
+}
+
+@media (max-width:762px) {
     .btn2nd {
         margin-top: 10px;
         margin-left: 0px;
