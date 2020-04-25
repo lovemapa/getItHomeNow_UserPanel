@@ -27,8 +27,9 @@
 .contact-us-section .sub-text {
     color: #fff;
     max-width: 550px;
-    margin: 0 auto;
-    margin-bottom: 35px;
+    margin: 0 auto 35px;
+    font-size: 23px;
+    line-height: 26px;
 }
 
 
