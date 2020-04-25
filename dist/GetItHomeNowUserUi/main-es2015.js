@@ -78,7 +78,7 @@ const routes = [
         path: '',
         component: _layout_blank_blank_component__WEBPACK_IMPORTED_MODULE_3__["BlankComponent"],
         children: [
-            { path: 'advertisement', component: _componentPackage_advertisments_advertisments_component__WEBPACK_IMPORTED_MODULE_4__["AdvertismentsComponent"] },
+            { path: 'promotions', component: _componentPackage_advertisments_advertisments_component__WEBPACK_IMPORTED_MODULE_4__["AdvertismentsComponent"] },
         ]
     },
 ];
@@ -434,7 +434,7 @@ function AdvertismentsComponent_div_8_Template(rf, ctx) { if (rf & 1) {
 function AdvertismentsComponent_div_13_Template(rf, ctx) { if (rf & 1) {
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "div");
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](1, "h1");
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](2, "No Advertisement Found");
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](2, "No Promotions Found");
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
 } }
@@ -688,7 +688,7 @@ AdvertismentsComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵd
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](2, "div", 2);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](3, "div", 3);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](4, "h2", 4);
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](5, "Advertisement");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](5, "Promotions");
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
@@ -1198,17 +1198,17 @@ class HomeComponent {
     }
 }
 HomeComponent.ɵfac = function HomeComponent_Factory(t) { return new (t || HomeComponent)(); };
-HomeComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({ type: HomeComponent, selectors: [["app-home"]], decls: 8, vars: 0, consts: [[1, "banner-content"], ["routerLink", "/advertisement", 1, "common-btn"]], template: function HomeComponent_Template(rf, ctx) { if (rf & 1) {
+HomeComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({ type: HomeComponent, selectors: [["app-home"]], decls: 8, vars: 0, consts: [[1, "banner-content"], ["routerLink", "/promotions", 1, "common-btn"]], template: function HomeComponent_Template(rf, ctx) { if (rf & 1) {
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "header");
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](1, "div", 0);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](2, "h1");
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](3, "Is your car too small to fit your oversized delivery?");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](3, "Look no further! You already made your best move! Now let\u2019s move forward.");
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](4, "p");
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](5, "Look no further you just at the right place , As we are a band of creative people who thinks that we are in the era of excellence and perfection where we care for your products and deliver it with integrity.");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](5, "We are a band of creative people who know that we are in an era of perfection where we care for your products and deliver them with integrity and seamless integration, all with the click of a mouse or the ease of a phone call. We\u2019re not your grandfather\u2019s moving company, we are the best in-class. GET IT HOME NOW! ");
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](6, "a", 1);
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](7, "Advertisement");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](7, "Promotions");
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
@@ -1253,7 +1253,7 @@ class NavbarComponent {
         this.showAdvertisment = false;
         this.showAdvertisment = false;
         // console.log("Current Url:- "+this.router.url)
-        if (this.router.url == "/advertisement") {
+        if (this.router.url == "/promotions") {
             this.showAdvertisment = true;
         }
         else {
@@ -1268,7 +1268,7 @@ class NavbarComponent {
     }
 }
 NavbarComponent.ɵfac = function NavbarComponent_Factory(t) { return new (t || NavbarComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_angular_router__WEBPACK_IMPORTED_MODULE_1__["Router"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_angular_common__WEBPACK_IMPORTED_MODULE_2__["Location"])); };
-NavbarComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({ type: NavbarComponent, selectors: [["app-navbar"]], decls: 25, vars: 15, consts: [["id", "navbar", "color-on-scroll", "50", 1, "navbar", "navbar-expand-sm", "navbar-dark", "fixed-top", 3, "ngClass"], [1, "container-nav"], ["routerLink", "", 1, "navbar-brand"], ["src", "assets/imgs/mainLogo copy.png", 1, "logo-big"], ["src", "assets/imgs/logoSmall3.png", 1, "logo-small"], ["id", "mytoggle", "type", "button", "data-toggle", "collapse", "data-target", "#probootstrap-navbar", "aria-controls", "probootstrap-navbar", "aria-expanded", "false", "aria-label", "Toggle navigation", 1, "navbar-toggler", "ml-auto"], ["aria-hidden", "true", 1, "fa", "fa-bars"], ["id", "probootstrap-navbar", 1, "collapse", "navbar-collapse"], [1, "navbar-nav", "ml-auto"], [1, "nav-item", 3, "ngClass"], ["data-toggle", "collapse", "data-target", ".navbar-collapse.show", 1, "nav-link", 3, "click"], [1, "nav-item"], ["routerLink", "/advertisement", "routerLinkActive", "active", "data-toggle", "collapse", "data-target", ".navbar-collapse.show", 1, "nav-link"], ["href", "#aboutUS", "data-toggle", "collapse", "data-target", ".navbar-collapse.show", 1, "nav-link"], ["href", "#faq", "data-toggle", "collapse", "data-target", ".navbar-collapse.show", 1, "nav-link"], ["href", "#contactus", "data-toggle", "collapse", "data-target", ".navbar-collapse.show", 1, "nav-link"]], template: function NavbarComponent_Template(rf, ctx) { if (rf & 1) {
+NavbarComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({ type: NavbarComponent, selectors: [["app-navbar"]], decls: 25, vars: 15, consts: [["id", "navbar", "color-on-scroll", "50", 1, "navbar", "navbar-expand-sm", "navbar-dark", "fixed-top", 3, "ngClass"], [1, "container-nav"], ["routerLink", "", 1, "navbar-brand"], ["src", "assets/imgs/mainLogo copy.png", 1, "logo-big"], ["src", "assets/imgs/logoSmall3.png", 1, "logo-small"], ["id", "mytoggle", "type", "button", "data-toggle", "collapse", "data-target", "#probootstrap-navbar", "aria-controls", "probootstrap-navbar", "aria-expanded", "false", "aria-label", "Toggle navigation", 1, "navbar-toggler", "ml-auto"], ["aria-hidden", "true", 1, "fa", "fa-bars"], ["id", "probootstrap-navbar", 1, "collapse", "navbar-collapse"], [1, "navbar-nav", "ml-auto"], [1, "nav-item", 3, "ngClass"], ["data-toggle", "collapse", "data-target", ".navbar-collapse.show", 1, "nav-link", 3, "click"], [1, "nav-item"], ["routerLink", "/promotions", "routerLinkActive", "active", "data-toggle", "collapse", "data-target", ".navbar-collapse.show", 1, "nav-link"], ["href", "#aboutUS", "data-toggle", "collapse", "data-target", ".navbar-collapse.show", 1, "nav-link"], ["href", "#faq", "data-toggle", "collapse", "data-target", ".navbar-collapse.show", 1, "nav-link"], ["href", "#contactus", "data-toggle", "collapse", "data-target", ".navbar-collapse.show", 1, "nav-link"]], template: function NavbarComponent_Template(rf, ctx) { if (rf & 1) {
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "nav", 0);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](1, "div", 1);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](2, "a", 2);
@@ -1290,7 +1290,7 @@ NavbarComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineCo
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](13, "li", 11);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](14, "a", 12);
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](15, "Advertisement");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](15, "Promotions");
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](16, "li", 9);
