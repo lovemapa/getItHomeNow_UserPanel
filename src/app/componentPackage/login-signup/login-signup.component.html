@@ -1,0 +1,141 @@
+<main id="wrapper">
+
+    <div class="backlayer">
+        <div class="layerLeft"
+            style="background-image:url(./assets/imgs/mainBackGround.png); background-repeat:no-repeat;">
+            <figure class="logo"><img alt="" src="./assets/imgs/mainLogo.png"></figure>
+        </div>
+        <div class="layerRight"
+            style="background-image:url(./assets/imgs/mainBackGround.png); background-repeat:no-repeat;">
+            <figure class="logo"><img alt="" src="./assets/imgs/mainLogo.png"></figure>
+        </div>
+    </div>
+    <div class="panels">
+        <div class="innerpanel">
+            <!-- <div class="left">
+                <div class="formcontainer">
+                    <h5>Forgot your password? </h5>
+                    <h6>Enter The E-mail Address Associated With Your Account.</h6>
+                    <form class="web_form" action="">
+                        <div class="field_control fieldicon mail">
+                            <label class="field_label">Email <span class="mandatory">*</span></label>
+                            <div class="field_cover">
+                                <input type="text">
+                            </div>
+                        </div>
+
+
+                        <a href="" class="circlebutton">Sign In</a>
+                        <a id="moveright" href="javascript:void(0)" class="linkright linkslide">Back to Login</a>
+                    </form>
+                </div>
+            </div> -->
+            <div class="right">
+                <div class="formcontainer">
+                    <h5>login</h5>
+                    <!-- <h6>Lorem ipsum dolor sit amet, consectetur adipiscing</h6> -->
+
+                    <form class="login100-form" *ngIf="signupForm == false">
+                        <div class="field">
+                            <input type="text" name="email" id="email" placeholder=" " autocomplete="off"
+                                [(ngModel)]="loginsignup.email" required>
+                            <label for="email">Email</label>
+                            <i class="fieldIcon fa fa-user" aria-hidden="true"></i>
+                        </div>
+
+                        <div class="field">
+                            <input type="password" name="password" id=password placeholder=" "
+                                [(ngModel)]="loginsignup.password" required>
+                            <label for="password">Password</label>
+                            <i class="fieldIcon fa fa-lock" aria-hidden="true"></i>
+                         
+                        </div>
+
+                        <div class="field">
+                            <button type="submit" class="submit button" (click)="callLoginApi()"><span></span>Log
+                                In</button>
+                        </div>
+
+                        <div class="field d-flex spcl-field">
+                       
+                        </div>
+                    </form>
+                    
+                    <form class="login100-form" *ngIf="signupForm == true">
+                       <div class="row">
+                           <div class="col-md-6 ">
+                            <div class="field">
+                                <input type="text" name="first_name" id="first_name" placeholder=" " autocomplete="off"
+                                    [(ngModel)]="loginsignup.first_Name" required>
+                                <label for="first_name">First Name</label>
+                                <i class="fieldIcon fa fa-user" aria-hidden="true"></i>
+                            </div>
+                           </div>
+                           <div class="col-md-6 ">
+                            <div class="field">
+                                <input type="text" name="last_name" id="last_name" placeholder=" " autocomplete="off"
+                                    [(ngModel)]="loginsignup.last_Name" required>
+                                <label for="last_name">Last Name</label>
+                                <i class="fieldIcon fa fa-user" aria-hidden="true"></i>
+                            </div>
+                           </div>
+                       </div>
+                       
+                        <div class="field">
+                            <input type="text" name="email" id="email" placeholder=" " autocomplete="off"
+                                [(ngModel)]="loginsignup.email" required>
+                            <label for="email">Email</label>
+                            <i class="fieldIcon fa fa-user" aria-hidden="true"></i>
+                        </div>
+                        <div class="field">
+                            <input type="text" name="contact_Number" id="contact_Number" placeholder=" " autocomplete="off"
+                                [(ngModel)]="loginsignup.contact_Number" required>
+                            <label for="contact_Number">Contact Number</label>
+                            <i class="fieldIcon fa fa-user" aria-hidden="true"></i>
+                        </div>
+
+                        <div class="field">
+                            <input type="password" name="password" id="password" placeholder=" "
+                                [(ngModel)]="loginsignup.password" required>
+                            <label for="password">Password</label>
+                            <i class="fieldIcon fa fa-lock" aria-hidden="true"></i>
+                          
+                        </div>
+                        <div class="field">
+                            <input type="password" name="c_password" id="c_password" placeholder=" "
+                                [(ngModel)]="loginsignup.confirm_password" required>
+                            <label for="c_password">Confirm Password</label>
+                            <i class="fieldIcon fa fa-lock" aria-hidden="true"></i>
+                           
+                        </div>
+
+                        <div class="field">
+                            <button type="submit" class="submit button" (click)="callLoginApi()"><span></span>Log
+                                In</button>
+                        </div>
+
+                        <div class="field d-flex spcl-field">
+                            <!-- <label class="checkbox leftlabel"><input type="checkbox"><i
+                                    class="input-helper"></i>Remember me</label> -->
+                            <!-- <a id="moveleft" href="javascript:void(0)" class="linkright linkslide"
+                                (click)="CallModalForm(content)">Forgot Password?</a> -->
+                        </div>
+                    </form>
+                    <div class="signuplink"  *ngIf="signupForm == false">
+                     <span>Not Member yet?<a (click)="toggleButtonFunction()">{{titlebelow}}</a></span>
+                       
+                    </div>
+                    <div class="signuplink"  *ngIf="signupForm == true">
+                     <span>Go back to<a (click)="toggleButtonFunction()">{{titlebelow}}</a></span>
+                       
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+
+
+

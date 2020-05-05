@@ -3,6 +3,8 @@ import { Routes, RouterModule } from '@angular/router';
 import { FullComponent } from './layout/full/full.component'
 import { BlankComponent } from './layout/blank/blank.component';
 import{AdvertismentsComponent} from './componentPackage/advertisments/advertisments.component'
+import{BlankLoginandsignupComponent}from'./layout/blank-loginandsignup/blank-loginandsignup.component'
+import {LoginSignupComponent} from'./componentPackage/login-signup/login-signup.component'
 const routes: Routes = [
 
  
@@ -16,6 +18,16 @@ const routes: Routes = [
     component: BlankComponent,
     children: [
       { path: 'promotions', component: AdvertismentsComponent },
+      // { path: 'privacy', component: PrivacyPolicyComponent },
+      // { path: 'share/:name/:username', component: ShareComponent },
+    ]
+
+  },
+  {
+    path: '',
+    component: BlankLoginandsignupComponent,
+    children: [
+      { path: 'login', component: LoginSignupComponent },
       // { path: 'privacy', component: PrivacyPolicyComponent },
       // { path: 'share/:name/:username', component: ShareComponent },
     ]

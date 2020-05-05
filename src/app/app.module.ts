@@ -20,6 +20,8 @@ import { BlankComponent } from './layout/blank/blank.component';
 import { AboutusComponent } from './componentPackage/aboutus/aboutus.component';
 import { NgxSpinnerModule } from "ngx-spinner";
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { BlankLoginandsignupComponent } from './layout/blank-loginandsignup/blank-loginandsignup.component';
+import { LoginSignupComponent } from './componentPackage/login-signup/login-signup.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -31,7 +33,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     FooterComponent,
     FaqComponent,
     BlankComponent,
-    AboutusComponent
+    AboutusComponent,
+    BlankLoginandsignupComponent,
+    LoginSignupComponent
   ],
   imports: [
     BrowserModule,
