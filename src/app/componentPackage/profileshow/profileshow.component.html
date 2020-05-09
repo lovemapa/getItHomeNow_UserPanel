@@ -21,9 +21,9 @@
             <div class="card contentcard">
                 <div class="card-body">
                     <div class="topview">
-                        <h2>Personal Details</h2>
+                        <h2 style="color: #000;">Personal Details</h2>
                         <div class="editbutton">
-                            <a (click)="showUpdateProfileMOdal(content)" *ngIf="showCompleteProfileButton == true">Edit |</a>
+                            <a (click)="showUpdateProfileMOdal(content,'Edit Profile')" *ngIf="showCompleteProfileButton == true">Edit |</a>
                             <a (click)="changePassword(changepassword)">Change Password</a>
                         </div>
                     </div>
@@ -47,7 +47,7 @@
                             <span>{{address}}</span>
                         </div>
                         <div class="field" style="margin-bottom: 0;" *ngIf="showCompleteProfileButton == false">
-                            <button type="submit" class="submit button" (click)="showUpdateProfileMOdal(content)">Complete Profile</button>
+                            <button type="submit" class="submit button" (click)="showUpdateProfileMOdal(content,'Compelte Profile')">Complete Profile</button>
                         </div>
 
                     </div>
@@ -65,7 +65,7 @@
     <div class="modal-body" style="text-align: center; ">
         <div class="close-icon" (click)="JoinAndClose()"><i class="fa fa-times"></i></div>
         <div class="title-heading">
-            <h3> Compelte Profile</h3>
+            <h3> {{modalTitle}}</h3>
         </div>
 
         <form class="login100-form">

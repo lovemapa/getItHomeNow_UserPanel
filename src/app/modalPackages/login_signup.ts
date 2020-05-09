@@ -12,6 +12,7 @@ export class LoginSignupModal {
     public city: string;
     public zip: string;
     public profilePic: any;
+    public oldPassword: string;
     constructor(
 
 

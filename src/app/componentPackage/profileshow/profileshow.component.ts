@@ -28,6 +28,7 @@ export class ProfileshowComponent implements OnInit {
   userName: string;
   address: string;
   errorMessage: string;
+  modalTitle:string;
   showCompleteProfileButton = false;
   constructor(public modalService: NgbModal, public snackBar: MatSnackBar, public router: Router,
     public cookiesService: CookieService, public spiner: NgxSpinnerService, public userBackEndServices: UserpanelServiceService) {
@@ -36,6 +37,7 @@ export class ProfileshowComponent implements OnInit {
     this.address = "";
     this.errorMessage = "";
     this.oldPwd="";
+    this.modalTitle="";
     this.showCompleteProfileButton = false;
     this.resetVeriable();
     this.checkLogin();
@@ -222,7 +224,8 @@ export class ProfileshowComponent implements OnInit {
   /**Open Edit MOdal  */
 
 
-  showUpdateProfileMOdal(content) {
+  showUpdateProfileMOdal(content,modalTitleString:string) {
+    this.modalTitle=modalTitleString;
     this.setModalUserData();
     this.openModal(content);
   }
@@ -356,6 +359,7 @@ validationChangePassword(){
       this.spiner.show();
       let userDetails: any = {};
       userDetails.password = this.userDetailsModal.password;
+      userDetails.oldPassword = this.oldPwd;
       this.userBackEndServices.updateDetails(userDetails).subscribe(response => {
         this.JoinAndClose();
         if (response.success) {

@@ -46,6 +46,28 @@
     color: #fff;
 }
 
+.profile-settings .navdrop-box button {
+    display: inline-block;
+    font-size: 14px;
+    border: unset;
+    padding: 8px 0px;
+    min-width: 150px;
+    text-align: center;
+    text-decoration: none;
+    text-transform: uppercase;
+    background: #e92330;
+    color: #fff;
+    border-radius: 4px;
+    transition: 0.3s all;
+    cursor: pointer;
+    -webkit-animation: scale 2s infinite;
+    animation: scale 2s infinite;
+}
+
+.navbar-transparent .profile-settings .dropdown-menu {
+    top: 84px;
+}
+
 .navbar-dark .navbar-toggler {
     padding: 5px 10px;
     border: 1px solid #e92330;
@@ -67,7 +89,6 @@
     width: 40px;
     height: 40px;
     cursor: pointer;
-    border: 1px solid #dc2d37;
     padding: 1px;
 }
 

@@ -39,6 +39,7 @@
     color: #007bff;
     text-transform: uppercase;
     cursor: pointer;
+    padding-left: 4px;
 }
 
 .profilediv .contentcard .topview .editbutton a:hover {
