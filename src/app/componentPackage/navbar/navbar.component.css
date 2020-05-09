@@ -38,6 +38,14 @@
     padding-left: 10px;
 }
 
+.navbar-transparent .profile-settings .navdrop-box h5 {
+    color: #fff;
+}
+
+.navbar-transparent .profile-settings .navdrop-box i {
+    color: #fff;
+}
+
 .navbar-dark .navbar-toggler {
     padding: 5px 10px;
     border: 1px solid #e92330;
@@ -51,22 +59,49 @@
 }
 
 .profile-settings img {
-    max-width: 30px;
-    max-height: 30px;
+    max-width: 40px;
+    max-height: 40px;
     border-radius: 50%;
     vertical-align: middle;
     margin-right: 4px;
-    width: 30px;
-    height: 30px;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    border: 1px solid #dc2d37;
+    padding: 1px;
+}
+
+.profile-settings .navdrop-box h5 {
+    position: relative;
+    top: 8px;
+    margin: 2px;
+    font-size: 14px;
+    color: #000000;
+    cursor: pointer;
+    text-transform: capitalize;
+}
+
+.profile-settings .navdrop-box {
+    display: flex;
+    justify-content: center;
+}
+
+.profile-settings .navdrop-box i {
+    position: relative;
+    top: 11px;
+    margin-left: 9px;
+    color: #000000;
     cursor: pointer;
 }
 
-/* .profile-settings:hover .dropdown-menu {
+.profile-settings:hover .dropdown-menu {
     transform: scaleY(1);
     transition: 0.3s all;
     display: unset;
-} */
-
+    position: absolute;
+    top: 74px;
+    right: 29px;
+}
 
 .dropdown-menu {
     position: absolute;
@@ -161,6 +196,17 @@
     }
     .navbar .navbar-nav .nav-item .nav-link {
         color: #1b1b1b;
+    }
+    .navbar .navbar-nav .nav-item .profile-settings .navdrop-box {
+        display: flex;
+        justify-content: flex-start;
+        padding: 10px 5px;
+    }
+    .navbar .navbar-nav .nav-item .profile-settings .navdrop-box h5 {
+        color: #000000;
+    }
+    .navbar .navbar-nav .nav-item .profile-settings .navdrop-box i {
+        color: #000000;
     }
     .navbar .navbar-nav .nav-item .nav-link.active {
         color: #fff;

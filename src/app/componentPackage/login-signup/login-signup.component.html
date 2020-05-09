@@ -1,54 +1,32 @@
-<main id="wrapper">
+<!-- <main id="wrapper">
 
     <div class="backlayer">
-        <div class="layerLeft"
-            style="background-image:url(./assets/imgs/mainBackGround.png); background-repeat:no-repeat;">
-            <figure class="logo"><img alt="" src="./assets/imgs/mainLogo.png"></figure>
+        <div class="layerLeft" style="background-image:url(./assets/imgs/mainBackGround.png); background-repeat:no-repeat;">
+            <figure class="logo"><img alt="" src="./assets/imgs/mainlogo.png"></figure>
         </div>
-        <div class="layerRight"
-            style="background-image:url(./assets/imgs/mainBackGround.png); background-repeat:no-repeat;">
-            <figure class="logo"><img alt="" src="./assets/imgs/mainLogo.png"></figure>
+        <div class="layerRight" style="background-image:url(./assets/imgs/mainBackGround.png); background-repeat:no-repeat;">
+            <figure class="logo"><img alt="" src="./assets/imgs/mainlogo.png"></figure>
         </div>
     </div>
     <div class="panels">
         <div class="innerpanel">
-            <!-- <div class="left">
-                <div class="formcontainer">
-                    <h5>Forgot your password? </h5>
-                    <h6>Enter The E-mail Address Associated With Your Account.</h6>
-                    <form class="web_form" action="">
-                        <div class="field_control fieldicon mail">
-                            <label class="field_label">Email <span class="mandatory">*</span></label>
-                            <div class="field_cover">
-                                <input type="text">
-                            </div>
-                        </div>
 
-
-                        <a href="" class="circlebutton">Sign In</a>
-                        <a id="moveright" href="javascript:void(0)" class="linkright linkslide">Back to Login</a>
-                    </form>
-                </div>
-            </div> -->
             <div class="right">
                 <div class="formcontainer">
-                    <h5>login</h5>
-                    <!-- <h6>Lorem ipsum dolor sit amet, consectetur adipiscing</h6> -->
+                    <h5>{{mainTitle}}</h5>
 
                     <form class="login100-form" *ngIf="signupForm == false">
                         <div class="field">
-                            <input type="text" name="email" id="email" placeholder=" " autocomplete="off"
-                                [(ngModel)]="loginsignup.email" required>
+                            <input type="text" name="email" id="email" placeholder=" " autocomplete="off" [(ngModel)]="loginsignup.email" required>
                             <label for="email">Email</label>
                             <i class="fieldIcon fa fa-user" aria-hidden="true"></i>
                         </div>
 
                         <div class="field">
-                            <input type="password" name="password" id=password placeholder=" "
-                                [(ngModel)]="loginsignup.password" required>
+                            <input type="password" name="password" id=password placeholder=" " [(ngModel)]="loginsignup.password" required>
                             <label for="password">Password</label>
                             <i class="fieldIcon fa fa-lock" aria-hidden="true"></i>
-                         
+
                         </div>
 
                         <div class="field">
@@ -57,77 +35,67 @@
                         </div>
 
                         <div class="field d-flex spcl-field">
-                       
+                            <a id="moveleft" href="javascript:void(0)" class="linkright linkslide" (click)="CallModalForm(content)">Forgot Password?</a>
                         </div>
                     </form>
-                    
-                    <form class="login100-form" *ngIf="signupForm == true">
-                       <div class="row">
-                           <div class="col-md-6 ">
-                            <div class="field">
-                                <input type="text" name="first_name" id="first_name" placeholder=" " autocomplete="off"
-                                    [(ngModel)]="loginsignup.first_Name" required>
-                                <label for="first_name">First Name</label>
-                                <i class="fieldIcon fa fa-user" aria-hidden="true"></i>
+
+                    <form class="login100-form signupformShow" *ngIf="signupForm == true">
+                        <div class="row">
+                            <div class="col-md-6 ">
+                                <div class="field">
+                                    <input type="text" name="first_name" id="first_name" placeholder=" " autocomplete="off" [(ngModel)]="loginsignup.firstName" required>
+                                    <label for="first_name">First Name</label>
+                                    <i class="fieldIcon fa fa-user" aria-hidden="true"></i>
+                                </div>
                             </div>
-                           </div>
-                           <div class="col-md-6 ">
-                            <div class="field">
-                                <input type="text" name="last_name" id="last_name" placeholder=" " autocomplete="off"
-                                    [(ngModel)]="loginsignup.last_Name" required>
-                                <label for="last_name">Last Name</label>
-                                <i class="fieldIcon fa fa-user" aria-hidden="true"></i>
+                            <div class="col-md-6 ">
+                                <div class="field">
+                                    <input type="text" name="last_name" id="last_name" placeholder=" " autocomplete="off" [(ngModel)]="loginsignup.lastName" required>
+                                    <label for="last_name">Last Name</label>
+                                    <i class="fieldIcon fa fa-user" aria-hidden="true"></i>
+                                </div>
                             </div>
-                           </div>
-                       </div>
-                       
-                        <div class="field">
-                            <input type="text" name="email" id="email" placeholder=" " autocomplete="off"
-                                [(ngModel)]="loginsignup.email" required>
-                            <label for="email">Email</label>
-                            <i class="fieldIcon fa fa-user" aria-hidden="true"></i>
-                        </div>
-                        <div class="field">
-                            <input type="text" name="contact_Number" id="contact_Number" placeholder=" " autocomplete="off"
-                                [(ngModel)]="loginsignup.contact_Number" required>
-                            <label for="contact_Number">Contact Number</label>
-                            <i class="fieldIcon fa fa-user" aria-hidden="true"></i>
                         </div>
 
                         <div class="field">
-                            <input type="password" name="password" id="password" placeholder=" "
-                                [(ngModel)]="loginsignup.password" required>
-                            <label for="password">Password</label>
-                            <i class="fieldIcon fa fa-lock" aria-hidden="true"></i>
-                          
+                            <input type="text" name="email" id="email" placeholder=" " autocomplete="off" [(ngModel)]="loginsignup.email" required>
+                            <label for="email">Email</label>
+                            <i class="fieldIcon fa fa-envelope" aria-hidden="true"></i>
                         </div>
                         <div class="field">
-                            <input type="password" name="c_password" id="c_password" placeholder=" "
-                                [(ngModel)]="loginsignup.confirm_password" required>
+                            <input type="text" name="contact_Number" id="contact_Number" (keypress)="keyPress($event)" placeholder=" " autocomplete="off" [(ngModel)]="loginsignup.contact" required>
+                            <label for="contact_Number">Contact Number</label>
+                            <i class="fieldIcon fa fa-phone-square" aria-hidden="true"></i>
+                        </div>
+
+                        <div class="field">
+                            <input type="password" name="password" id="password" placeholder=" " [(ngModel)]="loginsignup.password" required>
+                            <label for="password">Password</label>
+                            <i class="fieldIcon fa fa-lock" aria-hidden="true"></i>
+
+                        </div>
+                        <div class="field">
+                            <input type="password" name="c_password" id="c_password" placeholder=" " [(ngModel)]="loginsignup.confirm_password" required>
                             <label for="c_password">Confirm Password</label>
                             <i class="fieldIcon fa fa-lock" aria-hidden="true"></i>
-                           
+
                         </div>
 
                         <div class="field">
-                            <button type="submit" class="submit button" (click)="callLoginApi()"><span></span>Log
-                                In</button>
+                            <button type="submit" class="submit button" (click)="sigupServiceCall()"><span></span>Signup</button>
                         </div>
 
                         <div class="field d-flex spcl-field">
-                            <!-- <label class="checkbox leftlabel"><input type="checkbox"><i
-                                    class="input-helper"></i>Remember me</label> -->
-                            <!-- <a id="moveleft" href="javascript:void(0)" class="linkright linkslide"
-                                (click)="CallModalForm(content)">Forgot Password?</a> -->
+
                         </div>
                     </form>
-                    <div class="signuplink"  *ngIf="signupForm == false">
-                     <span>Not Member yet?<a (click)="toggleButtonFunction()">{{titlebelow}}</a></span>
-                       
+                    <div class="signuplink" *ngIf="signupForm == false">
+                        <span>Not Member yet?<a (click)="toggleButtonFunction()">{{titlebelow}}</a></span>
+
                     </div>
-                    <div class="signuplink"  *ngIf="signupForm == true">
-                     <span>Go back to<a (click)="toggleButtonFunction()">{{titlebelow}}</a></span>
-                       
+                    <div class="signuplink" *ngIf="signupForm == true">
+                        <span>Go back to<a (click)="toggleButtonFunction()">{{titlebelow}}</a></span>
+
                     </div>
 
                 </div>
@@ -138,4 +106,114 @@
 
 
 
+<ng-template #content>
+    <div class="modal-body" style="text-align: center; ">
+        <div class="close-icon" (click)="JoinAndClose()"><i class="fa fa-times"></i></div>
+        <div class="title-heading">
+            <h3>Forgot Password?</h3>
+        </div>
+        <form class="login100-form">
+            <div class="form-element">
+                <label>Email</label>
+                <input placeholder="Enter Email" type="email" #inputEmail autocomplete="off" />
+            </div>
 
+            <div class="field" style="margin-bottom: 0;">
+                <button type="submit" (click)="forgetPassword(inputEmail.value)" class="submit button">Submit</button>
+            </div>
+        </form>
+    </div>
+</ng-template> -->
+
+
+<div class="backlayer">
+
+    <canvas repulse-particles></canvas>
+    <div class="imagediv" [ngClass]="{'logonotshosignup':signupForm == true}">
+        <img src="./assets/imgs/mainlogo.png" alt="">
+    </div>
+
+    <div class="form-outer">
+        <h1>{{mainTitle}}</h1>
+        <div class="form" *ngIf="signupForm == false">
+            <div class="form-element">
+                <label for="email">Email</label>
+                <input placeholder="Enter Email Address" type="email" id="email" autocomplete="off" [(ngModel)]="loginsignup.email" required/>
+            </div>
+            <div class="form-element">
+                <label for="password">Password</label>
+                <input type="password" name="password" id=password placeholder="Enter Password " [(ngModel)]="loginsignup.password" (onkeyup.enter)="callLoginApi()" required/>
+            </div>
+
+
+            <div class="field" style="margin-bottom: 0;">
+                <button type="submit" (click)="callLoginApi()" class="submit button">Login</button>
+            </div>
+            <div class="field d-flex spcl-field">
+                <a id="moveleft" href="javascript:void(0)" class="linkright linkslide" (click)="CallModalForm(content)">Forgot Password?</a>
+            </div>
+        </div>
+        <div class="form" *ngIf="signupForm == true">
+            <div class="form-element">
+                <label for="email">First Name</label>
+                <input type="text" name="first_name" id="first_name" placeholder="Enter First Name " autocomplete="off" [(ngModel)]="loginsignup.firstName" required/>
+            </div>
+            <div class="form-element">
+                <label for="email">Last Name</label>
+                <input type="text" name="last_name" id="last_name" placeholder="Enter Last Name " autocomplete="off" [(ngModel)]="loginsignup.lastName" required/>
+            </div>
+            <div class="form-element">
+                <label for="email">Email</label>
+                <input placeholder="Enter Email Address" type="email" id="email" autocomplete="off" [(ngModel)]="loginsignup.email" required/>
+            </div>
+            <div class="form-element">
+                <label for="email">Contact Number</label>
+                <input type="text" name="contact_Number" id="contact_Number" (keypress)="keyPress($event)" placeholder="Enter Contact Number " autocomplete="off" [(ngModel)]="loginsignup.contact" required/>
+            </div>
+            <div class="form-element">
+                <label for="password">Password</label>
+                <input type="password" name="password" id="password" placeholder="Enter Password" [(ngModel)]="loginsignup.password" required/>
+            </div>
+            <div class="form-element">
+                <label for="c_password">Confirm Password</label>
+                <input type="password" name="c_password" id="c_password" placeholder="Enter Confirm Password " [(ngModel)]="loginsignup.confirm_password" (onkeyup.enter)="sigupServiceCall()" required/>
+            </div>
+
+            <div class="field" style="margin-bottom: 0;">
+                <button type="submit" (click)="sigupServiceCall()" class="submit button">Signup</button>
+            </div>
+
+        </div>
+        <div class="signuplink" *ngIf="signupForm == false">
+            <span>Not Member yet?<a (click)="toggleButtonFunction()">{{titlebelow}}</a></span>
+
+        </div>
+        <div class="signuplink" *ngIf="signupForm == true">
+            <span>Go back to<a (click)="toggleButtonFunction()">{{titlebelow}}</a></span>
+
+        </div>
+
+    </div>
+
+
+</div>
+
+
+<ng-template #content>
+    <div class="modal-body" style="text-align: center; ">
+        <div class="close-icon" (click)="JoinAndClose()"><i class="fa fa-times"></i></div>
+        <div class="title-heading">
+            <h3>Forgot Password?</h3>
+        </div>
+        <form class="login100-form">
+            <div class="form-element">
+                <label>Email</label>
+                <input placeholder="Enter Email" type="email" #inputEmail autocomplete="off" />
+            </div>
+
+            <div class="field" style="margin-bottom: 0;">
+                <button type="submit" (click)="forgetPassword(inputEmail.value)" class="submit button">Submit</button>
+            </div>
+        </form>
+    </div>
+</ng-template>

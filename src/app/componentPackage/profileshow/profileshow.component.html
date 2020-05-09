@@ -1,0 +1,146 @@
+<div class="site-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 text-center">
+                <h2 class="title-heading" data-aos="fade-left">Profile Settings</h2>
+            </div>
+        </div>
+        <div class="profilediv">
+            <div class="card imageCard">
+                <div class="card-body">
+                    <label class="cabinet center-block">
+                        <figure>
+                        <img src="{{userDetailsModal.profilePic}}" class="gambar img-responsive img-thumbnail" id="item-img-output" />
+                      <figcaption><i class="fa fa-camera"></i></figcaption>
+                     </figure>
+                    <input type="file" class="item-img file center-block"  (change)="onSelectFile($event)" accept="image/*" name="file_photo"/>
+                    </label>
+                    <h2>{{userName}}</h2>
+                </div>
+            </div>
+            <div class="card contentcard">
+                <div class="card-body">
+                    <div class="topview">
+                        <h2>Personal Details</h2>
+                        <div class="editbutton">
+                            <a (click)="showUpdateProfileMOdal(content)" *ngIf="showCompleteProfileButton == true">Edit |</a>
+                            <a (click)="changePassword(changepassword)">Change Password</a>
+                        </div>
+                    </div>
+
+
+                    <div class="mainTextDiv">
+                        <div class="textshow">
+                            <label for="">Name</label>
+                            <span>{{userName}}</span>
+                        </div>
+                        <div class="textshow">
+                            <label for="">Email</label>
+                            <span>{{userDetailsModal.email}}</span>
+                        </div>
+                        <div class="textshow">
+                            <label for="">Contact Number</label>
+                            <span>{{userDetailsModal.contact}}</span>
+                        </div>
+                        <div class="textshow">
+                            <label for="">Address</label>
+                            <span>{{address}}</span>
+                        </div>
+                        <div class="field" style="margin-bottom: 0;" *ngIf="showCompleteProfileButton == false">
+                            <button type="submit" class="submit button" (click)="showUpdateProfileMOdal(content)">Complete Profile</button>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+
+<ng-template #content>
+    <div class="modal-body" style="text-align: center; ">
+        <div class="close-icon" (click)="JoinAndClose()"><i class="fa fa-times"></i></div>
+        <div class="title-heading">
+            <h3> Compelte Profile</h3>
+        </div>
+
+        <form class="login100-form">
+
+            <div class="formconatiner">
+                <div class="form-element">
+                    <label>First Name</label>
+                    <input placeholder="Enter first name" type="text" name="first_name" id="first_name" [(ngModel)]="userDetailsModal.firstName" required autocomplete="off" />
+                </div>
+                <div class="form-element">
+                    <label>Last Name</label>
+                    <input placeholder="Enter last name" type="text" name="last_name" id="last_name" [(ngModel)]="userDetailsModal.lastName" required autocomplete="off" />
+                </div>
+                <!-- <div class="form-element">
+                    <label>Email</label>
+                    <input placeholder="Enter email" type="email" name="email" id="email" [(ngModel)]="userDetailsModal.email" required autocomplete="off" />
+                </div> -->
+                <div class="form-element">
+                    <label> Contact Number</label>
+                    <input placeholder="Enter contact number" type="text" (keypress)="keyPress($event)" name="conatct_number" id="contact_number" [(ngModel)]="userDetailsModal.contact" required autocomplete="off" />
+                </div>
+                <div class="form-element">
+                    <label>Address</label>
+                    <input placeholder="Enter address" type="text" name="address" id="address" [(ngModel)]="userDetailsModal.address" required autocomplete="off" />
+                </div>
+                <div class="form-element">
+                    <label>city</label>
+                    <input placeholder="Enter city" type="text" name="city" id="city" [(ngModel)]="userDetailsModal.city" required autocomplete="off" />
+                </div>
+                <div class="form-element">
+                    <label>State</label>
+                    <input placeholder="Enter state" type="text" name="state" id="state" [(ngModel)]="userDetailsModal.state" required autocomplete="off" />
+                </div>
+                <div class="form-element">
+                    <label>Zip Code</label>
+                    <input placeholder="Enter zip code" type="text" name="zip_code" id="zip_code" [(ngModel)]="userDetailsModal.zip" required autocomplete="off" />
+                </div>
+            </div>
+            <div class="errorMessage">
+                <span>{{errorMessage}}</span>
+            </div>
+            <div class="field" style="margin-bottom: 0;">
+                <button type="submit" class="submit button" (click)="updateUserDeatils()">Update Profile</button>
+            </div>
+        </form>
+
+    </div>
+</ng-template>
+
+
+<ng-template #changepassword>
+    <div class="modal-body" style="text-align: center; ">
+        <div class="close-icon" (click)="JoinAndClose()"><i class="fa fa-times"></i></div>
+        <div class="title-heading">
+            <h3>Change Password</h3>
+        </div>
+        <div class="form-outer">
+            <div class="form-element">
+                <label for="oldpassword">Old Password</label>
+                <input placeholder="Old Password" type="password" id="oldpassword" [(ngModel)]="oldPwd" autocomplete="off" />
+            </div>
+            <div class="form-element">
+                <label for="npassword">New password</label>
+                <input placeholder="New Password" type="password" id="npassword" [(ngModel)]="userDetailsModal.password" autocomplete="off" />
+            </div>
+            <div class="form-element">
+                <label for="cpassword">Confirm password</label>
+                <input placeholder="Confirm Password" type="password" id="cpassword" [(ngModel)]="userDetailsModal.confirm_password" (keyup.enter)="updatePassword()" autocomplete="off" />
+            </div>
+            <div class="errorMessage">
+                <span>{{errorMessage}}</span>
+            </div>
+            <div class="form-element" style="text-align: center;">
+                <a (click)="updatePassword()" class="submit-btn">Submit</a>
+            </div>
+        </div>
+    </div>
+</ng-template>

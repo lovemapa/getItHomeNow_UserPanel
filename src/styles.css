@@ -264,7 +264,9 @@ button:focus {
 
 .sucess-snackbar {
     background: #1eb71e;
-    color: #fff;
+    padding: 15px !important;
+    margin-top: 87px !important;
+    border: 1px solid #fff;
     padding: 15px !important;
 }
 
@@ -336,5 +338,72 @@ button:focus {
     }
     .mat-typography .title-heading {
         font-size: 22px;
+    }
+}
+
+
+/* Modal Css */
+
+.modal-body {
+    padding: 30px 40px;
+    position: relative;
+}
+
+.modal-body .title-heading h3 {
+    font-weight: 500;
+    font-size: 24px;
+    margin-bottom: 0;
+}
+
+.modal-body input:placeholder-shown+label {
+    width: 100%;
+}
+
+.modal-body .close-icon {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    color: #555;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.modal-content {
+    border: none;
+}
+
+.modal-content .modal-btns {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin: 15px 0;
+}
+
+.modal-content p {
+    padding-top: 20px;
+}
+
+.modal-content .modal-btns a {
+    width: 48%;
+    display: inline-block;
+    color: #fff;
+    border: 1px solid #707070;
+    padding: 10px 15px;
+    border-radius: 5px;
+    text-decoration: none;
+}
+
+.modal-content .modal-btns .cancel-btn {
+    color: #000;
+}
+
+.modal-content .modal-btns .submit-btn {
+    background: #bd1a1a;
+    border: 1px solid transparent;
+}
+
+@media (max-width: 767px) {
+    .modal-body {
+        padding: 30px 20px;
     }
 }

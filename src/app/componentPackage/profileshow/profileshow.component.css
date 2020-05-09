@@ -1,0 +1,492 @@
+.top-n-margin {
+    margin-top: -65px;
+}
+
+.title-heading {
+    margin-bottom: 0;
+}
+
+.profilediv {
+    display: flex;
+    flex-flow: row;
+    justify-content: space-between;
+    padding: 20px;
+}
+
+.profilediv .imageCard {
+    width: 316px;
+}
+
+.profilediv .imageCard h2 {
+    text-align: center;
+    padding-top: 10px;
+    text-transform: capitalize;
+}
+
+.profilediv .contentcard {
+    width: calc(100% - 316px);
+    margin: 0px 10px;
+}
+
+.profilediv .contentcard .topview {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    color: #007bff;
+}
+
+.profilediv .contentcard .topview .editbutton a {
+    color: #007bff;
+    text-transform: uppercase;
+    cursor: pointer;
+}
+
+.profilediv .contentcard .topview .editbutton a:hover {
+    color: #e92330;
+    text-decoration: underline;
+}
+
+.profilediv .contentcard .mainTextDiv {
+    padding-left: 40px;
+    /* padding-bottom: 28px; */
+}
+
+.profilediv .contentcard .mainTextDiv .textshow {
+    display: inline-block;
+    padding: 10px;
+    width: 100%;
+    /* align-content: center; */
+}
+
+.profilediv .contentcard .mainTextDiv .textshow label {
+    font-size: 16px;
+    font-weight: 500;
+    color: #a7a3a3b8;
+    margin-right: 14px
+}
+
+.profilediv .contentcard .mainTextDiv .textshow span {
+    font-size: 16px;
+    font-weight: 200;
+    color: #000000;
+}
+
+label.cabinet {
+    display: block;
+    cursor: pointer;
+    position: relative;
+    width: 200px;
+    height: 200px;
+    background: #fff;
+    border-radius: 50%;
+    border: 1px solid #707070;
+    padding: 2px;
+    margin: auto;
+    z-index: 1;
+}
+
+label.cabinet input.file {
+    position: absolute;
+    opacity: 0;
+    -moz-opacity: 0;
+    width: 100%;
+    top: 0;
+    height: 100%;
+    left: 0;
+    cursor: pointer;
+    padding: 0;
+}
+
+.floating-label {
+    width: fit-content;
+    margin-top: 19px;
+}
+
+.cabinet .img-thumbnail {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    border-radius: 50%;
+}
+
+#upload-demo {
+    width: 250px;
+    height: 250px;
+    padding-bottom: 25px;
+}
+
+figure figcaption {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    color: #ef555d;
+    text-shadow: 0 0 10px #fce1e0;
+    text-align: justify;
+}
+
+figure figcaption i {
+    font-size: 25px;
+}
+
+.profile-section {
+    border: none;
+}
+
+.profile-name {
+    text-align: center;
+    padding-bottom: 20px;
+}
+
+.profile-name h2 {
+    font-size: 25px;
+    padding-top: 5px;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+}
+
+.profile-name p {
+    font-size: 22px;
+    padding-top: 4px;
+}
+
+.profile-name a {
+    margin-top: 10px;
+    display: inline-block;
+    padding: 10px 15px;
+    background: #e92330;
+    min-width: 180px;
+    color: #fff;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+
+/*SubMit Button Calss*/
+
+.submit.button {
+    font-size: 14px;
+    border-radius: 2px;
+    display: block;
+    width: 100%;
+    padding: 10px 20px;
+    border: 0 none;
+    text-transform: uppercase;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    vertical-align: middle;
+    border: none;
+    background: #ff586b;
+    color: #fff;
+    margin-top: 25px;
+}
+
+.submit::before {
+    content: "";
+    width: 0;
+    height: 1px;
+    position: absolute;
+    transition: all 0.2s linear;
+    background: #fff;
+}
+
+.submit::after {
+    content: "";
+    width: 0;
+    height: 1px;
+    position: absolute;
+    transition: all 0.2s linear;
+    background: #fff;
+}
+
+.submit:hover {
+    background: #333;
+}
+
+.submit span::before,
+.submit span::after {
+    content: "";
+    width: 1px;
+    height: 0;
+    position: absolute;
+    transition: all 0.2s linear;
+    background: #fff;
+}
+
+.submit:hover::before,
+.submit:hover::after {
+    width: 100%;
+}
+
+.submit:hover span::before,
+.submit:hover span::after {
+    height: 100%;
+}
+
+.submit::before {
+    left: 50%;
+    top: 3px;
+    transition-duration: 0.4s;
+}
+
+.submit::after {
+    left: 50%;
+    bottom: 3px;
+    transition-duration: 0.4s;
+}
+
+.submit span::before {
+    left: 3px;
+    top: 50%;
+    transition-duration: 0.4s;
+}
+
+.submit span::after {
+    right: 3px;
+    top: 50%;
+    transition-duration: 0.4s;
+}
+
+.submit:hover::before,
+.submit:hover::after {
+    left: 3px;
+    width: calc(100% - 6px);
+}
+
+.submit:hover span::before,
+.submit:hover span::after {
+    top: 3px;
+    height: calc(100% - 6px);
+}
+
+
+/*End*/
+
+.form-outer {
+    padding: 20px 0;
+}
+
+.form-outer .form-element {
+    margin-bottom: 25px;
+    display: block;
+}
+
+.form-outer .col-12 {
+    padding: 0;
+    display: flex;
+    justify-content: space-between;
+}
+
+.form-outer .col-12 .form-element {
+    width: 48%;
+}
+
+.form-outer .form-element.submit-btn {
+    width: 100%;
+    margin-bottom: 0;
+}
+
+.form-outer .form-element label {
+    font-size: 14px;
+    margin-bottom: 4px;
+    text-align: left;
+    display: block;
+}
+
+.form-outer .form-element input {
+    width: 100%;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 6px 15px;
+}
+
+.form-outer .form-element .submit-btn {
+    background: #e92330;
+    border-radius: 4px;
+    text-align: center;
+    padding: 12px 10px;
+    min-width: 300px;
+    display: inline-block;
+    color: #fff;
+    margin-top: 15px;
+    text-decoration: none;
+    transition: 0.3s all;
+    font-size: 16px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    cursor: pointer;
+}
+
+.form-outer .form-element .submit-btn:hover {
+    background: #444;
+    transition: 0.3s all;
+}
+
+::placeholder {
+    color: #707070;
+}
+
+.login100-form .form-element {
+    margin-top: 20px;
+}
+
+.login100-form .form-element label {
+    font-size: 14px;
+    margin-bottom: 4px;
+    text-align: left;
+    display: block;
+    text-transform: none;
+}
+
+.login100-form .form-element input {
+    width: 100%;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 8px 15px;
+}
+
+.formconatiner {
+    max-height: 100%;
+    height: 300px;
+    overflow-y: auto;
+}
+
+.formconatiner::-webkit-scrollbar {
+    width: 0 !important
+}
+
+.formconatiner {
+    overflow: -moz-scrollbars-none;
+}
+
+.errorMessage {
+    color: red;
+    text-align: start;
+    padding: 10px 0px;
+    font-size: 14px;
+}
+
+@media (max-width: 991px) {
+    label.cabinet {
+        height: 180px;
+        width: 180px;
+    }
+    .profilediv {
+        display: flex;
+        flex-flow: column;
+        padding: 15px;
+    }
+    .profilediv .imageCard {
+        width: 100%;
+    }
+    .profilediv .imageCard h2 {
+        text-align: center;
+        padding-top: 10px;
+    }
+    .profilediv .contentcard {
+        width: 100%;
+        margin: 10px 0px;
+    }
+    .profilediv .contentcard .mainTextDiv {
+        padding-left: 0;
+    }
+    .profilediv .contentcard .mainTextDiv .textshow span {
+        font-size: 14px;
+        word-break: break-all;
+        display: block;
+    }
+    .profilediv .contentcard .mainTextDiv .textshow label {
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 767px) {
+    label.cabinet {
+        height: 150px;
+        width: 150px;
+    }
+    figure figcaption i {
+        font-size: 20px;
+    }
+    .profile-name h2 {
+        font-size: 22px;
+        letter-spacing: 1px;
+        margin-bottom: 0px;
+    }
+    .profile-name p {
+        font-size: 18px;
+    }
+    .form-outer .form-element {
+        margin-bottom: 20px;
+    }
+    .form-outer .form-element .submit-btn {
+        min-width: auto;
+        padding: 10px 15px;
+        width: 100%;
+    }
+    .form-outer .form-element:last-child {
+        margin-bottom: 0;
+    }
+    .form-outer {
+        padding-bottom: 0;
+    }
+    .profilediv {
+        display: flex;
+        flex-flow: column;
+        padding: 15px;
+    }
+    .profilediv .imageCard {
+        width: 100%;
+    }
+    .profilediv .imageCard h2 {
+        text-align: center;
+        padding-top: 10px;
+    }
+    .profilediv .contentcard {
+        width: 100%;
+        margin: 10px 0px;
+    }
+    .profilediv .contentcard .mainTextDiv {
+        padding-left: 0;
+    }
+    .profilediv .contentcard .mainTextDiv .textshow span {
+        font-size: 14px;
+        word-break: break-all;
+        display: block;
+    }
+    .profilediv .contentcard .mainTextDiv .textshow label {
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 575px) {
+    .profilediv {
+        display: flex;
+        flex-flow: column;
+        padding: 15px;
+    }
+    .profilediv .imageCard {
+        width: 100%;
+    }
+    .profilediv .imageCard h2 {
+        text-align: center;
+        padding-top: 10px;
+    }
+    .profilediv .contentcard {
+        width: 100%;
+        margin: 10px 0px;
+    }
+    .profilediv .contentcard .mainTextDiv {
+        padding-left: 0;
+    }
+    .profilediv .contentcard .mainTextDiv .textshow span {
+        font-size: 14px;
+        word-break: break-all;
+        display: block;
+    }
+    .profilediv .contentcard .mainTextDiv .textshow label {
+        font-size: 14px;
+    }
+}

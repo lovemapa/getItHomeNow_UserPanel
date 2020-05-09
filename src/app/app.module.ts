@@ -22,6 +22,8 @@ import { NgxSpinnerModule } from "ngx-spinner";
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BlankLoginandsignupComponent } from './layout/blank-loginandsignup/blank-loginandsignup.component';
 import { LoginSignupComponent } from './componentPackage/login-signup/login-signup.component';
+import { CookieService } from 'ngx-cookie-service';
+import { ProfileshowComponent } from './componentPackage/profileshow/profileshow.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -35,7 +37,9 @@ import { LoginSignupComponent } from './componentPackage/login-signup/login-sign
     BlankComponent,
     AboutusComponent,
     BlankLoginandsignupComponent,
-    LoginSignupComponent
+    LoginSignupComponent,
+    ProfileshowComponent,
+   
   ],
   imports: [
     BrowserModule,
@@ -47,11 +51,13 @@ import { LoginSignupComponent } from './componentPackage/login-signup/login-sign
     CarouselModule,
     NgxSpinnerModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+
   ],
   providers: [
     { provide: AosToken, useValue: aos },
     { provide: LocationStrategy, useClass: HashLocationStrategy },
+    CookieService
   ],
   bootstrap: [AppComponent]
 })

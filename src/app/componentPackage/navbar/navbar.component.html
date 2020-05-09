@@ -17,64 +17,31 @@
                 <li class="nav-item" [ngClass]="{'advertismentshow': showAdvertisment == true}"><a class="nav-link" href="#aboutUS" data-toggle="collapse" data-target=".navbar-collapse.show">About US</a></li>
                 <li class="nav-item" [ngClass]="{'advertismentshow': showAdvertisment == true}"><a class="nav-link" href="#faq" data-toggle="collapse" data-target=".navbar-collapse.show">FAQ</a></li>
                 <li class="nav-item" [ngClass]="{'advertismentshow': showAdvertisment == true}"><a class="nav-link" href="#contactus" data-toggle="collapse" data-target=".navbar-collapse.show">Contact Us</a></li>
-                <li class="nav-item" routerLink='/login' >
-                    <div class="profile-settings">
-                        <div class="navdrop-box" style="display: flex;
-                        justify-content: center;">
-                            <img src="http://3.21.83.36:8081/img_1587731065152.jpg">
-                            <h5 style="position: relative;
-                            top: 3px;
-                            margin: 2px;
-                            font-weight: bold;
-                            font-size: 16px;color:#fff;">Login/Signup</h5>
-                            <i style="position: relative;top: 9px;
-                            margin-left: 9px;" class="fa fa-chevron-down"></i>
+                <li class="nav-item" routerLink='/login'>
+                    <div class="profile-settings" *ngIf="cookiesIsExit == false">
+                        <div class="navdrop-box">
+                            <img src="{{profilepic}}">
+                            <h5>Login</h5>
                         </div>
                     </div>
                 </li>
-                <!-- <li  class="nav-item">
+                <li class="nav-item" *ngIf="cookiesIsExit == true">
                     <div class="profile-settings">
-                        <div class="navdrop-box" style="display: flex;
-                        justify-content: center;">
-                            <img src="http://3.21.83.36:8081/img_1587731065152.jpg">
-                            <h5 style="position: relative;
-                            top: 3px;
-                            margin: 2px;
-                            font-weight: bold;
-                            font-size: 16px;">Ram Tankha</h5>
-                            <i style="position: relative;top: 9px;
-                            margin-left: 9px;" class="fa fa-chevron-down"></i>
+                        <div class="navdrop-box">
+                            <img src="{{profilepic}}">
+                            <h5>{{fullname}}</h5>
+                            <i class="fa fa-chevron-down"></i>
                         </div>
                         <div class="dropdown-menu">
-                           
-                            <a routerLink="/show/profile">View Profile</a>
-                            
+
+                            <a [routerLink]="['/profile/setting']">View Profile</a>
+
                             <div class="dropdown-menu-footer">
-                                <a > Logout </a>
-                            </div>
-                        </div>
-                    </div><div class="profile-settings">
-                        <div class="navdrop-box" style="display: flex;
-                        justify-content: center;">
-                            <img src="http://3.21.83.36:8081/img_1587731065152.jpg">
-                            <h5 style="position: relative;
-                            top: 3px;
-                            margin: 2px;
-                            font-weight: bold;
-                            font-size: 16px;">Ram Tankha</h5>
-                            <i style="position: relative;top: 9px;
-                            margin-left: 9px;" class="fa fa-chevron-down"></i>
-                        </div>
-                        <div class="dropdown-menu">
-                           
-                            <a routerLink="/show/profile">View Profile</a>
-                            
-                            <div class="dropdown-menu-footer">
-                                <a > Logout </a>
+                                <a (click)="clickLogoutFunction()"> Logout </a>
                             </div>
                         </div>
                     </div>
-                </li> -->
+                </li>
             </ul>
         </div>
     </div>

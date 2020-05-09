@@ -1,12 +1,19 @@
 export class LoginSignupModal {
-    constructor(
-       public first_Name:string, 
-       public middle_Name:string,
-       public last_Name:string,
-       public email :string,
-       public Contact_Number:string,
-       public password:string,
-       public confirm_password:string,
 
-    ){}
+    public firstName: string;
+    public middleName: string;
+    public lastName: string;
+    public email: string;
+    public contact: string;
+    public password: string;
+    public confirm_password: string;
+    public address: string;
+    public state: string;
+    public city: string;
+    public zip: string;
+    public profilePic: any;
+    constructor(
+
+
+    ) { }
 }
