@@ -354,13 +354,14 @@ figure figcaption i {
     overflow-y: auto;
 }
 
-.formconatiner::-webkit-scrollbar {
-    width: 0 !important
+
+/* .formconatiner::-webkit-scrollbar {
+    width: 12px !important
 }
 
 .formconatiner {
     overflow: -moz-scrollbars-none;
-}
+} */
 
 .errorMessage {
     color: red;

@@ -95,9 +95,9 @@ export class LoginSignupComponent implements OnInit {
       this.userPanelServices.userLoginAPI(this.loginsignup).subscribe(responseData => {
         if (responseData.success) {
           this.spinner.hide();
-          CommonMethods.showSuccessDialog(this.snackBar, responseData.message);
+          // CommonMethods.showSuccessDialog(this.snackBar, responseData.message);
           MyRoutingMethods.gotoHome(this.router)
-           CommonMethods.showconsole(this.tag,"Respinse:- "+JSON.stringify(responseData))
+          //  CommonMethods.showconsole(this.tag,"Respinse:- "+JSON.stringify(responseData))
         } else {
           this.spinner.hide();
           CommonMethods.showErrorDialog(this.snackBar, responseData.message);

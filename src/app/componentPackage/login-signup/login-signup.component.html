@@ -133,25 +133,26 @@
         <img src="./assets/imgs/mainlogo.png" alt="">
     </div>
 
-    <div class="form-outer">
+    <div class="form-outer " [ngClass]="{'form-outer-signup': signupForm == true}">
         <h1>{{mainTitle}}</h1>
         <div class="form" *ngIf="signupForm == false">
             <div class="form-element">
                 <label for="email">Email</label>
                 <input placeholder="Enter Email Address" type="email" id="email" autocomplete="off" [(ngModel)]="loginsignup.email" required/>
             </div>
-            <div class="form-element">
+            <div class="form-element" style="position: relative;">
                 <label for="password">Password</label>
                 <input type="password" name="password" id=password placeholder="Enter Password " [(ngModel)]="loginsignup.password" (onkeyup.enter)="callLoginApi()" required/>
+                <a id="moveleft" href="javascript:void(0)" class="linkright linkslide" (click)="CallModalForm(content)">Forgot?</a>
             </div>
 
 
             <div class="field" style="margin-bottom: 0;">
                 <button type="submit" (click)="callLoginApi()" class="submit button">Login</button>
             </div>
-            <div class="field d-flex spcl-field">
+            <!-- <div class="field d-flex spcl-field">
                 <a id="moveleft" href="javascript:void(0)" class="linkright linkslide" (click)="CallModalForm(content)">Forgot Password?</a>
-            </div>
+            </div> -->
         </div>
         <div class="form" *ngIf="signupForm == true">
             <div class="form-element">
