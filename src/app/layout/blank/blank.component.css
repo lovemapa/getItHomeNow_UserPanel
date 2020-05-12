@@ -1,3 +1,7 @@
-.mainblanck {
+/* .mainblanck {
     padding-top: 90px;
+} */
+
+.footerhide {
+    display: none;
 }

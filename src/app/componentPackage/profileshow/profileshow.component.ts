@@ -377,7 +377,8 @@ validationChangePassword(){
             MyRoutingMethods.gotoHome(this.router);
             CommonMethods.opensweetalertError(response.message)
           } else {
-            CommonMethods.opensweetalertError(response.message)
+            this.errorMessage=response.message;
+            // CommonMethods.opensweetalertError(response.message)
           }
         }
       });

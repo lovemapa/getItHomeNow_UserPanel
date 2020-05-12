@@ -1,0 +1,164 @@
+.faltu-text {
+    color: #000000;
+    font-size: 14px;
+    padding: 10px;
+}
+
+.nav {
+    padding: 8px;
+}
+
+.nav.navbar-brand {
+    color: #66615b;
+    text-transform: uppercase;
+    display: flex;
+    flex-flow: row;
+}
+
+.nav .navbar-brand img {
+    max-width: 120px;
+    transition: 0.5s all;
+}
+
+agm-map {
+    height: calc(100vh - 117px);
+}
+
+.positiondiv {
+    position: absolute;
+    width: 100%;
+    z-index: 1;
+    bottom: 90px;
+    background: transparent;
+    text-align: center;
+}
+
+.positiondiv .card {
+    width: 25%;
+    margin: 0 auto;
+    padding-bottom: 10px;
+}
+
+.stepper {
+    position: fixed;
+    box-shadow: 0px 0px 21px 0px #000000ad;
+    width: 100%;
+    bottom: 0;
+    height: 65px;
+    display: flex;
+    flex-flow: row;
+    justify-content: space-between;
+    padding: 15px;
+}
+
+button {
+    font-size: 14px;
+    border: unset;
+    padding: 8px 0px;
+    min-width: 82px;
+    text-align: center;
+    text-decoration: none;
+    text-transform: uppercase;
+    color: #fff;
+    border-radius: 4px;
+    transition: 0.3s all;
+    cursor: pointer;
+    -webkit-animation: scale 2s infinite;
+    animation: scale 2s infinite;
+}
+
+.stepper .rightSide button {
+    background: #a9a9a985;
+}
+
+.stepper .leftside .backbutton {
+    background: #a9a9a985;
+}
+
+.stepper .leftside .nextbuton {
+    background: #ec3441;
+    margin-left: 10px;
+}
+
+
+/*Form Field*/
+
+.form-outer {
+    padding: 20px 0;
+    width: 30%;
+    padding: 20px;
+    margin: 0 auto;
+    background: #00000057;
+    position: absolute;
+    right: 30px;
+    border-radius: 4px;
+    box-shadow: 0px 0px 10px 4px #ffffff91;
+}
+
+.form-outer-signup {
+    top: 20px;
+}
+
+.form-outer h1 {
+    color: #fff;
+}
+
+.form-outer .form-element {
+    margin-bottom: 10px;
+    display: block;
+}
+
+.form-outer .col-12 {
+    padding: 0;
+    display: flex;
+    justify-content: space-between;
+}
+
+.form-outer .col-12 .form-element {
+    width: 48%;
+}
+
+.form-outer .form-element.submit-btn {
+    width: 100%;
+    margin-bottom: 0;
+}
+
+.form-outer .form-element label {
+    font-size: 14px;
+    margin-bottom: 4px;
+    text-align: left;
+    display: block;
+    color: #fff;
+}
+
+.form-outer .form-element input {
+    width: 100%;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 6px 15px;
+}
+
+.login100-form .form-element {
+    margin-top: 20px;
+}
+
+.login100-form .form-element label {
+    font-size: 20px;
+    margin-bottom: 10px;
+    text-align: left;
+    display: block;
+    text-transform: none;
+}
+
+.login100-form .form-element label i {
+    font-size: 24px;
+    margin: 0px 10px;
+    color: #ec3441;
+}
+
+.login100-form .form-element input {
+    width: 100%;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 8px 15px;
+}

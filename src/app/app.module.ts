@@ -24,6 +24,9 @@ import { BlankLoginandsignupComponent } from './layout/blank-loginandsignup/blan
 import { LoginSignupComponent } from './componentPackage/login-signup/login-signup.component';
 import { CookieService } from 'ngx-cookie-service';
 import { ProfileshowComponent } from './componentPackage/profileshow/profileshow.component';
+import { DeliveryComponent } from './componentPackage/delivery/delivery.component';
+import { AgmCoreModule, GoogleMapsAPIWrapper } from '@agm/core';
+import { AgmDirectionModule } from 'agm-direction';
 @NgModule({
   declarations: [
     AppComponent,
@@ -39,6 +42,7 @@ import { ProfileshowComponent } from './componentPackage/profileshow/profileshow
     BlankLoginandsignupComponent,
     LoginSignupComponent,
     ProfileshowComponent,
+    DeliveryComponent,
    
   ],
   imports: [
@@ -52,12 +56,18 @@ import { ProfileshowComponent } from './componentPackage/profileshow/profileshow
     NgxSpinnerModule,
     FormsModule,
     ReactiveFormsModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyBMrKj9G0-f3QPF-P1D99iBChHT-PIICwo',
+      libraries: ["places"]
+    }),
+    AgmDirectionModule 
 
   ],
   providers: [
     { provide: AosToken, useValue: aos },
     { provide: LocationStrategy, useClass: HashLocationStrategy },
-    CookieService
+    CookieService,
+    GoogleMapsAPIWrapper 
   ],
   bootstrap: [AppComponent]
 })

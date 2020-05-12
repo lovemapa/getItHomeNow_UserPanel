@@ -1,0 +1,36 @@
+<div class="nav">
+    <a class="navbar-brand" routerLink="">
+        <img src="assets/imgs/logoSmall3.png" class="logo-small">
+        <span class="faltu-text">The Uber® of Moving Stuff</span>
+    </a>
+</div>
+<div class="positiondiv">
+    <div class="card">
+        <div class="card-body">
+            <form class="login100-form">
+                <div class="form-element">
+                    <label> <i class="fa fa-arrow-circle-up" aria-hidden="true"></i>Pickup Address</label>
+                    <input placeholder="Enter pickup point" type="text" id="address" autocomplete="off" name="address" required autocorrect="off" autocapitalize="off" spellcheck="off" #search/>
+                </div>
+            </form>
+
+
+        </div>
+    </div>
+</div>
+
+
+
+<agm-map [latitude]='lat' [longitude]='lng' [zoom]="13" [mapTypeControl]="true" [streetViewControl]="true" [rotateControl]="true" [fullscreenControl]="true" [zoomControl]="false" gestureHandling="none">
+    <agm-marker [latitude]="lat" [longitude]="lng" [markerDraggable]="false"></agm-marker>
+    <agm-direction [origin]="origin" [destination]="destination"></agm-direction>
+</agm-map>
+<div class="stepper">
+    <div class="rightSide">
+        <button>Reset</button>
+    </div>
+    <div class="leftside">
+        <button class="backbutton">Back</button>
+        <button class="nextbuton">Next</button>
+    </div>
+</div>

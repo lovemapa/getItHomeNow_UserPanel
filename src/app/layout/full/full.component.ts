@@ -20,7 +20,7 @@ export class FullComponent implements OnInit {
 
   ngOnInit(): void {
     // console.log("on  ngOnInit  working")
-
+  if(this.url != "/delivery"){
     var navbar: HTMLElement = this.element.nativeElement.children[0].children[0];
     this.renderer.listen('window', 'scroll', (event) => {
       const number = window.scrollY;
@@ -133,6 +133,8 @@ export class FullComponent implements OnInit {
         // document.getElementById('probootstrap-navbar').style.background="rgba(44, 154, 155, 0.47)"
       }
     });
+  }
+    
   }
 
 }

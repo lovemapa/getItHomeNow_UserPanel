@@ -2,13 +2,14 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { FullComponent } from './layout/full/full.component'
 import { BlankComponent } from './layout/blank/blank.component';
-import{AdvertismentsComponent} from './componentPackage/advertisments/advertisments.component'
-import{BlankLoginandsignupComponent}from'./layout/blank-loginandsignup/blank-loginandsignup.component'
-import {LoginSignupComponent} from'./componentPackage/login-signup/login-signup.component';
-import {ProfileshowComponent} from './componentPackage/profileshow/profileshow.component';
+import { AdvertismentsComponent } from './componentPackage/advertisments/advertisments.component'
+import { BlankLoginandsignupComponent } from './layout/blank-loginandsignup/blank-loginandsignup.component'
+import { LoginSignupComponent } from './componentPackage/login-signup/login-signup.component';
+import { ProfileshowComponent } from './componentPackage/profileshow/profileshow.component';
+import { DeliveryComponent } from './componentPackage/delivery/delivery.component';
 const routes: Routes = [
 
- 
+
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   {
     path: 'home',
@@ -20,6 +21,7 @@ const routes: Routes = [
     children: [
       { path: 'promotions', component: AdvertismentsComponent },
       { path: 'profile/setting', component: ProfileshowComponent },
+      { path: 'delivery', component: DeliveryComponent },
       // { path: 'privacy', component: PrivacyPolicyComponent },
       // { path: 'share/:name/:username', component: ShareComponent },
     ]

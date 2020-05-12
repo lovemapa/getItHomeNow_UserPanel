@@ -1,8 +1,8 @@
-<app-navbar>
+<app-navbar *ngIf="showFooter == true">
 </app-navbar>
 <div class="mainblanck">
     <router-outlet>
     </router-outlet>
 </div>
 
-<app-footer></app-footer>
+<app-footer *ngIf="showFooter == true"></app-footer>
