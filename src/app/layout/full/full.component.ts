@@ -15,12 +15,13 @@ export class FullComponent implements OnInit {
   constructor(private renderer: Renderer2, private element: ElementRef, private router: Router) {
     // CommonMethods.showLog(this.Tag,'Window Resolution :'+window.innerWidth)
     this.url = this.router.url
-    // console.log("constructor is working:- "+this.url)
+    //  console.log("constructor is working:- "+this.url)
   }
 
   ngOnInit(): void {
-    // console.log("on  ngOnInit  working")
+    //  console.log("on  ngOnInit  working", this.url);
   if(this.url != "/delivery"){
+     
     var navbar: HTMLElement = this.element.nativeElement.children[0].children[0];
     this.renderer.listen('window', 'scroll', (event) => {
       const number = window.scrollY;

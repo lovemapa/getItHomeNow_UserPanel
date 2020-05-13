@@ -58,14 +58,15 @@ import { AgmDirectionModule } from 'agm-direction';
     ReactiveFormsModule,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyBMrKj9G0-f3QPF-P1D99iBChHT-PIICwo',
-      libraries: ["places"]
+      libraries: ["places","geometry"]
     }),
-    AgmDirectionModule 
+    AgmDirectionModule,
+
 
   ],
   providers: [
     { provide: AosToken, useValue: aos },
-    { provide: LocationStrategy, useClass: HashLocationStrategy },
+    // { provide: lo, useClass: HashLocationStrategy },
     CookieService,
     GoogleMapsAPIWrapper 
   ],

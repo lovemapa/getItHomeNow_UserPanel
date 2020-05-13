@@ -137,4 +137,11 @@ export class UserpanelServiceService {
   }
 
 
+  /**Get  Selected Location */
+  getSelectedLocationsId():Observable<any>{
+    return this.http.get('../../../assets/arraylocation/location.json');
+    
+  }
+
+
 }
