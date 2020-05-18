@@ -407,3 +407,52 @@ button:focus {
         padding: 30px 20px;
     }
 }
+
+.custom-class .modal-dialog {
+    max-width: 27%;
+}
+
+.custom-class .modal-dialog .modal-content .modal-body {
+    padding: 0;
+}
+
+.custom-class .modal-dialog .modal-content .modal-body .title-heading {
+    margin-bottom: 0;
+    padding: 12px;
+    display: flex;
+    flex-flow: row;
+    position: relative;
+    background: #ec3441;
+    color: #fff;
+}
+
+.custom-class .modal-dialog .modal-content .modal-body .title-heading i {
+    margin-bottom: 0;
+    font-size: 29px;
+    padding-right: 15px;
+}
+
+.custom-class .modal-dialog .modal-content .modal-body .title-heading span {
+    font-family: unset;
+    font-size: 13px;
+    /* margin: 12px; */
+    line-height: 0;
+    letter-spacing: 0;
+    font-weight: 800;
+    /* height: 100%; */
+    position: absolute;
+    width: 100%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.custom-class .modal-dialog .modal-content .modal-body .lowerText {
+    padding: 12px;
+    text-align: justify;
+}
+
+button:disabled {
+    background: #a9a9a985 !important;
+    cursor: not-allowed !important;
+}

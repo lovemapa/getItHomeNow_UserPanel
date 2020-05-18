@@ -1,11 +1,12 @@
 .faltu-text {
-    color: #000000;
+    color: #fff;
     font-size: 14px;
     padding: 10px;
 }
 
 .nav {
     padding: 8px;
+    background: #0e0e0e85;
 }
 
 .nav.navbar-brand {
@@ -28,7 +29,7 @@ agm-map {
     position: absolute;
     width: 100%;
     z-index: 1;
-    bottom: 90px;
+    bottom: 167px;
     background: transparent;
     text-align: center;
 }
@@ -49,6 +50,7 @@ agm-map {
     flex-flow: row;
     justify-content: space-between;
     padding: 15px;
+    background: #fff;
 }
 
 button {
@@ -162,3 +164,251 @@ button {
     border-radius: 4px;
     padding: 8px 15px;
 }
+
+.toplocationshow {
+    position: absolute;
+    top: 50px;
+    z-index: 1;
+    background: #fff;
+    width: 100%;
+    padding: 10px 0px;
+    padding-bottom: 0;
+}
+
+.toplocationshow .origin {
+    display: flex;
+    justify-content: space-between;
+    flex-flow: row;
+    padding: 10px 10px;
+    border-bottom: 1px solid #d2d2d2;
+}
+
+.toplocationshow .origin .leftside {
+    position: relative;
+    display: inline-block;
+}
+
+.toplocationshow .origin .leftside i {
+    font-size: 23px;
+    color: #ec3441;
+    margin-right: 10px;
+}
+
+.toplocationshow .origin .leftside span {
+    position: relative;
+    top: -10%;
+    font-weight: 600;
+    font-size: 16px;
+}
+
+.toplocationshow .destination {
+    display: flex;
+    justify-content: space-between;
+    flex-flow: row;
+    padding: 10px 10px;
+}
+
+.toplocationshow .destination .leftside {
+    position: relative;
+    display: inline-block;
+}
+
+.toplocationshow .destination .leftside i {
+    font-size: 23px;
+    color: #ec3441;
+    margin-right: 10px;
+}
+
+.toplocationshow .destination .leftside span {
+    position: relative;
+    top: -10%;
+    font-weight: 600;
+    font-size: 16px;
+}
+
+.mapdiaplay {
+    display: none;
+}
+
+.divliveryItem {
+    height: 443px;
+    max-height: 100%;
+    overflow-y: auto;
+    margin-top: 76px;
+    z-index: 0;
+    background: #e5e5e5;
+    padding: 30px 10px;
+}
+
+.divliveryItem .titleheading h4 {
+    text-align: center;
+    color: #757575;
+    font-weight: 700;
+    font-size: 20px;
+    margin-top: 20px;
+}
+
+.divliveryItem .searchDiv {
+    background: transparent;
+}
+
+.divliveryItem .searchDiv .card {
+    width: auto;
+    margin-top: 20px;
+    z-index: 0;
+    max-width: 540px;
+    text-align: center;
+    margin: 20px auto 0;
+}
+
+.divliveryItem .searchDiv .card .searchingHeading h5 {
+    text-align: center;
+    color: #757575;
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.divliveryItem .searchDiv .card .login100-form .form-element {
+    position: relative;
+}
+
+.divliveryItem .searchDiv .card .login100-form .form-element button {
+    position: absolute;
+    right: 0;
+    min-width: 50px;
+    width: 50px;
+    height: 44px;
+    background: #e5e5e5;
+    color: #757575;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+.divliveryItem .searchDiv .card .login100-form .form-element input {
+    padding: 12px 3px 13px 12px;
+    background-color: #e5e5e5;
+    border-top-left-radius: 4px;
+    border-bottom-left-radius: 4px;
+    border: none;
+}
+
+.divliveryItem .itemHeading h4 {
+    text-align: center;
+    color: #757575;
+    font-weight: 700;
+    font-size: 20px;
+    margin-top: 20px;
+}
+
+.divliveryItem .accordion-head i {
+    font-size: 20px;
+    float: right;
+    color: #90909a;
+    font-size: 20px;
+    font-weight: 800;
+    position: absolute;
+    top: 50%;
+    right: 17px;
+    transform: translate(0%, -50%);
+}
+
+.divliveryItem .accordion-head>.collapsed>i:before {
+    content: "\f105";
+}
+
+a {
+    display: block;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+.divliveryItem .accordion-head a {
+    position: relative;
+}
+
+.divliveryItem #accordion {
+    width: auto;
+    margin-top: 20px;
+    z-index: 0;
+    max-width: 540px;
+    text-align: center;
+    margin: 20px auto 0;
+    background: #fff;
+}
+
+.divliveryItem #accordion .card {
+    background: none;
+    border: none;
+    border-bottom: 1px solid #69676730;
+    border-radius: 0;
+    padding: 20px;
+}
+
+.divliveryItem #accordion .card-header {
+    background: none;
+    padding: 0;
+    border-bottom: none;
+}
+
+.divliveryItem #accordion .card .card-header h3 {
+    color: #757575cc;
+    margin-bottom: 0;
+    font-size: 18px;
+    padding: 15px 19px;
+    padding-right: 25px;
+    font-weight: 700;
+    text-align: left;
+    letter-spacing: 0px;
+    font-size: 20px;
+    text-transform: capitalize;
+}
+
+.divliveryItem #accordion .card-block ul {
+    font-size: 16px;
+    letter-spacing: 0.8px;
+    line-height: 24px;
+    color: #757575cc;
+    font-family: serif;
+    padding-left: 15px;
+}
+
+.divliveryItem #accordion .card-block ul li {
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: 0;
+    line-height: 26px;
+    color: #757575cc;
+    font-family: serif;
+    padding-left: 15px;
+    list-style: none;
+    text-align: left;
+    text-transform: capitalize;
+    padding: 10px 10px;
+    border-bottom: 1px solid #dcdbdb;
+}
+
+.divliveryItem #accordion .card-block ul li:last-child {
+    border-bottom: none;
+}
+
+
+/* @media (max-width: 767px) {
+    .faq-section {
+        padding: 45px 0;
+        padding-bottom: 60px;
+    }
+    .card-block p {
+        line-height: 26px;
+        ;
+        letter-spacing: normal;
+    }
+    .faq-section:after {
+        display: none;
+    }
+    .card .card-header h3 {
+        font-size: 16px;
+        letter-spacing: normal;
+    }
+} */

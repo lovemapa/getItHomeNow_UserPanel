@@ -142,6 +142,47 @@ export class UserpanelServiceService {
     return this.http.get('../../../assets/arraylocation/location.json');
     
   }
+  /**Get  Show Item List Into Dilvery */
+  getItemLists():Observable<any>{
+    return this.http.get('../../../assets/arraylocation/itemList.json');
+    
+  }
+
+  /**
+   * method to calculate distance by road between 2 places
+   * @param originPlaceId 
+   * @param destinationPlaceId 
+   */
+  getDistanceBetweenLocations(originPlaceId:string,destinationPlaceId:string):Observable<any>{
+   let params = new HttpParams();
+   let origin = "place_id:"+originPlaceId;
+   let destination = "place_id:"+destinationPlaceId;
+   const GOOGLE_API_KEY = "AIzaSyBMrKj9G0-f3QPF-P1D99iBChHT-PIICwo";
+   params = params.append("units","imperial" );
+   params = params.append("origins",origin );
+   params = params.append("destinations", destination);
+   params = params.append("key", GOOGLE_API_KEY);
+  
+   const headers: HttpHeaders = new HttpHeaders({
+    'Access-Control-Allow-Headers': 'Content-Type',
+    'Access-Control-Allow-Methods':'GET',
+    'Access-Control-Allow-Origin': '*',
+    'Accept-Encoding': 'gzip, deflate, br',
+    'Accept': '*/*'
+});
+// let headers = new HttpHeaders();
+// headers.append("Access-Control-Allow-Origin","*");
+// headers.append("Access-Control-Allow-Headers", 'content-type');
+// let headers = new HttpHeaders({ 'Access-Control-Allow-Origin': '*','Content-Type': 'application/json' });
+// let options = new options({ headers: headers });
+   const options = {
+     headers : headers,
+     params : params
+   };
+let url = "https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=place_id:ChIJa8lu5gvtDzkR_hlzUvln_6U&destinations=place_id:ChIJEW8eQiq2DzkRFI0l9ymK0us&key=AIzaSyBMrKj9G0-f3QPF-P1D99iBChHT-PIICwo";
+    return this.http.get(url);
+    
+  }
 
 
 }
