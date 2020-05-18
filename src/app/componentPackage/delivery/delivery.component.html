@@ -29,7 +29,9 @@
 </div>
 <div [ngClass]="{'mapdiaplay':itemList.length != 0}">
     <!-- <div *ngIf="itemList.length == 0"> -->
-    <agm-map [latitude]='lat' [longitude]='lng' [zoom]="13" [mapTypeControl]="false" [streetViewControl]="false" [rotateControl]="true" [fullscreenControl]="false" [zoomControl]="false" gestureHandling="none" *ngIf="itemList.length == 0">
+    <agm-map [latitude]='lat' [longitude]='lng' [zoom]="13" [mapTypeControl]="false" [streetViewControl]="false"
+        [rotateControl]="true" [fullscreenControl]="false" [zoomControl]="false" gestureHandling="none"
+        *ngIf="itemList.length == 0">
         <agm-marker [latitude]="lat" [longitude]="lng" [markerDraggable]="false"></agm-marker>
     </agm-map>
     <div class="positiondiv">
@@ -37,8 +39,10 @@
             <div class="card-body">
                 <form class="login100-form">
                     <div class="form-element">
-                        <label> <i [ngClass]="getReturnClass(iconDisplay)" aria-hidden="true"></i>{{textboxLabel}}</label>
-                        <input placeholder="{{textBoxPLaceBolder}}" type="text" id="address" autocomplete="off" name="address" required autocorrect="off" autocapitalize="off" spellcheck="off" #search/>
+                        <label> <i [ngClass]="getReturnClass(iconDisplay)"
+                                aria-hidden="true"></i>{{textboxLabel}}</label>
+                        <input placeholder="{{textBoxPLaceBolder}}" type="text" id="address" autocomplete="off"
+                            name="address" required autocorrect="off" autocapitalize="off" spellcheck="off" #search />
                     </div>
                 </form>
             </div>
@@ -64,20 +68,46 @@
                 <form class="login100-form">
                     <div class="form-element">
                         <!-- <label> <i [ngClass]="getReturnClass(iconDisplay)" aria-hidden="true"></i>{{textboxLabel}}</label> -->
-                        <input placeholder="Searching...." type="text" id="seaching" autocomplete="off" required autocorrect="off" autocapitalize="off" [(ngModel)]="searchingValue" (keyup)="searching(searchingValue)" [ngModelOptions]="{standalone: true}" />
+                        <input placeholder="Searching...." type="text" id="seaching" autocomplete="off" required
+                            autocorrect="off" autocapitalize="off" [(ngModel)]="searchingValue"
+                            (keyup)="searching(searchingValue)" [ngModelOptions]="{standalone: true}" />
                         <button><i class="fa fa-search" aria-hidden="true"></i></button>
                     </div>
                 </form>
                 <div class="listBox" *ngIf="searchItemList.length != 0 ">
+                    <!-- <div class="card">
+                                        <div class="card-body">
+                                            <div class="outerdiv">
+                                                <div class="imagesdiv">
+                                                    <img src="./assets/imgs/household.svg" alt="">
+                                                </div>
+                
+                                                <h3>Hello</h3>
+                                            </div>
+                                        </div>
+                                    </div> -->
                     <div class="card">
-                        <div class="card-body">
-                            <div class="outerdiv">
-                                <div class="imagesdiv">
-                                    <img src="./assets/imgs/household.svg" alt="">
-                                </div>
-
-                                <h3>Hello</h3>
-                            </div>
+                        <div class="card-body col-12">
+                            <ul>
+                                <li *ngFor="let submenu of searchItemList ; let j = index">
+                                    <div class="outerdiv" (click)="submenu.item_boolean = !submenu.item_boolean">
+                                        <div class="imagesdiv">
+                                            <img src="./assets/imgs/{{submenu.item_icon}}" alt="">
+                                        </div>
+                                        <span>{{submenu.item_Name}}</span>
+                                    </div>
+                                    <div class="showcount" *ngIf="submenu.item_boolean">
+                                        <div class="count">
+                                            <!-- [(ngModel)]="submenu.quantity" -->
+                                            <i class="fa fa-plus" aria-hidden="true"
+                                                (click)="updateSelectedItemList(submenu,submenu.quantity=submenu.quantity+1)"></i>
+                                            <span>{{submenu.quantity}}</span>
+                                            <i class="fa fa-minus" aria-hidden="true"
+                                                (click)="submenu.quantity>0?updateSelectedItemList(submenu,submenu.quantity=submenu.quantity-1): null"></i>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
                         </div>
                     </div>
                 </div>
@@ -97,7 +127,8 @@
             <div class="card-header" role="tab" id="items.item_type_id">
                 <div class="mb-0 row">
                     <div class="col-12  accordion-head">
-                        <a data-toggle="collapse" data-parent="#accordion" href="#accordionBodyOne_{{i}}" aria-expanded="false" aria-controls="accordionBodyOne" class="collapsed ">
+                        <a data-toggle="collapse" data-parent="#accordion" href="#accordionBodyOne_{{i}}"
+                            aria-expanded="false" aria-controls="accordionBodyOne" class="collapsed ">
                             <div class="outerdiv">
                                 <div class="imagesdiv">
                                     <img src="./assets/imgs/{{items.item_type_icon}}" alt="">
@@ -111,11 +142,12 @@
                 </div>
             </div>
 
-            <div id="accordionBodyOne_{{i}}" class="collapse" role="tabpanel" aria-labelledby="items.item_type_id" aria-expanded="false" data-parent="accordion">
+            <div id="accordionBodyOne_{{i}}" class="collapse" role="tabpanel" aria-labelledby="items.item_type_id"
+                aria-expanded="false" data-parent="accordion">
                 <div class="card-block col-12">
                     <ul>
-                        <li *ngFor="let submenu of items.item_list ; let j = index" (click)="clickOnShowCount(submenu.item_id,i)">
-                            <div class="outerdiv">
+                        <li *ngFor="let submenu of items.item_list ; let j = index">
+                            <div class="outerdiv" (click)="submenu.item_boolean = !submenu.item_boolean">
                                 <div class="imagesdiv">
                                     <img src="./assets/imgs/{{submenu.item_icon}}" alt="">
                                 </div>
@@ -124,9 +156,11 @@
                             </div>
                             <div class="showcount" *ngIf="submenu.item_boolean">
                                 <div class="count">
-                                    <i class="fa fa-plus" aria-hidden="true" [(ngModel)]="submenu.quanity" (click)="submenu.quanity=submenu.quanity+1"></i>
-                                    <span>{{submenu.quanity}}</span>
-                                    <i class="fa fa-minus" aria-hidden="true" [(ngModel)]="submenu.quanity" (click)="submenu.quanity>0?submenu.quanity=submenu.quanity-1 : null"></i>
+                                    <i class="fa fa-plus" aria-hidden="true"
+                                        (click)="updateSelectedItemList(submenu,submenu.quantity=submenu.quantity+1)"></i>
+                                    <span>{{submenu.quantity}}</span>
+                                    <i class="fa fa-minus" aria-hidden="true"
+                                        (click)="submenu.quantity>0?updateSelectedItemList(submenu,submenu.quantity=submenu.quantity-1): null"></i>
                                 </div>
                             </div>
 
