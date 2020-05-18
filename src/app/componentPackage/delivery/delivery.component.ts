@@ -4,6 +4,7 @@ import { CommonMethods } from 'src/app/utillpackage/common-method';
 import { GoogleMap } from '@agm/core/services/google-maps-types';
 import { UserpanelServiceService } from 'src/app/backendServices/userpanel-service.service';
 import { NgbModalRef, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+
 // import * as selectedLocationIds from '../../../assets/arraylocation/location.json';
 // import {} from "googlemaps";
 declare var google: any;
@@ -34,7 +35,11 @@ export class DeliveryComponent implements OnInit {
   temparyNameDesination:string
   destinationLocationName:string;
   selectedItemList:Array<any>
+  searchItemList:Array<any>
   searchingValue:string
+  dateList:Array<any>;
+  count:number;
+  previousId:any
 
   constructor(private mapsAPILoader: MapsAPILoader, public ngZone: NgZone, public userBackEndService: UserpanelServiceService,
     public modalService: NgbModal) {
@@ -49,16 +54,25 @@ export class DeliveryComponent implements OnInit {
     this.selectedLocationIds = [];
     this.itemList = [];
     this.selectedItemList = [];
+    this.searchItemList = [];
+    this.dateList=[];
+    this.count=0
     this.textboxLabel="Pick Up Address";
     this.textBoxPLaceBolder="Enter PickUp Address"
     this.iconDisplay="fa fa-arrow-circle-up";
+    this.previousId="";
     if(this.itemList.length == 0)
     {
       this.loadMap()
       this.getSelectedLocationIds();
     }
 
+    this.userBackEndService.getItemLists().subscribe( responseData=>{
+      CommonMethods.showconsole(this.Tag,"Show Item List:- "+JSON.stringify(responseData));
+     this.itemList=responseData;
+     })
 
+     this.getDateNextThree();
    
   }
 
@@ -243,8 +257,19 @@ export class DeliveryComponent implements OnInit {
     if (this.destinationboolean && this.temparyNameDesination != '') {
       return false;
     }
-    if (this.selectedItemList.length > 0) {
-      return false;
+    if (this.itemList.length > 0) {
+      this.itemList.forEach(item =>{
+        item.item_list.forEach(data=>{
+          if(data.quanity>0)
+          {
+            this.selectedItemList.push(data)
+
+          }
+         
+        })
+      })
+      //  CommonMethods.showconsole(this.Tag,"Selected Value List- "+JSON.stringify(this.selectedItemList))
+      return this.selectedItemList.length>0;
     }
     return true;
   }
@@ -262,15 +287,146 @@ export class DeliveryComponent implements OnInit {
 searching(searchingValue:string){
    CommonMethods.showconsole("Value:- ",searchingValue);
    let found = [];
+   this.searchItemList=[];
   //  setTimeout(() => {
     this.itemList.forEach(element =>{
-      found.push(element.item_list.filter(data => data.item_Name.toUpperCase().includes(searchingValue.toUpperCase())));
+      let data = element.item_list.filter(data => data.item_Name.toUpperCase().includes(searchingValue.toUpperCase()));
+      console.log(data);
+      if(data.length > 0 ){
+        found = found.concat(data);
+      }
+      console.log("found", found)
+
     });   
         
-    console.log("fot",found, searchingValue);
+    CommonMethods.showconsole(this.Tag,"fot"+JSON.stringify(found) );
+    this.searchItemList=found;
+    //  CommonMethods.showconsole(this.Tag,"Show Item List :- "+JSON.stringify( this.selectedItemList))
   //  },2000 );
+
+  if(this.searchingValue.length == 0)
+  {
+      this.searchItemList=[];
+      found=[]
+  }
   
 
   }
+
+  /**GEt Next Date  Function*/
+  getDateNextThree(){
+    this.dateList=[];
+    var today = new Date();
+    var weekday = ['Sunday', 'Monday', 'Tuesday', 
+              'Wednesday', 'Thursday', 'Friday', 'Saturday' 
+          ]; 
+    var date = (today.getMonth()+1)+'/'+today.getDate();
+    this.dateList.push(date);
+    var tomorrow = new Date(today.getTime() + (24 * 60 * 60 * 1000));
+    var date2 = (tomorrow.getMonth()+1)+'/'+tomorrow.getDate();
+    this.dateList.push(date2);
+    var dayatom = new Date(tomorrow.getTime() + (24 * 60 * 60 * 1000));
+    var date3 = (dayatom.getMonth()+1)+'/'+dayatom.getDate();
+    this.dateList.push(date3);
+     CommonMethods.showconsole(this.Tag,"Show Date Array :- "+JSON.stringify(this.dateList))
+  }
+
+/**Onclick Show count div Function  */
+
+  clickOnShowCount(itemId:any,outerINdex:number){
+    CommonMethods.showconsole(this.Tag,"SHow Id:- "+itemId+" "+"Outer Index:- "+outerINdex)
+      var itemArray:Array<any> =this.itemList[outerINdex].item_list;
+      CommonMethods.showconsole(this.Tag,"Showprevious Id:- "+this.previousId)
+      if(this.previousId.length == 0){
+        this.previousId=outerINdex;
+      }
+    
+       for(var i=0;i<itemArray.length;i++)
+       {
+          if(itemArray[i].item_id == itemId )
+          {
+            CommonMethods.showconsole(this.Tag,"if is working ")
+            itemArray[i].item_boolean= true;
+          }else{
+            itemArray[i].item_boolean= false;
+          }
+       }
+
+       CommonMethods.showconsole(this.Tag,"previous:- "+this.previousId+' '+" cuurent index:- "+outerINdex)
+       if( this.previousId != outerINdex)
+       {
+          CommonMethods.showconsole(this.Tag,"Value Not match:- "+this.previousId)
+         var itemArrayFalse:Array<any> =this.itemList[this.previousId].item_list;
+         for(var i=0;i<itemArrayFalse.length;i++)
+         {
+          itemArrayFalse[i].item_boolean= false;
+         } 
+         this.previousId=outerINdex;
+       }
+  }
+
+  clicktoAddQunity(quanity:number){
+    // let  quantity = this.itemList[outerIndex].item_list[innerIndex].quanity  
+    // if(quantity == 0)
+    // {
+    //   this.count=0;
+    //   this.count++;
+    //   this.itemList[outerIndex].item_list[innerIndex].quanity=this.count;
+    // }else{
+    //   this.count =quantity;
+    //   this.count++;
+    //   this.itemList[outerIndex].item_list[innerIndex].quanity=this.count
+    // }
+
+    // if(this.selectedItemList.length == 0){
+    //   this.selectedItemList.push( this.itemList[outerIndex].item_list[innerIndex])
+    
+    // }else{
+    //   var itemid=this.itemList[outerIndex].item_list[innerIndex].item_id;
+    //    for(var i=0;i<this.selectedItemList.length;i++)
+    //    {
+    //         if(this.selectedItemList[i].item_id == itemid )
+    //         {
+    //           this.selectedItemList[i].item_id=this.count;
+    //         }
+    //    }
+    // }
+    // CommonMethods.showconsole(this.Tag,"Show IMages:- "+JSON.stringify(this.selectedItemList))
+    quanity = quanity+1;
+
+ 
+  }
+
+  clicktosubtractQunity(quanity:number){
+    quanity = quanity-1;
+    // let  quantity = this.itemList[outerIndex].item_list[innerIndex].quanity  
+    // if(quantity != 0)
+    // {
+    //   this.count =quantity;
+    //   this.count--;
+    //   this.itemList[outerIndex].item_list[innerIndex].quanity=this.count;
+    //   var itemid=this.itemList[outerIndex].item_list[innerIndex].item_id;
+    //    for(var i=0;i<this.selectedItemList.length;i++)
+    //    {
+    //         if(this.selectedItemList[i].item_id == itemid )
+    //         {
+    //           this.selectedItemList[i].item_id=this.count;
+    //         }
+    //    }
+    // }else{
+    //   var itemid=this.itemList[outerIndex].item_list[innerIndex].item_id;
+    //   for(var i=0;i<this.selectedItemList.length;i++)
+    //   {
+    //        if(this.selectedItemList[i].item_id == itemid )
+    //        {
+    //             this.selectedItemList.splice(i,1)
+    //        }
+    //   }
+    // }
+    
+    // CommonMethods.showconsole(this.Tag,"Legth:- "+this.selectedItemList.length)
+    // CommonMethods.showconsole(this.Tag,"Show IMages:- "+JSON.stringify(this.selectedItemList))
+  }
+
 
 }

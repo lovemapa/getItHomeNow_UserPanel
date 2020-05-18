@@ -292,6 +292,37 @@ button {
     border: none;
 }
 
+.divliveryItem .searchDiv .listBox .card {
+    border: unset;
+}
+
+.divliveryItem .searchDiv .listBox .card .card-body .outerdiv {
+    display: flex;
+    flex-flow: row;
+}
+
+.divliveryItem .searchDiv .listBox .card .card-body .outerdiv h3 {
+    color: #757575cc;
+    margin-bottom: 0;
+    font-size: 18px;
+    padding: 22px 0px;
+    padding-right: 25px;
+    font-weight: 500;
+    text-align: left;
+    letter-spacing: 0px;
+    font-size: 19px;
+    text-transform: capitalize;
+}
+
+.divliveryItem .searchDiv .listBox .card .card-body .outerdiv .imagesdiv {
+    width: 70px;
+    height: 70px;
+}
+
+.divliveryItem .searchDiv .listBox .card .card-body .outerdiv .imagesdiv img {
+    width: 100%;
+}
+
 .divliveryItem .itemHeading h4 {
     text-align: center;
     color: #757575;
@@ -352,11 +383,25 @@ a:hover {
     border-bottom: none;
 }
 
-.divliveryItem #accordion .card .card-header h3 {
+.divliveryItem #accordion .card .card-header .outerdiv {
+    display: flex;
+    flex-flow: row;
+}
+
+.divliveryItem #accordion .card .card-header .outerdiv .imagesdiv {
+    width: 70px;
+    height: 70px;
+}
+
+.divliveryItem #accordion .card .card-header .outerdiv .imagesdiv img {
+    width: 100%;
+}
+
+.divliveryItem #accordion .card .card-header .outerdiv h3 {
     color: #757575cc;
     margin-bottom: 0;
     font-size: 18px;
-    padding: 15px 19px;
+    padding: 18px 19px;
     padding-right: 25px;
     font-weight: 700;
     text-align: left;
@@ -387,6 +432,40 @@ a:hover {
     text-transform: capitalize;
     padding: 10px 10px;
     border-bottom: 1px solid #dcdbdb;
+    cursor: pointer;
+}
+
+.divliveryItem #accordion .card-block ul li .outerdiv {
+    display: flex;
+    flex-flow: row;
+}
+
+.divliveryItem #accordion .card-block ul li .outerdiv .imagesdiv {
+    width: 70px;
+    height: 70px;
+}
+
+.divliveryItem #accordion .card-block ul li .outerdiv .imagesdiv img {
+    width: 100%;
+}
+
+.divliveryItem #accordion .card-block ul li .outerdiv span {
+    padding: 19px 0;
+}
+
+.divliveryItem #accordion .card-block ul li .showcount {
+    text-align: right;
+    width: 100%;
+}
+
+.divliveryItem #accordion .card-block ul li .showcount .count {
+    text-align: right;
+    width: 100%;
+}
+
+.divliveryItem #accordion .card-block ul li .showcount .count i {
+    padding: 10px;
+    cursor: pointer;
 }
 
 .divliveryItem #accordion .card-block ul li:last-child {
