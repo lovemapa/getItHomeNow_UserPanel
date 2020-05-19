@@ -582,8 +582,6 @@ a:hover {
     font-weight: 500;
 }
 
-<<<<<<< Updated upstream
-=======
 .formFiled .card {
     margin: 20px auto 0;
     padding-top: 26px;
@@ -702,11 +700,11 @@ a:hover {
     color: #E92331;
 }
 
-.finallist .card .card-body .productShow {
-    /* display: flex;
+/* .finallist .card .card-body .productShow {
+     display: flex;
     flex-flow: row;
-    justify-content: center; */
-}
+    justify-content: center; 
+} */
 
 .finallist .card .card-body .productShow .outerdiv {
     display: flex;
@@ -720,6 +718,8 @@ a:hover {
 
 .finallist .card .card-body .productShow .outerdiv .showQuanity {
     padding: 15px 0px;
+    font-weight: 700;
+    color: #dc3545;
 }
 
 .finallist .card .card-body .outerdiv h3 {
@@ -744,7 +744,11 @@ a:hover {
     width: 100%;
 }
 
->>>>>>> Stashed changes
+.selectedTimeClass{
+    color: #fff !important;
+    background: #ec3441;
+    cursor: pointer !important;
+}
 
 /* @media (max-width: 767px) {
     .faq-section {

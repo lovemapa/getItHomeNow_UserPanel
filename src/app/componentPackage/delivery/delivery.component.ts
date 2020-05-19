@@ -40,9 +40,10 @@ export class DeliveryComponent implements OnInit {
   dateList: Array<any>;
   count: number;
   previousId: any
-  showItemPage=false;
-  dateSelectedPage=false;
-  showtimefalse=false;
+  showItemPage = false;
+  dateSelectedPage = false;
+  showtimefalse = false;
+  showFinallist = false;
 
   constructor(private mapsAPILoader: MapsAPILoader, public ngZone: NgZone, public userBackEndService: UserpanelServiceService,
     public modalService: NgbModal) {
@@ -54,9 +55,9 @@ export class DeliveryComponent implements OnInit {
     this.temparyNameDesination = "";
     this.pickupLocation = true;
     this.destinationboolean = false;
-    this.showItemPage=false;
-    this.dateSelectedPage=false;
-    this.showtimefalse=false;
+    this.showItemPage = false;
+    this.dateSelectedPage = false;
+    this.showtimefalse = false;
     this.selectedLocationIds = [];
     this.itemList = [];
     this.selectedItemList = [];
@@ -72,24 +73,14 @@ export class DeliveryComponent implements OnInit {
       this.getSelectedLocationIds();
     }
 
-<<<<<<< Updated upstream
     // this.userBackEndService.getItemLists().subscribe(responseData => {
     //   this.itemList = responseData;
     //   this.pickupLocation = false;
     //   console.log(this.itemList)
     // })
-    // this.dateSelectedPage=true
-=======
-    this.userBackEndService.getItemLists().subscribe(responseData => {
-      this.itemList = responseData;
-      this.pickupLocation = false;
-      console.log(this.itemList)
-    })
     // // this.formFieldshow=true;
-    // this.showFinallist=true;
-    this.dateSelectedPage=true
->>>>>>> Stashed changes
-
+    //  this.showFinallist=true;
+    // this.dateSelectedPage=true
     this.getDateNextThree();
 
   }
@@ -150,7 +141,7 @@ export class DeliveryComponent implements OnInit {
           if (place.geometry === undefined || place.geometry === null) {
             return;
           }
-          let found = this.selectedLocationIds.filter(element => element.place_Name.toUpperCase().match(place.vicinity.toUpperCase()));
+          let found = this.selectedLocationIds.filter(element => element.place_Name.toUpperCase().match(place.vicinity.toUpperCase()) && place.formatted_address.includes('FL'));
           if (found.length != 0) {
             this.lat = place.geometry.location.lat();
             this.lng = place.geometry.location.lng();
@@ -225,34 +216,28 @@ export class DeliveryComponent implements OnInit {
         this.lat,
         this.lng
       );
-      let totalDisTanceintoMiles = "";
-      CommonMethods.showconsole(this.Tag, "oriogin" + JSON.stringify(this.origin))
-      CommonMethods.showconsole("Destination", JSON.stringify(this.destination))
+      let totalDisTanceintoMiles: any;
       let calculateDistanceByRoadservice = new google.maps.DistanceMatrixService().getDistanceMatrix({ 'origins': [this.origin], 'destinations': [this.destination], travelMode: 'DRIVING', 'unitSystem': google.maps.UnitSystem.IMPERIAL }, (results: any) => {
-        console.log('distancia (mts) -- ', results.rows[0].elements[0].distance?.text, results);
-        totalDisTanceintoMiles = results.rows[0].elements[0].distance?.text, results;
-        //  CommonMethods.showconsole(this.Tag,"Show DistAnce Into")
+        totalDisTanceintoMiles = results.rows[0].elements[0].distance?.text;
+        if (parseFloat(totalDisTanceintoMiles.match('[\\d]+.[\\d]+')[0]) > 25) {
+          this.openModalDistanceCheck();
+        } else {
+          this.destinationLocationName = this.temparyNameDesination;
+          this.destinationboolean = false;
+          this.userBackEndService.getItemLists().subscribe(responseData => {
+            this.itemList = responseData;
+            this.showItemPage = true;
+          })
+        }
       });
-      if (totalDisTanceintoMiles > "26") {
-        this.openModalDistanceCheck();
-      } else {
-        this.destinationLocationName = this.temparyNameDesination;
-        this.destinationboolean = false
-        this.userBackEndService.getItemLists().subscribe(responseData => {
-          CommonMethods.showconsole(this.Tag, "Show Item List:- " + JSON.stringify(responseData));
-          this.itemList = responseData;
-          this.showItemPage=true
+    } else if (this.showItemPage && this.itemList.length != 0) {
+      this.showItemPage = false;
+      this.getDateNextThree();
+      this.dateSelectedPage = true;
 
-        })
-      }
-    } else if(this.showItemPage = true && this.itemList.length != 0){
-      console.log(this.selectedItemList)
-       this.showItemPage =false;
-       this.getDateNextThree();
-       this.dateSelectedPage=true
-       
-    }else{
-
+    } else if (this.dateSelectedPage) {
+      this.dateSelectedPage = false;
+      this.showFinallist = true;
     }
   }
 
@@ -262,8 +247,8 @@ export class DeliveryComponent implements OnInit {
   clickReset() {
     this.pickupLocation = true;
     this.destinationboolean = false;
-    this.dateSelectedPage=false;
-    this.dateList=[];
+    this.dateSelectedPage = false;
+    this.dateList = [];
     this.origin = "";
     this.destination = "";
     this.pickUpLocationName = "";
@@ -286,7 +271,10 @@ export class DeliveryComponent implements OnInit {
     if (this.destinationboolean && this.temparyNameDesination != '') {
       return false;
     }
-    if (this.selectedItemList.length > 0) {
+    if (this.showItemPage && this.selectedItemList.length > 0) {
+      return false;
+    }
+    if (this.dateSelectedPage) {
       return false;
     }
     return true;
@@ -324,55 +312,40 @@ export class DeliveryComponent implements OnInit {
     ];
     var date = (today.getMonth() + 1) + '/' + today.getDate();
     this.dateList.push({
-      "date_Id":"1",
-      "date":date,
-      "showtime":false
+      "date_Id": "1",
+      "date": date,
+      "showtime": false
     });
     var tomorrow = new Date(today.getTime() + (24 * 60 * 60 * 1000));
     var date2 = (tomorrow.getMonth() + 1) + '/' + tomorrow.getDate();
     this.dateList.push({
-      "date_Id":"2",
-      "date":date2,
-      "showtime":false
+      "date_Id": "2",
+      "date": date2,
+      "showtime": false
     });
     var dayatom = new Date(tomorrow.getTime() + (24 * 60 * 60 * 1000));
     var date3 = (dayatom.getMonth() + 1) + '/' + dayatom.getDate();
     this.dateList.push({
-      "date_Id":"3",
-      "date":date3,
-      "showtime":false
+      "date_Id": "3",
+      "date": date3,
+      "showtime": false
     });
     CommonMethods.showconsole(this.Tag, "Show Date Array :- " + JSON.stringify(this.dateList))
   }
 
-  // /**Onclick Show count div Function  */
-  // clickOnShowCount(itemId: any, outerINdex: number) {
-  //   CommonMethods.showconsole(this.Tag, "SHow Id:- " + itemId + " " + "Outer Index:- " + outerINdex)
-  //   var itemArray: Array<any> = this.itemList[outerINdex].item_list;
-  //   CommonMethods.showconsole(this.Tag, "Showprevious Id:- " + this.previousId)
-  //   if (this.previousId.length == 0) {
-  //     this.previousId = outerINdex;
-  //   }
-
-  //   for (var i = 0; i < itemArray.length; i++) {
-  //     if (itemArray[i].item_id == itemId) {
-  //       CommonMethods.showconsole(this.Tag, "if is working ")
-  //       itemArray[i].item_boolean = true;
-  //     } else {
-  //       itemArray[i].item_boolean = false;
-  //     }
-  //   }
-
-  //   CommonMethods.showconsole(this.Tag, "previous:- " + this.previousId + ' ' + " cuurent index:- " + outerINdex)
-  //   if (this.previousId != outerINdex) {
-  //     CommonMethods.showconsole(this.Tag, "Value Not match:- " + this.previousId)
-  //     var itemArrayFalse: Array<any> = this.itemList[this.previousId].item_list;
-  //     for (var i = 0; i < itemArrayFalse.length; i++) {
-  //       itemArrayFalse[i].item_boolean = false;
-  //     }
-  //     this.previousId = outerINdex;
-  //   }
-  // }
+  /**
+   * method to toggle accordion on item clicked
+   * @param item clicked item
+   */
+  onItemClicked(item: any) {
+    this.itemList.forEach(items => {
+      items.item_list.forEach(data => {
+        if (data.item_id != item.item_id) {
+          data.item_boolean = false;
+        }
+      });
+    });
+  }
 
   /**
    * method to update Quantity of items in selectedItemList
@@ -393,24 +366,23 @@ export class DeliveryComponent implements OnInit {
   }
 
 
-  clickOnselectdate(dateID:any){
-    this.showtimefalse=false;
-     CommonMethods.showconsole(this.Tag,"IS Working:- "+dateID)
+  clickOnselectdate(dateID: any) {
+    this.showtimefalse = false;
+    CommonMethods.showconsole(this.Tag, "IS Working:- " + dateID)
 
     this.dateList.forEach(element => {
-         if(element.date_Id == dateID)
-         {
-          if(element.showtime == false){
-            element.showtime =true;
-            this.showtimefalse=true;
-          }else{
-            element.showtime.showtime =false;
-            this.showtimefalse=false;
-          }
-         }else{
-          element.showtime =false;
-         }
-     });
+      if (element.date_Id == dateID) {
+        if (element.showtime == false) {
+          element.showtime = true;
+          this.showtimefalse = true;
+        } else {
+          element.showtime.showtime = false;
+          this.showtimefalse = false;
+        }
+      } else {
+        element.showtime = false;
+      }
+    });
   }
 
 }

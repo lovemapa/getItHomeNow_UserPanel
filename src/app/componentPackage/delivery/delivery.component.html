@@ -60,12 +60,12 @@
         <div class="card">
             <div class="card-body">
                 <div class="searchingHeading">
-                    <h5>Searching Items</h5>
+                    <h5>Search Items</h5>
                 </div>
                 <form class="login100-form">
                     <div class="form-element">
                         <!-- <label> <i [ngClass]="getReturnClass(iconDisplay)" aria-hidden="true"></i>{{textboxLabel}}</label> -->
-                        <input placeholder="Searching...." type="text" id="seaching" autocomplete="off" required autocorrect="off" autocapitalize="off" [(ngModel)]="searchingValue" (keyup)="searching(searchingValue)" [ngModelOptions]="{standalone: true}" />
+                        <input placeholder="Search...." type="text" id="seaching" autocomplete="off" required autocorrect="off" autocapitalize="off" [(ngModel)]="searchingValue" (keyup)="searching(searchingValue)" [ngModelOptions]="{standalone: true}" />
                         <button><i class="fa fa-search" aria-hidden="true"></i></button>
                     </div>
                 </form>
@@ -85,7 +85,7 @@
                         <div class="card-body col-12">
                             <ul>
                                 <li *ngFor="let submenu of searchItemList ; let j = index">
-                                    <div class="outerdiv" (click)="submenu.item_boolean = !submenu.item_boolean">
+                                    <div class="outerdiv" (click)="submenu.item_boolean = !submenu.item_boolean; onItemClicked(submenu);">
                                         <div class="imagesdiv">
                                             <img src="./assets/imgs/{{submenu.item_icon}}" alt="">
                                         </div>
@@ -138,7 +138,7 @@
                 <div class="card-block col-12">
                     <ul>
                         <li *ngFor="let submenu of items.item_list ; let j = index">
-                            <div class="outerdiv" (click)="submenu.item_boolean = !submenu.item_boolean">
+                            <div class="outerdiv" (click)="submenu.item_boolean = !submenu.item_boolean; onItemClicked(submenu);">
                                 <div class="imagesdiv">
                                     <img src="./assets/imgs/{{submenu.item_icon}}" alt="">
                                 </div>
@@ -176,7 +176,7 @@
             </div>
             <div class="timeShow" *ngIf="showtimefalse">
 
-                <div class="dataTime">
+                <div class="dataTime " [ngClass]="dateList[0].showtime?'selectedTimeClass':''">
                     <div class="mydiv">
                         <span class="text">2</span>
                         <span>PM</span>
@@ -231,8 +231,6 @@
 <div class="selectDateandTime">
 
 </div>
-<<<<<<< Updated upstream
-=======
 <div class="divliveryItem finallist" *ngIf="showFinallist">
 
     <div class="titleheading">
@@ -243,45 +241,16 @@
             <ul>
                 <li style="padding:0;">
                     <div class="productShow">
-                        <div class="outerdiv">
+                        <div *ngFor="let item of selectedItemList " class="outerdiv">
                             <div class="imagesdiv">
-                                <img src="./assets/imgs/buffet.svg" alt="">
+                                <img src="./assets/imgs/{{item.item_icon}}" alt="item.item_Name">
                             </div>
                             <div class="showQuanity">
-                                <span>Product Name</span>
-                                <p> Quanity: <span>0</span></p>
-                            </div>
-                        </div>
-                        <div class="outerdiv">
-                            <div class="imagesdiv">
-                                <img src="./assets/imgs/buffet.svg" alt="">
-                            </div>
-                            <div class="showQuanity">
-                                <span>Product Name</span>
-                                <p> Quanity: <span>0</span></p>
-                            </div>
-                        </div>
-
-                        <div class="outerdiv">
-                            <div class="imagesdiv">
-                                <img src="./assets/imgs/buffet.svg" alt="">
-                            </div>
-                            <div class="showQuanity">
-                                <span>Product Name</span>
-                                <p> Quanity: <span>0</span></p>
-                            </div>
-                        </div>
-                        <div class="outerdiv">
-                            <div class="imagesdiv">
-                                <img src="./assets/imgs/buffet.svg" alt="">
-                            </div>
-                            <div class="showQuanity">
-                                <span>Product Name</span>
-                                <p> Quanity: <span>0</span></p>
+                                <span>{{item.item_Name}}</span>
+                                <p> Quanity: <span>{{item.quantity}}</span></p>
                             </div>
                         </div>
                     </div>
-
                 </li>
                 <li>
                     <div class="topheading">
@@ -308,8 +277,8 @@
                         <span>Delivery Date & Time</span>
                     </div>
                     <div class="time">
-                        <span>WednesDay 10-may-2020</span>
-                        <span>1 PM - 2 PM</span>
+                        <span>Date : Wednesday,May 20</span>
+                        <span>Time : 1PM - 2PM</span>
                     </div>
                 </li>
                 <li>
@@ -320,12 +289,12 @@
                     </div>
                     <div class="total">
                         <span>Total</span>
-                        <span>$20.00</span>
+                        <span>$$$$$</span>
 
                     </div>
-                    <div class="Price">
+                    <!-- <div class="Price">
                         <span>Promo Code?</span>
-                    </div>
+                    </div> -->
                 </li>
             </ul>
         </div>
@@ -335,7 +304,6 @@
 </div>
 
 
->>>>>>> Stashed changes
 
 
 <div class="stepper">
