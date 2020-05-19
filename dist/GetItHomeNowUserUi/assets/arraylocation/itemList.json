@@ -1,13 +1,21 @@
 [{
         "item_type_id": "101",
         "item_type_name": "Over Size",
+        "item_type_icon": "large.png",
         "item_list": [{
                 "item_id": "1001",
-                "item_Name": "Flat screen TV "
+                "item_Name": "Flat screen TV ",
+                "item_boolean": false,
+                "item_icon": "flat_screen_tv.svg",
+                "quantity": 0
             },
             {
                 "item_id": "1002",
-                "item_Name": "Oversized Chair "
+                "item_Name": "Oversized Chair ",
+                "item_boolean": false,
+                "item_icon": "over_sized_chair.svg ",
+                "quantity": 0
+
             }
 
         ]
@@ -15,86 +23,145 @@
     {
         "item_type_id": "102",
         "item_type_name": "Large",
+        "item_type_icon": "large_icon.png",
         "item_list": [{
                 "item_id": "1004",
-                "item_Name": "Single Couch"
+                "item_Name": "Single Couch",
+                "item_boolean": false,
+                "item_icon": "single_couch.svg",
+                "quantity": 0
             },
             {
                 "item_id": "1005",
-                "item_Name": "dining"
+                "item_Name": "dining",
+                "item_boolean": false,
+                "item_icon": "dining.svg",
+                "quantity": 0
             },
             {
                 "item_id": "1006",
-                "item_Name": "Patio furniture"
+                "item_Name": "Patio furniture",
+                "item_boolean": false,
+                "item_icon": "items-dining-patio-table.png",
+                "quantity": 0
             },
             {
                 "item_id": "1007",
-                "item_Name": "Barstools/dining chair"
+                "item_Name": "Barstools/dining chair",
+                "item_boolean": false,
+                "item_icon": "barstools.svg",
+                "quantity": 0
             },
             {
                 "item_id": "1008",
-                "item_Name": "sofa"
+                "item_Name": "sofa",
+                "item_boolean": false,
+                "item_icon": "sofa.svg",
+                "quantity": 0
             },
             {
                 "item_id": "1009",
-                "item_Name": "loveseat"
+                "item_Name": "loveseat",
+                "item_boolean": false,
+                "item_icon": "items-sofa-loveseat.png",
+                "quantity": 0
             },
             {
                 "item_id": "1010",
-                "item_Name": " desk or coffee table "
+                "item_Name": "desk or coffee table ",
+                "item_boolean": false,
+                "item_icon": "items-desk-coffee-table.png",
+                "quantity": 0
             },
             {
                 "item_id": "1011",
-                "item_Name": "twin/full mattress set including boxspring "
+                "item_Name": "twin/full mattress set including boxspring ",
+                "item_boolean": false,
+                "item_icon": "items-twin-full-mattress.png",
+                "quantity": 0
             },
             {
                 "item_id": "1012",
-                "item_Name": "king/queen bed or Headboard/footboard"
+                "item_Name": "king/queen bed or Headboard/footboard",
+                "item_boolean": false,
+                "item_icon": "items-king-queen-headboard-footboard.png",
+                "quantity": 0
             },
             {
                 "item_id": "1013",
-                "item_Name": "king/queen mattress set inculdes boxsprings(s)"
+                "item_Name": "king/queen mattress set inculdes boxsprings(s)",
+                "item_boolean": false,
+                "item_icon": "items-king-queen-mattress-set.png",
+                "quantity": 0
             },
             {
                 "item_id": "1014",
-                "item_Name": " grills, refrigerators"
+                "item_Name": " grills, refrigerators",
+                "item_boolean": false,
+                "item_icon": "refrigerators.svg",
+                "quantity": 0
             },
             {
                 "item_id": "1015",
-                "item_Name": " grills"
+                "item_Name": " grills",
+                "item_boolean": false,
+                "item_icon": "grill.svg",
+                "quantity": 0
             },
             {
                 "item_id": "1016",
-                "item_Name": " refrigerators"
+                "item_Name": " refrigerators",
+                "item_boolean": false,
+                "item_icon": "refrigerators.svg",
+                "quantity": 0
             },
             {
                 "item_id": "1017",
-                "item_Name": " washers"
+                "item_Name": " washers",
+                "item_boolean": false,
+                "item_icon": "washers.svg",
+                "quantity": 0
             },
             {
                 "item_id": "1018",
-                "item_Name": " dryers"
+                "item_Name": " dryers",
+                "item_boolean": false,
+                "item_icon": "dryers.svg",
+                "quantity": 0
             },
             {
                 "item_id": "1019",
-                "item_Name": " household essentials"
+                "item_Name": " household essentials",
+                "item_boolean": false,
+                "item_icon": "household.svg",
+                "quantity": 0
             }
         ]
     },
     {
         "item_type_id": "103",
         "item_type_name": "XL",
+        "item_type_icon": "havey_loaded.svg",
         "item_list": [{
                 "item_id": "1020",
-                "item_Name": "Buffet/armoire "
+                "item_Name": "Buffet/armoire ",
+                "item_boolean": false,
+                "item_icon": "buffet.svg",
+                "quantity": 0
             },
             {
                 "item_id": "1021",
-                "item_Name": " media console/dresser"
+                "item_Name": " media console/dresser",
+                "item_boolean": false,
+                "item_icon": "items-media-consoole-dresser.png",
+                "quantity": 0
             },
             {
                 "item_id": "1022",
-                "item_Name": "Grand piano"
+                "item_Name": "Grand piano",
+                "item_boolean": false,
+                "item_icon": "grand_pino.svg",
+                "quantity": 0
             }
 
         ]
