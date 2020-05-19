@@ -29,9 +29,7 @@
 </div>
 <div [ngClass]="{'mapdiaplay':itemList.length != 0}">
     <!-- <div *ngIf="itemList.length == 0"> -->
-    <agm-map [latitude]='lat' [longitude]='lng' [zoom]="13" [mapTypeControl]="false" [streetViewControl]="false"
-        [rotateControl]="true" [fullscreenControl]="false" [zoomControl]="false" gestureHandling="none"
-        *ngIf="itemList.length == 0">
+    <agm-map [latitude]='lat' [longitude]='lng' [zoom]="13" [mapTypeControl]="false" [streetViewControl]="false" [rotateControl]="true" [fullscreenControl]="false" [zoomControl]="false" gestureHandling="none" *ngIf="itemList.length == 0">
         <agm-marker [latitude]="lat" [longitude]="lng" [markerDraggable]="false"></agm-marker>
     </agm-map>
     <div class="positiondiv">
@@ -41,8 +39,7 @@
                     <div class="form-element">
                         <label> <i [ngClass]="getReturnClass(iconDisplay)"
                                 aria-hidden="true"></i>{{textboxLabel}}</label>
-                        <input placeholder="{{textBoxPLaceBolder}}" type="text" id="address" autocomplete="off"
-                            name="address" required autocorrect="off" autocapitalize="off" spellcheck="off" #search />
+                        <input placeholder="{{textBoxPLaceBolder}}" type="text" id="address" autocomplete="off" name="address" required autocorrect="off" autocapitalize="off" spellcheck="off" #search />
                     </div>
                 </form>
             </div>
@@ -54,7 +51,7 @@
 
 
 
-<div class="divliveryItem" *ngIf="itemList.length != 0">
+<div class="divliveryItem" *ngIf="showItemPage && itemList.length != 0">
 
     <div class="titleheading">
         <h4>Book a Delivery</h4>
@@ -68,9 +65,7 @@
                 <form class="login100-form">
                     <div class="form-element">
                         <!-- <label> <i [ngClass]="getReturnClass(iconDisplay)" aria-hidden="true"></i>{{textboxLabel}}</label> -->
-                        <input placeholder="Searching...." type="text" id="seaching" autocomplete="off" required
-                            autocorrect="off" autocapitalize="off" [(ngModel)]="searchingValue"
-                            (keyup)="searching(searchingValue)" [ngModelOptions]="{standalone: true}" />
+                        <input placeholder="Searching...." type="text" id="seaching" autocomplete="off" required autocorrect="off" autocapitalize="off" [(ngModel)]="searchingValue" (keyup)="searching(searchingValue)" [ngModelOptions]="{standalone: true}" />
                         <button><i class="fa fa-search" aria-hidden="true"></i></button>
                     </div>
                 </form>
@@ -86,7 +81,7 @@
                                             </div>
                                         </div>
                                     </div> -->
-                    <div class="card">
+                    <div class="card mycard">
                         <div class="card-body col-12">
                             <ul>
                                 <li *ngFor="let submenu of searchItemList ; let j = index">
@@ -99,11 +94,9 @@
                                     <div class="showcount" *ngIf="submenu.item_boolean">
                                         <div class="count">
                                             <!-- [(ngModel)]="submenu.quantity" -->
-                                            <i class="fa fa-plus" aria-hidden="true"
-                                                (click)="updateSelectedItemList(submenu,submenu.quantity=submenu.quantity+1)"></i>
+                                            <i class="fa fa-plus" aria-hidden="true" (click)="updateSelectedItemList(submenu,submenu.quantity=submenu.quantity+1)"></i>
                                             <span>{{submenu.quantity}}</span>
-                                            <i class="fa fa-minus" aria-hidden="true"
-                                                (click)="submenu.quantity>0?updateSelectedItemList(submenu,submenu.quantity=submenu.quantity-1): null"></i>
+                                            <i class="fa fa-minus" aria-hidden="true" (click)="submenu.quantity>0?updateSelectedItemList(submenu,submenu.quantity=submenu.quantity-1): null"></i>
                                         </div>
                                     </div>
                                 </li>
@@ -127,8 +120,7 @@
             <div class="card-header" role="tab" id="items.item_type_id">
                 <div class="mb-0 row">
                     <div class="col-12  accordion-head">
-                        <a data-toggle="collapse" data-parent="#accordion" href="#accordionBodyOne_{{i}}"
-                            aria-expanded="false" aria-controls="accordionBodyOne" class="collapsed ">
+                        <a data-toggle="collapse" data-parent="#accordion" href="#accordionBodyOne_{{i}}" aria-expanded="false" aria-controls="accordionBodyOne" class="collapsed ">
                             <div class="outerdiv">
                                 <div class="imagesdiv">
                                     <img src="./assets/imgs/{{items.item_type_icon}}" alt="">
@@ -142,8 +134,7 @@
                 </div>
             </div>
 
-            <div id="accordionBodyOne_{{i}}" class="collapse" role="tabpanel" aria-labelledby="items.item_type_id"
-                aria-expanded="false" data-parent="accordion">
+            <div id="accordionBodyOne_{{i}}" class="collapse" role="tabpanel" aria-labelledby="items.item_type_id" aria-expanded="false" data-parent="accordion">
                 <div class="card-block col-12">
                     <ul>
                         <li *ngFor="let submenu of items.item_list ; let j = index">
@@ -156,11 +147,9 @@
                             </div>
                             <div class="showcount" *ngIf="submenu.item_boolean">
                                 <div class="count">
-                                    <i class="fa fa-plus" aria-hidden="true"
-                                        (click)="updateSelectedItemList(submenu,submenu.quantity=submenu.quantity+1)"></i>
+                                    <i class="fa fa-plus" aria-hidden="true" (click)="updateSelectedItemList(submenu,submenu.quantity=submenu.quantity+1)"></i>
                                     <span>{{submenu.quantity}}</span>
-                                    <i class="fa fa-minus" aria-hidden="true"
-                                        (click)="submenu.quantity>0?updateSelectedItemList(submenu,submenu.quantity=submenu.quantity-1): null"></i>
+                                    <i class="fa fa-minus" aria-hidden="true" (click)="submenu.quantity>0?updateSelectedItemList(submenu,submenu.quantity=submenu.quantity-1): null"></i>
                                 </div>
                             </div>
 
@@ -170,6 +159,72 @@
                 </div>
             </div>
         </div>
+    </div>
+</div>
+<div class="divliveryItem selectDateandTime" *ngIf="dateSelectedPage && dateList.length != 0 ">
+
+    <div class="titleheading">
+        <h4>Schedule Your Delivery</h4>
+    </div>
+    <div class="card">
+        <div class="card-body">
+            <div style="text-align: center;">Select your preferred date and time</div>
+            <div class="dateShow">
+                <div class="data" *ngFor="let datedata of dateList ;let i=index;" [ngClass]="{'active':datedata.showtime == true}" (click)="clickOnselectdate(datedata.date_Id)">
+                    <Span>{{datedata.date}}</Span>
+                </div>
+            </div>
+            <div class="timeShow" *ngIf="showtimefalse">
+
+                <div class="dataTime">
+                    <div class="mydiv">
+                        <span class="text">2</span>
+                        <span>PM</span>
+                    </div>
+                    <span class="minus">-</span>
+                    <div class="mydiv">
+                        <span class="text">4</span>
+                        <span>PM</span>
+                    </div>
+                </div>
+
+                <div class="dataTime">
+                    <div class="mydiv">
+                        <span class="text">3</span>
+                        <span>PM</span>
+                    </div>
+                    <span class="minus">-</span>
+                    <div class="mydiv">
+                        <span class="text">5</span>
+                        <span>PM</span>
+                    </div>
+                </div>
+                <div class="dataTime">
+                    <div class="mydiv">
+                        <span class="text">4</span>
+                        <span>PM</span>
+                    </div>
+                    <span class="minus">-</span>
+                    <div class="mydiv">
+                        <span class="text">6</span>
+                        <span>PM</span>
+                    </div>
+                </div>
+                <div class="dataTime">
+                    <div class="mydiv">
+                        <span class="text">5</span>
+                        <span>PM</span>
+                    </div>
+                    <span class="minus">-</span>
+                    <div class="mydiv">
+                        <span class="text">7</span>
+                        <span>PM</span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
     </div>
 </div>
 

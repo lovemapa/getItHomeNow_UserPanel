@@ -472,6 +472,116 @@ a:hover {
     border-bottom: none;
 }
 
+.mycard ul li {
+    list-style: none;
+    border-bottom: 1px solid gray;
+    cursor: pointer;
+}
+
+.mycard ul li .outerdiv {
+    display: flex;
+    flex-flow: row;
+}
+
+.mycard ul li .outerdiv span {
+    padding: 26px 0px;
+}
+
+.mycard ul li .showcount {
+    text-align: right;
+    width: 100%;
+}
+
+.mycard ul li .showcount .count {
+    text-align: right;
+    width: 100%;
+}
+
+.mycard ul li .showcount .count i {
+    padding: 10px;
+    cursor: pointer;
+    color: #868686;
+}
+
+.mycard ul li:last-child {
+    border-bottom: none;
+}
+
+.selectDateandTime .card {
+    max-width: 350px;
+    margin: 20px auto 100px;
+}
+
+.selectDateandTime .card .dateShow {
+    display: flex;
+    padding: 10px 15px;
+    justify-content: center;
+}
+
+.selectDateandTime .card .dateShow .data {
+    width: 50px;
+    height: 50px;
+    border: 2px solid;
+    position: relative;
+    border-radius: 100%;
+    color: #ec3542;
+    background: initial;
+    cursor: pointer;
+    border: 1px solid #ec3441;
+    margin: 6px;
+    font-weight: 600;
+}
+
+.selectDateandTime .card .dateShow .data.active {
+    color: #fff;
+    background: #ec3441;
+    cursor: pointer;
+    border: 2px solid #fff;
+}
+
+.selectDateandTime .card .dateShow .data span {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.selectDateandTime .card .timeShow {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: flex-start;
+}
+
+.selectDateandTime .card .timeShow .dataTime {
+    width: calc(49.3% - 10px);
+    border: 2px solid #ec3542;
+    margin: 4px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    color: #ec3542;
+    font-size: 17px;
+    border-radius: 4px
+}
+
+.selectDateandTime .card .timeShow .dataTime .mydiv {
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    padding: 17px;
+    font-weight: 600;
+}
+
+.selectDateandTime .card .timeShow .dataTime .mydiv .text {
+    padding-left: 5px;
+}
+
+.selectDateandTime .card .timeShow .dataTime .minus {
+    padding: 22px 4px;
+    font-size: 41px;
+    font-weight: 500;
+}
+
 
 /* @media (max-width: 767px) {
     .faq-section {

@@ -40,6 +40,9 @@ export class DeliveryComponent implements OnInit {
   dateList: Array<any>;
   count: number;
   previousId: any
+  showItemPage=false;
+  dateSelectedPage=false;
+  showtimefalse=false;
 
   constructor(private mapsAPILoader: MapsAPILoader, public ngZone: NgZone, public userBackEndService: UserpanelServiceService,
     public modalService: NgbModal) {
@@ -51,6 +54,9 @@ export class DeliveryComponent implements OnInit {
     this.temparyNameDesination = "";
     this.pickupLocation = true;
     this.destinationboolean = false;
+    this.showItemPage=false;
+    this.dateSelectedPage=false;
+    this.showtimefalse=false;
     this.selectedLocationIds = [];
     this.itemList = [];
     this.selectedItemList = [];
@@ -66,13 +72,14 @@ export class DeliveryComponent implements OnInit {
       this.getSelectedLocationIds();
     }
 
-    this.userBackEndService.getItemLists().subscribe(responseData => {
-      this.itemList = responseData;
-      this.pickupLocation = false;
-      console.log(this.itemList)
-    })
+    // this.userBackEndService.getItemLists().subscribe(responseData => {
+    //   this.itemList = responseData;
+    //   this.pickupLocation = false;
+    //   console.log(this.itemList)
+    // })
+    // this.dateSelectedPage=true
 
-    this.getDateNextThree();
+    // this.getDateNextThree();
 
   }
 
@@ -223,10 +230,18 @@ export class DeliveryComponent implements OnInit {
         this.userBackEndService.getItemLists().subscribe(responseData => {
           CommonMethods.showconsole(this.Tag, "Show Item List:- " + JSON.stringify(responseData));
           this.itemList = responseData;
+          this.showItemPage=true
+
         })
       }
-    } else {
+    } else if(this.showItemPage = true && this.itemList.length != 0){
       console.log(this.selectedItemList)
+       this.showItemPage =false;
+       this.getDateNextThree();
+       this.dateSelectedPage=true
+       
+    }else{
+
     }
   }
 
@@ -236,6 +251,8 @@ export class DeliveryComponent implements OnInit {
   clickReset() {
     this.pickupLocation = true;
     this.destinationboolean = false;
+    this.dateSelectedPage=false;
+    this.dateList=[];
     this.origin = "";
     this.destination = "";
     this.pickUpLocationName = "";
@@ -295,13 +312,25 @@ export class DeliveryComponent implements OnInit {
       'Wednesday', 'Thursday', 'Friday', 'Saturday'
     ];
     var date = (today.getMonth() + 1) + '/' + today.getDate();
-    this.dateList.push(date);
+    this.dateList.push({
+      "date_Id":"1",
+      "date":date,
+      "showtime":false
+    });
     var tomorrow = new Date(today.getTime() + (24 * 60 * 60 * 1000));
     var date2 = (tomorrow.getMonth() + 1) + '/' + tomorrow.getDate();
-    this.dateList.push(date2);
+    this.dateList.push({
+      "date_Id":"2",
+      "date":date2,
+      "showtime":false
+    });
     var dayatom = new Date(tomorrow.getTime() + (24 * 60 * 60 * 1000));
     var date3 = (dayatom.getMonth() + 1) + '/' + dayatom.getDate();
-    this.dateList.push(date3);
+    this.dateList.push({
+      "date_Id":"3",
+      "date":date3,
+      "showtime":false
+    });
     CommonMethods.showconsole(this.Tag, "Show Date Array :- " + JSON.stringify(this.dateList))
   }
 
@@ -350,6 +379,27 @@ export class DeliveryComponent implements OnInit {
     else {
       this.selectedItemList.splice(index, 1);
     }
+  }
+
+
+  clickOnselectdate(dateID:any){
+    this.showtimefalse=false;
+     CommonMethods.showconsole(this.Tag,"IS Working:- "+dateID)
+
+    this.dateList.forEach(element => {
+         if(element.date_Id == dateID)
+         {
+          if(element.showtime == false){
+            element.showtime =true;
+            this.showtimefalse=true;
+          }else{
+            element.showtime.showtime =false;
+            this.showtimefalse=false;
+          }
+         }else{
+          element.showtime =false;
+         }
+     });
   }
 
 }

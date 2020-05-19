@@ -61,6 +61,7 @@ export class AdvertismentsComponent implements OnInit {
     // }
     this.userpanelServiceService.getAdvertisement(this.searchString, this.pageNumber).subscribe(response => {
       if (response.success) {
+        this.spinner.hide();
         this.adsList = response.data;
         this.showTable = true;
 
