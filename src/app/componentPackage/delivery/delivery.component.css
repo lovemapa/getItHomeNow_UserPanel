@@ -582,6 +582,169 @@ a:hover {
     font-weight: 500;
 }
 
+<<<<<<< Updated upstream
+=======
+.formFiled .card {
+    margin: 20px auto 0;
+    padding-top: 26px;
+    padding-bottom: 26px;
+    max-width: 500px;
+}
+
+.formFiled .card .form-wrapper {
+    display: block;
+    margin-bottom: 25px;
+}
+
+.formFiled .card .form-wrapper input {
+    width: 100%;
+    border: none;
+    border-bottom: 1px solid #c1c1c1;
+    padding: 12px 0;
+}
+
+.formFiled .card .form-wrapper input:focus {
+    border-color: #e92330;
+}
+
+.form-wrapper.submit-btn {
+    margin-top: 35px;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.formFiled .card .form-wrapper textarea {
+    height: 100px;
+    resize: none;
+    width: 100%;
+    border: none;
+    border-bottom: 1px solid #c1c1c1;
+}
+
+.formFiled .card .form-wrapper textarea:focus {
+    border-color: #e92330;
+}
+
+.finallist .card {
+    max-width: 500px;
+    margin: 20px auto 50px;
+    background-color: #fff;
+}
+
+.finallist .card .card-body {
+    padding: 0px;
+}
+
+.finallist .card .card-body ul {
+    padding: 0;
+}
+
+.finallist .card .card-body ul li {
+    list-style: none;
+    padding: 10px;
+    border-bottom: 1px solid #e5e5e5;
+}
+
+.finallist .card .card-body ul li:last-child {
+    border-bottom: unset;
+}
+
+.finallist .card .card-body ul li .topheading {
+    padding: 10px 10px;
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.finallist .card .card-body ul li .topheading i {
+    margin-right: 10px;
+    font-size: 21px;
+    color: #e92330;
+}
+
+.finallist .card .card-body ul li .topheading i.pricelogo {
+    padding: 2px;
+    width: 22px;
+    height: 22px;
+    font-size: 15px;
+    border: 2px solid;
+    border-radius: 50px;
+    padding-left: 5px;
+    color: #fff;
+    background: #E92331;
+}
+
+.finallist .card .card-body ul li .address span {
+    padding: 13px 13px;
+    font-size: 15px;
+    font-weight: 400;
+}
+
+.finallist .card .card-body ul li .time span {
+    display: block;
+    padding: 1px 13px;
+    padding: 0px 13px;
+    font-size: 15px;
+    font-weight: 400;
+}
+
+.finallist .card .card-body ul li .total {
+    padding: 4px 13px;
+    font-size: 15px;
+    font-weight: 400;
+    display: flex;
+    justify-content: space-between;
+}
+
+.finallist .card .card-body ul li .Price {
+    text-align: end;
+    padding-right: 13px;
+    cursor: pointer;
+    color: #E92331;
+}
+
+.finallist .card .card-body .productShow {
+    /* display: flex;
+    flex-flow: row;
+    justify-content: center; */
+}
+
+.finallist .card .card-body .productShow .outerdiv {
+    display: flex;
+    flex-flow: row;
+    border-bottom: 1px solid #e5e5e5;
+}
+
+.finallist .card .card-body .productShow .outerdiv:last-child {
+    border-bottom: unset;
+}
+
+.finallist .card .card-body .productShow .outerdiv .showQuanity {
+    padding: 15px 0px;
+}
+
+.finallist .card .card-body .outerdiv h3 {
+    color: #757575cc;
+    margin-bottom: 0;
+    font-size: 18px;
+    padding: 22px 0px;
+    padding-right: 25px;
+    font-weight: 500;
+    text-align: left;
+    letter-spacing: 0px;
+    font-size: 19px;
+    text-transform: capitalize;
+}
+
+.finallist .card .card-body .productShow .outerdiv .imagesdiv {
+    width: 70px;
+    height: 70px;
+}
+
+.finallist .card .card-body .productShow .outerdiv .imagesdiv img {
+    width: 100%;
+}
+
+>>>>>>> Stashed changes
 
 /* @media (max-width: 767px) {
     .faq-section {

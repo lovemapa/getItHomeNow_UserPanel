@@ -72,14 +72,25 @@ export class DeliveryComponent implements OnInit {
       this.getSelectedLocationIds();
     }
 
+<<<<<<< Updated upstream
     // this.userBackEndService.getItemLists().subscribe(responseData => {
     //   this.itemList = responseData;
     //   this.pickupLocation = false;
     //   console.log(this.itemList)
     // })
     // this.dateSelectedPage=true
+=======
+    this.userBackEndService.getItemLists().subscribe(responseData => {
+      this.itemList = responseData;
+      this.pickupLocation = false;
+      console.log(this.itemList)
+    })
+    // // this.formFieldshow=true;
+    // this.showFinallist=true;
+    this.dateSelectedPage=true
+>>>>>>> Stashed changes
 
-    // this.getDateNextThree();
+    this.getDateNextThree();
 
   }
 
