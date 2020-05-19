@@ -227,10 +227,100 @@
 
     </div>
 </div>
+<div class="divliveryItem formFiled" *ngIf="formFieldshow">
 
-<div class="selectDateandTime">
+    <div class="titleheading">
+        <h4>Enter Your Contact Details</h4>
+    </div>
+    <div class="card">
+        <div class="card-body">
+            <div class="contact-form siteForm">
+
+                <div class="form-wrapper">
+                    <input type="text" placeholder="Name" autocomplete="off" />
+                </div>
+                <div class="form-wrapper">
+                    <input type="email" placeholder="Email" autocomplete="off" />
+                </div>
+                <div class="form-wrapper">
+                    <input type="tel" placeholder="Contact Number" (keypress)="keyPress($event)" onkeypress="" autocomplete="off" maxlength="11" />
+                </div>
+                <div class="form-wrapper">
+                    <input type="tel" placeholder="Any special instructions?" (keypress)="keyPress($event)" onkeypress="" autocomplete="off" maxlength="11" />
+                </div>
+
+                <!-- <div class="form-wrapper submit-btn">
+                    <a>Submit</a>
+                </div> -->
+            </div>
+        </div>
+    </div>
 
 </div>
+<div class="divliveryItem finallist" *ngIf="showFinallist">
+
+    <div class="titleheading">
+        <h4>Confirm Your PICKUP Delivery Order</h4>
+    </div>
+    <div class="card">
+        <div class="card-body">
+            <ul>
+                <li>
+
+                </li>
+                <li>
+                    <div class="topheading">
+                        <i class="fa fa-arrow-circle-up" aria-hidden="true"></i>
+                        <span>Pick Up Address</span>
+
+                    </div>
+                    <div class="address">
+                        <span>Demo Address</span>
+                        <!-- <span>{{pickUpLocationName}}</span> -->
+                    </div>
+                </li>
+                <li>
+                    <div class="topheading">
+                        <i class="fa fa-arrow-circle-down" aria-hidden="true"></i>
+                        <span>Delivery Address</span>
+                    </div>
+                    <div class="address">
+                        <span>Demo Address</span>
+                        <!-- <span>{{pickUpLocationName}}</span> -->
+                    </div>
+                </li>
+                <li>
+                    <div class="topheading">
+                        <i class="fa fa-clock-o" aria-hidden="true"></i>
+                        <span>Delivery Date & Time</span>
+                    </div>
+                    <div class="time">
+                        <span>WednesDay 10-may-2020</span>
+                        <span>1 PM - 2 PM</span>
+                    </div>
+                </li>
+                <li>
+                    <div class="topheading">
+                        <i class="fa fa-usd pricelogo" aria-hidden="true"></i>
+                        <span>Price</span>
+
+                    </div>
+                    <div class="total">
+                        <span>Total</span>
+                        <span>$20.00</span>
+                        <div class="Price">
+                            <span>$20.00</span>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+
+</div>
+
+
 
 
 <div class="stepper">

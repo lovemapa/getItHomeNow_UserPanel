@@ -43,7 +43,9 @@ export class DeliveryComponent implements OnInit {
   showItemPage=false;
   dateSelectedPage=false;
   showtimefalse=false;
-
+  selectedDate:any;
+  formFieldshow=false;
+  showFinallist=false;
   constructor(private mapsAPILoader: MapsAPILoader, public ngZone: NgZone, public userBackEndService: UserpanelServiceService,
     public modalService: NgbModal) {
     this.origin = "";
@@ -52,11 +54,14 @@ export class DeliveryComponent implements OnInit {
     this.destinationLocationName = "";
     this.searchingValue = "";
     this.temparyNameDesination = "";
+    this.selectedDate = "";
     this.pickupLocation = true;
     this.destinationboolean = false;
     this.showItemPage=false;
     this.dateSelectedPage=false;
     this.showtimefalse=false;
+    this.formFieldshow=false;
+    this.showFinallist=false;
     this.selectedLocationIds = [];
     this.itemList = [];
     this.selectedItemList = [];
@@ -67,16 +72,19 @@ export class DeliveryComponent implements OnInit {
     this.textBoxPLaceBolder = "Enter PickUp Address"
     this.iconDisplay = "fa fa-arrow-circle-up";
     this.previousId = "";
+  
     if (this.itemList.length == 0) {
       this.loadMap()
       this.getSelectedLocationIds();
     }
 
-    // this.userBackEndService.getItemLists().subscribe(responseData => {
-    //   this.itemList = responseData;
-    //   this.pickupLocation = false;
-    //   console.log(this.itemList)
-    // })
+    this.userBackEndService.getItemLists().subscribe(responseData => {
+      this.itemList = responseData;
+      this.pickupLocation = false;
+      console.log(this.itemList)
+    })
+    // this.formFieldshow=true;
+    this.showFinallist=true;
     // this.dateSelectedPage=true
 
     // this.getDateNextThree();
@@ -240,6 +248,15 @@ export class DeliveryComponent implements OnInit {
        this.getDateNextThree();
        this.dateSelectedPage=true
        
+    }else if(this.dateSelectedPage == true){
+      this.dateSelectedPage=false;
+      this.formFieldshow=true;
+      
+       
+    }else if(this.formFieldshow == true){
+      this.formFieldshow=false
+      this.showFinallist=true;
+       
     }else{
 
     }
@@ -273,6 +290,9 @@ export class DeliveryComponent implements OnInit {
       return false;
     }
     if (this.destinationboolean && this.temparyNameDesination != '') {
+      return false;
+    }
+    if (this.selectedItemList.length > 0 && this.showItemPage == true) {
       return false;
     }
     if (this.selectedItemList.length > 0) {
@@ -385,13 +405,14 @@ export class DeliveryComponent implements OnInit {
   clickOnselectdate(dateID:any){
     this.showtimefalse=false;
      CommonMethods.showconsole(this.Tag,"IS Working:- "+dateID)
-
+     this.selectedDate=""
     this.dateList.forEach(element => {
          if(element.date_Id == dateID)
          {
           if(element.showtime == false){
             element.showtime =true;
             this.showtimefalse=true;
+            this.selectedDate= element.date;
           }else{
             element.showtime.showtime =false;
             this.showtimefalse=false;
@@ -401,5 +422,18 @@ export class DeliveryComponent implements OnInit {
          }
      });
   }
+
+  /**
+ * 
+ *   Numarical Number only Press
+ */
+keyPress(event: any) {
+  const pattern = /[0-9\+\-\ ]/;
+  let inputChar = String.fromCharCode(event.charCode);
+  if (event.keyCode != 8 && !pattern.test(inputChar)) {
+    event.preventDefault();
+  }
+}
+
 
 }
