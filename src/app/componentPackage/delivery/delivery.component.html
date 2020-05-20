@@ -316,7 +316,7 @@
                     </div>
                     <div class="total">
                         <span>Total</span>
-                        <span>$$$$$</span>
+                        <span>{{priceForDelivery}}</span>
 
                     </div>
                     <!-- <div class="Price">
@@ -335,7 +335,7 @@
 
 <div class="stepper">
     <div class="rightSide">
-        <button (click)="clickReset()">Reset</button>
+        <button (click)="clickReset()" [disabled]="pickupLocation" >Reset</button>
     </div>
     <div class="leftside">
         <button class="backbutton" (click)="gotoBack()" *ngIf="pickupLocation == false">Back</button>

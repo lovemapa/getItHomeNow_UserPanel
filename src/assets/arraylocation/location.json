@@ -335,5 +335,40 @@
         "place_Name": "Fort Lauderdale",
         "region": "Home",
         "vicinity": "Fort Lauderdale"
+    },
+    {
+        "id": "ba62a0e585cad381244435fe8b4a5bb448e6abf0",
+        "place_Id": "ChIJDYj140UE2YgRyF-N6XZqdRU",
+        "place_Name": "North Lauderdale",
+        "region": "Home",
+        "vicinity": "North Lauderdale"
+    },
+    {
+        "id": "306cdaeed47acdf3228efeb4864289ff1901dd9a",
+        "place_Id": "ChIJQZ3rCDao2YgRmfu2Qy4c9SQ",
+        "place_Name": "Sunrise",
+        "region": "Home",
+        "vicinity": "Sunrise"
+    },
+    {
+        "id": "cb3b705fd0b6018d7e0a1d9907c1087391f7ebb5",
+        "place_Id": "ChIJ888H34v92IgRyuVvs_mRlXA",
+        "place_Name": "Lauderdale-by-the-Sea",
+        "region": "Home",
+        "vicinity": "Lauderdale-by-the-Sea"
+    },
+    {
+        "id": "941f180e5258a81eeb032c87fd86041d3812c709",
+        "place_Id": "ChIJtWMtIj2q2YgR4ofe1LhXA-A",
+        "place_Name": "Dania Beach",
+        "region": "Home",
+        "vicinity": "Dania Beach"
+    },
+    {
+        "id": "5f55e724ad3fa8133bac104b5135db9c74460f5b",
+        "place_Id": "ChIJbYHTyAMB2YgRac41fG79meM",
+        "place_Name": "Oakland Park",
+        "region": "Home",
+        "vicinity": "Oakland Park"
     }
 ]

@@ -36,6 +36,7 @@ export class DeliveryComponent implements OnInit {
   pickUpLocationName: string;
   temparyNameDesination: string
   destinationLocationName: string;
+  destinationRegion: string;
   selectedItemList: Array<any>
   searchItemList: Array<any>
   searchingValue: string
@@ -51,6 +52,7 @@ export class DeliveryComponent implements OnInit {
   phonenumber: any
   email: any
   name: any
+  priceForDelivery:string = '$99/hr';
   constructor(private mapsAPILoader: MapsAPILoader, public ngZone: NgZone, public userBackEndService: UserpanelServiceService,
     public modalService: NgbModal,public cookiesSerive:CookieService,public spinner:NgxSpinnerService) {
     this.origin = "";
@@ -153,8 +155,16 @@ export class DeliveryComponent implements OnInit {
             return;
           }
           CommonMethods.showconsole("Palce", place)
-          let found = this.selectedLocationIds.filter(element => element.place_Name.toUpperCase().match(place.vicinity.toUpperCase()) && place.formatted_address.includes('FL'));
-          if (found.length != 0) {
+          let found:boolean = false;
+          this.selectedLocationIds.forEach(element =>{
+            let placeRegex = '(.*('+element.place_Name.toUpperCase()+').+(FL|FLORIDA).+(USA|UNITED STATES))+';
+            if(place.formatted_address.toUpperCase().match(placeRegex)){
+              found = true;
+              this.destinationRegion = element.region;
+            }
+
+          });
+          if (found) {
             this.lat = place.geometry.location.lat();
             this.lng = place.geometry.location.lng();
             if (this.pickupLocation == true) {
@@ -162,7 +172,7 @@ export class DeliveryComponent implements OnInit {
             } else {
               this.temparyNameDesination = place.formatted_address;
             }
-            this.toggelNextBtn()
+            this.toggelNextBtn();
           } else {
             this.openModal();
             // this.openModalDistanceCheck();
@@ -209,18 +219,19 @@ export class DeliveryComponent implements OnInit {
       this.showFinallist = false;
       this.formFieldshow = true;
 
-    } else if (this.formFieldshow == true) {
+    } 
+    if (this.formFieldshow == true) {
       this.formFieldshow = false;
       this.dateSelectedPage = true;
 
-    } else if (this.dateSelectedPage == true) {
-      this.spinner.show()
+    } 
+    if (this.dateSelectedPage == true) {
+      // this.spinner.show()
       this.dateSelectedPage = false;
       this.searchingValue="";
       this.searchItemList = [];
       this.userBackEndService.getItemLists().subscribe(responseData => {
-        if(this.cookiesSerive.check('selected_productList') == true)
-        {
+        if(this.cookiesSerive.check('selected_productList') == true){
           this.itemList = responseData;
             this.selectedItemList.forEach(selectedProduct => {
                    this.itemList.forEach(itemList => {
@@ -238,13 +249,10 @@ export class DeliveryComponent implements OnInit {
           this.itemList = responseData;
         }
         this.showItemPage = true;
-      })
-      setTimeout(() => {
-        this.spinner.hide()
-      }, 2000);
-     
-      this.showItemPage = true;
-    }else if(this.showItemPage == true){
+      });
+        // this.spinner.hide()
+    }
+    if(this.showItemPage == true){
         this.showItemPage = false;
         this.itemList=[]
         this.destinationboolean=true
@@ -253,7 +261,8 @@ export class DeliveryComponent implements OnInit {
         this.textBoxPLaceBolder = "Enter Delivery Address"
         this.iconDisplay = "fa fa-arrow-circle-down";
 
-    }else {
+    }
+    if(this.destinationboolean == true) {
       this.destinationboolean =false
       this.searchElementRef.nativeElement.value = this.pickUpLocationName;
       this.textboxLabel = "Pick Up Address";
@@ -279,46 +288,50 @@ export class DeliveryComponent implements OnInit {
       this.textBoxPLaceBolder = "Enter Delivery Address"
       this.iconDisplay = "fa fa-arrow-circle-down";
     } else if (this.destinationboolean == true) {
-      this.spinner.show()
       this.destination = new google.maps.LatLng(
         this.lat,
         this.lng
       );
+      // this.spinner.show();
       let totalDisTanceintoMiles: any;
       let calculateDistanceByRoadservice = new google.maps.DistanceMatrixService().getDistanceMatrix({ 'origins': [this.origin], 'destinations': [this.destination], travelMode: 'DRIVING', 'unitSystem': google.maps.UnitSystem.IMPERIAL }, (results: any) => {
         totalDisTanceintoMiles = results.rows[0].elements[0].distance?.text;
+        // this.spinner.hide()
         if (parseFloat(totalDisTanceintoMiles.match('[\\d]+.[\\d]+')[0]) > 25) {
-          this.openModalDistanceCheck();
-        } else {
+          // this.openModalDistanceCheck();
+          if (this.destinationRegion == "South Region") {
+            this.priceForDelivery = '$119/hr';
+          }
+          else if (this.destinationRegion == "Central Region") {
+            this.priceForDelivery = '$149/hr';
+          }
+        }
           this.destinationLocationName = this.temparyNameDesination;
-          this.destinationboolean = false;
+          
           
           this.userBackEndService.getItemLists().subscribe(responseData => {
             
-            if(this.cookiesSerive.check('selected_productList') == true)
-            {
+            if(this.cookiesSerive.check('selected_productList') == true){
               this.itemList = responseData;
                 this.selectedItemList.forEach(selectedProduct => {
                        this.itemList.forEach(itemList => {
                          var itemListproduc = itemList.item_list;
                          itemListproduc.forEach(product => {
-                          if(selectedProduct.item_id == product.item_id )
-                          {
-                            product.quantity=selectedProduct.quantity
+                          if(selectedProduct.item_id == product.item_id ){
+                            product.quantity=selectedProduct.quantity;
                           }
-                         });
-                          
-                       });
+                        });
+                      });
                 });
             }else{
               this.itemList = responseData;
             }
+            this.destinationboolean = false;
             this.showItemPage = true;
             setTimeout(() => {
               this.spinner.hide()
             }, 2000);
-          })
-        }
+          });
       });
     } else if (this.showItemPage && this.itemList.length != 0) {
       this.showItemPage = false;
