@@ -4,6 +4,8 @@ import { CommonMethods } from 'src/app/utillpackage/common-method';
 import { GoogleMap } from '@agm/core/services/google-maps-types';
 import { UserpanelServiceService } from 'src/app/backendServices/userpanel-service.service';
 import { NgbModalRef, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { CookieService } from 'ngx-cookie-service';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 // import * as selectedLocationIds from '../../../assets/arraylocation/location.json';
 // import {} from "googlemaps";
@@ -44,14 +46,22 @@ export class DeliveryComponent implements OnInit {
   dateSelectedPage = false;
   showtimefalse = false;
   showFinallist = false;
-
+  dateValue: any
+  formFieldshow = false;
+  phonenumber: any
+  email: any
+  name: any
   constructor(private mapsAPILoader: MapsAPILoader, public ngZone: NgZone, public userBackEndService: UserpanelServiceService,
-    public modalService: NgbModal) {
+    public modalService: NgbModal,public cookiesSerive:CookieService,public spinner:NgxSpinnerService) {
     this.origin = "";
     this.destination = "";
+    this.phonenumber = "";
+    this.email = "";
+    this.name = "";
     this.pickUpLocationName = "";
     this.destinationLocationName = "";
     this.searchingValue = "";
+    this.dateValue = "";
     this.temparyNameDesination = "";
     this.pickupLocation = true;
     this.destinationboolean = false;
@@ -78,10 +88,11 @@ export class DeliveryComponent implements OnInit {
     //   this.pickupLocation = false;
     //   console.log(this.itemList)
     // })
-    // // this.formFieldshow=true;
-    //  this.showFinallist=true;
-    // this.dateSelectedPage=true
-    this.getDateNextThree();
+    // // // this.formFieldshow=true;
+    // //  this.showFinallist=true;
+    // this.dateSelectedPage=true;
+    // this.formFieldshow=false;
+    // this.getDateNextThree();
 
   }
 
@@ -141,6 +152,7 @@ export class DeliveryComponent implements OnInit {
           if (place.geometry === undefined || place.geometry === null) {
             return;
           }
+          CommonMethods.showconsole("Palce", place)
           let found = this.selectedLocationIds.filter(element => element.place_Name.toUpperCase().match(place.vicinity.toUpperCase()) && place.formatted_address.includes('FL'));
           if (found.length != 0) {
             this.lat = place.geometry.location.lat();
@@ -193,7 +205,62 @@ export class DeliveryComponent implements OnInit {
 
 
   gotoBack() {
+    if (this.showFinallist == true) {
+      this.showFinallist = false;
+      this.formFieldshow = true;
 
+    } else if (this.formFieldshow == true) {
+      this.formFieldshow = false;
+      this.dateSelectedPage = true;
+
+    } else if (this.dateSelectedPage == true) {
+      this.spinner.show()
+      this.dateSelectedPage = false;
+      this.searchingValue="";
+      this.searchItemList = [];
+      this.userBackEndService.getItemLists().subscribe(responseData => {
+        if(this.cookiesSerive.check('selected_productList') == true)
+        {
+          this.itemList = responseData;
+            this.selectedItemList.forEach(selectedProduct => {
+                   this.itemList.forEach(itemList => {
+                     var itemListproduc = itemList.item_list;
+                     itemListproduc.forEach(product => {
+                      if(selectedProduct.item_id == product.item_id )
+                      {
+                        product.quantity=selectedProduct.quantity
+                      }
+                     });
+                      
+                   });
+            });
+        }else{
+          this.itemList = responseData;
+        }
+        this.showItemPage = true;
+      })
+      setTimeout(() => {
+        this.spinner.hide()
+      }, 2000);
+     
+      this.showItemPage = true;
+    }else if(this.showItemPage == true){
+        this.showItemPage = false;
+        this.itemList=[]
+        this.destinationboolean=true
+        this.searchElementRef.nativeElement.value = this.destinationLocationName;
+        this.textboxLabel = "Delivery  Address";
+        this.textBoxPLaceBolder = "Enter Delivery Address"
+        this.iconDisplay = "fa fa-arrow-circle-down";
+
+    }else {
+      this.destinationboolean =false
+      this.searchElementRef.nativeElement.value = this.pickUpLocationName;
+      this.textboxLabel = "Pick Up Address";
+      this.textBoxPLaceBolder = "Enter PickUp Address"
+      this.iconDisplay = "fa fa-arrow-circle-up";
+      this.pickupLocation=true;
+    }
   }
 
   /**
@@ -212,6 +279,7 @@ export class DeliveryComponent implements OnInit {
       this.textBoxPLaceBolder = "Enter Delivery Address"
       this.iconDisplay = "fa fa-arrow-circle-down";
     } else if (this.destinationboolean == true) {
+      this.spinner.show()
       this.destination = new google.maps.LatLng(
         this.lat,
         this.lng
@@ -224,9 +292,31 @@ export class DeliveryComponent implements OnInit {
         } else {
           this.destinationLocationName = this.temparyNameDesination;
           this.destinationboolean = false;
+          
           this.userBackEndService.getItemLists().subscribe(responseData => {
-            this.itemList = responseData;
+            
+            if(this.cookiesSerive.check('selected_productList') == true)
+            {
+              this.itemList = responseData;
+                this.selectedItemList.forEach(selectedProduct => {
+                       this.itemList.forEach(itemList => {
+                         var itemListproduc = itemList.item_list;
+                         itemListproduc.forEach(product => {
+                          if(selectedProduct.item_id == product.item_id )
+                          {
+                            product.quantity=selectedProduct.quantity
+                          }
+                         });
+                          
+                       });
+                });
+            }else{
+              this.itemList = responseData;
+            }
             this.showItemPage = true;
+            setTimeout(() => {
+              this.spinner.hide()
+            }, 2000);
           })
         }
       });
@@ -237,7 +327,18 @@ export class DeliveryComponent implements OnInit {
 
     } else if (this.dateSelectedPage) {
       this.dateSelectedPage = false;
+      this.formFieldshow = true;
+      CommonMethods.showconsole(this.Tag, "email:- " + this.email)
+      CommonMethods.showconsole(this.Tag, "name:- " + this.name)
+      CommonMethods.showconsole(this.Tag, "phone Number:- " + this.phonenumber)
+
+    } else if (this.formFieldshow == true) {
+      CommonMethods.showconsole(this.Tag, "function is working")
+      this.formFieldshow = false;
       this.showFinallist = true;
+
+    } else {
+
     }
   }
 
@@ -248,6 +349,12 @@ export class DeliveryComponent implements OnInit {
     this.pickupLocation = true;
     this.destinationboolean = false;
     this.dateSelectedPage = false;
+    this.dateValue="";
+    this.name="";
+    this.email="";
+    this.phonenumber="";
+    this.formFieldshow= false;
+    this.showFinallist=false
     this.dateList = [];
     this.origin = "";
     this.destination = "";
@@ -274,7 +381,11 @@ export class DeliveryComponent implements OnInit {
     if (this.showItemPage && this.selectedItemList.length > 0) {
       return false;
     }
-    if (this.dateSelectedPage) {
+    if (this.dateSelectedPage && this.dateValue != "") {
+      return false;
+    }
+    if (this.formFieldshow && this.name.trim().length != 0 && this.email.trim().length != 0 && this.phonenumber.trim().length != 0) {
+      CommonMethods.showconsole(this.Tag, "Function")
       return false;
     }
     return true;
@@ -363,6 +474,9 @@ export class DeliveryComponent implements OnInit {
     else {
       this.selectedItemList.splice(index, 1);
     }
+
+  this.cookiesSerive.set("selected_productList",JSON.stringify(this.selectedItemList) )
+
   }
 
 
@@ -375,6 +489,7 @@ export class DeliveryComponent implements OnInit {
         if (element.showtime == false) {
           element.showtime = true;
           this.showtimefalse = true;
+          this.dateValue = element.date;
         } else {
           element.showtime.showtime = false;
           this.showtimefalse = false;
@@ -384,5 +499,15 @@ export class DeliveryComponent implements OnInit {
       }
     });
   }
+
+
+  keyPress(event: any) {
+    const patt = /^[0-9]{1,4}(\.[0-9][0-9])?$/
+    let inputChar = String.fromCharCode(event.charCode);
+    if (event.keyCode != 8 && !patt.test(inputChar)) {
+      event.preventDefault();
+    }
+  }
+
 
 }

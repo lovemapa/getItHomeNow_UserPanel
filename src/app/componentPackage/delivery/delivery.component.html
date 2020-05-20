@@ -228,7 +228,34 @@
     </div>
 </div>
 
-<div class="selectDateandTime">
+<div class="divliveryItem formFiled" *ngIf="formFieldshow">
+
+    <div class="titleheading">
+        <h4>Enter Your Contact Details</h4>
+    </div>
+    <div class="card">
+        <div class="card-body">
+            <div class="contact-form siteForm">
+
+                <div class="form-wrapper">
+                    <input type="text" placeholder="Name" autocomplete="off" [(ngModel)]="name" [ngModelOptions]="{standalone: true}" />
+                </div>
+                <div class="form-wrapper">
+                    <input type="email" placeholder="Email" autocomplete="off" [(ngModel)]="email" [ngModelOptions]="{standalone: true}" />
+                </div>
+                <div class="form-wrapper">
+                    <input type="tel" placeholder="Contact Number" (keypress)="keyPress($event)" autocomplete="off" maxlength="11" [(ngModel)]="phonenumber" [ngModelOptions]="{standalone: true}" />
+                </div>
+                <div class="form-wrapper">
+                    <input type="any_information" placeholder="Any special instructions?" autocomplete="off" maxlength="11" />
+                </div>
+
+                <!-- <div class="form-wrapper submit-btn">
+                    <a>Submit</a>
+                </div> -->
+            </div>
+        </div>
+    </div>
 
 </div>
 <div class="divliveryItem finallist" *ngIf="showFinallist">
@@ -312,7 +339,8 @@
     </div>
     <div class="leftside">
         <button class="backbutton" (click)="gotoBack()" *ngIf="pickupLocation == false">Back</button>
-        <button class="nextbuton" (click)="gotoNext()" [disabled]="toggelNextBtn()">Next</button>
+        <button class="nextbuton" (click)="gotoNext()" [disabled]="toggelNextBtn()" *ngIf="showFinallist == false">Next</button>
+        <button class="nextbuton" (click)="gotoNext()" *ngIf="showFinallist == true">Checkout</button>
     </div>
 </div>
 

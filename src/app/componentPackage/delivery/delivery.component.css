@@ -700,6 +700,7 @@ a:hover {
     color: #E92331;
 }
 
+
 /* .finallist .card .card-body .productShow {
      display: flex;
     flex-flow: row;
@@ -744,11 +745,18 @@ a:hover {
     width: 100%;
 }
 
-.selectedTimeClass{
+.selectedTimeClass {
     color: #fff !important;
     background: #ec3441;
     cursor: pointer !important;
 }
+
+.divliveryItem {
+    background: url("../../../assets/imgs/delivery_background.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
 
 /* @media (max-width: 767px) {
     .faq-section {

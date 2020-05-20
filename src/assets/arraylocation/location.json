@@ -2,162 +2,338 @@
         "id": "aec7015498d30fa742382a3089fb587efc5bb001",
         "place_Id": "ChIJvR-_C4En2YgRMEN-S_3dBwc",
         "place_Name": "Atlantis",
-        "region":"Central Region"
+        "region": "Central Region"
     },
     {
         "id": "0fdfb70c6a230250856ad777d7401a1b643a8a8f",
         "place_Id": "ChIJo9mrr7fX2IgRIQv4Uzhfqsc",
         "place_Name": "Cloud Lake",
-        "region":"Central Region"
+        "region": "Central Region"
     },
     {
         "id": "d64e233b6eaf6035aa33c94cb9f2a0d33c5cc5e6",
         "place_Id": "ChIJ8S6t9LjX2IgR4Nv2FTq1VNs",
         "place_Name": "Glen Ridge",
-        "region":"Central Region"
+        "region": "Central Region"
     },
     {
         "id": "fa0f6673cf8a26ca5ef7e270c29d7c0934f35a4e",
         "place_Id": "ChIJC4c7ePcl2YgRXmjm81iLr0c",
         "place_Name": "Greenacres",
-        "region":"Central Region"
+        "region": "Central Region"
     },
     {
         "id": "8659bb1ae2616a6418574e6c72ab06224af6c532",
         "place_Id": "ChIJORRml7Up2YgRddGNJoJ9vek",
         "place_Name": "Haverhill",
-        "region":"Central Region"
+        "region": "Central Region"
     },
     {
         "id": "841e4a22e173a4304f14203008d4f40bb1be60b6",
         "place_Id": "ChIJHeNtPtbY2IgR0yxUlrERVcA",
         "place_Name": "Hypoluxo",
-        "region":"Central Region"
+        "region": "Central Region"
     },
     {
         "id": "5ce1d1f469559f38cf16b62e2aaf20a3c00e22df",
         "place_Id": "ChIJJYuk0YzX2IgRKPtW2Lldj4A",
         "place_Name": "Lake Clarke Shores",
-        "region":"Central Region"
+        "region": "Central Region"
     },
     {
         "id": "905f374712c27a5d9e0b8ad97c4a98482264558c",
         "place_Id": "ChIJFUW_ljPY2IgRe8eos0RLSYc",
         "place_Name": "Lake Worth",
-        "region":"Central Region"
+        "region": "Central Region"
     },
     {
         "id": "d86078f7dff4789efbf274e2b4a91c588d66a980",
         "place_Id": "ChIJmZdKKkPY2IgRpt3V849dHIM",
         "place_Name": "Lantana",
-        "region":"Central Region"
+        "region": "Central Region"
     },
     {
         "id": "4635f6809901b7d47119b1fee9071c5b787ae718",
         "place_Id": "ChIJqXe0KB412YgR7w0SQoJgOP8",
         "place_Name": "Loxahatchee Groves",
-        "region":"Central Region"
+        "region": "Central Region"
     },
     {
         "id": "cc8d7c08153dc062d11b3801c787163552eafda4",
         "place_Id": "ChIJGRVLYuzY2IgRzchqVM4nU_k",
         "place_Name": "Manalapan",
-        "region":"Central Region"
+        "region": "Central Region"
     },
     {
         "id": "237697bc13efbb564c540cfa7ac98216a0cd9995",
         "place_Id": "ChIJDYd8Q77V2IgRu2phbydInv4",
         "place_Name": "Mangonia Park",
-        "region":"Central Region"
+        "region": "Central Region"
     },
     {
         "id": "bef64fcea22148924513a6d2890b1651f719e5a2",
         "place_Id": "ChIJhzdSGPbW2IgRGkem18eSoDs",
         "place_Name": "Palm Beach",
-        "region":"Central Region"
+        "region": "Central Region"
     },
     {
         "id": "0f21dc64a7097126586549899e36beb97adb3217",
         "place_Id": "ChIJ2T2LjgDY2IgREBJA0zvgpfY",
         "place_Name": "Palm Springs",
-        "region":"Central Region"
+        "region": "Central Region"
     },
     {
         "id": "b3f5c81c77467e20c5224aa3862a65b124c26a33",
         "place_Id": "ChIJ9ZBMPc0l2YgRgZ8YFTmDViQ",
         "place_Name": "Royal Palm Beach",
-        "region":"Central Region"
+        "region": "Central Region"
     },
     {
         "id": "8ff409676e9c5d9b30b1a7d397baa48834dc4e56",
         "place_Id": "ChIJF83erKDZ2IgROELXtz3De3A",
         "place_Name": "South Palm Beach",
-        "region":"Central Region"
+        "region": "Central Region"
     },
     {
         "id": "795002f9a79173914d235d166cddcaca050d8973",
         "place_Id": "ChIJPQn610Il2YgRCiYq3AsWb8M",
         "place_Name": "Wellington",
-        "region":"Central Region"
+        "region": "Central Region"
     },
     {
         "id": "a88ae7e912d477683577f70600f4a24a2faa143a",
         "place_Id": "ChIJwa2VtczV2IgR3mvhH7XH7xU",
         "place_Name": "West Palm Beach",
-        "region":"Central Region"
+        "region": "Central Region"
     },
     {
         "id": "70a461c417528e1ce1bb35627811c5b526ba7ce7",
         "place_Id": "ChIJJZ4BGn1Q2YgRIKdkLfzdBwc",
         "place_Name": "Belle Glade",
-        "region":"Central Region"
+        "region": "Central Region"
     },
     {
         "id": "d541066efbccd81094179e04b326610f6ebe9bce",
         "place_Id": "ChIJYZacRCWn3ogRc-5RYz7MkYg",
         "place_Name": "Lake Okeechobee, Florid",
-        "region":"Central Region"
+        "region": "Central Region"
     },
     {
         "id": "d3e0d0c1fa55a7b2d7f5c7d3e74ed3ea44ee79af",
         "place_Id": "ChIJJ_s278Ij2YgRyZVgyu6mPtI",
         "place_Name": "Boca Raton",
-        "region":"South Region"
+        "region": "South Region"
     },
     {
         "id": "e2b13fd84691b7a7cb7ca33b16b9a9b5753718dc",
         "place_Id": "ChIJQ-N3iCDf2IgRNpIns7Gl7O4",
         "place_Name": "Boynton Beach",
-        "region":"South Region"
+        "region": "South Region"
     },
     {
         "id": "7763431ac393dd2f83ca7c3ba715e921b1462be3",
         "place_Id": "ChIJ1xlakeLe2IgRgEV-S_3dBwc",
         "place_Name": "Briny Breezes",
-        "region":"South Region"
+        "region": "South Region"
     },
     {
         "id": "0d2b0d54b8524dde5b6ee71b4dd72d95687dd427",
         "place_Id": "ChIJ42rskPzf2IgRuLhuUygBeMc",
         "place_Name": "Delray Beach",
-        "region":"South Region"
+        "region": "South Region"
     },
     {
         "id": "1f57f8f96c0a98064d1f6a42c8d55714fc835b5a",
         "place_Id": "ChIJizAhM6rf2IgR_G8HYXTG_OM",
         "place_Name": "Gulf Stream",
-        "region":"South Region"
+        "region": "South Region"
     },
     {
         "id": "94be2289a2026d3465afae13b7811c14df650a3d",
         "place_Id": "ChIJ-du5zNbe2IgRcVSMMx4hkPE",
         "place_Name": "Ocean Ridge",
-        "region":"South Region"
+        "region": "South Region"
     },
     {
         "id": "b786ac762320a0e2c0709d6f0f897602a46e4231",
         "place_Id": "ChIJD06lVo8g2YgR6WOahGqt_5Y",
         "place_Name": "Golf",
-        "region":"South Region"
+        "region": "South Region"
+    },
+    {
+        "id": "6cd608aa5bbbb4f62c7c93497f59c3e93347487a",
+        "place_Id": "ChIJR8dqkZGg2YgR6Je5A0O39Ik",
+        "place_Name": "Weston",
+        "region": "Home",
+        "vicinity": "Weston"
+    },
+    {
+        "id": "bdefba179f2b67e07e274cb7b994c49f30ee2e20",
+        "place_Id": "ChIJ16VVFesE2YgRE82PxHdJykQ",
+        "place_Name": "Margate",
+        "region": "Home",
+        "vicinity": "Margate"
+    },
+    {
+        "id": "eec1fab592c8b5e313d207ec4d218149349879b3",
+        "place_Id": "ChIJZeB2GTQF2YgRKyApkbWwB4k",
+        "place_Name": "Coral Springs",
+        "region": "Home",
+        "vicinity": "Coral Springs"
+    },
+    {
+        "id": "e9543001602632475c555839567b17ccf522d1ca",
+        "place_Id": "ChIJs4w8mUoE2YgRl5UCT39i5k8",
+        "place_Name": "Tamarac",
+        "region": "Home",
+        "vicinity": "Tamarac"
+    },
+    {
+        "id": "904544096546508117b097a1c49369ebf6cbee9c",
+        "place_Id": "ChIJlcAPtm2p2YgR3jUhr9CplZ8",
+        "place_Name": "Pembroke Park",
+        "region": "Home",
+        "vicinity": "Pembroke Park"
+    },
+    {
+        "id": "6c13d55e61919da8e7bdc8ada0e20af1e0fb48b0",
+        "place_Id": "ChIJwxO77w8H2YgRFnnNjY2Cd10",
+        "place_Name": "Plantation",
+        "region": "Home",
+        "vicinity": "Plantation"
+    },
+    {
+        "id": "ace0ebc5c7dd704299871d69291d9c321cd19629",
+        "place_Id": "ChIJnZMItHUB2YgRQ1fRpj5hc3w",
+        "place_Name": "Lazy Lake",
+        "region": "Home",
+        "vicinity": "Lazy Lake"
+    },
+    {
+        "id": "35494dc7c28eeebddaf5dc6b980ba41bcbbfc16b",
+        "place_Id": "ChIJO9QyzDKm2YgRMvzu8c6WlHQ",
+        "place_Name": "Cooper City",
+        "region": "Home",
+        "vicinity": "Cooper City"
+    },
+    {
+        "id": "fb9212df90ba4f99c0c22b52562c5c51200df86d",
+        "place_Id": "ChIJ9-FQv5im2YgR-rzjIef5qTs",
+        "place_Name": "Miramar",
+        "region": "Home",
+        "vicinity": "Miramar"
+    },
+    {
+        "id": "0f052b0a67fe6faef19954e958b23f378bbb5c0d",
+        "place_Id": "ChIJeRR-aRkb2YgRXbJAhwvY5Hk",
+        "place_Name": "Parkland",
+        "region": "Home",
+        "vicinity": "Parkland"
+    },
+    {
+        "id": "7bffaf0f29d56032f62b94f9f058a64b76f4d422",
+        "place_Id": "ChIJtSqxnvID2YgR8Y7G3d6ALBk",
+        "place_Name": "Lauderdale Lakes",
+        "region": "Home",
+        "vicinity": "Lauderdale Lakes"
+    },
+    {
+        "id": "8de4d9d8332e3d141767f74a281f86ef6da8a533",
+        "place_Id": "ChIJn82rHIr92IgRfBD-tNSWaQ0",
+        "place_Name": "Sea Ranch Lakes",
+        "region": "Home",
+        "vicinity": "Sea Ranch Lakes"
+    },
+    {
+        "id": "d9524eb60676ed3760a3f08e08642e4110708510",
+        "place_Id": "ChIJdfK__VQD2YgRw1JyQtf6aBw",
+        "place_Name": "Coconut Creek",
+        "region": "Home",
+        "vicinity": "Coconut Creek"
+    },
+    {
+        "id": "b714974648593b30aa5639a19ab7a7c64908a5b7",
+        "place_Id": "ChIJq8aMv5im2YgRNTaW0ULP4ps",
+        "place_Name": "Pembroke Pines",
+        "region": "Home",
+        "vicinity": "Pembroke Pines"
+    },
+    {
+        "id": "5ac9b8abb93cc7d81a258d1adb502bb6349946f3",
+        "place_Id": "ChIJv1b0Nbni2IgRJlRp8yxegVk",
+        "place_Name": "Hillsboro Beach",
+        "region": "Home",
+        "vicinity": "Hillsboro Beach"
+    },
+    {
+        "id": "6d9ac2dedc3e0434df5f23a2ec82cf5de3f0e87c",
+        "place_Id": "ChIJRQw-J0Yd2YgR3eQGrvOX5Mk",
+        "place_Name": "Lighthouse Point",
+        "region": "Home",
+        "vicinity": "Lighthouse Point"
+    },
+    {
+        "id": "ce022ac0e33acbcac3d6616af31a42648d557f0a",
+        "place_Id": "ChIJiUSIQdkC2YgR83Sudl4cYTs",
+        "place_Name": "Pompano Beach",
+        "region": "Home",
+        "vicinity": "Pompano Beach"
+    },
+    {
+        "id": "8fffeb978ba701fe67832f87b02f8a12652e6ac7",
+        "place_Id": "ChIJb_tKPZDi2IgRF2Y1vyormOU",
+        "place_Name": "Deerfield Beach",
+        "region": "Home",
+        "vicinity": "Deerfield Beach"
+    },
+    {
+        "id": "b39a1235a34504c98ffee1623f782369765e56c6",
+        "place_Id": "ChIJrebPLfAL2YgRbUa7iZyeO2M",
+        "place_Name": "Southwest Ranches",
+        "region": "Home",
+        "vicinity": "Southwest Ranches"
+    },
+
+    {
+        "id": "8f707d734f574bcb9dd9941839ab35590a124d2f",
+        "place_Id": "ChIJHXugCuKn2YgR_LGSaKzIsuc",
+        "place_Name": "Davie",
+        "region": "Home",
+        "vicinity": "Davie"
+    },
+    {
+        "id": "8b3bbf90c35abbab1ab521a1080193a0051ffed0",
+        "place_Id": "ChIJ0ZPgQIir2YgRMp6a8ZTkGc8",
+        "place_Name": "Hallandale Beach",
+        "region": "Home",
+        "vicinity": "Hallandale Beach"
+    },
+    {
+        "id": "5de0336e80e0ee11538708b3140e3ea608a10cda",
+        "place_Id": "ChIJc4xmemIG2YgRMmkCWsgns84",
+        "place_Name": "Lauderhill",
+        "region": "Home",
+        "vicinity": "Lauderhill"
+    },
+    {
+        "id": "94c6afee34908f0b5932065e68c6833410f366f8",
+        "place_Id": "ChIJr_1ZR5wB2YgRlnt3S6KDCbY",
+        "place_Name": "Wilton Manors",
+        "region": "Home",
+        "vicinity": "Wilton Manors"
+    },
+    {
+        "id": "ee2dbdbbb53579fcbeb4caf39712679396f1d1a9",
+        "place_Id": "ChIJpzH_x2-p2YgRaLi3db561wc",
+        "place_Name": "Hollywood",
+        "region": "Home",
+        "vicinity": "Hollywood"
+    },
+    {
+        "id": "0689b4defb071681cb64f9ca60f6de7a2048539d",
+        "place_Id": "ChIJ9cr6ICcB2YgRvo6_QHW-AnY",
+        "place_Name": "Fort Lauderdale",
+        "region": "Home",
+        "vicinity": "Fort Lauderdale"
     }
 ]
