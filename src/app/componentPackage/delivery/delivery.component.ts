@@ -46,6 +46,9 @@ export class DeliveryComponent implements OnInit {
   selectedDate:any;
   formFieldshow=false;
   showFinallist=false;
+  phoneNumber:any
+  name:any
+  email:any
   constructor(private mapsAPILoader: MapsAPILoader, public ngZone: NgZone, public userBackEndService: UserpanelServiceService,
     public modalService: NgbModal) {
     this.origin = "";
@@ -55,6 +58,9 @@ export class DeliveryComponent implements OnInit {
     this.searchingValue = "";
     this.temparyNameDesination = "";
     this.selectedDate = "";
+    this.phoneNumber="";
+    this.email="";
+    this.name="";
     this.pickupLocation = true;
     this.destinationboolean = false;
     this.showItemPage=false;
@@ -83,11 +89,11 @@ export class DeliveryComponent implements OnInit {
       this.pickupLocation = false;
       console.log(this.itemList)
     })
-    // this.formFieldshow=true;
-    this.showFinallist=true;
-    // this.dateSelectedPage=true
+    // // this.formFieldshow=true;
+    // this.showFinallist=true;
+    this.dateSelectedPage=true
 
-    // this.getDateNextThree();
+    this.getDateNextThree();
 
   }
 
@@ -298,6 +304,9 @@ export class DeliveryComponent implements OnInit {
     if (this.selectedItemList.length > 0) {
       return false;
     }
+    if (this.name.trim().length != 0 && this.email.trim().length != 0 && this.phoneNumber.length != 0) {
+      return false;
+    }
     return true;
   }
 
@@ -428,9 +437,9 @@ export class DeliveryComponent implements OnInit {
  *   Numarical Number only Press
  */
 keyPress(event: any) {
-  const pattern = /[0-9\+\-\ ]/;
+  const patt = /^[0-9]{1,4}(\.[0-9][0-9])?$/
   let inputChar = String.fromCharCode(event.charCode);
-  if (event.keyCode != 8 && !pattern.test(inputChar)) {
+  if (event.keyCode != 8 && !patt.test(inputChar)) {
     event.preventDefault();
   }
 }

@@ -237,13 +237,13 @@
             <div class="contact-form siteForm">
 
                 <div class="form-wrapper">
-                    <input type="text" placeholder="Name" autocomplete="off" />
+                    <input type="text" placeholder="Name" autocomplete="off" [(ngModel)]="name" />
                 </div>
                 <div class="form-wrapper">
-                    <input type="email" placeholder="Email" autocomplete="off" />
+                    <input type="email" placeholder="Email" autocomplete="off" [(ngModel)]="email" />
                 </div>
                 <div class="form-wrapper">
-                    <input type="tel" placeholder="Contact Number" (keypress)="keyPress($event)" onkeypress="" autocomplete="off" maxlength="11" />
+                    <input type="tel" placeholder="Contact Number" (keypress)="keyPress($event)" onkeypress="" autocomplete="off" maxlength="11" [(ngModel)]="phoneNumber" />
                 </div>
                 <div class="form-wrapper">
                     <input type="tel" placeholder="Any special instructions?" (keypress)="keyPress($event)" onkeypress="" autocomplete="off" maxlength="11" />
@@ -265,7 +265,46 @@
     <div class="card">
         <div class="card-body">
             <ul>
-                <li>
+                <li style="padding:0;">
+                    <div class="productShow">
+                        <div class="outerdiv">
+                            <div class="imagesdiv">
+                                <img src="./assets/imgs/buffet.svg" alt="">
+                            </div>
+                            <div class="showQuanity">
+                                <span>Product Name</span>
+                                <p> Quanity: <span>0</span></p>
+                            </div>
+                        </div>
+                        <div class="outerdiv">
+                            <div class="imagesdiv">
+                                <img src="./assets/imgs/buffet.svg" alt="">
+                            </div>
+                            <div class="showQuanity">
+                                <span>Product Name</span>
+                                <p> Quanity: <span>0</span></p>
+                            </div>
+                        </div>
+
+                        <div class="outerdiv">
+                            <div class="imagesdiv">
+                                <img src="./assets/imgs/buffet.svg" alt="">
+                            </div>
+                            <div class="showQuanity">
+                                <span>Product Name</span>
+                                <p> Quanity: <span>0</span></p>
+                            </div>
+                        </div>
+                        <div class="outerdiv">
+                            <div class="imagesdiv">
+                                <img src="./assets/imgs/buffet.svg" alt="">
+                            </div>
+                            <div class="showQuanity">
+                                <span>Product Name</span>
+                                <p> Quanity: <span>0</span></p>
+                            </div>
+                        </div>
+                    </div>
 
                 </li>
                 <li>
@@ -275,8 +314,7 @@
 
                     </div>
                     <div class="address">
-                        <span>Demo Address</span>
-                        <!-- <span>{{pickUpLocationName}}</span> -->
+                        <span>{{pickUpLocationName}}</span>
                     </div>
                 </li>
                 <li>
@@ -285,8 +323,7 @@
                         <span>Delivery Address</span>
                     </div>
                     <div class="address">
-                        <span>Demo Address</span>
-                        <!-- <span>{{pickUpLocationName}}</span> -->
+                        <span>{{destinationLocationName}}</span>
                     </div>
                 </li>
                 <li>
@@ -308,9 +345,10 @@
                     <div class="total">
                         <span>Total</span>
                         <span>$20.00</span>
-                        <div class="Price">
-                            <span>$20.00</span>
-                        </div>
+
+                    </div>
+                    <div class="Price">
+                        <span>Promo Code?</span>
                     </div>
                 </li>
             </ul>
