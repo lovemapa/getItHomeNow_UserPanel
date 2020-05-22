@@ -61,7 +61,7 @@ export class AdvertismentsComponent implements OnInit {
     // }
     this.userpanelServiceService.getAdvertisement(this.searchString, this.pageNumber).subscribe(response => {
       if (response.success) {
-        this.spinner.hide();
+        CommonMethods.showconsole("Working:- ",response)
         this.adsList = response.data;
         this.showTable = true;
 
@@ -91,17 +91,15 @@ export class AdvertismentsComponent implements OnInit {
           this.isLoadingPaggition = true;
         }
         CommonMethods.showconsole(this.Tag, "Array :- " + JSON.stringify(this.paggination))
-        this.spinner.hide();
-
-        setTimeout(() => {
-          this.spinner.hide();
-        }, 1000);
+       
         if (this.adsList.length == 0) {
           this.showTable = false;
         }
+        this.spinner.hide();
       }
       else {
         this.noDataFound = true;
+        this.spinner.hide();
       }
     });
   }
@@ -110,6 +108,7 @@ export class AdvertismentsComponent implements OnInit {
 
   createContent(content: string): Array<string> {
     let contentArray: Array<string> = content.split("%");
+     CommonMethods.showconsole(this.Tag,"Show Length "+JSON.stringify(contentArray[2]) )
     return contentArray;
   }
 
