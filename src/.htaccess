@@ -1,0 +1,18 @@
+#RewriteEngine On
+#RewriteCond %{SERVER_PORT} 80
+#RewriteRule ^(.*)$ https://www.getithomenow.com/$1 [R,L]
+
+
+
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  
+  # Redirection of requests to index.html
+  RewriteCond %{DOCUMENT_ROOT}%{REQUEST_URI} -f [OR]
+  RewriteCond %{DOCUMENT_ROOT}%{REQUEST_URI} -d
+  RewriteRule ^.*$ - [NC,L]
+  RewriteRule ^(.*) index.html [NC,L]
+
+  RewriteCond %{SERVER_PORT} 80
+  RewriteRule ^(.*)$ https://www.getithomenow.com/$1 [R,L]
+</IfModule>
