@@ -4,7 +4,7 @@ import { MaterialModule } from './material/material';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AosToken, aos } from './aos';
 import { HashLocationStrategy, LocationStrategy, PathLocationStrategy } from '@angular/common';
 import { CarouselModule } from 'ngx-owl-carousel-o';
@@ -43,7 +43,7 @@ import { AgmCoreModule, GoogleMapsAPIWrapper } from '@agm/core';
     LoginSignupComponent,
     ProfileshowComponent,
     DeliveryComponent,
-   
+
   ],
   imports: [
     BrowserModule,
@@ -58,7 +58,7 @@ import { AgmCoreModule, GoogleMapsAPIWrapper } from '@agm/core';
     ReactiveFormsModule,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyBMrKj9G0-f3QPF-P1D99iBChHT-PIICwo',
-      libraries: ["places","geometry"]
+      libraries: ["places", "geometry"]
     }),
     // AgmDirectionModule,
 
@@ -66,9 +66,9 @@ import { AgmCoreModule, GoogleMapsAPIWrapper } from '@agm/core';
   ],
   providers: [
     { provide: AosToken, useValue: aos },
-    // { provide: LocationStrategy, useClass: HashLocationStrategy },
+    { provide: LocationStrategy, useClass: HashLocationStrategy },
     CookieService,
-    GoogleMapsAPIWrapper 
+    GoogleMapsAPIWrapper
   ],
   bootstrap: [AppComponent]
 })
