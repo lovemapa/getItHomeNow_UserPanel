@@ -433,11 +433,16 @@ a:hover {
     padding: 10px 10px;
     border-bottom: 1px solid #dcdbdb;
     cursor: pointer;
+    display: flex;
+    flex-flow: row;
+    justify-content: space-between;
+    position: relative;
 }
 
 .divliveryItem #accordion .card-block ul li .outerdiv {
-    display: flex;
+        display: flex;
     flex-flow: row;
+    width: 100%
 }
 
 .divliveryItem #accordion .card-block ul li .outerdiv .imagesdiv {
@@ -454,13 +459,14 @@ a:hover {
 }
 
 .divliveryItem #accordion .card-block ul li .showcount {
-    text-align: right;
-    width: 100%;
+    /* text-align: right;
+    width: 100%; */
 }
 
 .divliveryItem #accordion .card-block ul li .showcount .count {
-    text-align: right;
-    width: 100%;
+    position: absolute; 
+    right: 0;
+    top: 23px;
 }
 
 .divliveryItem #accordion .card-block ul li .showcount .count i {

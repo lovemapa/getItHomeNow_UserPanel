@@ -4,7 +4,7 @@
         "item_type_icon": "large.png",
         "item_list": [{
                 "item_id": "1001",
-                "item_Name": "Flat screen TV ",
+                "item_Name": "Flat Screen TV ",
                 "item_boolean": false,
                 "item_icon": "flat_screen_tv.svg",
                 "quantity": 0
@@ -33,105 +33,98 @@
             },
             {
                 "item_id": "1005",
-                "item_Name": "dining",
+                "item_Name": "Dining",
                 "item_boolean": false,
                 "item_icon": "dining.svg",
                 "quantity": 0
             },
             {
                 "item_id": "1006",
-                "item_Name": "Patio furniture",
+                "item_Name": "Patio Furniture",
                 "item_boolean": false,
                 "item_icon": "items-dining-patio-table.png",
                 "quantity": 0
             },
             {
                 "item_id": "1007",
-                "item_Name": "Barstools/dining chair",
+                "item_Name": "Barstools/Dining Chair",
                 "item_boolean": false,
                 "item_icon": "barstools.svg",
                 "quantity": 0
             },
             {
                 "item_id": "1008",
-                "item_Name": "sofa",
+                "item_Name": "Sofa",
                 "item_boolean": false,
                 "item_icon": "sofa.svg",
                 "quantity": 0
             },
             {
                 "item_id": "1009",
-                "item_Name": "loveseat",
+                "item_Name": "Loveseat",
                 "item_boolean": false,
                 "item_icon": "items-sofa-loveseat.png",
                 "quantity": 0
             },
             {
                 "item_id": "1010",
-                "item_Name": "desk or coffee table ",
+                "item_Name": "Desk or Coffee Table ",
                 "item_boolean": false,
                 "item_icon": "items-desk-coffee-table.png",
                 "quantity": 0
             },
             {
                 "item_id": "1011",
-                "item_Name": "twin/full mattress set including boxspring ",
+                "item_Name": "Twin/Full Mattress Set Including BoxSprings",
                 "item_boolean": false,
                 "item_icon": "items-twin-full-mattress.png",
                 "quantity": 0
             },
             {
                 "item_id": "1012",
-                "item_Name": "king/queen bed or Headboard/footboard",
+                "item_Name": "King/Queen Bed or Headboard/Footboard",
                 "item_boolean": false,
                 "item_icon": "items-king-queen-headboard-footboard.png",
                 "quantity": 0
             },
             {
                 "item_id": "1013",
-                "item_Name": "king/queen mattress set inculdes boxsprings(s)",
+                "item_Name": "King/Queen Mattress Set Including BoxSprings",
                 "item_boolean": false,
                 "item_icon": "items-king-queen-mattress-set.png",
                 "quantity": 0
             },
             {
-                "item_id": "1014",
-                "item_Name": " grills, refrigerators",
-                "item_boolean": false,
-                "item_icon": "refrigerators.svg",
-                "quantity": 0
-            },
-            {
                 "item_id": "1015",
-                "item_Name": " grills",
+                "item_Name": "Grills",
                 "item_boolean": false,
                 "item_icon": "grill.svg",
                 "quantity": 0
             },
             {
                 "item_id": "1016",
-                "item_Name": " refrigerators",
+                "item_Name": "Refrigerators",
                 "item_boolean": false,
                 "item_icon": "refrigerators.svg",
                 "quantity": 0
             },
             {
                 "item_id": "1017",
-                "item_Name": " washers",
+                "item_Name": "Washers",
                 "item_boolean": false,
                 "item_icon": "washers.svg",
                 "quantity": 0
             },
             {
                 "item_id": "1018",
-                "item_Name": " dryers",
+                "item_Name": "Dryers",
                 "item_boolean": false,
                 "item_icon": "dryers.svg",
                 "quantity": 0
             },
             {
                 "item_id": "1019",
-                "item_Name": " household essentials",
+                "item_Name": "Household Essentials",
                 "item_boolean": false,
                 "item_icon": "household.svg",
                 "quantity": 0
@@ -144,21 +137,21 @@
         "item_type_icon": "havey_loaded.svg",
         "item_list": [{
                 "item_id": "1020",
-                "item_Name": "Buffet/armoire ",
+                "item_Name": "Buffet/Armoire ",
                 "item_boolean": false,
                 "item_icon": "buffet.svg",
                 "quantity": 0
             },
             {
                 "item_id": "1021",
-                "item_Name": " media console/dresser",
+                "item_Name": "Media console/Dresser",
                 "item_boolean": false,
                 "item_icon": "items-media-consoole-dresser.png",
                 "quantity": 0
             },
             {
                 "item_id": "1022",
-                "item_Name": "Grand piano",
+                "item_Name": "Grand Piano",
                 "item_boolean": false,
                 "item_icon": "grand_pino.svg",
                 "quantity": 0

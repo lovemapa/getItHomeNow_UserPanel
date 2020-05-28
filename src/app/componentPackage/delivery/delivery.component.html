@@ -3,6 +3,9 @@
         <img src="assets/imgs/logoSmall3.png" class="logo-small">
         <span class="faltu-text">The Uber® of Moving Stuff</span>
     </a>
+    <!-- <div class="struck_Imag">
+        <img src="./assets/imgs/truck.svg" alt="truck">
+    </div> -->
 </div>
 <div class="toplocationshow" *ngIf="pickupLocation == false">
     <div class="origin" *ngIf="pickUpLocationName.length != 0">
@@ -176,52 +179,17 @@
             </div>
             <div class="timeShow" *ngIf="showtimefalse">
 
-                <div class="dataTime " [ngClass]="dateList[0].showtime?'selectedTimeClass':''">
+                <div class="dataTime " *ngFor="let timedata of timearrayList">
                     <div class="mydiv">
-                        <span class="text">2</span>
-                        <span>PM</span>
+                        <span class="text">{{timedata.starting_Time}}</span>
+                        <span>{{timedata.starting_timeFormat}}</span>
                     </div>
                     <span class="minus">-</span>
                     <div class="mydiv">
-                        <span class="text">4</span>
-                        <span>PM</span>
+                        <span class="text">{{timedata.ending_time}}</span>
+                        <span>{{timedata.ending_timeFormat}}</span>
                     </div>
                 </div>
-
-                <div class="dataTime">
-                    <div class="mydiv">
-                        <span class="text">3</span>
-                        <span>PM</span>
-                    </div>
-                    <span class="minus">-</span>
-                    <div class="mydiv">
-                        <span class="text">5</span>
-                        <span>PM</span>
-                    </div>
-                </div>
-                <div class="dataTime">
-                    <div class="mydiv">
-                        <span class="text">4</span>
-                        <span>PM</span>
-                    </div>
-                    <span class="minus">-</span>
-                    <div class="mydiv">
-                        <span class="text">6</span>
-                        <span>PM</span>
-                    </div>
-                </div>
-                <div class="dataTime">
-                    <div class="mydiv">
-                        <span class="text">5</span>
-                        <span>PM</span>
-                    </div>
-                    <span class="minus">-</span>
-                    <div class="mydiv">
-                        <span class="text">7</span>
-                        <span>PM</span>
-                    </div>
-                </div>
-
             </div>
         </div>
 
