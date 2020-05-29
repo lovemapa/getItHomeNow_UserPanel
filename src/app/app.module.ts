@@ -66,8 +66,9 @@ import { AgmCoreModule, GoogleMapsAPIWrapper } from '@agm/core';
   ],
   providers: [
     PathLocationStrategy,
+    HashLocationStrategy,
     { provide: AosToken, useValue: aos },
-    { provide: LocationStrategy, useClass: PathLocationStrategy },
+    { provide: LocationStrategy, useClass: HashLocationStrategy },
     CookieService,
     GoogleMapsAPIWrapper
   ],
