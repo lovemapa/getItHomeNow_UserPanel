@@ -6,7 +6,7 @@
     <div class="struck_Imag position-relative">
         <img src="./assets/imgs/truck_Logo_White.png" class="img-fluid" alt="truck">
         <p class="position-absolute mb-0 countclass">
-            {{selectedItemList.length}}
+            {{countTotalQuantityOfSelectedItems()}}
         </p>
     </div>
 </div>
@@ -271,24 +271,11 @@
                         </mat-error> -->
                     </mat-form-field>
                     <mat-form-field  class="p-0" [hideRequiredMarker]="hideRequiredControl.value"
-                    [floatLabel]="floatLabelControl.value">
+                        [floatLabel]="floatLabelControl.value">
                         <mat-label>Any special instructions?(optional)</mat-label>
                         <input matInput placeholder="Any special instructions?"  formControlName="any_special_instruction">
-                      
                       </mat-form-field>
-                
-
-                
-
-                
                   </form>
-
-
-            
-
-
-
-
         </div>
     </div>
 
@@ -380,7 +367,17 @@
     </div>
 </div>
 
-
+<ng-template #sameLocationModalDiaolg>
+    <div class="modal-body" style="text-align: center; ">
+        <div class="title-heading">
+            <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
+            <span>Sorry, you can't select same Pick-Up and Delivery location.</span>
+        </div>
+        <div class="lowerText">
+            <span>kindly select different Delivery location!</span>
+        </div>
+    </div>
+</ng-template>
 
 <ng-template #modalDiaolg>
     <div class="modal-body" style="text-align: center; ">

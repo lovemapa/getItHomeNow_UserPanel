@@ -11,6 +11,7 @@ import timedata from '../../../assets/arraylocation/timeList.json';
 import { FormControl, Validators, FormGroup, FormBuilder } from '@angular/forms';
 import { Observable } from 'rxjs';
 import Swal from 'sweetalert2/dist/sweetalert2.js';
+import { formatDate } from '@angular/common';
 declare var google: any;
 @Component({
   selector: 'app-delivery',
@@ -28,6 +29,7 @@ export class DeliveryComponent implements OnInit {
   selectedLocationIds: Array<any>;
   itemList: Array<any>;
   @ViewChild('search', { static: true }) searchElementRef: ElementRef;
+  @ViewChild('sameLocationModalDiaolg', { static: true }) sameLocationModal: NgbModal;
   @ViewChild('modalDiaolg', { static: true }) modalConent: NgbModal;
   @ViewChild('distanceModal', { static: true }) distanceModal: NgbModal;
   pickupLocation = true;
@@ -65,7 +67,7 @@ export class DeliveryComponent implements OnInit {
   floatLabelControl = new FormControl('auto');
   selecteddatebutton = false;
   rightNowButton = false;
-  buttonNameDataSection:any
+  buttonNameDataSection: any
 
 
   constructor(private mapsAPILoader: MapsAPILoader, public ngZone: NgZone, public userBackEndService: UserpanelServiceService,
@@ -100,7 +102,7 @@ export class DeliveryComponent implements OnInit {
     this.iconDisplay = "fa fa-arrow-circle-up";
     this.previousId = "";
     this.timearrayList = [];
-    this.buttonNameDataSection="selectbydatetime"
+    this.buttonNameDataSection = "selectbydatetime"
 
 
     if (this.itemList.length == 0) {
@@ -150,7 +152,19 @@ export class DeliveryComponent implements OnInit {
     this.modalReference = this.modalService.open(this.modalConent,
       {
         ariaLabelledBy: 'modal-basic-title',
-        windowClass: 'custom-class',
+         windowClass: 'custom-class',
+        centered: true
+      });
+  }
+
+  /**
+  * method to show same Localtion error popup
+  */
+  openSameLocationModal() {
+    this.modalReference = this.modalService.open(this.sameLocationModal,
+      {
+        ariaLabelledBy: 'modal-basic-title',
+        windowClass: 'custom-class sameLocationErrorPopup',
         centered: true
       });
   }
@@ -194,14 +208,20 @@ export class DeliveryComponent implements OnInit {
 
           });
           if (found) {
+            let showNextButton: boolean = true;
             this.lat = place.geometry.location.lat();
             this.lng = place.geometry.location.lng();
             if (this.pickupLocation == true) {
               this.pickUpLocationName = place.formatted_address;
-            } else {
+            } else if (this.origin.lat() != this.lat && this.origin.lng() != this.lng) {
               this.temparyNameDesination = place.formatted_address;
+            } else {
+              showNextButton = false;
+              this.openSameLocationModal()
             }
-            this.toggelNextBtn();
+            if (showNextButton) {
+              this.toggelNextBtn();
+            }
           } else {
             this.openModal();
           }
@@ -254,7 +274,7 @@ export class DeliveryComponent implements OnInit {
       this.spinner.show()
       this.searchingValue = "";
       this.searchItemList = [];
-      this.itemList = itemListData;
+      this.itemList = JSON.parse(JSON.stringify(itemListData));;
       if (this.selectedItemList.length != 0) {
         this.selectedItemList.forEach(selectedProduct => {
           this.itemList.forEach(itemList => {
@@ -331,7 +351,7 @@ export class DeliveryComponent implements OnInit {
       } else {
         this.destinationLocationName = this.temparyNameDesination;
       }
-      this.itemList = itemListData;
+      this.itemList = JSON.parse(JSON.stringify(itemListData));
       if (this.selectedItemList.length != 0) {
         this.selectedItemList.forEach(selectedProduct => {
           this.itemList.forEach(itemList => {
@@ -352,22 +372,20 @@ export class DeliveryComponent implements OnInit {
       }, 1000);
     } else if (this.showItemPage && this.itemList.length != 0) {
       this.showItemPage = false;
-      this.timearrayList = timedata;
+      this.timearrayList = JSON.parse(JSON.stringify(timedata));
       this.getDateNextThree();
-      
 
-        if(this.selecteddatebutton == true)
-        {
-             if(this.selectedDate != null)
-             {
-                 this.selectedDate=this.selectedDate;
-             }else{
-                 this.selectedDate=null;
-             }
-             this.rightNowButton=false
-        }else{
-          this.rightNowButton=true
+
+      if (this.selecteddatebutton == true) {
+        if (this.selectedDate != null) {
+          this.selectedDate = this.selectedDate;
+        } else {
+          this.selectedDate = null;
         }
+        this.rightNowButton = false
+      } else {
+        this.rightNowButton = true
+      }
 
       this.dateSelectedPage = true;
 
@@ -447,8 +465,13 @@ export class DeliveryComponent implements OnInit {
   getDateNextThree() {
     this.dateList = [];
     let today = new Date();
-    if (today.getHours() > 20) {
-      today.setDate(today.getDate() + 1);
+    if (today.getHours() >= 19) {
+      if (today.getHours() == 19 && today.getMinutes() > 30) {
+        today.setDate(today.getDate() + 1);
+      }
+      if (today.getHours() >= 20) {
+        today.setDate(today.getDate() + 1);
+      }
     }
     this.dateList.push({
       "date_Id": "1",
@@ -497,9 +520,6 @@ export class DeliveryComponent implements OnInit {
     else {
       this.selectedItemList.splice(index, 1);
     }
-
-    // this.cookiesSerive.set("selected_productList", JSON.stringify(this.selectedItemList))
-
   }
 
 
@@ -521,10 +541,10 @@ export class DeliveryComponent implements OnInit {
           else {
             timeSlotStartHour = this.selectedDate.getHours();
           }
-          this.timearrayList = timedata.filter(time => time.starting_Time >= timeSlotStartHour);
+          this.timearrayList = JSON.parse(JSON.stringify(timedata.filter(time => time.starting_Time >= timeSlotStartHour)));
         }
         else {
-          this.timearrayList = timedata;
+          this.timearrayList = JSON.parse(JSON.stringify(timedata));
         }
       } else {
         element.showtime = false;
@@ -548,30 +568,16 @@ export class DeliveryComponent implements OnInit {
 
   }
 
-
-
   /** Form Input Validated */
-
-
-
   createForm() {
     let emailregex: RegExp = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
     this.formGroup = this.formBuilder.group({
       'email': [null, [Validators.required, Validators.pattern(emailregex)]],
       'name': [null, Validators.required],
-      'mobileNumber': [null, [Validators.required , Validators.min(9), Validators.max(10)]],
+      'mobileNumber': [null, [Validators.required, Validators.pattern('[0-9]{10}')]],
       'any_special_instruction': [null]
-      // 'mobileNumber': [null, [Validators.required, Validators.pattern('[6-9]\\d{9}')]]
     });
   }
-
-
-
-
-
-
-
-
 
   getErrorEmail() {
     return this.formGroup.get('email').hasError('required') ? 'Email address is required' :
@@ -588,83 +594,80 @@ export class DeliveryComponent implements OnInit {
     }
   }
 
-
-
   /**Click Method Selected date and right now button*/
-  selctedDateCategory(buttonname:any){
-    this.buttonNameDataSection=buttonname;
-    if(buttonname == 'selectbydatetime' && this.selecteddatebutton == false)
-    { 
-
-      let newemptyvale:Date
-      this.selectedDate=newemptyvale
-      this.getDateNextThree()
-      this.selecteddatebutton=true;
-      this.rightNowButton=false
-    }else{
-      this.timearrayList=[]
-      this.selectedTimeSlot=""
-      this.selectedDate= new Date()
-      this.selecteddatebutton=false;
-      this.rightNowButton=true
+  selctedDateCategory(buttonname: any) {
+    this.buttonNameDataSection = buttonname;
+    if (buttonname == 'selectbydatetime' && this.selecteddatebutton == false) {
+      let newemptyvale: Date;
+      this.selectedDate = newemptyvale;
+      this.getDateNextThree();
+      this.selecteddatebutton = true;
+      this.rightNowButton = false;
+    } else {
+      this.timearrayList = [];
+      this.selectedTimeSlot = "";
+      this.selectedDate = new Date();
+      this.selecteddatebutton = false;
+      this.rightNowButton = true;
     }
 
   }
 
+  countTotalQuantityOfSelectedItems(): number {
+    let totalCount: number = 0;
+    this.selectedItemList.forEach(item => {
+      totalCount = totalCount + item.quantity;
+    });
+    return totalCount;
+  }
 
-
-    /**
-   * Sweet Alert   Show    
-   */
+  /**
+ * Sweet Alert   Show    
+ */
   opensweetalert() {
     Swal.fire({
       title: "Are you sure?",
-      text: " you want to reset All changes will be lost!",
+      text: "You won't be able to revert any changes!",
       icon: 'warning',
-      buttons: true,
+      confirmButtonText: 'Yes',
+      showCancelButton: true,
       dangerMode: true,
     }).then((willDelete) => {
-      if (willDelete) {
+      if (willDelete.value) {
         this.dataReset();
       } else {
-           CommonMethods.showconsole(this.Tag,"Else is working")
+        CommonMethods.showconsole(this.Tag, "Else is working")
       }
     });
   }
 
 
-
   /**Data Reset */
-dataReset()
-{
-  this.pickupLocation = true;
-  this.destinationboolean = false;
-  this.dateSelectedPage = false;
-  this.selectedDate = null;
-  // this.name = "";
-  // this.email = "";
-  // this.phonenumber = "";
-  this.searchingValue=""
-  this.formFieldshow = false;
-  this.showFinallist = false
-  this.dateList = [];
-  this.origin = "";
-  this.destination = "";
-  this.selectedTimeSlot=""
-  this.pickUpLocationName = "";
-  this.itemList = [];
-  this.selectedItemList = [];
-  this.searchItemList=[];
-  this.temparyNameDesination = "";
-  this.destinationLocationName = "";
-  this.searchElementRef.nativeElement.value = "";
-  this.textboxLabel = "Pick Up Address";
-  this.textBoxPLaceBolder = "Enter PickUp Address"
-  this.iconDisplay = "fa fa-arrow-circle-up";
-  this.setCurrentLocation()
-}
-
-
-
+  dataReset() {
+    this.pickupLocation = true;
+    this.destinationboolean = false;
+    this.dateSelectedPage = false;
+    this.selectedDate = null;
+    this.searchingValue = ""
+    this.formFieldshow = false;
+    this.showFinallist = false
+    this.dateList = [];
+    this.origin = "";
+    this.destination = "";
+    this.selectedTimeSlot = ""
+    this.pickUpLocationName = "";
+    this.itemList = [];
+    this.selectedItemList = [];
+    this.searchItemList = [];
+    this.showtimefalse = false;
+    this.timearrayList = [];
+    this.temparyNameDesination = "";
+    this.destinationLocationName = "";
+    this.searchElementRef.nativeElement.value = "";
+    this.textboxLabel = "Pick Up Address";
+    this.textBoxPLaceBolder = "Enter PickUp Address"
+    this.iconDisplay = "fa fa-arrow-circle-up";
+    this.setCurrentLocation()
+  }
 
 }

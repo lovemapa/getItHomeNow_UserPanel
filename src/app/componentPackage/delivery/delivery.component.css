@@ -458,7 +458,10 @@ a:hover {
     justify-content: space-between;
     position: relative;
 }
-
+/* .card-block ul li:hover{
+    background-color: rgba(244,67,54,0.3);
+    opacity: 0.5;
+} */
 .divliveryItem #accordion .card-block ul li .outerdiv {
         display: flex;
     flex-flow: row;
@@ -486,7 +489,7 @@ a:hover {
 .divliveryItem #accordion .card-block ul li .showcount .count {
     position: absolute; 
     right: 0;
-    top: 23px;
+    top: 20px;
 }
 
 .divliveryItem #accordion .card-block ul li .showcount .count i {

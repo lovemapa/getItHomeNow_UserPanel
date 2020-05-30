@@ -408,9 +408,9 @@ button:focus {
     }
 }
 
-.custom-class .modal-dialog {
+/* .custom-class .modal-dialog {
     max-width: 27%;
-}
+} */
 
 .custom-class .modal-dialog .modal-content .modal-body {
     padding: 0;
