@@ -26,7 +26,7 @@ import { CookieService } from 'ngx-cookie-service';
 import { ProfileshowComponent } from './componentPackage/profileshow/profileshow.component';
 import { DeliveryComponent } from './componentPackage/delivery/delivery.component';
 import { AgmCoreModule, GoogleMapsAPIWrapper } from '@agm/core';
-// import { AgmDirectionModule } from 'agm-direction';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -60,7 +60,6 @@ import { AgmCoreModule, GoogleMapsAPIWrapper } from '@agm/core';
       apiKey: 'AIzaSyBMrKj9G0-f3QPF-P1D99iBChHT-PIICwo',
       libraries: ["places","geometry"]
     }),
-    // AgmDirectionModule,
 
 
   ],

@@ -11,31 +11,18 @@ const routes: Routes = [
 
 
   { path: '', redirectTo: 'home', pathMatch: 'full' },
-  {
-    path: 'home',
-    component: FullComponent
-  },
-  {
-    path: '',
-    component: BlankComponent,
+  { path: 'home', component: FullComponent },
+  { path: '', component: BlankComponent,
     children: [
       { path: 'promotions', component: AdvertismentsComponent },
       { path: 'profile/setting', component: ProfileshowComponent },
       { path: 'delivery', component: DeliveryComponent },
-      // { path: 'privacy', component: PrivacyPolicyComponent },
-      // { path: 'share/:name/:username', component: ShareComponent },
     ]
-
   },
-  {
-    path: '',
-    component: BlankLoginandsignupComponent,
+  { path: '', component: BlankLoginandsignupComponent,
     children: [
       { path: 'login', component: LoginSignupComponent },
-      // { path: 'privacy', component: PrivacyPolicyComponent },
-      // { path: 'share/:name/:username', component: ShareComponent },
     ]
-
   },
   { path: '**', redirectTo: 'home' }
 ];

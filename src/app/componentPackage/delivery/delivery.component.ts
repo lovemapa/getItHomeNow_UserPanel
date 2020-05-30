@@ -6,11 +6,9 @@ import { UserpanelServiceService } from 'src/app/backendServices/userpanel-servi
 import { NgbModalRef, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { CookieService } from 'ngx-cookie-service';
 import { NgxSpinnerService } from 'ngx-spinner';
-import demodata from '../../../assets/arraylocation/itemList.json';
+import itemListData from '../../../assets/arraylocation/itemList.json';
 import timedata from '../../../assets/arraylocation/timeList.json';
 
-// import * as selectedLocationIds from '../../../assets/arraylocation/location.json';
-// import {} from "googlemaps";
 declare var google: any;
 @Component({
   selector: 'app-delivery',
@@ -49,13 +47,14 @@ export class DeliveryComponent implements OnInit {
   dateSelectedPage = false;
   showtimefalse = false;
   showFinallist = false;
-  dateValue: any
+  selectedDate: Date;
   formFieldshow = false;
   phonenumber: any
   email: any
   name: any
   priceForDelivery: string = '$99/hr';
   timearrayList: Array<any>
+  selectedTimeSlot: string;
   constructor(private mapsAPILoader: MapsAPILoader, public ngZone: NgZone, public userBackEndService: UserpanelServiceService,
     public modalService: NgbModal, public cookiesSerive: CookieService, public spinner: NgxSpinnerService) {
     this.origin = "";
@@ -66,7 +65,7 @@ export class DeliveryComponent implements OnInit {
     this.pickUpLocationName = "";
     this.destinationLocationName = "";
     this.searchingValue = "";
-    this.dateValue = "";
+    this.selectedDate = null;
     this.temparyNameDesination = "";
     this.pickupLocation = true;
     this.destinationboolean = false;
@@ -128,7 +127,6 @@ export class DeliveryComponent implements OnInit {
         windowClass: 'custom-class',
         centered: true
       });
-    //  this. modalReference.componentInstance.actionMessage = this.actionmessage;
   }
 
   /**
@@ -141,7 +139,6 @@ export class DeliveryComponent implements OnInit {
         windowClass: 'custom-class',
         centered: true
       });
-    //  this. modalReference.componentInstance.actionMessage = this.actionmessage;
   }
 
   /**
@@ -181,7 +178,6 @@ export class DeliveryComponent implements OnInit {
             this.toggelNextBtn();
           } else {
             this.openModal();
-            // this.openModalDistanceCheck();
           }
         });
       });
@@ -232,7 +228,7 @@ export class DeliveryComponent implements OnInit {
       this.spinner.show()
       this.searchingValue = "";
       this.searchItemList = [];
-      this.itemList = demodata;
+      this.itemList = itemListData;
       if (this.selectedItemList.length != 0) {
         this.selectedItemList.forEach(selectedProduct => {
           this.itemList.forEach(itemList => {
@@ -291,13 +287,10 @@ export class DeliveryComponent implements OnInit {
         this.lat,
         this.lng
       );
-      // this.spinner.show();
       let totalDisTanceintoMiles: any;
       let calculateDistanceByRoadservice = new google.maps.DistanceMatrixService().getDistanceMatrix({ 'origins': [this.origin], 'destinations': [this.destination], travelMode: 'DRIVING', 'unitSystem': google.maps.UnitSystem.IMPERIAL }, (results: any) => {
         totalDisTanceintoMiles = results.rows[0].elements[0].distance?.text;
-        // this.spinner.hide()
         if (parseFloat(totalDisTanceintoMiles.match('[\\d]+.[\\d]+')[0]) > 25) {
-          // this.openModalDistanceCheck();
           if (this.destinationRegion == "South Region") {
             this.priceForDelivery = '$119/hr';
           }
@@ -306,16 +299,13 @@ export class DeliveryComponent implements OnInit {
           }
         }
       });
-      if (this.destinationLocationName.length != 0 && this.temparyNameDesination.length == 0)
-      {
-        this.temparyNameDesination=this.destinationLocationName;
-        this.searchElementRef.nativeElement.value=this.destinationLocationName;
-      }else{
+      if (this.destinationLocationName.length != 0 && this.temparyNameDesination.length == 0) {
+        this.temparyNameDesination = this.destinationLocationName;
+        this.searchElementRef.nativeElement.value = this.destinationLocationName;
+      } else {
         this.destinationLocationName = this.temparyNameDesination;
       }
-
-       
-      this.itemList = demodata;
+      this.itemList = itemListData;
       if (this.selectedItemList.length != 0) {
         this.selectedItemList.forEach(selectedProduct => {
           this.itemList.forEach(itemList => {
@@ -336,19 +326,15 @@ export class DeliveryComponent implements OnInit {
       }, 1000);
     } else if (this.showItemPage && this.itemList.length != 0) {
       this.showItemPage = false;
-      this.timearrayList=timedata;
+      this.timearrayList = timedata;
       this.getDateNextThree();
       this.dateSelectedPage = true;
 
     } else if (this.dateSelectedPage) {
       this.dateSelectedPage = false;
       this.formFieldshow = true;
-      CommonMethods.showconsole(this.Tag, "email:- " + this.email)
-      CommonMethods.showconsole(this.Tag, "name:- " + this.name)
-      CommonMethods.showconsole(this.Tag, "phone Number:- " + this.phonenumber)
 
     } else if (this.formFieldshow == true) {
-      CommonMethods.showconsole(this.Tag, "function is working")
       this.formFieldshow = false;
       this.showFinallist = true;
 
@@ -364,7 +350,7 @@ export class DeliveryComponent implements OnInit {
     this.pickupLocation = true;
     this.destinationboolean = false;
     this.dateSelectedPage = false;
-    this.dateValue = "";
+    this.selectedDate = null;
     this.name = "";
     this.email = "";
     this.phonenumber = "";
@@ -396,7 +382,7 @@ export class DeliveryComponent implements OnInit {
     if (this.showItemPage && this.selectedItemList.length > 0) {
       return false;
     }
-    if (this.dateSelectedPage && this.dateValue != "") {
+    if (this.dateSelectedPage && this.selectedDate != null) {
       return false;
     }
     if (this.formFieldshow && this.name.trim().length != 0 && this.email.trim().length != 0 && this.phonenumber.trim().length != 0) {
@@ -432,31 +418,25 @@ export class DeliveryComponent implements OnInit {
    */
   getDateNextThree() {
     this.dateList = [];
-    var today = new Date();
-    var weekday = ['Sunday', 'Monday', 'Tuesday',
-      'Wednesday', 'Thursday', 'Friday', 'Saturday'
-    ];
-    var date = (today.getMonth() + 1) + '/' + today.getDate();
+    let today = new Date();
+    if(today.getHours()>20){
+      today.setDate(today.getDate() + 1);
+    }
     this.dateList.push({
       "date_Id": "1",
-      "date": date,
+      "date": today.setDate(today.getDate()),
       "showtime": false
     });
-    var tomorrow = new Date(today.getTime() + (24 * 60 * 60 * 1000));
-    var date2 = (tomorrow.getMonth() + 1) + '/' + tomorrow.getDate();
     this.dateList.push({
       "date_Id": "2",
-      "date": date2,
+      "date": today.setDate(today.getDate() + 1),
       "showtime": false
     });
-    var dayatom = new Date(tomorrow.getTime() + (24 * 60 * 60 * 1000));
-    var date3 = (dayatom.getMonth() + 1) + '/' + dayatom.getDate();
     this.dateList.push({
       "date_Id": "3",
-      "date": date3,
+      "date": today.setDate(today.getDate() + 1),
       "showtime": false
     });
-    CommonMethods.showconsole(this.Tag, "Show Date Array :- " + JSON.stringify(this.dateList))
   }
 
   /**
@@ -495,19 +475,28 @@ export class DeliveryComponent implements OnInit {
   }
 
 
-  clickOnselectdate(dateID: any) {
-    this.showtimefalse = false;
-    CommonMethods.showconsole(this.Tag, "IS Working:- " + dateID)
-
+  /**
+   * method to set selected date
+   * @param dateID 
+   */
+  setSelectedDate(dateID: any) {
     this.dateList.forEach(element => {
       if (element.date_Id == dateID) {
-        if (element.showtime == false) {
-          element.showtime = true;
-          this.showtimefalse = true;
-          this.dateValue = element.date;
-        } else {
-          element.showtime.showtime = false;
-          this.showtimefalse = false;
+        element.showtime = true;
+        this.showtimefalse = true;
+        this.selectedDate = new Date(element.date);
+        if (this.selectedDate.getDate() == new Date().getDate()) {
+          let timeSlotStartHour: number = 0;
+          if (this.selectedDate.getMinutes() > 30) {
+            timeSlotStartHour = this.selectedDate.getHours()+1;
+          }
+          else {
+            timeSlotStartHour = this.selectedDate.getHours();
+          }
+          this.timearrayList = timedata.filter(time => time.starting_Time >= timeSlotStartHour);
+        }
+        else {
+          this.timearrayList = timedata;
         }
       } else {
         element.showtime = false;
@@ -515,6 +504,21 @@ export class DeliveryComponent implements OnInit {
     });
   }
 
+  /**
+   * method to set selected timeslot
+   * @param timeSlotId 
+   */
+  setTimeSlot(timeSlotId: any) {
+    this.timearrayList.forEach(timeSlot => {
+      if (timeSlot.time_slot_id == timeSlotId) {
+        timeSlot.isactive = true;
+        this.selectedTimeSlot = timeSlot.full_length_statingtime + '-' + timeSlot.full_length_endingtime;
+      }
+      else
+        timeSlot.isactive = false;
+    });
+
+  }
 
   keyPress(event: any) {
     const patt = /^[0-9]{1,4}(\.[0-9][0-9])?$/

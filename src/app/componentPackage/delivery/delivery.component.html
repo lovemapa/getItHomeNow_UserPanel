@@ -31,8 +31,9 @@
 
 </div>
 <div [ngClass]="{'mapdiaplay':itemList.length != 0}">
-    <!-- <div *ngIf="itemList.length == 0"> -->
-    <agm-map [latitude]='lat' [longitude]='lng' [zoom]="13" [mapTypeControl]="false" [streetViewControl]="false" [rotateControl]="true" [fullscreenControl]="false" [zoomControl]="false" gestureHandling="none" *ngIf="itemList.length == 0">
+    <agm-map [latitude]='lat' [longitude]='lng' [zoom]="13" mapDraggable="true" [mapTypeControl]="false"
+        [streetViewControl]="false" [rotateControl]="true" [fullscreenControl]="false" [zoomControl]="false"
+        gestureHandling="none" *ngIf="itemList.length == 0">
         <agm-marker [latitude]="lat" [longitude]="lng" [markerDraggable]="false"></agm-marker>
     </agm-map>
     <div class="positiondiv">
@@ -42,7 +43,8 @@
                     <div class="form-element">
                         <label> <i [ngClass]="getReturnClass(iconDisplay)"
                                 aria-hidden="true"></i>{{textboxLabel}}</label>
-                        <input placeholder="{{textBoxPLaceBolder}}" type="text" id="address" autocomplete="off" name="address" required autocorrect="off" autocapitalize="off" spellcheck="off" #search />
+                        <input placeholder="{{textBoxPLaceBolder}}" type="text" id="address" autocomplete="off"
+                            name="address" required autocorrect="off" autocapitalize="off" spellcheck="off" #search />
                     </div>
                 </form>
             </div>
@@ -67,39 +69,32 @@
                 </div>
                 <form class="login100-form">
                     <div class="form-element">
-                        <!-- <label> <i [ngClass]="getReturnClass(iconDisplay)" aria-hidden="true"></i>{{textboxLabel}}</label> -->
-                        <input placeholder="Search...." type="text" id="seaching" autocomplete="off" required autocorrect="off" autocapitalize="off" [(ngModel)]="searchingValue" (keyup)="searching(searchingValue)" [ngModelOptions]="{standalone: true}" />
+                        <input placeholder="Search...." type="text" id="seaching" autocomplete="off" required
+                            autocorrect="off" autocapitalize="off" [(ngModel)]="searchingValue"
+                            (keyup)="searching(searchingValue)" [ngModelOptions]="{standalone: true}" />
                         <button><i class="fa fa-search" aria-hidden="true"></i></button>
                     </div>
                 </form>
-                <div class="listBox" *ngIf="searchItemList.length != 0 ">
-                    <!-- <div class="card">
-                                        <div class="card-body">
-                                            <div class="outerdiv">
-                                                <div class="imagesdiv">
-                                                    <img src="./assets/imgs/household.svg" alt="">
-                                                </div>
-                
-                                                <h3>Hello</h3>
-                                            </div>
-                                        </div>
-                                    </div> -->
-                    <div class="card mycard">
-                        <div class="card-body col-12">
+                <div id="accordion" class="listBox " *ngIf="searchItemList.length != 0 ">
+
+                    <div class="card ">
+                        <div class="card-block col-12">
                             <ul>
-                                <li *ngFor="let submenu of searchItemList ; let j = index">
-                                    <div class="outerdiv" (click)="submenu.item_boolean = !submenu.item_boolean; onItemClicked(submenu);">
+                                <li *ngFor="let submenu of searchItemList">
+                                    <div class="outerdiv"
+                                        (click)="submenu.item_boolean = !submenu.item_boolean; onItemClicked(submenu);">
                                         <div class="imagesdiv">
                                             <img src="./assets/imgs/{{submenu.item_icon}}" alt="">
                                         </div>
                                         <span>{{submenu.item_Name}}</span>
                                     </div>
-                                    <div class="showcount" *ngIf="submenu.item_boolean">
+                                    <div class="showcount" *ngIf="submenu.item_boolean || submenu.quantity>0">
                                         <div class="count">
-                                            <!-- [(ngModel)]="submenu.quantity" -->
-                                            <i class="fa fa-plus" aria-hidden="true" (click)="updateSelectedItemList(submenu,submenu.quantity=submenu.quantity+1)"></i>
+                                            <i class="fa fa-plus" aria-hidden="true"
+                                                (click)="updateSelectedItemList(submenu,submenu.quantity=submenu.quantity+1)"></i>
                                             <span>{{submenu.quantity}}</span>
-                                            <i class="fa fa-minus" aria-hidden="true" (click)="submenu.quantity>0?updateSelectedItemList(submenu,submenu.quantity=submenu.quantity-1): null"></i>
+                                            <i class="fa fa-minus" aria-hidden="true"
+                                                (click)="submenu.quantity>0?updateSelectedItemList(submenu,submenu.quantity=submenu.quantity-1): null"></i>
                                         </div>
                                     </div>
                                 </li>
@@ -118,12 +113,12 @@
     <div id="accordion" role="tablist" aria-multiselectable="true">
 
         <!-- Accordion Item 1 -->
-
         <div class="card" *ngFor="let items of itemList;let i=index;">
             <div class="card-header" role="tab" id="items.item_type_id">
                 <div class="mb-0 row">
                     <div class="col-12  accordion-head">
-                        <a data-toggle="collapse" data-parent="#accordion" href="#accordionBodyOne_{{i}}" aria-expanded="false" aria-controls="accordionBodyOne" class="collapsed ">
+                        <a data-toggle="collapse" data-parent="#accordion" href="#accordionBodyOne_{{i}}"
+                            aria-expanded="false" aria-controls="accordionBodyOne" class="collapsed ">
                             <div class="outerdiv">
                                 <div class="imagesdiv">
                                     <img src="./assets/imgs/{{items.item_type_icon}}" alt="">
@@ -131,32 +126,32 @@
                                 <i class="fa fa-angle-down" aria-hidden="true"></i>
                                 <h3>{{items.item_type_name}}</h3>
                             </div>
-
                         </a>
                     </div>
                 </div>
             </div>
 
-            <div id="accordionBodyOne_{{i}}" class="collapse" role="tabpanel" aria-labelledby="items.item_type_id" aria-expanded="false" data-parent="accordion">
+            <div id="accordionBodyOne_{{i}}" class="collapse" role="tabpanel" aria-labelledby="items.item_type_id"
+                aria-expanded="false" data-parent="accordion">
                 <div class="card-block col-12">
                     <ul>
-                        <li *ngFor="let submenu of items.item_list ; let j = index">
-                            <div class="outerdiv" (click)="submenu.item_boolean = !submenu.item_boolean; onItemClicked(submenu);">
+                        <li *ngFor="let submenu of items.item_list">
+                            <div class="outerdiv"
+                                (click)="submenu.item_boolean = !submenu.item_boolean; onItemClicked(submenu);">
                                 <div class="imagesdiv">
                                     <img src="./assets/imgs/{{submenu.item_icon}}" alt="">
                                 </div>
-
                                 <span>{{submenu.item_Name}}</span>
                             </div>
-                            <div class="showcount" *ngIf="submenu.item_boolean">
+                            <div class="showcount" *ngIf="submenu.item_boolean  || submenu.quantity>0">
                                 <div class="count">
-                                    <i class="fa fa-plus" aria-hidden="true" (click)="updateSelectedItemList(submenu,submenu.quantity=submenu.quantity+1)"></i>
+                                    <i class="fa fa-plus" aria-hidden="true"
+                                        (click)="updateSelectedItemList(submenu,submenu.quantity=submenu.quantity+1)"></i>
                                     <span>{{submenu.quantity}}</span>
-                                    <i class="fa fa-minus" aria-hidden="true" (click)="submenu.quantity>0?updateSelectedItemList(submenu,submenu.quantity=submenu.quantity-1): null"></i>
+                                    <i class="fa fa-minus" aria-hidden="true"
+                                        (click)="submenu.quantity>0?updateSelectedItemList(submenu,submenu.quantity=submenu.quantity-1): null"></i>
                                 </div>
                             </div>
-
-
                         </li>
                     </ul>
                 </div>
@@ -173,23 +168,25 @@
         <div class="card-body">
             <div style="text-align: center;">Select your preferred date and time</div>
             <div class="dateShow">
-                <div class="data" *ngFor="let datedata of dateList ;let i=index;" [ngClass]="{'active':datedata.showtime == true}" (click)="clickOnselectdate(datedata.date_Id)">
-                    <Span>{{datedata.date}}</Span>
+                <div class="data" *ngFor="let datedata of dateList ;let i=index;"
+                    [ngClass]="{'active':datedata.showtime == true}" (click)="setSelectedDate(datedata.date_Id)">
+                    <Span class="day">{{datedata.date | date:'EEE' }}</Span>
+                    <Span class="date">{{datedata.date | date:'dd/MM' }}</Span>
                 </div>
             </div>
             <div class="timeShow" *ngIf="showtimefalse">
-
-                <div class="dataTime " *ngFor="let timedata of timearrayList">
-                    <div class="mydiv">
-                        <span class="text">{{timedata.starting_Time}}</span>
-                        <span>{{timedata.starting_timeFormat}}</span>
+                <ng-container *ngFor="let timedata of timearrayList">
+                    <div class="dataTime" [ngClass]="{'selectedTimeClass':timedata.isactive}"
+                        (click)="setTimeSlot(timedata.time_slot_id)">
+                        <div class="timeSlotDiv">
+                            <span class="text">{{timedata.full_length_statingtime}}</span>
+                        </div>
+                        <span class="minus">-</span>
+                        <div class="timeSlotDiv">
+                            <span class="text">{{timedata.full_length_endingtime}}</span>
+                        </div>
                     </div>
-                    <span class="minus">-</span>
-                    <div class="mydiv">
-                        <span class="text">{{timedata.ending_time}}</span>
-                        <span>{{timedata.ending_timeFormat}}</span>
-                    </div>
-                </div>
+                </ng-container>
             </div>
         </div>
 
@@ -206,21 +203,22 @@
             <div class="contact-form siteForm">
 
                 <div class="form-wrapper">
-                    <input type="text" placeholder="Name" autocomplete="off" [(ngModel)]="name" [ngModelOptions]="{standalone: true}" />
+                    <input type="text" placeholder="Name" autocomplete="off" [(ngModel)]="name"
+                        [ngModelOptions]="{standalone: true}" />
                 </div>
                 <div class="form-wrapper">
-                    <input type="email" placeholder="Email" autocomplete="off" [(ngModel)]="email" [ngModelOptions]="{standalone: true}" />
+                    <input type="email" placeholder="Email" autocomplete="off" [(ngModel)]="email"
+                        [ngModelOptions]="{standalone: true}" />
                 </div>
                 <div class="form-wrapper">
-                    <input type="tel" placeholder="Contact Number" (keypress)="keyPress($event)" autocomplete="off" maxlength="11" [(ngModel)]="phonenumber" [ngModelOptions]="{standalone: true}" />
+                    <input type="tel" placeholder="Contact Number" (keypress)="keyPress($event)" autocomplete="off"
+                        maxlength="11" [(ngModel)]="phonenumber" [ngModelOptions]="{standalone: true}" />
                 </div>
                 <div class="form-wrapper">
-                    <input type="any_information" placeholder="Any special instructions?" autocomplete="off" maxlength="11" />
+                    <input type="any_information" placeholder="Any special instructions?" autocomplete="off"
+                        maxlength="11" />
                 </div>
 
-                <!-- <div class="form-wrapper submit-btn">
-                    <a>Submit</a>
-                </div> -->
             </div>
         </div>
     </div>
@@ -272,8 +270,8 @@
                         <span>Delivery Date & Time</span>
                     </div>
                     <div class="time">
-                        <span>Date : Wednesday,May 20</span>
-                        <span>Time : 1PM - 2PM</span>
+                        <span>Date : {{ selectedDate | date:'fullDate' }}</span>
+                        <span>Time : {{selectedTimeSlot}}</span>
                     </div>
                 </li>
                 <li>
@@ -303,11 +301,12 @@
 
 <div class="stepper">
     <div class="rightSide">
-        <button (click)="clickReset()" [disabled]="pickupLocation" >Reset</button>
+        <button (click)="clickReset()" [disabled]="pickupLocation">Reset</button>
     </div>
     <div class="leftside">
         <button class="backbutton" (click)="gotoBack()" *ngIf="pickupLocation == false">Back</button>
-        <button class="nextbuton" (click)="gotoNext()" [disabled]="toggelNextBtn()" *ngIf="showFinallist == false">Next</button>
+        <button class="nextbuton" (click)="gotoNext()" [disabled]="toggelNextBtn()"
+            *ngIf="showFinallist == false">Next</button>
         <button class="nextbuton" (click)="gotoNext()" *ngIf="showFinallist == true">Checkout</button>
     </div>
 </div>

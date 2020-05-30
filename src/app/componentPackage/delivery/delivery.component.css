@@ -458,10 +458,10 @@ a:hover {
     padding: 19px 0;
 }
 
-.divliveryItem #accordion .card-block ul li .showcount {
-    /* text-align: right;
-    width: 100%; */
-}
+/* .divliveryItem #accordion .card-block ul li .showcount {
+    text-align: right;
+    width: 100%; 
+} */
 
 .divliveryItem #accordion .card-block ul li .showcount .count {
     position: absolute; 
@@ -499,8 +499,9 @@ a:hover {
 }
 
 .mycard ul li .showcount .count {
-    text-align: right;
-    width: 100%;
+    position: absolute;
+    right: 12px;
+    top: 41px;
 }
 
 .mycard ul li .showcount .count i {
@@ -525,17 +526,16 @@ a:hover {
 }
 
 .selectDateandTime .card .dateShow .data {
-    width: 50px;
-    height: 50px;
-    border: 2px solid;
+    width: 70px;
+    height: 70px;
     position: relative;
     border-radius: 100%;
     color: #ec3542;
     background: initial;
     cursor: pointer;
-    border: 1px solid #ec3441;
-    margin: 6px;
-    font-weight: 600;
+    border: 3px solid #ec3441;
+    margin: 8px;
+    font-weight: 500;
 }
 
 .selectDateandTime .card .dateShow .data.active {
@@ -545,9 +545,15 @@ a:hover {
     border: 2px solid #fff;
 }
 
-.selectDateandTime .card .dateShow .data span {
+.selectDateandTime .card .dateShow .data .day {
     position: absolute;
-    top: 50%;
+    top: 32%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.selectDateandTime .card .dateShow .data .date {
+    position: absolute;
+    top: 64%;
     left: 50%;
     transform: translate(-50%, -50%);
 }
@@ -570,16 +576,15 @@ a:hover {
     border-radius: 4px
 }
 
-.selectDateandTime .card .timeShow .dataTime .mydiv {
+.selectDateandTime .card .timeShow .dataTime .timeSlotDiv {
     display: flex;
     flex-flow: column;
     justify-content: center;
-    padding: 17px;
     font-weight: 600;
 }
 
-.selectDateandTime .card .timeShow .dataTime .mydiv .text {
-    padding-left: 5px;
+.selectDateandTime .card .timeShow .dataTime .timeSlotDiv .text {
+    padding: 0px 5px;
 }
 
 .selectDateandTime .card .timeShow .dataTime .minus {
@@ -660,12 +665,14 @@ a:hover {
 }
 
 .finallist .card .card-body ul li .topheading i {
-    margin-right: 10px;
-    font-size: 21px;
+    margin-right: 5px;
+    font-size: 24px;
     color: #e92330;
+    position: relative;
+    top: 2px;
 }
 
-.finallist .card .card-body ul li .topheading i.pricelogo {
+/* .finallist .card .card-body ul li .topheading i.pricelogo {
     padding: 2px;
     width: 22px;
     height: 22px;
@@ -675,7 +682,7 @@ a:hover {
     padding-left: 5px;
     color: #fff;
     background: #E92331;
-}
+} */
 
 .finallist .card .card-body ul li .address span {
     padding: 13px 13px;
