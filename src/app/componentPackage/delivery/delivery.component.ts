@@ -627,7 +627,7 @@ export class DeliveryComponent implements OnInit {
   opensweetalert() {
     Swal.fire({
       title: "Are you sure?",
-      text: "You won't be able to revert any changes!",
+      text: "Once you click , you will not be able to recover this imaginary file!",
       icon: 'warning',
       confirmButtonText: 'Yes',
       showCancelButton: true,
@@ -636,7 +636,7 @@ export class DeliveryComponent implements OnInit {
       if (willDelete.value) {
         this.dataReset();
       } else {
-        CommonMethods.showconsole(this.Tag, "Else is working")
+       
       }
     });
   }

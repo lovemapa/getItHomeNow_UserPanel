@@ -170,13 +170,15 @@
     <div class="card">
         <div class="card-body">
 
-  <div class="d-flex flex-row calsstopButton">
-      <a  (click)="selctedDateCategory('selectbydatetime')" [ngClass]="{'topbuttonactive':selecteddatebutton == true}">Select date and Time </a>
-      <a  (click)="selctedDateCategory('rightnow')"  [ngClass]="{'topbuttonactive':rightNowButton == true}">Right Now</a>
-  </div>
-            <div  *ngIf="selecteddatebutton">
+            <div class="d-flex flex-row calsstopButton">
+                <a (click)="selctedDateCategory('selectbydatetime')"
+                    [ngClass]="{'topbuttonactive':selecteddatebutton == true}">Select date and Time </a>
+                <a (click)="selctedDateCategory('rightnow')"
+                    [ngClass]="{'topbuttonactive':rightNowButton == true}">Right Now</a>
+            </div>
+            <div *ngIf="selecteddatebutton">
                 <div style="text-align: center;">
-                 <p class="text-center font-weight-bold w-100 py-3">Select your preferred date and time</p>    
+                    <p class="text-center font-weight-bold w-100 py-3">Select your preferred date and time</p>
                 </div>
                 <div class="dateShow">
                     <div class="data" *ngFor="let datedata of dateList ;let i=index;"
@@ -202,9 +204,9 @@
             </div>
 
             <div *ngIf="rightNowButton">
-              <p class="py-3 w-100 text-center font-weight-bold">{{ selectedDate  | date:'medium'}}</p>  
+                <p class="py-3 w-100 text-center font-weight-bold">{{ selectedDate  | date:'medium'}}</p>
             </div>
-           
+
         </div>
 
     </div>
@@ -217,9 +219,9 @@
     </div>
     <div class="card">
         <div class="card-body">
-      
 
-                <!-- <div class="form-wrapper">
+
+            <!-- <div class="form-wrapper">
                     <input type="text" placeholder="Name" autocomplete="off" [(ngModel)]="name"
                         [ngModelOptions]="{standalone: true}" />
                 </div>
@@ -236,46 +238,40 @@
                         maxlength="11" />
                 </div> -->
 
-                <form [formGroup]="formGroup"  class="form cutomform">
-                    <mat-form-field  [hideRequiredMarker]="hideRequiredControl.value"
-                    [floatLabel]="floatLabelControl.value">
-                        <mat-label>Full Name</mat-label>
-                        <input matInput placeholder="Enter Full Name" formControlName="name" required>
-                        <mat-error  *ngIf="formGroup.controls.name.hasError('required')">
-                             Full Name is required
-                        </mat-error>
-                      </mat-form-field>
-                    <mat-form-field   [hideRequiredMarker]="hideRequiredControl.value"
-                    [floatLabel]="floatLabelControl.value">
-                        <mat-label>Email</mat-label>
-                      <input matInput placeholder="Enter email address" formControlName="email" required>
-                      <mat-error *ngIf="!formGroup.controls['email'].valid && formGroup.controls['email'].touched" >
+            <form [formGroup]="formGroup" class="form cutomform">
+                <mat-form-field [hideRequiredMarker]="hideRequiredControl.value" [floatLabel]="floatLabelControl.value">
+                    <mat-label>Full Name</mat-label>
+                    <input matInput placeholder="Enter Full Name" formControlName="name" required>
+                    <mat-error *ngIf="formGroup.controls.name.hasError('required')">
+                        Full Name is required
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field [hideRequiredMarker]="hideRequiredControl.value" [floatLabel]="floatLabelControl.value">
+                    <mat-label>Email</mat-label>
+                    <input matInput placeholder="Enter email address" formControlName="email" required>
+                    <mat-error *ngIf="!formGroup.controls['email'].valid && formGroup.controls['email'].touched">
                         {{ getErrorEmail() }}
-                      </mat-error>
-                    </mat-form-field>
-                    <mat-form-field  [hideRequiredMarker]="hideRequiredControl.value"
-                    [floatLabel]="floatLabelControl.value" >
-                        <mat-label>Phone Number </mat-label>
-                        <input matInput formControlName="mobileNumber" maxlength="10" (keypress)=_keyPress($event) required>
-                        <mat-error *ngIf="formGroup.controls.mobileNumber.hasError('required')">
-                           Phone number is required
-                        </mat-error>
-                        <mat-error *ngIf="formGroup.controls.mobileNumber.hasError('maxLength')">
-                           Phone number is not a valid
-                        </mat-error>
-                        <mat-error *ngIf="formGroup.controls.mobileNumber.hasError('minLength')">
-                           Phone number is not a valid
-                        </mat-error>
-                        <!-- <mat-error *ngIf="formGroup.controls.mobileNumber.hasError('pattern')">
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field [hideRequiredMarker]="hideRequiredControl.value" [floatLabel]="floatLabelControl.value">
+                    <mat-label>Phone Number </mat-label>
+                    <input matInput formControlName="mobileNumber" maxlength="10" (keypress)=_keyPress($event) required>
+                    <mat-error *ngIf="formGroup.controls.mobileNumber.hasError('required')">
+                        Phone number is required
+                    </mat-error>
+                    <mat-error *ngIf="formGroup.controls.mobileNumber.hasError('pattern')">
+                        Phone number is not a valid
+                    </mat-error>
+                    <!-- <mat-error *ngIf="formGroup.controls.mobileNumber.hasError('pattern')">
                             It is not a valid mobile number.
                         </mat-error> -->
-                    </mat-form-field>
-                    <mat-form-field  class="p-0" [hideRequiredMarker]="hideRequiredControl.value"
-                        [floatLabel]="floatLabelControl.value">
-                        <mat-label>Any special instructions?(optional)</mat-label>
-                        <input matInput placeholder="Any special instructions?"  formControlName="any_special_instruction">
-                      </mat-form-field>
-                  </form>
+                </mat-form-field>
+                <mat-form-field class="p-0" [hideRequiredMarker]="hideRequiredControl.value"
+                    [floatLabel]="floatLabelControl.value">
+                    <mat-label>Any special instructions?(optional)</mat-label>
+                    <input matInput placeholder="Any special instructions?" formControlName="any_special_instruction">
+                </mat-form-field>
+            </form>
         </div>
     </div>
 
