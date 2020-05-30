@@ -456,3 +456,8 @@ button:disabled {
     background: #a9a9a985 !important;
     cursor: not-allowed !important;
 }
+
+.cutomform .mat-form-field{
+    display: block !important;
+    padding-bottom: 16px;
+} 
