@@ -686,6 +686,7 @@ export class DeliveryComponent implements OnInit {
     this.searchItemList = [];
     this.showtimefalse = false;
     this.timearrayList = [];
+    this.formGroup.reset();
     this.temparyNameDesination = "";
     this.destinationLocationName = "";
     this.searchElementRef.nativeElement.value = "";
