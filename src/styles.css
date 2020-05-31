@@ -466,11 +466,14 @@ button:disabled {
 
 /*PAyment Modal*/
 
-.paymentModal  .modal-dialog-centered {
+/* .paymentModal  .modal-dialog-centered {
   width: 300px !important;
   min-width: 300px !important;
-}
-
+} */
+/* .customModalBody .customForm .mat-form-field-infix {
+    padding: .5em 0;
+    border-top: unset !important;
+} */
 
 
 

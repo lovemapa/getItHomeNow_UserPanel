@@ -396,8 +396,6 @@ export class DeliveryComponent implements OnInit {
       this.formFieldshow = true;
 
     } else if (this.formFieldshow == true) {
-
-      alert(JSON.stringify(this.formGroup.value))
       this.formFieldshow = false;
       this.showFinallist = true;
 
@@ -672,20 +670,22 @@ export class DeliveryComponent implements OnInit {
     this.setCurrentLocation()
   }
 
-
+checkoutClick(){
+  this.modalOpen()
+}
 
 modalOpen()
 {
 let user = {
   name: 'Izzat Nadiri',
-  age: 26
+  price: 99
   }
   
 
     this.modalReference =this.modalService.open(PaymentGatewayComponent, {
       ariaLabelledBy: 'modal-basic-title',
        windowClass: 'paymentModal',
-      
+      // backdrop:false,
       centered: true,
       
     });

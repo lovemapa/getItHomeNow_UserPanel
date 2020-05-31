@@ -359,8 +359,8 @@
         <button class="backbutton" (click)="gotoBack()" *ngIf="pickupLocation == false">Back</button>
         <button class="nextbuton" (click)="gotoNext()" [disabled]="toggelNextBtn()"
             *ngIf="showFinallist == false">Next</button>
-        <button class="nextbuton" (click)="gotoNext()" *ngIf="showFinallist == true">Checkout</button>
-        <button class="nextbuton" (click)="modalOpen()" >modal Pop </button>
+        <button class="nextbuton" (click)="checkoutClick()" *ngIf="showFinallist == true">Checkout</button>
+        <!-- <button class="nextbuton" (click)="modalOpen()" >modal Pop </button> -->
     </div>
 </div>
 

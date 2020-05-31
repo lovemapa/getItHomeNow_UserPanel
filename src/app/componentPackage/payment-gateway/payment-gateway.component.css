@@ -1,5 +1,17 @@
 .paymentModal.modal.show .modal-dialog {
-    width: 300px !important;
+    /* width: 300px !important; */
+  }
+
+
+  .customModalBody .divimages {
+    width: 280px;
+    height: 42px;
+    margin-top: 8px;
+  }
+
+  .customModalBody .divimages img {
+    width: 100%;
+    height: 100%;
   }
 
   .customModalBody .mainheading{
@@ -12,24 +24,36 @@
     font-weight: 300;
   }
   .customModalBody .customformCreate{
-        border-radius: 4px;
+        border-radius: 6px;
+        padding-left: 15px;
+        border-color: #ced4da !important;
   }
 
-  element.style {
-    border: none !important;
-    margin: 0px !important;
-    padding: 0px !important;
-    width: 1px !important;
-    min-width: 100% !important;
-    overflow: hidden !important;
-    display: block !important;
-    user-select: none !important;
-    height: 40px;
-    border: 1px solid #ced4da !important;
-    margin-top: 16px !important;
-    padding-left: 12px !important;
-    margin-bottom: 16px !important;
+  .customModalBody .customForm  .mat-form-field{
+       width: 100%;
+  }
+  /* .customModalBody .customForm  input{
+        height: 46px;;
+  } */
+
+  .customModalBody .customForm .mat-form-field-infix {
+    padding: .5em 0;
+    border-top: unset !important;
 }
+
+
+  ::-webkit-input-placeholder { /* Edge */
+    color: #9ea4a9;
+  }
+  
+  :-ms-input-placeholder { /* Internet Explorer 10-11 */
+    color: #9ea4a9;
+  }
+  
+  ::placeholder {
+    color: #9ea4a9;
+  }
+ 
 
 
 
