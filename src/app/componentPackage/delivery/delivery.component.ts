@@ -221,7 +221,6 @@ export class DeliveryComponent implements OnInit {
       navigator.geolocation.getCurrentPosition((position) => {
         this.lat = position.coords.latitude;
         this.lng = position.coords.longitude;
-        this.origin = { lat: position.coords.latitude, lng: position.coords.longitude };
       });
     }
   }
@@ -299,13 +298,18 @@ export class DeliveryComponent implements OnInit {
   */
   gotoNext() {
     if (this.pickupLocation == true) {
-      this.origin = new google.maps.LatLng(
-        this.lat,
-        this.lng
-      );
+      if(this.origin == ''){
+      this.origin = new google.maps.LatLng(this.lat,this.lng);
+      }
       this.pickupLocation = false;
       this.destinationboolean = true;
+      if(this.destinationLocationName == ''){
       this.searchElementRef.nativeElement.value = "";
+      }
+      else{
+        this.searchElementRef.nativeElement.value = this.destinationLocationName;
+        this.temparyNameDesination = this.destinationLocationName;
+      }
       this.textboxLabel = "Delivery  Address";
       this.textBoxPLaceBolder = "Enter Delivery Address"
       this.iconDisplay = "fa fa-arrow-circle-down";
