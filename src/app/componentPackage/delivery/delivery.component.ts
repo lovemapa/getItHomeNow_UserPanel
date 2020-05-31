@@ -12,6 +12,7 @@ import { FormControl, Validators, FormGroup, FormBuilder } from '@angular/forms'
 import { Observable } from 'rxjs';
 import Swal from 'sweetalert2/dist/sweetalert2.js';
 import { formatDate } from '@angular/common';
+import { MyCookies } from 'src/app/utillpackage/utillpackage/my-cookies';
 declare var google: any;
 @Component({
   selector: 'app-delivery',
@@ -41,7 +42,7 @@ export class DeliveryComponent implements OnInit {
   temparyNameDesination: string
   destinationLocationName: string;
   destinationRegion: string;
-  pickupRegion : string;
+  pickupRegion: string;
   selectedItemList: Array<any>
   searchItemList: Array<any>
   searchingValue: string
@@ -68,8 +69,8 @@ export class DeliveryComponent implements OnInit {
   floatLabelControl = new FormControl('auto');
   selecteddatebutton = false;
   rightNowButton = false;
-  totalDistance:number = 0;
-
+  totalDistance: number = 0;
+  handler:any = null;
   constructor(private mapsAPILoader: MapsAPILoader, public ngZone: NgZone, public userBackEndService: UserpanelServiceService,
     public modalService: NgbModal, public cookiesSerive: CookieService, public spinner: NgxSpinnerService,
     private formBuilder: FormBuilder) {
@@ -114,6 +115,7 @@ export class DeliveryComponent implements OnInit {
 
   ngOnInit(): void {
     this.createForm();
+    this.loadStripe();
   }
 
   /**
@@ -133,7 +135,7 @@ export class DeliveryComponent implements OnInit {
     this.modalReference = this.modalService.open(this.modalConent,
       {
         ariaLabelledBy: 'modal-basic-title',
-         windowClass: 'custom-class',
+        windowClass: 'custom-class',
         centered: true
       });
   }
@@ -298,15 +300,15 @@ export class DeliveryComponent implements OnInit {
   */
   gotoNext() {
     if (this.pickupLocation == true) {
-      if(this.origin == ''){
-      this.origin = new google.maps.LatLng(this.lat,this.lng);
+      if (this.origin == '') {
+        this.origin = new google.maps.LatLng(this.lat, this.lng);
       }
       this.pickupLocation = false;
       this.destinationboolean = true;
-      if(this.destinationLocationName == ''){
-      this.searchElementRef.nativeElement.value = "";
+      if (this.destinationLocationName == '') {
+        this.searchElementRef.nativeElement.value = "";
       }
-      else{
+      else {
         this.searchElementRef.nativeElement.value = this.destinationLocationName;
         this.temparyNameDesination = this.destinationLocationName;
       }
@@ -325,41 +327,41 @@ export class DeliveryComponent implements OnInit {
         this.totalDistance = parseFloat(totalDisTanceintoMiles.match('[\\d]+.[\\d]+')[0]);
         switch (this.pickupRegion) {
           case "Home":
-                      {
-                        if (this.totalDistance > 25) {
-                          if (this.destinationRegion == "South Region") {
-                            this.priceForDelivery = '$119.50/hr';
-                          } else if (this.destinationRegion == "Central Region") {
-                            this.priceForDelivery = '$149.50/hr';
-                          } else {
-                            this.priceForDelivery = '$99.50/hr';
-                          }
-                        }
-                        else {
-                          this.priceForDelivery = '$99/hr';
-                        }
-                        break;
-                      }
+            {
+              if (this.totalDistance > 25) {
+                if (this.destinationRegion == "South Region") {
+                  this.priceForDelivery = '$119.50/hr';
+                } else if (this.destinationRegion == "Central Region") {
+                  this.priceForDelivery = '$149.50/hr';
+                } else {
+                  this.priceForDelivery = '$99.50/hr';
+                }
+              }
+              else {
+                this.priceForDelivery = '$99/hr';
+              }
+              break;
+            }
           case "South Region":
-                      {
-                        if (this.totalDistance < 25) {
-                          this.priceForDelivery = '$119/hr';
-                        }
-                        else {
-                          this.priceForDelivery = '$149.50/hr';
-                        }
-                        break;
-                      }
+            {
+              if (this.totalDistance < 25) {
+                this.priceForDelivery = '$119/hr';
+              }
+              else {
+                this.priceForDelivery = '$149.50/hr';
+              }
+              break;
+            }
           case "Central Region":
-                      {
-                        if (this.totalDistance < 25) {
-                          this.priceForDelivery = '$149/hr';
-                        }
-                        else {
-                          this.priceForDelivery = '$149.50/hr';
-                        }
-                        break;
-                      }
+            {
+              if (this.totalDistance < 25) {
+                this.priceForDelivery = '$149/hr';
+              }
+              else {
+                this.priceForDelivery = '$149.50/hr';
+              }
+              break;
+            }
         }
       });
       if (this.destinationLocationName.length != 0 && this.temparyNameDesination.length == 0) {
@@ -402,6 +404,15 @@ export class DeliveryComponent implements OnInit {
       this.dateSelectedPage = true;
     } else if (this.dateSelectedPage) {
       this.dateSelectedPage = false;
+      if (MyCookies.checkLoginStatus(this.cookiesSerive) == true) {
+        var userfullname = MyCookies.getUserFistName(this.cookiesSerive) + " " + MyCookies.getUseLastName(this.cookiesSerive)
+        this.formGroup = this.formBuilder.group({
+          'email': userfullname,
+          'name': MyCookies.getEmaild(this.cookiesSerive),
+          'mobileNumber': MyCookies.getUsercontact(this.cookiesSerive),
+          'any_special_instruction': [null]
+        });
+      }
       this.formFieldshow = true;
     } else if (this.formFieldshow == true) {
       this.formFieldshow = false;
@@ -410,7 +421,7 @@ export class DeliveryComponent implements OnInit {
     }
   }
 
- 
+
   /**
    * Method to Reset all the Values 
    */
@@ -623,9 +634,9 @@ export class DeliveryComponent implements OnInit {
       this.showtimefalse = false;
       this.timearrayList = [];
       this.selectedDate = new Date();
-      this.selectedTimeSlot = this.selectedDate.toLocaleTimeString().slice(0,-3);
-      if(this.selectedDate.getHours()<=12){
-        this.selectedTimeSlot = this.selectedTimeSlot +' AM';
+      this.selectedTimeSlot = this.selectedDate.toLocaleTimeString().slice(0, -3);
+      if (this.selectedDate.getHours() <= 12) {
+        this.selectedTimeSlot = this.selectedTimeSlot + ' AM';
       }
       this.selecteddatebutton = false;
       this.rightNowButton = true;
@@ -659,7 +670,7 @@ export class DeliveryComponent implements OnInit {
       if (willDelete.value) {
         this.dataReset();
       } else {
-       
+
       }
     });
   }
@@ -693,14 +704,93 @@ export class DeliveryComponent implements OnInit {
     this.textboxLabel = "Pick Up Address";
     this.textBoxPLaceBolder = "Enter PickUp Address"
     this.iconDisplay = "fa fa-arrow-circle-up";
+    this.formGroup = this.formBuilder.group({
+      'email': [null],
+      'name':  [null],
+      'mobileNumber':  [null],
+      'any_special_instruction': [null]
+    });
     this.setCurrentLocation()
   }
 
   /**
    * method to get formatted  token amount
    */
-  showTokenAmount():number{
+  showTokenAmount(): number {
     return parseFloat(this.priceForDelivery.match('[\\d]+')[0]);
   }
+
+
+  /**Checkout Method */
+
+  checkoutClick() {
+
+      //  if(MyCookies.checkLoginStatus(this.cookiesSerive) ==  true)
+      //  {
+
+      //  }else{
+
+      //  }
+      this.pay(30)
+
+  }
+
+
+
+  /**Stripe Function */
+
+  loadStripe() {
+     
+    if(!window.document.getElementById('stripe-script')) {
+      var s = window.document.createElement("script");
+      s.id = "stripe-script";
+      s.type = "text/javascript";
+      s.src = "https://checkout.stripe.com/checkout.js";
+      s.onload = () => {
+        this.handler = (<any>window).StripeCheckout.configure({
+          key: 'pk_test_1FZfVATEwV5aVeB0V8kqfjOu00Zel0aPAe',
+          locale: 'auto',
+          token: function (token: any) {
+            // You can access the token ID with `token.id`.
+            // Get the token ID to your server-side code for use.
+            console.log(token)
+            alert('Payment Success!!');
+          }
+        });
+      }
+       
+      window.document.body.appendChild(s);
+    }
+  }
+
+
+/**Pay Click */
+
+
+  pay(amount) {    
+ 
+    var handler = (<any>window).StripeCheckout.configure({
+      key: 'pk_test_jHv1QONipZAQr9rsrtNRb7LL00FcdohFcD',
+      locale: 'auto',
+      token: function (token: any) {
+        // You can access the token ID with `token.id`.
+        // Get the token ID to your server-side code for use.
+        console.log( JSON.stringify(token))
+        alert('Token Created!!');
+      }
+    });
+ 
+    handler.open({
+      class:"stripe-button",
+      // image:"/assets/imgs/logoSmall3.png",
+      name: 'GetItHomeNow.com',
+      description: '2 widgets',
+      amount: amount * 100,
+      currency: 'USD',
+      address:true
+    });
+ 
+  }
+
 
 }

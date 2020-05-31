@@ -5,6 +5,7 @@
     </a>
     <div class="struck_Imag position-relative">
         <img src="./assets/imgs/truck_Logo_White.png" class="img-fluid" alt="truck">
+        <!-- <img src="./assets/imgs/truck_logo_red.png" class="img-fluid" alt="truck"> -->
         <p class="position-absolute mb-0 countclass">
             {{countTotalQuantityOfSelectedItems()}}
         </p>
@@ -351,7 +352,8 @@
         <button class="backbutton" (click)="gotoBack()" *ngIf="pickupLocation == false">Back</button>
         <button class="nextbuton" (click)="gotoNext()" [disabled]="toggelNextBtn()"
             *ngIf="showFinallist == false">Next</button>
-        <button class="nextbuton" (click)="gotoNext()" *ngIf="showFinallist == true">Checkout</button>
+        <button class="nextbuton" (click)="checkoutClick()" *ngIf="showFinallist == true">Checkout</button>
+        <!-- <button class="nextbuton" (click)="checkoutClick()" >Checkout</button> -->
     </div>
 </div>
 
