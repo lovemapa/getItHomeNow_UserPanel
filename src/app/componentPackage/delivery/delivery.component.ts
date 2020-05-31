@@ -12,6 +12,7 @@ import { FormControl, Validators, FormGroup, FormBuilder } from '@angular/forms'
 import { Observable } from 'rxjs';
 import Swal from 'sweetalert2/dist/sweetalert2.js';
 import { formatDate } from '@angular/common';
+import { MyCookies } from 'src/app/utillpackage/utillpackage/my-cookies';
 declare var google: any;
 @Component({
   selector: 'app-delivery',
@@ -402,6 +403,15 @@ export class DeliveryComponent implements OnInit {
       this.dateSelectedPage = true;
     } else if (this.dateSelectedPage) {
       this.dateSelectedPage = false;
+      if (MyCookies.checkLoginStatus(this.cookiesSerive) == true) {
+        var userfullname = MyCookies.getUserFistName(this.cookiesSerive) + " " + MyCookies.getUseLastName(this.cookiesSerive)
+        this.formGroup = this.formBuilder.group({
+          'name': userfullname,
+          'email': MyCookies.getEmaild(this.cookiesSerive),
+          'mobileNumber': MyCookies.getUsercontact(this.cookiesSerive),
+          'any_special_instruction': [null]
+        });
+      }
       this.formFieldshow = true;
     } else if (this.formFieldshow == true) {
       this.formFieldshow = false;
