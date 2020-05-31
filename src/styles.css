@@ -461,3 +461,16 @@ button:disabled {
     display: block !important;
     padding-bottom: 16px;
 } 
+
+
+
+/*PAyment Modal*/
+
+.paymentModal  .modal-dialog-centered {
+  width: 300px !important;
+  min-width: 300px !important;
+}
+
+
+
+

@@ -7,6 +7,8 @@ import { BlankLoginandsignupComponent } from './layout/blank-loginandsignup/blan
 import { LoginSignupComponent } from './componentPackage/login-signup/login-signup.component';
 import { ProfileshowComponent } from './componentPackage/profileshow/profileshow.component';
 import { DeliveryComponent } from './componentPackage/delivery/delivery.component';
+import { PaymentGatewayComponent} from './componentPackage/payment-gateway/payment-gateway.component'
+import { from } from 'rxjs';
 const routes: Routes = [
 
 
@@ -22,6 +24,7 @@ const routes: Routes = [
   { path: '', component: BlankLoginandsignupComponent,
     children: [
       { path: 'login', component: LoginSignupComponent },
+      { path: 'paymentgateway', component: PaymentGatewayComponent },
     ]
   },
   { path: '**', redirectTo: 'home' }

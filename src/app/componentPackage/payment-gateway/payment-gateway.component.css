@@ -1,0 +1,37 @@
+.paymentModal.modal.show .modal-dialog {
+    width: 300px !important;
+  }
+
+  .customModalBody .mainheading{
+    color: #ec3441;
+  }
+  .customModalBody .custommodalbutton{
+    color: #ffffff;
+    background: #ec3441;
+    font-size: 16px;
+    font-weight: 300;
+  }
+  .customModalBody .customformCreate{
+        border-radius: 4px;
+  }
+
+  element.style {
+    border: none !important;
+    margin: 0px !important;
+    padding: 0px !important;
+    width: 1px !important;
+    min-width: 100% !important;
+    overflow: hidden !important;
+    display: block !important;
+    user-select: none !important;
+    height: 40px;
+    border: 1px solid #ced4da !important;
+    margin-top: 16px !important;
+    padding-left: 12px !important;
+    margin-bottom: 16px !important;
+}
+
+
+
+
+

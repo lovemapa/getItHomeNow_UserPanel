@@ -12,6 +12,7 @@ import { FormControl, Validators, FormGroup, FormBuilder } from '@angular/forms'
 import { Observable } from 'rxjs';
 import Swal from 'sweetalert2/dist/sweetalert2.js';
 import { formatDate } from '@angular/common';
+import { PaymentGatewayComponent } from '../payment-gateway/payment-gateway.component';
 declare var google: any;
 @Component({
   selector: 'app-delivery',
@@ -32,6 +33,7 @@ export class DeliveryComponent implements OnInit {
   @ViewChild('sameLocationModalDiaolg', { static: true }) sameLocationModal: NgbModal;
   @ViewChild('modalDiaolg', { static: true }) modalConent: NgbModal;
   @ViewChild('distanceModal', { static: true }) distanceModal: NgbModal;
+  @ViewChild(PaymentGatewayComponent, { static: true }) PaymentGatewayComponent: NgbModal;
   pickupLocation = true;
   destinationboolean = false;
   textboxLabel: string;
@@ -669,5 +671,27 @@ export class DeliveryComponent implements OnInit {
     this.iconDisplay = "fa fa-arrow-circle-up";
     this.setCurrentLocation()
   }
+
+
+
+modalOpen()
+{
+let user = {
+  name: 'Izzat Nadiri',
+  age: 26
+  }
+  
+
+    this.modalReference =this.modalService.open(PaymentGatewayComponent, {
+      ariaLabelledBy: 'modal-basic-title',
+       windowClass: 'paymentModal',
+      
+      centered: true,
+      
+    });
+
+    this.modalReference.componentInstance.name =user;
+}
+
 
 }

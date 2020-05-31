@@ -1,0 +1,36 @@
+
+
+
+  <!-- <button (click)="paymentModal(distanceModal)" class="btn btn-lg">OPen Modal</button>
+
+  <ng-template #distanceModal> -->
+    <div class="modal-body py-3 px-3  customModalBody" style="text-align: center; ">
+                
+<div class="d-block w-100">
+    <h1 class="text-center p-2 mb-0 font-weight-bold mainheading">GetItHomeNow.com</h1>
+    <p class="text-center p-2 mb-0">avinashkumar4656@gmail.com</p>
+</div>
+            <div class="d-flex justify-content-between w-100 py-3 border-bottom">
+                <p class="mb-0 text-center py-2 font-weight-bold"> Token Amount to be paid </p>
+                <h4 class="mb-0 text-center py-1 font-weight-bold">$50</h4>
+              
+            </div>
+
+        <form novalidate (ngSubmit)="buy()" [formGroup]="stripeTest">
+            <input type="text" formControlName="name" placeholder="Card Holder Name " class="form-control">
+            <!-- <ngx-stripe-card [options]="cardOptions" [elementsOptions]="elementsOptions"></ngx-stripe-card> -->
+            <div class="customformCreate border my-3">
+                <ngx-stripe-card [options]="cardOptions" [elementsOptions]="elementsOptions" (error)="error = $event"></ngx-stripe-card>
+                <div class="error">
+                  {{error?.message}}
+                </div>
+            </div>
+           
+      
+      
+            <button type="submit" class="btn btn-lg w-75 text-center custommodalbutton">
+           <span>Pay</span>   <span class="pl-2">$50</span>
+            </button>
+          </form>
+    <!-- </div>
+</ng-template> -->

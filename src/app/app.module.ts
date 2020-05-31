@@ -26,7 +26,8 @@ import { CookieService } from 'ngx-cookie-service';
 import { ProfileshowComponent } from './componentPackage/profileshow/profileshow.component';
 import { DeliveryComponent } from './componentPackage/delivery/delivery.component';
 import { AgmCoreModule, GoogleMapsAPIWrapper } from '@agm/core';
-
+import { PaymentGatewayComponent } from './componentPackage/payment-gateway/payment-gateway.component';
+import { NgxStripeModule } from 'ngx-stripe';
 @NgModule({
   declarations: [
     AppComponent,
@@ -43,6 +44,7 @@ import { AgmCoreModule, GoogleMapsAPIWrapper } from '@agm/core';
     LoginSignupComponent,
     ProfileshowComponent,
     DeliveryComponent,
+    PaymentGatewayComponent,
    
   ],
   imports: [
@@ -60,6 +62,7 @@ import { AgmCoreModule, GoogleMapsAPIWrapper } from '@agm/core';
       apiKey: 'AIzaSyBMrKj9G0-f3QPF-P1D99iBChHT-PIICwo',
       libraries: ["places","geometry"]
     }),
+    NgxStripeModule.forRoot('pk_test_1FZfVATEwV5aVeB0V8kqfjOu00Zel0aPAe'),
 
 
   ],
@@ -69,6 +72,7 @@ import { AgmCoreModule, GoogleMapsAPIWrapper } from '@agm/core';
     CookieService,
     GoogleMapsAPIWrapper 
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [PaymentGatewayComponent]
 })
 export class AppModule { }

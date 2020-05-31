@@ -34,9 +34,9 @@
 
 </div>
 <div [ngClass]="{'mapdiaplay':itemList.length != 0}">
-    <agm-map [latitude]='lat' [longitude]='lng' [zoom]="13" mapDraggable="true" [mapTypeControl]="false"
+    <agm-map [latitude]='lat' [longitude]='lng' [zoom]="15" [mapDraggable]="true" [mapTypeControl]="false"
         [streetViewControl]="false" [rotateControl]="true" [fullscreenControl]="false" [zoomControl]="false"
-        gestureHandling="none" *ngIf="itemList.length == 0">
+        *ngIf="itemList.length == 0">
         <agm-marker [latitude]="lat" [longitude]="lng" [markerDraggable]="false"></agm-marker>
     </agm-map>
     <div class="positiondiv">
@@ -360,6 +360,7 @@
         <button class="nextbuton" (click)="gotoNext()" [disabled]="toggelNextBtn()"
             *ngIf="showFinallist == false">Next</button>
         <button class="nextbuton" (click)="gotoNext()" *ngIf="showFinallist == true">Checkout</button>
+        <button class="nextbuton" (click)="modalOpen()" >modal Pop </button>
     </div>
 </div>
 
