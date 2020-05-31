@@ -489,7 +489,7 @@ a:hover {
 .divliveryItem #accordion .card-block ul li .showcount .count {
     position: absolute; 
     right: 0;
-    top: 20px;
+    top: 25px;
 }
 
 .divliveryItem #accordion .card-block ul li .showcount .count i {
@@ -710,7 +710,9 @@ a:hover {
     font-size: 18px;
     font-weight: 700;
 }
-
+.finallist .card .card-body ul li .addShiftSpace span{
+    padding-left: 3em;
+}
 .finallist .card .card-body ul li .topheading i {
     margin-right: 5px;
     font-size: 24px;
@@ -732,21 +734,18 @@ a:hover {
 } */
 
 .finallist .card .card-body ul li .address span {
-    padding: 13px 13px;
     font-size: 15px;
     font-weight: 400;
 }
 
 .finallist .card .card-body ul li .time span {
     display: block;
-    padding: 1px 13px;
-    padding: 0px 13px;
+    margin-bottom: 5px;
     font-size: 15px;
     font-weight: 400;
 }
 
 .finallist .card .card-body ul li .total {
-    padding: 4px 13px;
     font-size: 15px;
     font-weight: 400;
     display: flex;

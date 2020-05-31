@@ -34,9 +34,9 @@
 
 </div>
 <div [ngClass]="{'mapdiaplay':itemList.length != 0}">
-    <agm-map [latitude]='lat' [longitude]='lng' [zoom]="13" mapDraggable="true" [mapTypeControl]="false"
+    <agm-map [latitude]='lat' [longitude]='lng' [zoom]="13" [mapDraggable] = "true" [mapTypeControl]="false"
         [streetViewControl]="false" [rotateControl]="true" [fullscreenControl]="false" [zoomControl]="false"
-        gestureHandling="none" *ngIf="itemList.length == 0">
+        *ngIf="itemList.length == 0">
         <agm-marker [latitude]="lat" [longitude]="lng" [markerDraggable]="false"></agm-marker>
     </agm-map>
     <div class="positiondiv">
@@ -219,25 +219,6 @@
     </div>
     <div class="card">
         <div class="card-body">
-
-
-            <!-- <div class="form-wrapper">
-                    <input type="text" placeholder="Name" autocomplete="off" [(ngModel)]="name"
-                        [ngModelOptions]="{standalone: true}" />
-                </div>
-                <div class="form-wrapper">
-                    <input type="email" placeholder="Email" autocomplete="off" [(ngModel)]="email"
-                        [ngModelOptions]="{standalone: true}" />
-                </div>
-                <div class="form-wrapper">
-                    <input type="tel" placeholder="Contact Number" (keypress)="keyPress($event)" autocomplete="off"
-                        maxlength="11" [(ngModel)]="phonenumber" [ngModelOptions]="{standalone: true}" />
-                </div>
-                <div class="form-wrapper">
-                    <input type="any_information" placeholder="Any special instructions?" autocomplete="off"
-                        maxlength="11" />
-                </div> -->
-
             <form [formGroup]="formGroup" class="form cutomform">
                 <mat-form-field [hideRequiredMarker]="hideRequiredControl.value" [floatLabel]="floatLabelControl.value">
                     <mat-label>Full Name</mat-label>
@@ -262,9 +243,6 @@
                     <mat-error *ngIf="formGroup.controls.mobileNumber.hasError('pattern')">
                         Phone number is not a valid
                     </mat-error>
-                    <!-- <mat-error *ngIf="formGroup.controls.mobileNumber.hasError('pattern')">
-                            It is not a valid mobile number.
-                        </mat-error> -->
                 </mat-form-field>
                 <mat-form-field class="p-0" [hideRequiredMarker]="hideRequiredControl.value"
                     [floatLabel]="floatLabelControl.value">
@@ -301,9 +279,8 @@
                     <div class="topheading">
                         <i class="fa fa-arrow-circle-up" aria-hidden="true"></i>
                         <span>Pick Up Address</span>
-
                     </div>
-                    <div class="address">
+                    <div class="address addShiftSpace">
                         <span>{{pickUpLocationName}}</span>
                     </div>
                 </li>
@@ -312,7 +289,7 @@
                         <i class="fa fa-arrow-circle-down" aria-hidden="true"></i>
                         <span>Delivery Address</span>
                     </div>
-                    <div class="address">
+                    <div class="address addShiftSpace">
                         <span>{{destinationLocationName}}</span>
                     </div>
                 </li>
@@ -321,25 +298,40 @@
                         <i class="fa fa-clock-o" aria-hidden="true"></i>
                         <span>Delivery Date & Time</span>
                     </div>
-                    <div class="time">
+                    <div class="time addShiftSpace">
                         <span>Date : {{ selectedDate | date:'fullDate' }}</span>
-                        <span>Time : {{selectedTimeSlot}}</span>
+                        <span>Time Slot : {{selectedTimeSlot}}</span>
                     </div>
                 </li>
                 <li>
                     <div class="topheading">
                         <i class="fa fa-usd pricelogo" aria-hidden="true"></i>
                         <span>Price</span>
-
                     </div>
-                    <div class="total">
-                        <span>Total</span>
-                        <span>{{priceForDelivery}}</span>
+                    <div class="total addShiftSpace">
+                        <span>Total price per hour</span>
+                        <span><b>{{priceForDelivery}}</b></span>
 
                     </div>
                     <!-- <div class="Price">
                         <span>Promo Code?</span>
                     </div> -->
+                </li>
+                <li *ngIf="!rightNowButton">
+                    <div class="topheading ">
+                        <i class="fa fa-paper-plane" aria-hidden="true"></i>
+                        <span>Token Amount to book your delivery</span>
+                    </div>
+                    <div class="total addShiftSpace">
+                        <span>Pay Token Amount of <strong>${{showTokenAmount()}}</strong> to book your delivery.</span>
+                        <span><b>${{showTokenAmount()}}</b></span>
+                    </div>
+                </li>
+                <li *ngIf="rightNowButton">
+                    <div class="topheading">
+                        <i class="fa fa-paper-plane" aria-hidden="true"></i>
+                        <span>Pay on Pick-Up</span>
+                    </div>
                 </li>
             </ul>
         </div>

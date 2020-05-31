@@ -41,6 +41,7 @@ export class DeliveryComponent implements OnInit {
   temparyNameDesination: string
   destinationLocationName: string;
   destinationRegion: string;
+  pickupRegion : string;
   selectedItemList: Array<any>
   searchItemList: Array<any>
   searchingValue: string
@@ -67,8 +68,7 @@ export class DeliveryComponent implements OnInit {
   floatLabelControl = new FormControl('auto');
   selecteddatebutton = false;
   rightNowButton = false;
-  buttonNameDataSection: any
-
+  totalDistance:number = 0;
 
   constructor(private mapsAPILoader: MapsAPILoader, public ngZone: NgZone, public userBackEndService: UserpanelServiceService,
     public modalService: NgbModal, public cookiesSerive: CookieService, public spinner: NgxSpinnerService,
@@ -102,33 +102,14 @@ export class DeliveryComponent implements OnInit {
     this.iconDisplay = "fa fa-arrow-circle-up";
     this.previousId = "";
     this.timearrayList = [];
-    this.buttonNameDataSection = "selectbydatetime"
-
-
     if (this.itemList.length == 0) {
       this.loadMap()
       this.getSelectedLocationIds();
     }
-
     this.formGroup = formBuilder.group({
       hideRequired: this.hideRequiredControl,
       floatLabel: this.floatLabelControl,
     });
-
-    // this.userBackEndService.getItemLists().subscribe(responseData => {
-    //   this.itemList = responseData;
-    //   this.pickupLocation = false;
-    //   console.log(this.itemList)
-    // })
-    // // // this.formFieldshow=true;
-    // //  this.showFinallist=true;
-    // this.dateSelectedPage=true;
-    // this.formFieldshow=false;
-    // this.getDateNextThree();
-    // this.itemList = itemListData;
-    // this.getDateNextThree();
-    // this.dateSelectedPage = true
-
   }
 
   ngOnInit(): void {
@@ -188,9 +169,7 @@ export class DeliveryComponent implements OnInit {
     this.mapsAPILoader.load().then(() => {
       this.setCurrentLocation();
       this.geoCoder = new google.maps.Geocoder;
-      let autocomplete = new google.maps.places.Autocomplete(this.searchElementRef.nativeElement, {
-
-      });
+      let autocomplete = new google.maps.places.Autocomplete(this.searchElementRef.nativeElement, {});
       autocomplete.addListener("place_changed", () => {
         this.ngZone.run(() => {
           let place = autocomplete.getPlace();
@@ -203,9 +182,13 @@ export class DeliveryComponent implements OnInit {
             let placeRegex = '(.*(' + element.place_Name.toUpperCase() + ').+(FL|FLORIDA).+(USA|UNITED STATES))+';
             if (place.formatted_address.toUpperCase().match(placeRegex)) {
               found = true;
-              this.destinationRegion = element.region;
+              if (this.pickupLocation == true) {
+                this.pickupRegion = element.region;
+              }
+              else {
+                this.destinationRegion = element.region;
+              }
             }
-
           });
           if (found) {
             let showNextButton: boolean = true;
@@ -227,10 +210,7 @@ export class DeliveryComponent implements OnInit {
           }
         });
       });
-
     });
-
-
   }
 
   /**
@@ -261,7 +241,9 @@ export class DeliveryComponent implements OnInit {
     return className;
   }
 
-
+  /**
+   * functionality on Back button click
+   */
   gotoBack() {
     if (this.showFinallist == true) {
       this.showFinallist = false;
@@ -336,13 +318,44 @@ export class DeliveryComponent implements OnInit {
       let totalDisTanceintoMiles: any;
       let calculateDistanceByRoadservice = new google.maps.DistanceMatrixService().getDistanceMatrix({ 'origins': [this.origin], 'destinations': [this.destination], travelMode: 'DRIVING', 'unitSystem': google.maps.UnitSystem.IMPERIAL }, (results: any) => {
         totalDisTanceintoMiles = results.rows[0].elements[0].distance?.text;
-        if (parseFloat(totalDisTanceintoMiles.match('[\\d]+.[\\d]+')[0]) > 25) {
-          if (this.destinationRegion == "South Region") {
-            this.priceForDelivery = '$119/hr';
-          }
-          else if (this.destinationRegion == "Central Region") {
-            this.priceForDelivery = '$149/hr';
-          }
+        this.totalDistance = parseFloat(totalDisTanceintoMiles.match('[\\d]+.[\\d]+')[0]);
+        switch (this.pickupRegion) {
+          case "Home":
+                      {
+                        if (this.totalDistance > 25) {
+                          if (this.destinationRegion == "South Region") {
+                            this.priceForDelivery = '$119.50/hr';
+                          } else if (this.destinationRegion == "Central Region") {
+                            this.priceForDelivery = '$149.50/hr';
+                          } else {
+                            this.priceForDelivery = '$99.50/hr';
+                          }
+                        }
+                        else {
+                          this.priceForDelivery = '$99/hr';
+                        }
+                        break;
+                      }
+          case "South Region":
+                      {
+                        if (this.totalDistance < 25) {
+                          this.priceForDelivery = '$119/hr';
+                        }
+                        else {
+                          this.priceForDelivery = '$149.50/hr';
+                        }
+                        break;
+                      }
+          case "Central Region":
+                      {
+                        if (this.totalDistance < 25) {
+                          this.priceForDelivery = '$149/hr';
+                        }
+                        else {
+                          this.priceForDelivery = '$149.50/hr';
+                        }
+                        break;
+                      }
         }
       });
       if (this.destinationLocationName.length != 0 && this.temparyNameDesination.length == 0) {
@@ -361,7 +374,6 @@ export class DeliveryComponent implements OnInit {
                 product.quantity = selectedProduct.quantity
               }
             });
-
           });
         });
       }
@@ -372,10 +384,7 @@ export class DeliveryComponent implements OnInit {
       }, 1000);
     } else if (this.showItemPage && this.itemList.length != 0) {
       this.showItemPage = false;
-      this.timearrayList = JSON.parse(JSON.stringify(timedata));
       this.getDateNextThree();
-
-
       if (this.selecteddatebutton == true) {
         if (this.selectedDate != null) {
           this.selectedDate = this.selectedDate;
@@ -386,24 +395,18 @@ export class DeliveryComponent implements OnInit {
       } else {
         this.rightNowButton = true
       }
-
       this.dateSelectedPage = true;
-
     } else if (this.dateSelectedPage) {
       this.dateSelectedPage = false;
       this.formFieldshow = true;
-
     } else if (this.formFieldshow == true) {
-
-      alert(JSON.stringify(this.formGroup.value))
       this.formFieldshow = false;
       this.showFinallist = true;
-
     } else {
-
     }
   }
 
+ 
   /**
    * Method to Reset all the Values 
    */
@@ -424,15 +427,10 @@ export class DeliveryComponent implements OnInit {
     if (this.showItemPage && this.selectedItemList.length > 0) {
       return false;
     }
-    if (this.dateSelectedPage && this.selectedDate != null) {
+    if (this.dateSelectedPage && this.selectedDate != null && this.selectedTimeSlot != '') {
       return false;
     }
-    // if (this.formFieldshow && this.name.trim().length != 0 && this.email.trim().length != 0 && this.phonenumber.trim().length != 0) {
-    //   CommonMethods.showconsole(this.Tag, "Function")
-    //   return false;
-    // }
     if (this.formFieldshow && this.formGroup.valid) {
-      CommonMethods.showconsole(this.Tag, "Function")
       return false;
     }
     return true;
@@ -463,7 +461,6 @@ export class DeliveryComponent implements OnInit {
    * method to get next three days Date
    */
   getDateNextThree() {
-    this.dateList = [];
     let today = new Date();
     if (today.getHours() >= 19) {
       if (today.getHours() == 19 && today.getMinutes() > 30) {
@@ -473,21 +470,24 @@ export class DeliveryComponent implements OnInit {
         today.setDate(today.getDate() + 1);
       }
     }
-    this.dateList.push({
-      "date_Id": "1",
-      "date": today.setDate(today.getDate()),
-      "showtime": false
-    });
-    this.dateList.push({
-      "date_Id": "2",
-      "date": today.setDate(today.getDate() + 1),
-      "showtime": false
-    });
-    this.dateList.push({
-      "date_Id": "3",
-      "date": today.setDate(today.getDate() + 1),
-      "showtime": false
-    });
+    if (this.dateList.length == 0) {
+      this.timearrayList = JSON.parse(JSON.stringify(timedata));
+      this.dateList.push({
+        "date_Id": "1",
+        "date": today.setDate(today.getDate()),
+        "showtime": false
+      });
+      this.dateList.push({
+        "date_Id": "2",
+        "date": today.setDate(today.getDate() + 1),
+        "showtime": false
+      });
+      this.dateList.push({
+        "date_Id": "3",
+        "date": today.setDate(today.getDate() + 1),
+        "showtime": false
+      });
+    }
   }
 
   /**
@@ -568,7 +568,9 @@ export class DeliveryComponent implements OnInit {
 
   }
 
-  /** Form Input Validated */
+  /**
+   *  Input contact Form Validation
+   */
   createForm() {
     let emailregex: RegExp = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
     this.formGroup = this.formBuilder.group({
@@ -579,12 +581,19 @@ export class DeliveryComponent implements OnInit {
     });
   }
 
+  /**
+   * return error for email field
+   */
   getErrorEmail() {
     return this.formGroup.get('email').hasError('required') ? 'Email address is required' :
       this.formGroup.get('email').hasError('pattern') ? 'Email address is not valid' : '';
 
   }
 
+  /**
+   * disabling all characters  other than numbers
+   * @param event 
+   */
   _keyPress(event: any) {
     const pattern = /[0-9]/;
     let inputChar = String.fromCharCode(event.charCode);
@@ -594,25 +603,35 @@ export class DeliveryComponent implements OnInit {
     }
   }
 
-  /**Click Method Selected date and right now button*/
-  selctedDateCategory(buttonname: any) {
-    this.buttonNameDataSection = buttonname;
+  /**
+   * on Click of  Selected date and right now button
+   * @param buttonname 
+   */
+  selctedDateCategory(buttonname: string) {
     if (buttonname == 'selectbydatetime' && this.selecteddatebutton == false) {
-      let newemptyvale: Date;
-      this.selectedDate = newemptyvale;
+      this.selectedDate = null;
+      this.dateList = [];
+      this.selectedTimeSlot = "";
       this.getDateNextThree();
       this.selecteddatebutton = true;
       this.rightNowButton = false;
     } else {
+      this.showtimefalse = false;
       this.timearrayList = [];
-      this.selectedTimeSlot = "";
       this.selectedDate = new Date();
+      this.selectedTimeSlot = this.selectedDate.toLocaleTimeString().slice(0,-3);
+      if(this.selectedDate.getHours()<=12){
+        this.selectedTimeSlot = this.selectedTimeSlot +' AM';
+      }
       this.selecteddatebutton = false;
       this.rightNowButton = true;
     }
 
   }
 
+  /**
+   * method to count total selected items
+   */
   countTotalQuantityOfSelectedItems(): number {
     let totalCount: number = 0;
     this.selectedItemList.forEach(item => {
@@ -622,8 +641,8 @@ export class DeliveryComponent implements OnInit {
   }
 
   /**
- * Sweet Alert   Show    
- */
+   * show confirmation popup before resetting data
+   */
   opensweetalert() {
     Swal.fire({
       title: "Are you sure?",
@@ -642,7 +661,9 @@ export class DeliveryComponent implements OnInit {
   }
 
 
-  /**Data Reset */
+  /**
+   * Data Reset 
+   */
   dataReset() {
     this.pickupLocation = true;
     this.destinationboolean = false;
@@ -668,6 +689,13 @@ export class DeliveryComponent implements OnInit {
     this.textBoxPLaceBolder = "Enter PickUp Address"
     this.iconDisplay = "fa fa-arrow-circle-up";
     this.setCurrentLocation()
+  }
+
+  /**
+   * method to get formatted  token amount
+   */
+  showTokenAmount():number{
+    return parseFloat(this.priceForDelivery.match('[\\d]+')[0]);
   }
 
 }
