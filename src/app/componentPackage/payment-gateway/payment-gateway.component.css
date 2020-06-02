@@ -55,6 +55,14 @@
   }
  
 
+.closediv{
+  position: absolute;
+  right: 6px;
+  top: 3px;
+  font-size: 18px;
+  cursor: pointer;
+  color: #ec3441;
+}
 
 
 

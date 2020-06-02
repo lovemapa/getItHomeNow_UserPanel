@@ -270,6 +270,14 @@ button {
 .divliveryItem .searchDiv {
     background: transparent;
 }
+.divliveryItem .searchDiv .notes {
+    position: absolute;
+    right: 119px;
+    top: 8px;
+    color: #ec3441;
+    font-size: 18px;
+    width: 228px;
+}
 
 .divliveryItem .searchDiv .card {
     width: auto;

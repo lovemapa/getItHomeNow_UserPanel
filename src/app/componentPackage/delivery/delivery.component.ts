@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild, ElementRef, NgZone } from '@angular/core';
-import { MapsAPILoader } from '@agm/core';
+import { MapsAPILoader, MouseEvent } from '@agm/core';
 import { CommonMethods } from 'src/app/utillpackage/common-method';
 import { GoogleMap } from '@agm/core/services/google-maps-types';
 import { UserpanelServiceService } from 'src/app/backendServices/userpanel-service.service';
@@ -14,6 +14,8 @@ import Swal from 'sweetalert2/dist/sweetalert2.js';
 import { formatDate } from '@angular/common';
 import { PaymentGatewayComponent } from '../payment-gateway/payment-gateway.component';
 import { MyCookies } from 'src/app/utillpackage/utillpackage/my-cookies';
+import { MyRoutingMethods } from 'src/app/utillpackage/utillpackage/my-routing-methods';
+import { Router } from '@angular/router';
 declare var google: any;
 @Component({
   selector: 'app-delivery',
@@ -75,7 +77,7 @@ export class DeliveryComponent implements OnInit {
 
   constructor(private mapsAPILoader: MapsAPILoader, public ngZone: NgZone, public userBackEndService: UserpanelServiceService,
     public modalService: NgbModal, public cookiesSerive: CookieService, public spinner: NgxSpinnerService,
-    private formBuilder: FormBuilder) {
+    private formBuilder: FormBuilder,public router:Router) {
     this.origin = "";
     this.destination = "";
     this.phonenumber = "";
@@ -113,6 +115,7 @@ export class DeliveryComponent implements OnInit {
       hideRequired: this.hideRequiredControl,
       floatLabel: this.floatLabelControl,
     });
+
   }
 
   ngOnInit(): void {
@@ -228,6 +231,37 @@ export class DeliveryComponent implements OnInit {
     }
   }
 
+// mapClicked($event: MouseEvent) {
+  //   this.addSubStoreModel.lat = $event.coords.lat;
+  //   this.addSubStoreModel.lat = $event.coords.lng;
+  //   CommonMethods.showconsole(this.Tag," before Lat:- "+this.addSubStoreModel.lat)
+  //   CommonMethods.showconsole(this.Tag,"before Long: "+this.addSubStoreModel.lng)
+  // }
+
+  markerDragEnd($event: MouseEvent) {
+    console.log('dragEnd', $event);
+    this.lat = $event.coords.lat;
+    this.lng = $event.coords.lng;
+    CommonMethods.showconsole(this.Tag, "Lat:- " + this.lat)
+    CommonMethods.showconsole(this.Tag, "Long: " + this.lng)
+    this.getAddress(this.lat,this.lng)
+  }
+  getAddress(latitude, longitude) {
+    this.geoCoder.geocode({ 'location': { lat: latitude, lng: longitude } }, (results, status) => {
+
+      if (status === 'OK') {
+        if (results[0]) {
+          // this.zoom = 16;
+        } else {
+          window.alert('No results found');
+        }
+      } else {
+        window.alert('Geocoder failed due to: ' + status);
+      }
+
+    });
+  }
+
 
   /**
    * close Modal Function 
@@ -275,7 +309,7 @@ export class DeliveryComponent implements OnInit {
       setTimeout(() => {
         this.showItemPage = true;
         this.spinner.hide()
-      }, 1000);
+      }, 500);
     } else if (this.showItemPage == true && this.itemList.length != 0) {
       this.showItemPage = false;
       this.itemList = []
@@ -388,7 +422,7 @@ export class DeliveryComponent implements OnInit {
         this.destinationboolean = false;
         this.showItemPage = true;
         this.spinner.hide();
-      }, 1000);
+      }, 500);
     } else if (this.showItemPage && this.itemList.length != 0) {
       this.showItemPage = false;
       this.getDateNextThree();
@@ -406,11 +440,12 @@ export class DeliveryComponent implements OnInit {
     } else if (this.dateSelectedPage) {
       this.dateSelectedPage = false;
       if (MyCookies.checkLoginStatus(this.cookiesSerive) == true) {
+        let emailregex: RegExp = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
         var userfullname = MyCookies.getUserFistName(this.cookiesSerive) + " " + MyCookies.getUseLastName(this.cookiesSerive)
         this.formGroup = this.formBuilder.group({
-          'name': userfullname,
-          'email': MyCookies.getEmaild(this.cookiesSerive),
-          'mobileNumber': MyCookies.getUsercontact(this.cookiesSerive),
+          'name': [userfullname,[Validators.required] ],
+          'email':[ MyCookies.getEmaild(this.cookiesSerive), [Validators.required, Validators.pattern(emailregex)]],
+          'mobileNumber': [MyCookies.getUsercontact(this.cookiesSerive),[Validators.required, Validators.pattern('[0-9]{10}')]],
           'any_special_instruction': [null]
         });
       }
@@ -723,6 +758,7 @@ modalOpen()
 {
 let user = {
   name: 'Izzat Nadiri',
+  email:  this.formGroup.get('email').value,
   price: parseFloat(this.priceForDelivery.match('[\\d]+')[0])
   }
   
@@ -736,6 +772,28 @@ let user = {
     });
 
     this.modalReference.componentInstance.name =user;
+    this.modalReference.result.then(
+      (data: any) => {
+        if (data != "") {
+          CommonMethods.showconsole(this.Tag, "Token Id :- " + data)
+          Swal.fire({
+            text: "Payment successful",
+            icon: 'success'
+          }).then((result) => {
+            if (result.value === true) {
+              this.dataReset()
+              MyRoutingMethods.gotoHome(this.router)
+            }
+          });
+       
+        } else {
+          CommonMethods.showconsole(this.Tag, "Token Id :- " + data)
+        }
+        // this.processData(data);
+
+      },
+      (reason: any) => { }
+    );
 }
 
 

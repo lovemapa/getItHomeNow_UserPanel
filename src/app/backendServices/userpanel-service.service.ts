@@ -7,6 +7,7 @@ import { MyCookies } from '../utillpackage/utillpackage/my-cookies';
 import { CookieService } from 'ngx-cookie-service';
 import { CookiesModel } from '../modalPackages/cookies';
 import { LoginSignupModal } from '../modalPackages/login_signup';
+import { CommonMethods } from '../utillpackage/common-method';
 
 @Injectable({
   providedIn: 'root'
@@ -18,6 +19,7 @@ export class UserpanelServiceService {
   private loginUrl: string = MyConstants.BASEURL + "user/login";
   private userForgotPasswordUrl: string = MyConstants.BASEURL + "user/forget-password";
   private updateUSerPwdUrl: string = MyConstants.BASEURL + "user/updateProfile";
+  private paymentUrl: string = MyConstants.BASEURL + "payment/makePayment";
 
 
   private userId: string;
@@ -182,6 +184,20 @@ export class UserpanelServiceService {
 let url = "https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=place_id:ChIJa8lu5gvtDzkR_hlzUvln_6U&destinations=place_id:ChIJEW8eQiq2DzkRFI0l9ymK0us&key=AIzaSyBMrKj9G0-f3QPF-P1D99iBChHT-PIICwo";
     return this.http.get(url);
     
+  }
+
+
+  /**
+    * method to make a payment 
+    * @param makePayment payemnt 
+   */
+  makePaymentFinal(makePayment: any): Observable<any> {
+
+     CommonMethods.showconsole("payment DAta:- ",makePayment)
+    return this.http.post<any>(this.paymentUrl, makePayment, ).pipe(map(response=>{
+      return response;
+    }));
+
   }
 
 

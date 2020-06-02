@@ -2,8 +2,13 @@ import { Component, OnInit, ViewChild, Input } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 
 import { StripeService, Elements, Element as StripeElement, ElementsOptions, StripeCardComponent, ElementOptions } from "ngx-stripe";
-import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal, NgbModalRef, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { CommonMethods } from 'src/app/utillpackage/common-method';
+import { UserpanelServiceService } from 'src/app/backendServices/userpanel-service.service';
+import { NgxSpinnerService } from 'ngx-spinner';
+import Swal from 'sweetalert2/dist/sweetalert2.js';
+import { MyCookies } from 'src/app/utillpackage/utillpackage/my-cookies';
+import { CookieService } from 'ngx-cookie-service';
 @Component({
   selector: 'app-payment-gateway',
   templateUrl: './payment-gateway.component.html',
@@ -32,7 +37,7 @@ export class PaymentGatewayComponent implements OnInit {
         }
       }
     },
-    hidePostalCode : true
+    hidePostalCode : true,
   };
 
 
@@ -75,7 +80,9 @@ export class PaymentGatewayComponent implements OnInit {
   @Input() name;
   constructor(
     private formBuilder: FormBuilder,
-    private stripeService: StripeService, public ngbModalService: NgbModal) {
+    private stripeService: StripeService,
+     public ngbModalService: NgbModal,public userBackEndService:UserpanelServiceService,
+     public spinner:NgxSpinnerService,public activemodal:NgbActiveModal,public cookiesService:CookieService) {
 
     CommonMethods.showconsole(this.Tag, "USer Data :- " + this.name)
 
@@ -87,18 +94,53 @@ export class PaymentGatewayComponent implements OnInit {
 
 
   createForm() {
-    // let emailregex: RegExp = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-    this.stripeTest = this.formBuilder.group({
-      // 'email': [null, [Validators.required, Validators.pattern(emailregex)]],
-      'name': [null, Validators.required],
-      // 'mobileNumber': [null, [Validators.required, Validators.pattern('[0-9]{10}')]],
-      'address_line1': [null,Validators.required],
-      'address_city': [null,Validators.required],
-      'address_state': [null,Validators.required],
-      'address_zip': [null,Validators.required],
-      'address_country': [null,Validators.required],
-      // 'country': [null,Validators.required]
-    });
+
+    if(MyCookies.checkLoginStatus(this.cookiesService) ==  true)
+    {
+       var username = MyCookies.getUserFistName(this.cookiesService)+" "+MyCookies.getUseLastName(this.cookiesService)
+         if(
+           MyCookies.getUserAddress(this.cookiesService) != "" &&
+           MyCookies.getUsercity(this.cookiesService) != "" &&
+           MyCookies.getUserstate(this.cookiesService) != "" && 
+           MyCookies.getUserzip(this.cookiesService) != "" 
+         ){
+
+          this.stripeTest = this.formBuilder.group({
+     
+            'name': [username, Validators.required],
+            'address_line1': [MyCookies.getUserAddress(this.cookiesService),Validators.required],
+            'address_city': [ MyCookies.getUsercity(this.cookiesService),Validators.required],
+            'address_state': [MyCookies.getUserstate(this.cookiesService),Validators.required],
+            'address_zip': [MyCookies.getUserzip(this.cookiesService),Validators.required],
+            'address_country': [null,Validators.required],
+          });
+
+         }else{
+
+          this.stripeTest = this.formBuilder.group({
+     
+            'name': [username, Validators.required],
+            'address_line1': [null,Validators.required],
+            'address_city': [null,Validators.required],
+            'address_state': [null,Validators.required],
+            'address_zip': [null,Validators.required],
+            'address_country': [null,Validators.required],
+          });
+
+         }
+  
+    }else{
+      this.stripeTest = this.formBuilder.group({
+     
+        'name': [null, Validators.required],
+        'address_line1': [null,Validators.required],
+        'address_city': [null,Validators.required],
+        'address_state': [null,Validators.required],
+        'address_zip': [null,Validators.required],
+        'address_country': [null,Validators.required],
+      });
+    }
+
   }
 
   // getErrorEmail() {
@@ -119,19 +161,47 @@ export class PaymentGatewayComponent implements OnInit {
 
 
   buy() {
+    // this.modalRef.close()
+   
+    this.spinner.show();
     const name = this.stripeTest.get('name').value;
+    const address_line1 = this.stripeTest.get('address_line1').value;
+    const address_city = this.stripeTest.get('address_city').value;
+    const address_state = this.stripeTest.get('address_state').value;
+    const address_zip = this.stripeTest.get('address_zip').value;
+    const address_country = this.stripeTest.get('address_country').value;
     // const address = this.stripeTest.get('name').value;
     // const name = this.stripeTest.get('name').value;
     // const name = this.stripeTest.get('name').value;
     this.stripeService
-      .createToken(this.card.getCard(), { name })
+      .createToken(this.card.getCard(), { name,address_line1,address_city,address_state,address_zip,address_country })
       .subscribe(result => {
         if (result.token) {
           // Use the token to create a charge or a customer
           // https://stripe.com/docs/charges
-          console.log(JSON.stringify(result.token));
-          console.log(JSON.stringify(result));
+          // console.log(JSON.stringify(result.token));
+          // console.log(JSON.stringify(result));
           console.log(result.token.id);
+            let paymentData:any={};
+              paymentData.amount=this.name.price;
+              paymentData.currency="inr";
+              paymentData.receipt_email=this.name.email;
+              paymentData.token=result.token.id;
+
+          this.userBackEndService.makePaymentFinal(paymentData).subscribe((responseData)=>{
+              this.spinner.hide();
+             if (responseData.success) {
+              this.activemodal.close('success');
+             
+            } else {
+      
+              CommonMethods.opensweetalertError(responseData.message)
+            }
+
+
+          });
+
+
         } else if (result.error) {
           // Error creating the token
           console.log(result.error.message);
@@ -162,6 +232,31 @@ export class PaymentGatewayComponent implements OnInit {
 
   joincolse() {
     this.modalRef.close();
+  }
+
+
+  /**
+   * show confirmation popup before resetting data
+   */
+  // opensweetalert() {
+  //   Swal.fire({
+  //     title: "Are you sure?",
+  //     text: "Once you click , you will not be able to recover this imaginary file!",
+  //     icon: 'warning',
+  //     confirmButtonText: 'Yes',
+  //     showCancelButton: true,
+  //     dangerMode: true,
+  //   }).then((willDelete) => {
+  //     if (willDelete.value) {
+  //       this.dataReset();
+  //     } else {
+       
+  //     }
+  //   });
+  // }
+
+  closeModal(){
+    this.activemodal.close("");
   }
 
 }
