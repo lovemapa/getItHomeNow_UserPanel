@@ -790,8 +790,8 @@ let user = {
         if (data != "") {
           CommonMethods.showconsole(this.Tag, "Token Id :- " + data)
           Swal.fire({
-            text: "Thank You",
-            decription:"Driver will contact you soon",
+            title: "Thank You",
+            text:"Driver will contact you soon",
             icon: 'success'
           }).then((result) => {
             if (result.value === true) {
