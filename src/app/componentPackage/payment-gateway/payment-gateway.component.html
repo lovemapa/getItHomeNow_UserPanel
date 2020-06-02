@@ -77,7 +77,7 @@
 
           <mat-form-field >
             <mat-label>Country</mat-label>
-            <input matInput placeholder="Enter country" formControlName="address_country" required>
+            <input matInput placeholder="Enter country" formControlName="address_country"  (keypress)="_keyPresscharacter($event)" required>
             <mat-error *ngIf="stripeTest.controls.address_country.hasError('required')">
               Country is required
             </mat-error>

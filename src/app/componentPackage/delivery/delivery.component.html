@@ -347,15 +347,15 @@
 
 
 
-<div class="stepper">
+<div class="stepper py-2 ">
     <div class="rightSide">
-        <button (click)="clickReset()" [disabled]="pickupLocation">Reset</button>
+        <button class="mb-0" (click)="clickReset()" [disabled]="pickupLocation">Reset</button>
     </div>
     <div class="leftside">
-        <button class="backbutton" (click)="gotoBack()" *ngIf="pickupLocation == false">Back</button>
-        <button class="nextbuton" (click)="gotoNext()" [disabled]="toggelNextBtn()"
+        <button class="backbutton mb-0" (click)="gotoBack()" *ngIf="pickupLocation == false">Back</button>
+        <button class="nextbuton mb-0" (click)="gotoNext()" [disabled]="toggelNextBtn()"
             *ngIf="showFinallist == false">Next</button>
-        <button class="nextbuton" (click)="checkoutClick()" *ngIf="showFinallist == true">Checkout</button>
+        <button class="nextbuton mb-0" (click)="checkoutClick()" *ngIf="showFinallist == true">Checkout</button>
         <!-- <button class="nextbuton" (click)="checkoutClick()" >modal Pop </button> -->
     </div>
 </div>
