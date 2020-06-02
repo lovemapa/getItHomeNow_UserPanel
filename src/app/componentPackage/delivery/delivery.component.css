@@ -272,11 +272,17 @@ button {
 }
 .divliveryItem .searchDiv .notes {
     position: absolute;
-    right: 119px;
-    top: 8px;
+    right: 83px;
+    top: 33px;
     color: #ec3441;
-    font-size: 18px;
-    width: 228px;
+    font-size: 15px;
+    width: 279px;
+    padding: 10px;
+    border-left: 4px solid #ec3441;
+    background: #ec344154;
+}
+.divliveryItem .searchDiv .notes span {
+color: #fff !important;
 }
 
 .divliveryItem .searchDiv .card {
@@ -486,7 +492,11 @@ a:hover {
 }
 
 .divliveryItem #accordion .card-block ul li .outerdiv span {
-    padding: 19px 0;
+  
+    padding: 19px 5px;
+    display: block;
+    width: 318px;
+    word-wrap: break-word;
 }
 
 /* .divliveryItem #accordion .card-block ul li .showcount {

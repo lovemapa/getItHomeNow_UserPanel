@@ -654,6 +654,19 @@ export class DeliveryComponent implements OnInit {
     }
   }
 
+ /**
+   * disabling all number   other than characters
+   * @param event 
+   */
+  _keyPresscharacter(event: any) {
+    const pattern = /^[a-zA-Z\s]*$/;
+    let inputChar = String.fromCharCode(event.charCode);
+    if (!pattern.test(inputChar)) {
+      event.preventDefault();
+
+    }
+  }
+
   /**
    * on Click of  Selected date and right now button
    * @param buttonname 
@@ -766,7 +779,7 @@ let user = {
     this.modalReference =this.modalService.open(PaymentGatewayComponent, {
       ariaLabelledBy: 'modal-basic-title',
        windowClass: 'paymentModal',
-      // backdrop:false,
+      backdrop:"static",
       centered: true,
       
     });
@@ -777,7 +790,8 @@ let user = {
         if (data != "") {
           CommonMethods.showconsole(this.Tag, "Token Id :- " + data)
           Swal.fire({
-            text: "Payment successful",
+            text: "Thank You",
+            decription:"Driver will be contact get Back you soon",
             icon: 'success'
           }).then((result) => {
             if (result.value === true) {

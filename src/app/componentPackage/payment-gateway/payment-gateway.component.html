@@ -25,7 +25,7 @@
   <form novalidate (ngSubmit)="buy()" [formGroup]="stripeTest " class="customForm p-2">
     <mat-form-field   >
       <mat-label>Full Name</mat-label>
-      <input matInput placeholder="Enter Full Name" formControlName="name" required>
+      <input matInput placeholder="Enter Full Name" formControlName="name" (keypress)="_keyPresscharacter($event)" required>
       <mat-error *ngIf="stripeTest.controls.name.hasError('required')">
         Full Name is required
       </mat-error>
@@ -44,7 +44,7 @@
         <div class="col-md-6 p-1">
           <mat-form-field  >
             <mat-label>City</mat-label>
-            <input matInput placeholder="Enter city" formControlName="address_city" required>
+            <input matInput placeholder="Enter city" formControlName="address_city" (keypress)="_keyPresscharacter($event)" required>
             <mat-error *ngIf="stripeTest.controls.address_city.hasError('required')">
               City is required
             </mat-error>
@@ -54,7 +54,7 @@
 
           <mat-form-field  >
             <mat-label>State</mat-label>
-            <input matInput placeholder="Enter State" formControlName="address_state" required>
+            <input matInput placeholder="Enter State" formControlName="address_state" (keypress)="_keyPresscharacter($event)" required>
             <mat-error *ngIf="stripeTest.controls.address_state.hasError('required')">
               State is required
             </mat-error>
@@ -67,7 +67,7 @@
         <div class="col-md-6 p-1">
           <mat-form-field  >
             <mat-label>Zip Code</mat-label>
-            <input matInput placeholder="Enter zip code" formControlName="address_zip" required>
+            <input matInput placeholder="Enter zip code" formControlName="address_zip" (keypress)="_keyPress($event)" maxlength="5" required>
             <mat-error *ngIf="stripeTest.controls.address_zip.hasError('required')">
               Zip code is required
             </mat-error>

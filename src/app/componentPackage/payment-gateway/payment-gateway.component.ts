@@ -37,7 +37,7 @@ export class PaymentGatewayComponent implements OnInit {
         }
       }
     },
-    hidePostalCode : true,
+    hidePostalCode: true,
   };
 
 
@@ -81,8 +81,8 @@ export class PaymentGatewayComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private stripeService: StripeService,
-     public ngbModalService: NgbModal,public userBackEndService:UserpanelServiceService,
-     public spinner:NgxSpinnerService,public activemodal:NgbActiveModal,public cookiesService:CookieService) {
+    public ngbModalService: NgbModal, public userBackEndService: UserpanelServiceService,
+    public spinner: NgxSpinnerService, public activemodal: NgbActiveModal, public cookiesService: CookieService) {
 
     CommonMethods.showconsole(this.Tag, "USer Data :- " + this.name)
 
@@ -95,49 +95,48 @@ export class PaymentGatewayComponent implements OnInit {
 
   createForm() {
 
-    if(MyCookies.checkLoginStatus(this.cookiesService) ==  true)
-    {
-       var username = MyCookies.getUserFistName(this.cookiesService)+" "+MyCookies.getUseLastName(this.cookiesService)
-         if(
-           MyCookies.getUserAddress(this.cookiesService) != "" &&
-           MyCookies.getUsercity(this.cookiesService) != "" &&
-           MyCookies.getUserstate(this.cookiesService) != "" && 
-           MyCookies.getUserzip(this.cookiesService) != "" 
-         ){
+    if (MyCookies.checkLoginStatus(this.cookiesService) == true) {
+      var username = MyCookies.getUserFistName(this.cookiesService) + " " + MyCookies.getUseLastName(this.cookiesService)
+      if (
+        MyCookies.getUserAddress(this.cookiesService) != "" &&
+        MyCookies.getUsercity(this.cookiesService) != "" &&
+        MyCookies.getUserstate(this.cookiesService) != "" &&
+        MyCookies.getUserzip(this.cookiesService) != ""
+      ) {
 
-          this.stripeTest = this.formBuilder.group({
-     
-            'name': [username, Validators.required],
-            'address_line1': [MyCookies.getUserAddress(this.cookiesService),Validators.required],
-            'address_city': [ MyCookies.getUsercity(this.cookiesService),Validators.required],
-            'address_state': [MyCookies.getUserstate(this.cookiesService),Validators.required],
-            'address_zip': [MyCookies.getUserzip(this.cookiesService),Validators.required],
-            'address_country': [null,Validators.required],
-          });
+        this.stripeTest = this.formBuilder.group({
 
-         }else{
+          'name': [username, Validators.required],
+          'address_line1': [MyCookies.getUserAddress(this.cookiesService), Validators.required],
+          'address_city': [MyCookies.getUsercity(this.cookiesService), Validators.required],
+          'address_state': [MyCookies.getUserstate(this.cookiesService), Validators.required],
+          'address_zip': [MyCookies.getUserzip(this.cookiesService), Validators.required],
+          'address_country': [null, Validators.required],
+        });
 
-          this.stripeTest = this.formBuilder.group({
-     
-            'name': [username, Validators.required],
-            'address_line1': [null,Validators.required],
-            'address_city': [null,Validators.required],
-            'address_state': [null,Validators.required],
-            'address_zip': [null,Validators.required],
-            'address_country': [null,Validators.required],
-          });
+      } else {
 
-         }
-  
-    }else{
+        this.stripeTest = this.formBuilder.group({
+
+          'name': [username, Validators.required],
+          'address_line1': [null, Validators.required],
+          'address_city': [null, Validators.required],
+          'address_state': [null, Validators.required],
+          'address_zip': [null, Validators.required],
+          'address_country': [null, Validators.required],
+        });
+
+      }
+
+    } else {
       this.stripeTest = this.formBuilder.group({
-     
+
         'name': [null, Validators.required],
-        'address_line1': [null,Validators.required],
-        'address_city': [null,Validators.required],
-        'address_state': [null,Validators.required],
-        'address_zip': [null,Validators.required],
-        'address_country': [null,Validators.required],
+        'address_line1': [null, Validators.required],
+        'address_city': [null, Validators.required],
+        'address_state': [null, Validators.required],
+        'address_zip': [null, [Validators.required,Validators.pattern('[0-9]{10}')]],
+        'address_country': [null, Validators.required],
       });
     }
 
@@ -157,13 +156,24 @@ export class PaymentGatewayComponent implements OnInit {
 
     }
   }
+  _keyPresscharacter(event: any) {
+    const pattern = /^[a-zA-Z\s]*$/;
+    let inputChar = String.fromCharCode(event.charCode);
+    if (!pattern.test(inputChar)) {
+      event.preventDefault();
+
+    }
+  }
+
+
+ 
 
 
 
   buy() {
     // this.modalRef.close()
-   
-    this.spinner.show();
+
+
     const name = this.stripeTest.get('name').value;
     const address_line1 = this.stripeTest.get('address_line1').value;
     const address_city = this.stripeTest.get('address_city').value;
@@ -174,37 +184,28 @@ export class PaymentGatewayComponent implements OnInit {
     // const name = this.stripeTest.get('name').value;
     // const name = this.stripeTest.get('name').value;
     this.stripeService
-      .createToken(this.card.getCard(), { name,address_line1,address_city,address_state,address_zip,address_country })
+      .createToken(this.card.getCard(), { name, address_line1, address_city, address_state, address_zip, address_country })
       .subscribe(result => {
         if (result.token) {
-          // Use the token to create a charge or a customer
-          // https://stripe.com/docs/charges
-          // console.log(JSON.stringify(result.token));
-          // console.log(JSON.stringify(result));
+          this.spinner.show();
           console.log(result.token.id);
-            let paymentData:any={};
-              paymentData.amount=this.name.price;
-              paymentData.currency="inr";
-              paymentData.receipt_email=this.name.email;
-              paymentData.token=result.token.id;
-
-          this.userBackEndService.makePaymentFinal(paymentData).subscribe((responseData)=>{
-              this.spinner.hide();
-             if (responseData.success) {
+          let paymentData: any = {};
+          paymentData.amount = this.name.price;
+          paymentData.currency = "inr";
+          paymentData.receipt_email = this.name.email;
+          paymentData.token = result.token.id;
+          this.userBackEndService.makePaymentFinal(paymentData).subscribe((responseData) => {
+            this.spinner.hide();
+            if (responseData.success) {
               this.activemodal.close('success');
-             
             } else {
-      
               CommonMethods.opensweetalertError(responseData.message)
             }
-
-
           });
-
-
         } else if (result.error) {
-          // Error creating the token
+          this.spinner.hide();
           console.log(result.error.message);
+          CommonMethods.opensweetalertError(result.error.message)
         }
       });
   }
@@ -250,12 +251,12 @@ export class PaymentGatewayComponent implements OnInit {
   //     if (willDelete.value) {
   //       this.dataReset();
   //     } else {
-       
+
   //     }
   //   });
   // }
 
-  closeModal(){
+  closeModal() {
     this.activemodal.close("");
   }
 

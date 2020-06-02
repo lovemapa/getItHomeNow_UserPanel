@@ -109,7 +109,7 @@
             </div>
         </div>
         <div class="d-block  notes">
-               <span>#If you have more than 20 items to move, request a call 727 678 9214 </span>
+               <span> *If you have more than 20 items to move, request a call@ 727 678 9214 </span>
         </div>
     </div>
     <div class="itemHeading">
@@ -224,9 +224,9 @@
     <div class="card">
         <div class="card-body">
             <form [formGroup]="formGroup" class="form cutomform">
-                <mat-form-field [hideRequiredMarker]="hideRequiredControl.value" [floatLabel]="floatLabelControl.value">
+                <mat-form-field [hideRequiredMarker]="hideRequiredControl.value" [floatLabel]="floatLabelControl.value" >
                     <mat-label>Full Name</mat-label>
-                    <input matInput placeholder="Enter Full Name" formControlName="name" required>
+                    <input matInput placeholder="Enter Full Name" formControlName="name" (keypress)="_keyPresscharacter($event)"  required>
                     <mat-error *ngIf="formGroup.controls.name.hasError('required')">
                         Full Name is required
                     </mat-error>
@@ -251,7 +251,7 @@
                 <mat-form-field class="p-0" [hideRequiredMarker]="hideRequiredControl.value"
                     [floatLabel]="floatLabelControl.value">
                     <mat-label>Any special instructions?(optional)</mat-label>
-                    <input matInput placeholder="Any special instructions?" formControlName="any_special_instruction">
+                    <input matInput placeholder="Any special instructions?" formControlName="any_special_instruction" (keypress)="_keyPresscharacter($event)">
                 </mat-form-field>
             </form>
         </div>
@@ -356,7 +356,7 @@
         <button class="nextbuton" (click)="gotoNext()" [disabled]="toggelNextBtn()"
             *ngIf="showFinallist == false">Next</button>
         <button class="nextbuton" (click)="checkoutClick()" *ngIf="showFinallist == true">Checkout</button>
-        <!-- <button class="nextbuton" (click)="checkoutClick()" >modal Pop </button> -->
+        <button class="nextbuton" (click)="checkoutClick()" >modal Pop </button>
     </div>
 </div>
 

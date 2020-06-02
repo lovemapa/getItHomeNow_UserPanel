@@ -388,4 +388,21 @@ validationChangePassword(){
 
 
 
+  _keyPress(event: any) {
+    const pattern = /[0-9]/;
+    let inputChar = String.fromCharCode(event.charCode);
+    if (!pattern.test(inputChar)) {
+      event.preventDefault();
+
+    }
+  }
+  _keyPresscharacter(event: any) {
+    const pattern = /^[a-zA-Z\s]*$/;
+    let inputChar = String.fromCharCode(event.charCode);
+    if (!pattern.test(inputChar)) {
+      event.preventDefault();
+
+    }
+  }
+
 }
