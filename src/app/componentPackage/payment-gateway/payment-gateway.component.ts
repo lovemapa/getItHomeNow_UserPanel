@@ -135,7 +135,7 @@ export class PaymentGatewayComponent implements OnInit {
         'address_line1': [null, Validators.required],
         'address_city': [null, Validators.required],
         'address_state': [null, Validators.required],
-        'address_zip': [null, [Validators.required,Validators.pattern('[0-9]{10}')]],
+        'address_zip': [null, [Validators.required,Validators.pattern('[0-9]{5}')]],
         'address_country': [null, Validators.required],
       });
     }

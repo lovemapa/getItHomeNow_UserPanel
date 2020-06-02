@@ -71,6 +71,9 @@
             <mat-error *ngIf="stripeTest.controls.address_zip.hasError('required')">
               Zip code is required
             </mat-error>
+            <mat-error *ngIf="stripeTest.controls.address_zip.hasError('pattern')">
+              Zip code is not valid
+            </mat-error>
           </mat-form-field>
         </div>
         <div class="col-md-6 p-1">
