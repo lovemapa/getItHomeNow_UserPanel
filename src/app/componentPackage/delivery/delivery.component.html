@@ -109,7 +109,7 @@
             </div>
         </div>
         <div class="d-block  notes">
-               <span> *If you have more than 20 items to move, request a call@ 727 678 9214 </span>
+               <span> <b>*</b>If you have more than 20 items to move, request a call 727 678 9214 </span>
         </div>
     </div>
     <div class="itemHeading">
@@ -208,7 +208,8 @@
             </div>
 
             <div *ngIf="rightNowButton">
-                <p class="py-3 w-100 text-center font-weight-bold">{{ selectedDate  | date:'medium'}}</p>
+                <p *ngIf="hasRightNowBooking" class="py-3 w-100 text-center font-weight-bold">{{ selectedDate  | date:'medium'}}</p>
+                <p *ngIf="!hasRightNowBooking" class="py-3 w-100 text-center font-weight-bold">No Driver available currently. Kindly select booking slot for tomorrow.</p>
             </div>
 
         </div>
@@ -313,7 +314,7 @@
                         <span>Price</span>
                     </div>
                     <div class="total addShiftSpace">
-                        <span>Total price per hour</span>
+                        <span>Total Price per hour</span>
                         <span><b>{{priceForDelivery}}</b></span>
 
                     </div>
@@ -324,12 +325,13 @@
                 <li *ngIf="!rightNowButton">
                     <div class="topheading ">
                         <i class="fa fa-paper-plane" aria-hidden="true"></i>
-                        <span>Token Amount to book your delivery</span>
+                        <span>Deposit Amount</span>
+                        <span class="addShiftSpace"><b>${{showTokenAmount()}}</b></span>
                     </div>
-                    <div class="total addShiftSpace">
+                    <!-- <div class="total addShiftSpace">
                         <span>Pay Token Amount of <strong>${{showTokenAmount()}}</strong> to book your delivery.</span>
                         <span><b>${{showTokenAmount()}}</b></span>
-                    </div>
+                    </div> -->
                 </li>
                 <li *ngIf="rightNowButton">
                     <div class="topheading">

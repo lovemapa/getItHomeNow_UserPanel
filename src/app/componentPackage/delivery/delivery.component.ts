@@ -11,7 +11,7 @@ import timedata from '../../../assets/arraylocation/timeList.json';
 import { FormControl, Validators, FormGroup, FormBuilder } from '@angular/forms';
 import { Observable } from 'rxjs';
 import Swal from 'sweetalert2/dist/sweetalert2.js';
-import { formatDate } from '@angular/common';
+import { formatDate, DatePipe } from '@angular/common';
 import { PaymentGatewayComponent } from '../payment-gateway/payment-gateway.component';
 import { MyCookies } from 'src/app/utillpackage/utillpackage/my-cookies';
 import { MyRoutingMethods } from 'src/app/utillpackage/utillpackage/my-routing-methods';
@@ -64,7 +64,7 @@ export class DeliveryComponent implements OnInit {
   name: any
   priceForDelivery: string = '$99/hr';
   timearrayList: Array<any>
-  selectedTimeSlot: string;
+  selectedTimeSlot: string = "";
   formGroup: FormGroup;
   titleAlert: string = 'This field is required';
   post: any = '';
@@ -73,11 +73,13 @@ export class DeliveryComponent implements OnInit {
   floatLabelControl = new FormControl('auto');
   selecteddatebutton = false;
   rightNowButton = false;
+  hasRightNowBooking = true;
   totalDistance:number = 0;
+
 
   constructor(private mapsAPILoader: MapsAPILoader, public ngZone: NgZone, public userBackEndService: UserpanelServiceService,
     public modalService: NgbModal, public cookiesSerive: CookieService, public spinner: NgxSpinnerService,
-    private formBuilder: FormBuilder,public router:Router) {
+    private formBuilder: FormBuilder,public router:Router,public datepipe: DatePipe) {
     this.origin = "";
     this.destination = "";
     this.phonenumber = "";
@@ -478,7 +480,7 @@ export class DeliveryComponent implements OnInit {
     if (this.showItemPage && this.selectedItemList.length > 0) {
       return false;
     }
-    if (this.dateSelectedPage && this.selectedDate != null && this.selectedTimeSlot != '') {
+    if (this.dateSelectedPage && this.selectedDate != null && this.selectedTimeSlot != '' && this.hasRightNowBooking) {
       return false;
     }
     if (this.formFieldshow && this.formGroup.valid) {
@@ -579,6 +581,7 @@ export class DeliveryComponent implements OnInit {
    * @param dateID 
    */
   setSelectedDate(dateID: any) {
+    this.selectedTimeSlot = "";
     this.dateList.forEach(element => {
       if (element.date_Id == dateID) {
         element.showtime = true;
@@ -679,13 +682,16 @@ export class DeliveryComponent implements OnInit {
       this.getDateNextThree();
       this.selecteddatebutton = true;
       this.rightNowButton = false;
+      this.hasRightNowBooking = true;
     } else {
       this.showtimefalse = false;
       this.timearrayList = [];
       this.selectedDate = new Date();
-      this.selectedTimeSlot = this.selectedDate.toLocaleTimeString().slice(0,-3);
-      if(this.selectedDate.getHours()<=12){
-        this.selectedTimeSlot = this.selectedTimeSlot +' AM';
+      if((this.selectedDate.getHours()>=9 && this.selectedDate.getMinutes()>=45) && (this.selectedDate.getHours()<=20 && this.selectedDate.getMinutes()>=15) ){
+        this.selectedTimeSlot = this.datepipe.transform(this.selectedDate,"medium");
+      }
+      else{
+        this.hasRightNowBooking = false;
       }
       this.selecteddatebutton = false;
       this.rightNowButton = true;
@@ -745,6 +751,7 @@ export class DeliveryComponent implements OnInit {
     this.selectedItemList = [];
     this.searchItemList = [];
     this.showtimefalse = false;
+    this.hasRightNowBooking = true;
     this.timearrayList = [];
     this.formGroup.reset();
     this.temparyNameDesination = "";
@@ -770,7 +777,7 @@ checkoutClick(){
 modalOpen()
 {
 let user = {
-  name: 'Izzat Nadiri',
+  name: this.formGroup.get('name').value,
   email:  this.formGroup.get('email').value,
   price: parseFloat(this.priceForDelivery.match('[\\d]+')[0])
   }

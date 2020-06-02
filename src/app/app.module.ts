@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { AosToken, aos } from './aos';
-import { HashLocationStrategy, LocationStrategy, PathLocationStrategy } from '@angular/common';
+import { HashLocationStrategy, LocationStrategy, PathLocationStrategy, DatePipe } from '@angular/common';
 import { CarouselModule } from 'ngx-owl-carousel-o';
 import { NavbarComponent } from './componentPackage/navbar/navbar.component';
 import { HomeComponent } from './componentPackage/home/home.component';
@@ -70,7 +70,8 @@ import { NgxStripeModule } from 'ngx-stripe';
     { provide: AosToken, useValue: aos },
     // { provide: LocationStrategy, useClass: PathLocationStrategy },
     CookieService,
-    GoogleMapsAPIWrapper 
+    GoogleMapsAPIWrapper,
+    DatePipe
   ],
   bootstrap: [AppComponent],
   entryComponents: [PaymentGatewayComponent]

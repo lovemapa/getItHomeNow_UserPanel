@@ -556,7 +556,7 @@ a:hover {
 }
 
 .selectDateandTime .card {
-    max-width: 350px;
+    max-width: 450px;
     margin: 20px auto 100px;
 }
 
@@ -586,7 +586,8 @@ a:hover {
 
 .selectDateandTime .card .dateShow {
     display: flex;
-    padding: 10px 15px;
+    margin-top: -20px;
+    padding-bottom: 10px;
     justify-content: center;
 }
 
@@ -653,7 +654,7 @@ a:hover {
 }
 
 .selectDateandTime .card .timeShow .dataTime .minus {
-    padding: 22px 4px;
+    padding: 22px 2px;
     font-size: 41px;
     font-weight: 500;
 }
