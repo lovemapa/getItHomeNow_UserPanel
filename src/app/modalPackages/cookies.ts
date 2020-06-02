@@ -11,6 +11,7 @@ export class CookiesModel {
     public address: string;
     public city: string;
     public state: string;
+    public country : string;
     public zip: string;
 
     constructor(user: any) {
@@ -24,6 +25,7 @@ export class CookiesModel {
         this.address = user.address;
         this.city = user.city;
         this.state = user.state;
+        this.country = user.country;
         this.zip = user.zip;
     }
 }

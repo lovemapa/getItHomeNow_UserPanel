@@ -61,6 +61,7 @@ export class ProfileshowComponent implements OnInit {
     this.userDetailsModal.address = "";
     this.userDetailsModal.city = "";
     this.userDetailsModal.state = "";
+    this.userDetailsModal.country = "";
     this.userDetailsModal.zip = "";
     this.userDetailsModal.confirm_password = "";
   }
@@ -92,31 +93,23 @@ export class ProfileshowComponent implements OnInit {
     this.userName = MyCookies.getUserFistName(this.cookiesService) + " " + MyCookies.getUseLastName(this.cookiesService);
     this.userDetailsModal.email = MyCookies.getEmaild(this.cookiesService);
     this.userDetailsModal.contact = MyCookies.getUsercontact(this.cookiesService);
-     CommonMethods.showconsole(this.Tag,"Show User Panel :- "+MyCookies.getUserAddress(this.cookiesService))
     if (MyCookies.getUserAddress(this.cookiesService) != "undefined"
       && MyCookies.getUsercity(this.cookiesService) != "undefined"
       && MyCookies.getUserstate(this.cookiesService) != "undefined"
       && MyCookies.getUserzip(this.cookiesService) != "undefined"
+      && MyCookies.getUserCountry(this.cookiesService) == "undefined"
     ) {
-      CommonMethods.showconsole(this.Tag, "else is working");
       this.address = MyCookies.getUserAddress(this.cookiesService) + " "
         + " " + MyCookies.getUsercity(this.cookiesService)
         + " " + MyCookies.getUserstate(this.cookiesService)
+        + " " + MyCookies.getUserCountry(this.cookiesService)
         + " " + MyCookies.getUserzip(this.cookiesService)
       this.showCompleteProfileButton = true;
     } else {
-      CommonMethods.showconsole(this.Tag, "If is working");
       this.address = "Nil";
       this.showCompleteProfileButton = false;
-     
     }
-
-
   }
-
-
-
-
 
   /**Image Selection Code */
 
@@ -153,7 +146,6 @@ export class ProfileshowComponent implements OnInit {
       else {
         this.spiner.hide();
           if (response.message == "Authorization not correct") {
-
             MyCookies.deletecookies(this.cookiesService)
             MyRoutingMethods.gotoHome(this.router);
             CommonMethods.opensweetalertError(response.message)
@@ -170,7 +162,6 @@ export class ProfileshowComponent implements OnInit {
          */
   openModal(content) {
     this.modalReference = this.modalService.open(content, { centered: true });
-    //  this.modalReference.componentInstance.actionMessage = this.actionmessage;
   }
 
   /**
@@ -208,16 +199,19 @@ export class ProfileshowComponent implements OnInit {
       || MyCookies.getUsercity(this.cookiesService) == "undefined"
       || MyCookies.getUserstate(this.cookiesService) == "undefined"
       || MyCookies.getUserzip(this.cookiesService) == "undefined"
+      || MyCookies.getUserCountry(this.cookiesService) == "undefined"
     ) {
       this.userDetailsModal.address = "";
       this.userDetailsModal.city = "";
       this.userDetailsModal.state = "";
       this.userDetailsModal.zip = "";
+      this.userDetailsModal.country = "";
     } else {
       this.userDetailsModal.address = MyCookies.getUserAddress(this.cookiesService);
       this.userDetailsModal.city = MyCookies.getUsercity(this.cookiesService);
       this.userDetailsModal.state = MyCookies.getUserstate(this.cookiesService);
       this.userDetailsModal.zip = MyCookies.getUserzip(this.cookiesService);
+      this.userDetailsModal.country = MyCookies.getUserCountry(this.cookiesService);
     }
   }
 
@@ -234,35 +228,30 @@ export class ProfileshowComponent implements OnInit {
    * Validation Forms Edit And Complete Profile
    */
   validationProfile() {
-    // var EMAIL_REGEXP = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     if (this.userDetailsModal.firstName.trim().length == 0) {
-      this.errorMessage = "Enter first name";
+      this.errorMessage = "Enter First Name";
       return false;
     } else if (this.userDetailsModal.lastName.trim().length == 0) {
-      this.errorMessage = "Enter last name";
+      this.errorMessage = "Enter Last Name";
       return false;
     } 
-    // else if (this.userDetailsModal.email.trim().length == 0) {
-    //   this.errorMessage = "Enter email";
-    //   return false;
-    // } else if (!EMAIL_REGEXP.test(this.userDetailsModal.email.trim())) {
-    //   this.errorMessage = "Email is invalid";
-    //   return false;
-    // } 
     else if (this.userDetailsModal.contact.trim().length == 0) {
-      this.errorMessage = "Enter contact number";
+      this.errorMessage = "Enter Contact Number";
       return false;
     } else if (this.userDetailsModal.address.trim().length == 0) {
-      this.errorMessage = "Enter address";
+      this.errorMessage = "Enter Address";
       return false;
     } else if (this.userDetailsModal.city.trim().length == 0) {
       this.errorMessage = "Enter City";
       return false;
     } else if (this.userDetailsModal.state.trim().length == 0) {
-      this.errorMessage = "Enter state";
+      this.errorMessage = "Enter State";
+      return false;
+    } if (this.userDetailsModal.country.trim().length == 0) {
+      this.errorMessage = "Enter Country";
       return false;
     } else if (this.userDetailsModal.zip.trim().length == 0) {
-      this.errorMessage = "Enter zip code";
+      this.errorMessage = "Enter Zip Code";
       return false;
     } else {
       this.errorMessage = "";
@@ -272,7 +261,6 @@ export class ProfileshowComponent implements OnInit {
 
   /**Update USer Profile */
   updateUserDeatils() {
-    CommonMethods.showconsole(this.Tag, "Working")
     if (this.validationProfile()) {
       let userdata: any = {};
       userdata.firstName = this.userDetailsModal.firstName;
@@ -282,6 +270,7 @@ export class ProfileshowComponent implements OnInit {
       userdata.address = this.userDetailsModal.address;
       userdata.city = this.userDetailsModal.city;
       userdata.state = this.userDetailsModal.state;
+      userdata.country = this.userDetailsModal.country;
       userdata.zip = this.userDetailsModal.zip;
       this.spiner.show();
       this.userBackEndServices.updateDetails(userdata).subscribe(response => {

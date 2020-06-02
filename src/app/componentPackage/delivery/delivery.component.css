@@ -729,8 +729,8 @@ a:hover {
     font-size: 18px;
     font-weight: 700;
 }
-.finallist .card .card-body ul li .addShiftSpace span{
-    padding-left: 3em;
+.finallist .card .card-body ul li .topheading .addShiftSpace{
+    float: right;
 }
 .finallist .card .card-body ul li .topheading i {
     margin-right: 5px;
@@ -740,17 +740,9 @@ a:hover {
     top: 2px;
 }
 
-/* .finallist .card .card-body ul li .topheading i.pricelogo {
-    padding: 2px;
-    width: 22px;
-    height: 22px;
-    font-size: 15px;
-    border: 2px solid;
-    border-radius: 50px;
+.finallist .card .card-body ul li .topheading i.pricelogo {
     padding-left: 5px;
-    color: #fff;
-    background: #E92331;
-} */
+}
 
 .finallist .card .card-body ul li .address span {
     font-size: 15px;

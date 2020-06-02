@@ -16,6 +16,7 @@ export class MyCookies {
         cookieService.set('address',cookiesModel.address,this.getExpiryTime(),'');
         cookieService.set('city',cookiesModel.city,this.getExpiryTime(),'');
         cookieService.set('state',cookiesModel.state,this.getExpiryTime(),'');
+        cookieService.set('country',cookiesModel.country,this.getExpiryTime(),'');
         cookieService.set('zip',cookiesModel.zip,this.getExpiryTime(),'');
         
     }
@@ -72,6 +73,9 @@ export class MyCookies {
     }
     static getUserstate(cookieService: CookieService): string {
         return cookieService.get('state');
+    }
+    static getUserCountry(cookieService: CookieService): string {
+        return cookieService.get('country');
     }
     static getUserzip(cookieService: CookieService): string {
         return cookieService.get('zip');

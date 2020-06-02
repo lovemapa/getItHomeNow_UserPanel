@@ -109,7 +109,7 @@
             </div>
         </div>
         <div class="d-block  notes">
-               <span> <b>*</b>If you have more than 20 items to move, request a call 727 678 9214 </span>
+               <span> <b>*</b>Want to move more than 20 items? Click Here to request a quote.</span>
         </div>
     </div>
     <div class="itemHeading">
@@ -208,8 +208,8 @@
             </div>
 
             <div *ngIf="rightNowButton">
-                <p *ngIf="hasRightNowBooking" class="py-3 w-100 text-center font-weight-bold">{{ selectedDate  | date:'medium'}}</p>
-                <p *ngIf="!hasRightNowBooking" class="py-3 w-100 text-center font-weight-bold">No Driver available currently. Kindly select booking slot for tomorrow.</p>
+                <p *ngIf="hasRightNowBooking" class="py-3 w-100 text-center font-weight-bold">Get It Home Now</p>
+                <p *ngIf="!hasRightNowBooking" class="py-3 w-100 text-center font-weight-bold">We have no drivers available at the moment. Please call (727 678 9214) for assistance.</p>
             </div>
 
         </div>
@@ -310,7 +310,7 @@
                 </li>
                 <li>
                     <div class="topheading">
-                        <i class="fa fa-usd pricelogo" aria-hidden="true"></i>
+                        <i class="fa fa-usd pricelogo fix-alignment" aria-hidden="true"></i>
                         <span>Price</span>
                     </div>
                     <div class="total addShiftSpace">

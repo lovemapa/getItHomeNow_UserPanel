@@ -27,13 +27,13 @@ export class PaymentGatewayComponent implements OnInit {
     style: {
       base: {
         iconColor: '#9ea4a9',
-        color: '#9ea4a9',
+        color: '#212529',
         lineHeight: '46px',
         fontWeight: 300,
         fontFamily: '"Helvetica Neue", Helvetica, sans-serif',
         fontSize: '16px',
         '::placeholder': {
-          color: '#9ea4a9'
+          color: '#212529'
         }
       }
     },
@@ -73,7 +73,6 @@ export class PaymentGatewayComponent implements OnInit {
 
   elementsOptions: ElementsOptions = {
     locale: 'en',
-
   };
 
   stripeTest: FormGroup;

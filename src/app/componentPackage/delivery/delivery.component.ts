@@ -795,10 +795,9 @@ let user = {
     this.modalReference.result.then(
       (data: any) => {
         if (data != "") {
-          CommonMethods.showconsole(this.Tag, "Token Id :- " + data)
           Swal.fire({
-            title: "Thank You",
-            text:"Driver will contact you soon",
+            title: "Thank you! Your payment was successful",
+            text:"A driver will contact you shortly.",
             icon: 'success'
           }).then((result) => {
             if (result.value === true) {
@@ -811,7 +810,6 @@ let user = {
           CommonMethods.showconsole(this.Tag, "Token Id :- " + data)
         }
         // this.processData(data);
-
       },
       (reason: any) => { }
     );
