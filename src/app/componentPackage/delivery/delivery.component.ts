@@ -118,8 +118,8 @@ export class DeliveryComponent implements OnInit {
       hideRequired: this.hideRequiredControl,
       floatLabel: this.floatLabelControl,
     });
-    this.itemList = JSON.parse(JSON.stringify(itemListData));
-    this.showItemPage=true
+    // this.itemList = JSON.parse(JSON.stringify(itemListData));
+    // this.showItemPage=true
 
   }
 
@@ -189,6 +189,7 @@ export class DeliveryComponent implements OnInit {
             return;
           }
           CommonMethods.showconsole("Palce", place)
+          CommonMethods.showconsole("Palce",JSON.stringify(place) )
           let found: boolean = false;
           this.selectedLocationIds.forEach(element => {
             let placeRegex = '(.*(' + element.place_Name.toUpperCase() + ').+(FL|FLORIDA).+(USA|UNITED STATES))+';

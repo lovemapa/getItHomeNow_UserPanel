@@ -42,9 +42,11 @@
                             <label for="">Contact Number</label>
                             <span>{{userDetailsModal.contact}}</span>
                         </div>
-                        <div class="textshow">
+                        <div class="textshow" style="display: flex;">
                             <label for="">Address</label>
-                            <span>{{address}}</span>
+                            <span style="    display: block;
+                            width: 250px;
+                            line-height: 22px;">{{address}}</span>
                         </div>
                         <div class="field" style="margin-bottom: 0;" *ngIf="showCompleteProfileButton == false">
                             <button type="submit" class="submit button" (click)="showUpdateProfileMOdal(content,'Compelte Profile')">Complete Profile</button>

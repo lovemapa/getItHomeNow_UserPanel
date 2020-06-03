@@ -100,10 +100,11 @@ export class ProfileshowComponent implements OnInit {
       && MyCookies.getUserCountry(this.cookiesService) != "undefined"
     ) {
       this.address = MyCookies.getUserAddress(this.cookiesService) + " "
-        + " " + MyCookies.getUsercity(this.cookiesService)
-        + " " + MyCookies.getUserstate(this.cookiesService)
-        + " " + MyCookies.getUserCountry(this.cookiesService)
-        + " " + MyCookies.getUserzip(this.cookiesService)
+        + ", " + MyCookies.getUsercity(this.cookiesService)
+        + ", " + MyCookies.getUserstate(this.cookiesService)
+        + ", " + MyCookies.getUserzip(this.cookiesService)
+        + ", " + MyCookies.getUserCountry(this.cookiesService)
+        
       this.showCompleteProfileButton = true;
     } else {
       this.address = "Nil";
