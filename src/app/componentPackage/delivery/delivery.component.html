@@ -36,9 +36,9 @@
 <div [ngClass]="{'mapdiaplay':itemList.length != 0}">
     <agm-map [latitude]='lat' [longitude]='lng' [zoom]="15" [mapDraggable]="true" [mapTypeControl]="false"
         [streetViewControl]="false" [rotateControl]="true" [fullscreenControl]="false" [zoomControl]="false"
-        *ngIf="itemList.length == 0">
-        <agm-marker [latitude]="lat" [longitude]="lng" [markerDraggable]="true" 
-        (dragEnd)="markerDragEnd($event)"></agm-marker>
+        *ngIf="itemList.length == 0"   (mapClick)="mapClicked($event)">
+        <agm-marker [latitude]="lat" [longitude]="lng" [markerDraggable]="false" 
+        ></agm-marker>
     </agm-map>
     <div class="positiondiv">
         <div class="card">
@@ -109,7 +109,7 @@
             </div>
         </div>
         <div class="d-block  notes">
-               <span>Want to move more than 20 items? Click Here to request a quote.</span>
+               <span>Want to move more than 20 items? <a (click)="contactUsPop(contactUs)" style="width: max-content;display: contents;cursor: pointer;">Click Here</a> to request a quote.</span>
         </div>
     </div>
     <div class="itemHeading">
@@ -396,3 +396,63 @@
         </div>
     </div>
 </ng-template>
+<ng-template #contactUs>
+    <div class="modal-body" style="text-align: center; ">
+        <div class="close-icon" (click)="JoinAndClose()"><i class="fa fa-times"></i></div>
+        <div class="title-heading">
+            <h3>Contact Us</h3>
+        </div>
+        <div class="lowerText">
+            <form [formGroup]="contactUsForm"  class="form cutomform">
+                <mat-form-field class="example-full-width p-0" >
+                    <mat-label> Name</mat-label>
+                    <input matInput placeholder="Enter Name" formControlName="userName" (keypress)="_keyPresscharacter($event)"  required>
+                    <mat-error *ngIf="contactUsForm.controls.userName.hasError('required')">
+                        Name is required
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field class="example-full-width p-0" >
+                    <mat-label>Email</mat-label>
+                    <input matInput placeholder="Enter email address" formControlName="userEmail" required>
+                    <mat-error *ngIf="!contactUsForm.controls['userEmail'].valid && contactUsForm.controls['userEmail'].touched">
+                        {{ getErrorEmail() }}
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field class="example-full-width p-0" >
+                    <mat-label>Phone Number </mat-label>
+                    <input matInput formControlName="userContactNo" maxlength="10" (keypress)=_keyPress($event) required>
+                    <mat-error *ngIf="contactUsForm.controls.userContactNo.hasError('required')">
+                        Phone number is required
+                    </mat-error>
+                    <mat-error *ngIf="contactUsForm.controls.userContactNo.hasError('pattern')">
+                        Phone number is not a valid
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field class="example-full-width p-0" >
+                    <mat-label>Leave a message</mat-label>
+                    <textarea matInput placeholder="Message" style="resize: none;    height: 80px;" formControlName="userComment"></textarea>
+                    <mat-error *ngIf="contactUsForm.controls.userComment.hasError('required')">
+                        Message is required
+                    </mat-error>
+                  </mat-form-field>
+                  <div class="py3">
+                      <button type="submit"  (click)="messageSend()"   class="btn text-black " style="color: #fff;background: #ec3441;">Send</button>
+                  </div>
+            </form>
+        </div>
+    </div>
+</ng-template>
+
+
+<!-- <ng-template #contactUs>
+    <div class="modal-body" style="text-align: center; ">
+        <div class="close-icon" (click)="JoinAndClose()"><i class="fa fa-times"></i></div>
+        <div class="title-heading">
+            <h3>Contact Us</h3>
+        </div>
+
+
+    </div>
+</ng-template> -->
+
+

@@ -97,7 +97,7 @@ export class ProfileshowComponent implements OnInit {
       && MyCookies.getUsercity(this.cookiesService) != "undefined"
       && MyCookies.getUserstate(this.cookiesService) != "undefined"
       && MyCookies.getUserzip(this.cookiesService) != "undefined"
-      && MyCookies.getUserCountry(this.cookiesService) == "undefined"
+      && MyCookies.getUserCountry(this.cookiesService) != "undefined"
     ) {
       this.address = MyCookies.getUserAddress(this.cookiesService) + " "
         + " " + MyCookies.getUsercity(this.cookiesService)

@@ -66,6 +66,7 @@ export class DeliveryComponent implements OnInit {
   timearrayList: Array<any>
   selectedTimeSlot: string = "";
   formGroup: FormGroup;
+  contactUsForm: FormGroup;
   titleAlert: string = 'This field is required';
   post: any = '';
   username: any
@@ -117,11 +118,14 @@ export class DeliveryComponent implements OnInit {
       hideRequired: this.hideRequiredControl,
       floatLabel: this.floatLabelControl,
     });
+    this.itemList = JSON.parse(JSON.stringify(itemListData));
+    this.showItemPage=true
 
   }
 
   ngOnInit(): void {
     this.createForm();
+    this.contactFormPopup();
   }
 
   /**
@@ -240,7 +244,7 @@ export class DeliveryComponent implements OnInit {
   //   CommonMethods.showconsole(this.Tag,"before Long: "+this.addSubStoreModel.lng)
   // }
 
-  markerDragEnd($event: MouseEvent) {
+  mapClicked($event: MouseEvent) {
     console.log('dragEnd', $event);
     this.lat = $event.coords.lat;
     this.lng = $event.coords.lng;
@@ -254,6 +258,10 @@ export class DeliveryComponent implements OnInit {
       if (status === 'OK') {
         if (results[0]) {
           // this.zoom = 16;
+
+
+             CommonMethods.showconsole(this.Tag, "Get Address :- "+JSON.stringify(results[0]) )
+
         } else {
           window.alert('No results found');
         }
@@ -815,6 +823,68 @@ let user = {
     );
 }
 
+/**Contact US Pop */
+ contactUsPop(contactForm)
+ {
+
+  if(MyCookies.checkLoginStatus(this.cookiesSerive) ==  true)
+  {
+    var userName = MyCookies.getUserFistName(this.cookiesSerive)+" "+MyCookies.getUseLastName(this.cookiesSerive) 
+    let emailregex: RegExp = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+    this.contactUsForm = this.formBuilder.group({
+      'userEmail': [MyCookies.getEmaild(this.cookiesSerive), [Validators.required, Validators.pattern(emailregex)]],
+      'userName': [userName, Validators.required],
+      'userContactNo': [MyCookies.getUsercontact(this.cookiesSerive), [Validators.required, Validators.pattern('[0-9]{10}')]],
+      'userComment': [null,Validators.required]
+    });
+
+  }else{
+    this.contactFormPopup()
+  }
+
+  this.modalReference =this.modalService.open(contactForm, {
+    ariaLabelledBy: 'modal-basic-title',
+    backdrop:"static",
+    centered: true,
+  });
+ }
 
 
+ /**
+   *  Input contact Form Validation
+   */
+  contactFormPopup() {
+    let emailregex: RegExp = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+    this.contactUsForm = this.formBuilder.group({
+      'userEmail': [null, [Validators.required, Validators.pattern(emailregex)]],
+      'userName': [null, Validators.required],
+      'userContactNo': [null, [Validators.required, Validators.pattern('[0-9]{10}')]],
+      'userComment': [null,Validators.required]
+    });
+  }
+
+
+  messageSend(){
+    this.JoinAndClose();
+    this.spinner.show()
+   CommonMethods.showconsole(this.Tag,"Name value :- "+this.contactUsForm.get('userEmail').value)
+
+    let contactUsDetails: any = {
+      name: this.contactUsForm.get('userName').value,
+      email: this.contactUsForm.get('userEmail').value,
+      contact: this.contactUsForm.get('userContactNo').value,
+      message: this.contactUsForm.get('userComment').value
+    }
+    this.userBackEndService.contactUs(contactUsDetails).subscribe(res => {
+      if (res.success) {
+        this.spinner.hide()
+        this.contactFormPopup();
+        CommonMethods.opensweetalert(res.message)
+      }
+      else {
+        CommonMethods.opensweetalertError( res.message);
+      }
+    });
+  
+  }
 }
