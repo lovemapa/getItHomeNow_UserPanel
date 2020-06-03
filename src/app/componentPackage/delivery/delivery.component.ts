@@ -261,13 +261,54 @@ export class DeliveryComponent implements OnInit {
           // this.zoom = 16;
 
 
-             CommonMethods.showconsole(this.Tag, "Get Address :- "+JSON.stringify(results[0]) )
+            //  CommonMethods.showconsole(this.Tag, "Get Address :- "+JSON.stringify(results[0]) )
+            
+             var place =results[0]
+             CommonMethods.showconsole(this.Tag, "place Address :- "+place.formatted_address) 
+             CommonMethods.showconsole(this.Tag, "place lat :- "+place.geometry.location.lat()) 
+             CommonMethods.showconsole(this.Tag, "place lng :- "+place.geometry.location.lng()) 
+             
+             this.searchElementRef.nativeElement.value=place.formatted_address;
+
+             let found: boolean = false;
+          this.selectedLocationIds.forEach(element => {
+            let placeRegex = '(.*(' + element.place_Name.toUpperCase() + ').+(FL|FLORIDA).+(USA|UNITED STATES))+';
+            if (place.formatted_address.toUpperCase().match(placeRegex)) {
+              found = true;
+              if (this.pickupLocation == true) {
+                this.pickupRegion = element.region;
+              }
+              else {
+                this.destinationRegion = element.region;
+              }
+            }
+          });
+          if (found) {
+            this.searchElementRef.nativeElement.value=place.formatted_address;
+            let showNextButton: boolean = true;
+            this.lat = place.geometry.location.lat();
+            this.lng = place.geometry.location.lng();
+            if (this.pickupLocation == true) {
+              this.pickUpLocationName = place.formatted_address;
+            } else if (this.origin.lat() != this.lat && this.origin.lng() != this.lng) {
+              this.temparyNameDesination = place.formatted_address;
+            } else {
+              showNextButton = false;
+              this.openSameLocationModal()
+            }
+            if (showNextButton) {
+              this.toggelNextBtn();
+            }
+          } else {
+            this.openModal();
+          }
 
         } else {
-          window.alert('No results found');
+          CommonMethods.opensweetalertError('No results found');
         }
       } else {
-        window.alert('Geocoder failed due to: ' + status);
+        // window.alert('Geocoder failed due to: ' + status);
+        CommonMethods.opensweetalertError('Geocoder failed due to: ' + status);
       }
 
     });
