@@ -82,9 +82,6 @@ export class PaymentGatewayComponent implements OnInit {
     private stripeService: StripeService,
     public ngbModalService: NgbModal, public userBackEndService: UserpanelServiceService,
     public spinner: NgxSpinnerService, public activemodal: NgbActiveModal, public cookiesService: CookieService) {
-
-    CommonMethods.showconsole(this.Tag, "USer Data :- " + this.name)
-
   }
 
   ngOnInit(): void {
@@ -100,23 +97,21 @@ export class PaymentGatewayComponent implements OnInit {
         MyCookies.getUserAddress(this.cookiesService) != "" &&
         MyCookies.getUsercity(this.cookiesService) != "" &&
         MyCookies.getUserstate(this.cookiesService) != "" &&
-        MyCookies.getUserzip(this.cookiesService) != ""
+        MyCookies.getUserzip(this.cookiesService) != "" &&
+        MyCookies.getUserCountry(this.cookiesService) != ""
       ) {
 
         this.stripeTest = this.formBuilder.group({
-
           'name': [username, Validators.required],
           'address_line1': [MyCookies.getUserAddress(this.cookiesService), Validators.required],
           'address_city': [MyCookies.getUsercity(this.cookiesService), Validators.required],
           'address_state': [MyCookies.getUserstate(this.cookiesService), Validators.required],
           'address_zip': [MyCookies.getUserzip(this.cookiesService), Validators.required],
-          'address_country': [null, Validators.required],
+          'address_country': [MyCookies.getUserCountry(this.cookiesService), Validators.required],
         });
 
       } else {
-
         this.stripeTest = this.formBuilder.group({
-
           'name': [username, Validators.required],
           'address_line1': [null, Validators.required],
           'address_city': [null, Validators.required],
@@ -124,12 +119,10 @@ export class PaymentGatewayComponent implements OnInit {
           'address_zip': [null, Validators.required],
           'address_country': [null, Validators.required],
         });
-
       }
 
     } else {
       this.stripeTest = this.formBuilder.group({
-
         'name': [null, Validators.required],
         'address_line1': [null, Validators.required],
         'address_city': [null, Validators.required],
@@ -171,8 +164,6 @@ export class PaymentGatewayComponent implements OnInit {
 
   buy() {
     // this.modalRef.close()
-
-
     const name = this.stripeTest.get('name').value;
     const address_line1 = this.stripeTest.get('address_line1').value;
     const address_city = this.stripeTest.get('address_city').value;

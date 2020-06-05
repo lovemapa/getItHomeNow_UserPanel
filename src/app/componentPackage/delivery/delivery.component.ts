@@ -703,7 +703,6 @@ export class DeliveryComponent implements OnInit {
     let inputChar = String.fromCharCode(event.charCode);
     if (!pattern.test(inputChar)) {
       event.preventDefault();
-
     }
   }
 

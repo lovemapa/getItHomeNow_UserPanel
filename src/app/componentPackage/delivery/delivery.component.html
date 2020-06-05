@@ -71,7 +71,7 @@
     </div>
     <div class="searchDiv position-relative">
         <div class="d-block  notes">
-            <span>Want to move more than 20 items? <a (click)="contactUsPop(contactUs)" style="width: max-content;display: contents;cursor: pointer;">Click Here</a> to request a quote.</span>
+            <span>Want to move more than 20 items? <a (click)="contactUsPop(contactUs)" style="width: max-content;display: contents;cursor: pointer;"><u>Click Here</u></a> to request a quote.</span>
      </div>
         <div class="card">
             <div class="card-body">
@@ -274,15 +274,16 @@
             <ul>
                 <li style="padding:0;">
                     <div class="productShow">
-                        <div *ngFor="let item of selectedItemList " class="outerdiv">
+                        <div *ngFor="let item of selectedItemList;let i=index;" class="outerdiv col-md-6" [ngClass]="i%2==0? 'float-left' : 'float-right'">
                             <div class="imagesdiv">
                                 <img src="./assets/imgs/{{item.item_icon}}" alt="item.item_Name">
                             </div>
                             <div class="showQuanity">
-                                <span>{{item.item_Name}}</span>
+                                <span title="{{item.item_Name.length>24 ? item.item_Name : ''}}">{{item.item_Name.length>24 ? (item.item_Name | slice:0:14)+'...' : item.item_Name}}</span>
                                 <p> Quanity: <span>{{item.quantity}}</span></p>
                             </div>
                         </div>
+                        <br style="clear:both;"/>
                     </div>
                 </li>
                 <li>
@@ -331,12 +332,8 @@
                     <div class="topheading ">
                         <i class="fa fa-paper-plane" aria-hidden="true"></i>
                         <span>Deposit Amount</span>
-                        <span class="addShiftSpace"><b>${{showTokenAmount()}}</b></span>
+                        <span class="addShiftSpace align-amount"><b>${{showTokenAmount()}}</b></span>
                     </div>
-                    <!-- <div class="total addShiftSpace">
-                        <span>Pay Token Amount of <strong>${{showTokenAmount()}}</strong> to book your delivery.</span>
-                        <span><b>${{showTokenAmount()}}</b></span>
-                    </div> -->
                 </li>
                 <li *ngIf="rightNowButton">
                     <div class="topheading">
@@ -355,15 +352,14 @@
 
 
 <div class="stepper py-2 ">
-    <div class="rightSide pt-2">
+    <div class="rightSide pt-2 stepperButtons">
         <button class="mb-0" (click)="clickReset()" [disabled]="pickupLocation">Reset</button>
     </div>
-    <div class="leftside pt-2">
+    <div class="leftside pt-2 stepperButtons">
         <button class="backbutton mb-0" (click)="gotoBack()" *ngIf="pickupLocation == false">Back</button>
         <button class="nextbuton mb-0" (click)="gotoNext()" [disabled]="toggelNextBtn()"
             *ngIf="showFinallist == false">Next</button>
         <button class="nextbuton mb-0" (click)="checkoutClick()" *ngIf="showFinallist == true">Checkout</button>
-        <!-- <button class="nextbuton" (click)="checkoutClick()" >modal Pop </button> -->
     </div>
 </div>
 

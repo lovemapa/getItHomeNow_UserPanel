@@ -41,14 +41,14 @@
 }
 
 agm-map {
-    height: calc(100vh - 117px);
+    height: calc(100vh - 103px);
 }
 
 .positiondiv {
     position: absolute;
     width: 100%;
     z-index: 1;
-    bottom: 167px;
+    bottom: 130px;
     background: transparent;
     text-align: center;
 }
@@ -62,7 +62,7 @@ agm-map {
     position: fixed;
     box-shadow: 0px 0px 21px 0px #000000ad;
     width: 100%;
-    bottom: 0;
+    bottom: -22px;
     height: 65px;
     display: flex;
     flex-flow: row;
@@ -100,6 +100,10 @@ button {
     margin-left: 10px;
 }
 
+.stepperButtons{
+    position: relative;
+    top: -12px;
+}
 
 /*Form Field*/
 
@@ -249,7 +253,7 @@ button {
 }
 
 .divliveryItem {
-    height: 443px;
+    height: calc(100vh - 135px);
     max-height: 100%;
     overflow-y: auto;
     margin-top: 76px;
@@ -728,9 +732,16 @@ a:hover {
     font-size: 18px;
     font-weight: 700;
 }
+
 .finallist .card .card-body ul li .topheading .addShiftSpace{
     float: right;
 }
+
+.align-amount{
+    position: relative;
+    top: 5px;
+}
+
 .finallist .card .card-body ul li .topheading i {
     margin-right: 5px;
     font-size: 24px;
@@ -744,11 +755,13 @@ a:hover {
 }
 
 .finallist .card .card-body ul li .address span {
+    padding-left: 50px;
     font-size: 15px;
     font-weight: 400;
 }
 
 .finallist .card .card-body ul li .time span {
+    padding-left: 50px;
     display: block;
     margin-bottom: 5px;
     font-size: 15px;
@@ -756,6 +769,7 @@ a:hover {
 }
 
 .finallist .card .card-body ul li .total {
+    padding-left: 50px;
     font-size: 15px;
     font-weight: 400;
     display: flex;
@@ -819,12 +833,12 @@ a:hover {
     background: #ec3441;
     cursor: pointer !important;
 }
-
+/* 
 .divliveryItem {
     /* background: url("../../../assets/imgs/delivery_background2.jpg");
     background-repeat: no-repeat;
-    background-size: cover; */
-}
+    background-size: cover; 
+}*/
 @media (max-width: 1200px){
         .divliveryItem .searchDiv .notes{right: 0;top: 0;max-width: 260px;}
         .divliveryItem .searchDiv .card{max-width: 400px;}
