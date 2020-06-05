@@ -54,9 +54,8 @@ agm-map {
 }
 
 .positiondiv .card {
-    width: 25%;
+    max-width: 500px;
     margin: 0 auto;
-    padding-bottom: 10px;
 }
 
 .stepper {
@@ -160,12 +159,12 @@ button {
 }
 
 .login100-form .form-element {
-    margin-top: 20px;
+    padding: 20px 0;
 }
 
 .login100-form .form-element label {
     font-size: 20px;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
     text-align: left;
     display: block;
     text-transform: none;
@@ -826,6 +825,93 @@ a:hover {
     background-repeat: no-repeat;
     background-size: cover; */
 }
+@media (max-width: 1200px){
+        .divliveryItem .searchDiv .notes{right: 0;top: 0;max-width: 260px;}
+        .divliveryItem .searchDiv .card{max-width: 400px;}
+        .divliveryItem #accordion{max-width: 400px;margin-bottom: 80px;}
+        .divliveryItem #accordion .card .card-header .outerdiv{align-items: center;}
+        .divliveryItem #accordion .card .card-header .outerdiv h3{padding: 0 10px;}
+        .divliveryItem #accordion .card .card-header .outerdiv .imagesdiv{height: unset;width: unset;}
+        .divliveryItem #accordion .card .card-header .outerdiv .imagesdiv img{max-width: 60px;}
+        .divliveryItem #accordion .card{padding: 15px;}
+        .divliveryItem #accordion .card-block ul li{padding-bottom: 20px;}
+        .divliveryItem #accordion .card-block ul li .showcount .count{    position: absolute;
+            bottom: 0;
+            right: 0;
+            align-items: center;
+            display: flex;}
+            .formFiled .card{margin-bottom: 80px;padding:0}
+}
+@media (max-width: 992px){
+    .divliveryItem{height: 100%;}
+    .divliveryItem .searchDiv .notes{margin: 0 auto;position: relative;}
+    .divliveryItem #accordion .card-block ul li .outerdiv .imagesdiv img{max-width: 50px;}
+    .divliveryItem #accordion .card-block ul li .outerdiv{align-items: center;}
+    .divliveryItem #accordion .card-block ul{margin-bottom: 0;padding-left: 0;}
+    .divliveryItem #accordion .card-block ul li .outerdiv .imagesdiv{height: unset;width: unset;}
+    .divliveryItem #accordion .card-block ul li .outerdiv span{padding: 0 10px;}
+}
+@media (max-width: 767px){
+    .positiondiv{
+        top: 50%;
+        bottom: unset;
+        transform: translate(0,-50%);
+    }
+
+    .login100-form .form-element label{font-size: 16px;margin-bottom: 15px;}
+    .login100-form .form-element{padding: 10px 0;}
+    .positiondiv .card{max-width: 400px;}
+    .positiondiv .card-body{padding: 10px 8px;}
+}
+@media (max-width: 500px) {
+    .nav .struck_Imag{width: 100px;height: 40px;}
+    .toplocationshow{top: 55px;padding: 0;}
+    .faltu-text{display: none;}
+    .nav .struck_Imag .countclass{font-size: 20px;right: 40;}
+    .login100-form .form-element{padding:0;}
+    .positiondiv .card{max-width: 300px;}
+
+    .toplocationshow .origin .leftside{    display: flex;
+        align-items: center;}
+        .showLocation{font-size: 12px;}
+    .toplocationshow .origin .leftside span{font-size: 12px;top: 0}  
+    .toplocationshow .destination .leftside{display: flex; align-items: center;}
+    .toplocationshow .destination .leftside span{font-size: 12px;}
+    .divliveryItem #accordion .card{padding: 10px}
+    .divliveryItem #accordion .card .card-header .outerdiv h3{font-size: 16px;}
+    .divliveryItem #accordion .card .card-header .outerdiv .imagesdiv img{max-width: 50px;}
+
+    .selectDateandTime .calsstopButton{flex-wrap: wrap;}
+    .selectDateandTime .calsstopButton a{padding: 7px}
+    .selectDateandTime .card .timeShow .dataTime{width: 100%;font-size: 15px;}
+    .selectDateandTime .card .timeShow .dataTime .minus{padding:12px 2px}
+    .finallist .card .card-body ul li .topheading{
+        font-size: 12px;
+    }
+    .finallist .card .card-body ul li .address span{
+        font-size: 12px;
+    }
+    .finallist .card .card-body ul li .time span{
+        font-size: 12px;
+    }
+    .finallist .card .card-body ul li .total{
+        font-size: 12px;
+    }
+
+    .finallist .card .card-body ul li .topheading i {
+        font-size: 15px;;
+    }
+    .divliveryItem #accordion .card-block ul li .showcount .count{
+        top: -12px;
+    }
+    .divliveryItem .titleheading h4{
+        font-size: 15px;
+    }
+   
+}
+
+
+
 
 
 /* @media (max-width: 767px) {
@@ -846,3 +932,4 @@ a:hover {
         letter-spacing: normal;
     }
 } */
+

@@ -280,6 +280,8 @@ button:focus {
 @media screen and (max-width:600px) {
     .navbar-transparent #probootstrap-navbar {
         /* background: rgba(44, 154, 155, 0.47); */
+
+        display: none;
     }
 }
 
@@ -476,4 +478,6 @@ button:disabled {
 } */
 
 
-
+@media (max-width: 500px){
+    .custom-class .modal-dialog .modal-content .modal-body .title-heading span{position: relative;top: unset;left: unset; transform: none;margin: 0;line-height: normal;}
+}

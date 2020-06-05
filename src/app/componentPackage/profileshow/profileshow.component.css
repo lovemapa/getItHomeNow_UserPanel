@@ -491,4 +491,15 @@ figure figcaption i {
     .profilediv .contentcard .mainTextDiv .textshow label {
         font-size: 14px;
     }
+    .customModalBody .mainheading{
+        font-size: 18px !important;
+    }
+    .customModalBody .divimages{
+        width: 209px !important;
+        height: 27px !important;
+        margin-top: 16px !important;
+    }
+    .d-block.w-100.headingclass {
+        font-size: 14px;
+    }
 }

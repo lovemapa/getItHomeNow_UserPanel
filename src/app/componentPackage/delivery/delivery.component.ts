@@ -46,7 +46,7 @@ export class DeliveryComponent implements OnInit {
   temparyNameDesination: string
   destinationLocationName: string;
   destinationRegion: string;
-  pickupRegion : string;
+  pickupRegion: string;
   selectedItemList: Array<any>
   searchItemList: Array<any>
   searchingValue: string
@@ -75,12 +75,12 @@ export class DeliveryComponent implements OnInit {
   selecteddatebutton = false;
   rightNowButton = false;
   hasRightNowBooking = true;
-  totalDistance:number = 0;
+  totalDistance: number = 0;
 
 
   constructor(private mapsAPILoader: MapsAPILoader, public ngZone: NgZone, public userBackEndService: UserpanelServiceService,
     public modalService: NgbModal, public cookiesSerive: CookieService, public spinner: NgxSpinnerService,
-    private formBuilder: FormBuilder,public router:Router,public datepipe: DatePipe) {
+    private formBuilder: FormBuilder, public router: Router, public datepipe: DatePipe) {
     this.origin = "";
     this.destination = "";
     this.phonenumber = "";
@@ -118,8 +118,8 @@ export class DeliveryComponent implements OnInit {
       hideRequired: this.hideRequiredControl,
       floatLabel: this.floatLabelControl,
     });
-    // this.itemList = JSON.parse(JSON.stringify(itemListData));
-    // this.showItemPage=true
+ 
+  
 
   }
 
@@ -145,7 +145,7 @@ export class DeliveryComponent implements OnInit {
     this.modalReference = this.modalService.open(this.modalConent,
       {
         ariaLabelledBy: 'modal-basic-title',
-         windowClass: 'custom-class',
+        windowClass: 'custom-class',
         centered: true
       });
   }
@@ -189,7 +189,7 @@ export class DeliveryComponent implements OnInit {
             return;
           }
           CommonMethods.showconsole("Palce", place)
-          CommonMethods.showconsole("Palce",JSON.stringify(place) )
+          CommonMethods.showconsole("Palce", JSON.stringify(place))
           let found: boolean = false;
           this.selectedLocationIds.forEach(element => {
             let placeRegex = '(.*(' + element.place_Name.toUpperCase() + ').+(FL|FLORIDA).+(USA|UNITED STATES))+';
@@ -238,7 +238,7 @@ export class DeliveryComponent implements OnInit {
     }
   }
 
-// mapClicked($event: MouseEvent) {
+  // mapClicked($event: MouseEvent) {
   //   this.addSubStoreModel.lat = $event.coords.lat;
   //   this.addSubStoreModel.lat = $event.coords.lng;
   //   CommonMethods.showconsole(this.Tag," before Lat:- "+this.addSubStoreModel.lat)
@@ -251,7 +251,7 @@ export class DeliveryComponent implements OnInit {
     this.lng = $event.coords.lng;
     CommonMethods.showconsole(this.Tag, "Lat:- " + this.lat)
     CommonMethods.showconsole(this.Tag, "Long: " + this.lng)
-    this.getAddress(this.lat,this.lng)
+    this.getAddress(this.lat, this.lng)
   }
   getAddress(latitude, longitude) {
     this.geoCoder.geocode({ 'location': { lat: latitude, lng: longitude } }, (results, status) => {
@@ -261,16 +261,16 @@ export class DeliveryComponent implements OnInit {
           // this.zoom = 16;
 
 
-            //  CommonMethods.showconsole(this.Tag, "Get Address :- "+JSON.stringify(results[0]) )
-            
-             var place =results[0]
-             CommonMethods.showconsole(this.Tag, "place Address :- "+place.formatted_address) 
-             CommonMethods.showconsole(this.Tag, "place lat :- "+place.geometry.location.lat()) 
-             CommonMethods.showconsole(this.Tag, "place lng :- "+place.geometry.location.lng()) 
-             
-             this.searchElementRef.nativeElement.value=place.formatted_address;
+          //  CommonMethods.showconsole(this.Tag, "Get Address :- "+JSON.stringify(results[0]) )
 
-             let found: boolean = false;
+          var place = results[0]
+          CommonMethods.showconsole(this.Tag, "place Address :- " + place.formatted_address)
+          CommonMethods.showconsole(this.Tag, "place lat :- " + place.geometry.location.lat())
+          CommonMethods.showconsole(this.Tag, "place lng :- " + place.geometry.location.lng())
+
+          this.searchElementRef.nativeElement.value = place.formatted_address;
+
+          let found: boolean = false;
           this.selectedLocationIds.forEach(element => {
             let placeRegex = '(.*(' + element.place_Name.toUpperCase() + ').+(FL|FLORIDA).+(USA|UNITED STATES))+';
             if (place.formatted_address.toUpperCase().match(placeRegex)) {
@@ -284,7 +284,7 @@ export class DeliveryComponent implements OnInit {
             }
           });
           if (found) {
-            this.searchElementRef.nativeElement.value=place.formatted_address;
+            this.searchElementRef.nativeElement.value = place.formatted_address;
             let showNextButton: boolean = true;
             this.lat = place.geometry.location.lat();
             this.lng = place.geometry.location.lng();
@@ -387,15 +387,15 @@ export class DeliveryComponent implements OnInit {
   */
   gotoNext() {
     if (this.pickupLocation == true) {
-      if(this.origin == ''){
-      this.origin = new google.maps.LatLng(this.lat,this.lng);
+      if (this.origin == '') {
+        this.origin = new google.maps.LatLng(this.lat, this.lng);
       }
       this.pickupLocation = false;
       this.destinationboolean = true;
-      if(this.destinationLocationName == ''){
-      this.searchElementRef.nativeElement.value = "";
+      if (this.destinationLocationName == '') {
+        this.searchElementRef.nativeElement.value = "";
       }
-      else{
+      else {
         this.searchElementRef.nativeElement.value = this.destinationLocationName;
         this.temparyNameDesination = this.destinationLocationName;
       }
@@ -414,41 +414,41 @@ export class DeliveryComponent implements OnInit {
         this.totalDistance = parseFloat(totalDisTanceintoMiles.match('[\\d]+.[\\d]+')[0]);
         switch (this.pickupRegion) {
           case "Home":
-                      {
-                        if (this.totalDistance > 25) {
-                          if (this.destinationRegion == "South Region") {
-                            this.priceForDelivery = '$119.50/hr';
-                          } else if (this.destinationRegion == "Central Region") {
-                            this.priceForDelivery = '$149.50/hr';
-                          } else {
-                            this.priceForDelivery = '$99.50/hr';
-                          }
-                        }
-                        else {
-                          this.priceForDelivery = '$99/hr';
-                        }
-                        break;
-                      }
+            {
+              if (this.totalDistance > 25) {
+                if (this.destinationRegion == "South Region") {
+                  this.priceForDelivery = '$119.50/hr';
+                } else if (this.destinationRegion == "Central Region") {
+                  this.priceForDelivery = '$149.50/hr';
+                } else {
+                  this.priceForDelivery = '$99.50/hr';
+                }
+              }
+              else {
+                this.priceForDelivery = '$99/hr';
+              }
+              break;
+            }
           case "South Region":
-                      {
-                        if (this.totalDistance < 25) {
-                          this.priceForDelivery = '$119/hr';
-                        }
-                        else {
-                          this.priceForDelivery = '$149.50/hr';
-                        }
-                        break;
-                      }
+            {
+              if (this.totalDistance < 25) {
+                this.priceForDelivery = '$119/hr';
+              }
+              else {
+                this.priceForDelivery = '$149.50/hr';
+              }
+              break;
+            }
           case "Central Region":
-                      {
-                        if (this.totalDistance < 25) {
-                          this.priceForDelivery = '$149/hr';
-                        }
-                        else {
-                          this.priceForDelivery = '$149.50/hr';
-                        }
-                        break;
-                      }
+            {
+              if (this.totalDistance < 25) {
+                this.priceForDelivery = '$149/hr';
+              }
+              else {
+                this.priceForDelivery = '$149.50/hr';
+              }
+              break;
+            }
         }
       });
       if (this.destinationLocationName.length != 0 && this.temparyNameDesination.length == 0) {
@@ -495,9 +495,9 @@ export class DeliveryComponent implements OnInit {
         let emailregex: RegExp = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
         var userfullname = MyCookies.getUserFistName(this.cookiesSerive) + " " + MyCookies.getUseLastName(this.cookiesSerive)
         this.formGroup = this.formBuilder.group({
-          'name': [userfullname,[Validators.required] ],
-          'email':[ MyCookies.getEmaild(this.cookiesSerive), [Validators.required, Validators.pattern(emailregex)]],
-          'mobileNumber': [MyCookies.getUsercontact(this.cookiesSerive),[Validators.required, Validators.pattern('[0-9]{10}')]],
+          'name': [userfullname, [Validators.required]],
+          'email': [MyCookies.getEmaild(this.cookiesSerive), [Validators.required, Validators.pattern(emailregex)]],
+          'mobileNumber': [MyCookies.getUsercontact(this.cookiesSerive), [Validators.required, Validators.pattern('[0-9]{10}')]],
           'any_special_instruction': [null]
         });
       }
@@ -509,7 +509,7 @@ export class DeliveryComponent implements OnInit {
     }
   }
 
- 
+
   /**
    * Method to Reset all the Values 
    */
@@ -707,10 +707,10 @@ export class DeliveryComponent implements OnInit {
     }
   }
 
- /**
-   * disabling all number   other than characters
-   * @param event 
-   */
+  /**
+    * disabling all number   other than characters
+    * @param event 
+    */
   _keyPresscharacter(event: any) {
     const pattern = /^[a-zA-Z\s]*$/;
     let inputChar = String.fromCharCode(event.charCode);
@@ -737,10 +737,10 @@ export class DeliveryComponent implements OnInit {
       this.showtimefalse = false;
       this.timearrayList = [];
       this.selectedDate = new Date();
-      if((this.selectedDate.getHours()>=9 && this.selectedDate.getMinutes()>=45) && (this.selectedDate.getHours()<=20 && this.selectedDate.getMinutes()>=15) ){
-        this.selectedTimeSlot = this.datepipe.transform(this.selectedDate,"medium");
+      if ((this.selectedDate.getHours() >= 9 && this.selectedDate.getMinutes() >= 45) && (this.selectedDate.getHours() <= 20 && this.selectedDate.getMinutes() >= 15)) {
+        this.selectedTimeSlot = this.datepipe.transform(this.selectedDate, "medium");
       }
-      else{
+      else {
         this.hasRightNowBooking = false;
       }
       this.selecteddatebutton = false;
@@ -775,7 +775,7 @@ export class DeliveryComponent implements OnInit {
       if (willDelete.value) {
         this.dataReset();
       } else {
-       
+
       }
     });
   }
@@ -816,46 +816,51 @@ export class DeliveryComponent implements OnInit {
   /**
    * method to get formatted  token amount
    */
-  showTokenAmount():number{
+  showTokenAmount(): number {
     return parseFloat(this.priceForDelivery.match('[\\d]+')[0]);
   }
 
-checkoutClick(){
-  this.modalOpen()
-}
-
-modalOpen()
-{
-let user = {
-  name: this.formGroup.get('name').value,
-  email:  this.formGroup.get('email').value,
-  price: parseFloat(this.priceForDelivery.match('[\\d]+')[0])
+  checkoutClick() {
+    this.modalOpen()
   }
-  
 
-    this.modalReference =this.modalService.open(PaymentGatewayComponent, {
+  modalOpen() {
+    let user = {
+      name: this.formGroup.get('name').value,
+      email: this.formGroup.get('email').value,
+      price: parseFloat(this.priceForDelivery.match('[\\d]+')[0])
+    }
+
+
+    this.modalReference = this.modalService.open(PaymentGatewayComponent, {
       ariaLabelledBy: 'modal-basic-title',
-       windowClass: 'paymentModal',
-      backdrop:"static",
+      windowClass: 'paymentModal',
+      backdrop: "static",
       centered: true,
-      
+
     });
 
-    this.modalReference.componentInstance.name =user;
+    this.modalReference.componentInstance.name = user;
     this.modalReference.result.then(
       (data: any) => {
         if (data != "") {
           Swal.fire({
-            title: "Thank you! Your payment was successful",
-            text:"A driver will contact you shortly.",
-            icon: 'success'
+            title: "Payment successful",
+            text: "Your payment was successful! A driver will contact you shortly.",
+            // icon: 'success'
+            imageUrl: './assets/imgs/payment-successful.png',
+            imageWidth: 100,
+            imageHeight: 100,
+            imageAlt: 'Custom image',
+            closeOnClickOutside: false,
+            closeOnEsc: false,
           }).then((result) => {
             if (result.value === true) {
               this.dataReset()
               MyRoutingMethods.gotoHome(this.router)
             }
           });
-       
+
         } else {
           CommonMethods.showconsole(this.Tag, "Token Id :- " + data)
         }
@@ -863,53 +868,51 @@ let user = {
       },
       (reason: any) => { }
     );
-}
-
-/**Contact US Pop */
- contactUsPop(contactForm)
- {
-
-  if(MyCookies.checkLoginStatus(this.cookiesSerive) ==  true)
-  {
-    var userName = MyCookies.getUserFistName(this.cookiesSerive)+" "+MyCookies.getUseLastName(this.cookiesSerive) 
-    let emailregex: RegExp = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-    this.contactUsForm = this.formBuilder.group({
-      'userEmail': [MyCookies.getEmaild(this.cookiesSerive), [Validators.required, Validators.pattern(emailregex)]],
-      'userName': [userName, Validators.required],
-      'userContactNo': [MyCookies.getUsercontact(this.cookiesSerive), [Validators.required, Validators.pattern('[0-9]{10}')]],
-      'userComment': [null,Validators.required]
-    });
-
-  }else{
-    this.contactFormPopup()
   }
 
-  this.modalReference =this.modalService.open(contactForm, {
-    ariaLabelledBy: 'modal-basic-title',
-    backdrop:"static",
-    centered: true,
-  });
- }
+  /**Contact US Pop */
+  contactUsPop(contactForm) {
+
+    if (MyCookies.checkLoginStatus(this.cookiesSerive) == true) {
+      var userName = MyCookies.getUserFistName(this.cookiesSerive) + " " + MyCookies.getUseLastName(this.cookiesSerive)
+      let emailregex: RegExp = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+      this.contactUsForm = this.formBuilder.group({
+        'userEmail': [MyCookies.getEmaild(this.cookiesSerive), [Validators.required, Validators.pattern(emailregex)]],
+        'userName': [userName, Validators.required],
+        'userContactNo': [MyCookies.getUsercontact(this.cookiesSerive), [Validators.required, Validators.pattern('[0-9]{10}')]],
+        'userComment': [null, Validators.required]
+      });
+
+    } else {
+      this.contactFormPopup()
+    }
+
+    this.modalReference = this.modalService.open(contactForm, {
+      ariaLabelledBy: 'modal-basic-title',
+      backdrop: "static",
+      centered: true,
+    });
+  }
 
 
- /**
-   *  Input contact Form Validation
-   */
+  /**
+    *  Input contact Form Validation
+    */
   contactFormPopup() {
     let emailregex: RegExp = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
     this.contactUsForm = this.formBuilder.group({
       'userEmail': [null, [Validators.required, Validators.pattern(emailregex)]],
       'userName': [null, Validators.required],
       'userContactNo': [null, [Validators.required, Validators.pattern('[0-9]{10}')]],
-      'userComment': [null,Validators.required]
+      'userComment': [null, Validators.required]
     });
   }
 
 
-  messageSend(){
+  messageSend() {
     this.JoinAndClose();
     this.spinner.show()
-   CommonMethods.showconsole(this.Tag,"Name value :- "+this.contactUsForm.get('userEmail').value)
+    CommonMethods.showconsole(this.Tag, "Name value :- " + this.contactUsForm.get('userEmail').value)
 
     let contactUsDetails: any = {
       name: this.contactUsForm.get('userName').value,
@@ -924,9 +927,9 @@ let user = {
         CommonMethods.opensweetalert(res.message)
       }
       else {
-        CommonMethods.opensweetalertError( res.message);
+        CommonMethods.opensweetalertError(res.message);
       }
     });
-  
+
   }
 }
