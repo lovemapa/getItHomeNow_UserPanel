@@ -74,9 +74,9 @@ export class DeliveryComponent implements OnInit {
   floatLabelControl = new FormControl('auto');
   selecteddatebutton = false;
   rightNowButton = false;
-  hasRightNowBooking = true;
+  hasRightNowBooking = false;
   totalDistance: number = 0;
-
+  bookingData:any = {};
 
   constructor(private mapsAPILoader: MapsAPILoader, public ngZone: NgZone, public userBackEndService: UserpanelServiceService,
     public modalService: NgbModal, public cookiesSerive: CookieService, public spinner: NgxSpinnerService,
@@ -188,8 +188,6 @@ export class DeliveryComponent implements OnInit {
           if (place.geometry === undefined || place.geometry === null) {
             return;
           }
-          CommonMethods.showconsole("Palce", place)
-          CommonMethods.showconsole("Palce", JSON.stringify(place))
           let found: boolean = false;
           this.selectedLocationIds.forEach(element => {
             let placeRegex = '(.*(' + element.place_Name.toUpperCase() + ').+(FL|FLORIDA).+(USA|UNITED STATES))+';
@@ -238,36 +236,21 @@ export class DeliveryComponent implements OnInit {
     }
   }
 
-  // mapClicked($event: MouseEvent) {
-  //   this.addSubStoreModel.lat = $event.coords.lat;
-  //   this.addSubStoreModel.lat = $event.coords.lng;
-  //   CommonMethods.showconsole(this.Tag," before Lat:- "+this.addSubStoreModel.lat)
-  //   CommonMethods.showconsole(this.Tag,"before Long: "+this.addSubStoreModel.lng)
-  // }
-
+  /**
+   * on clicking anywhere on map
+   * @param $event 
+   */
   mapClicked($event: MouseEvent) {
-    console.log('dragEnd', $event);
     this.lat = $event.coords.lat;
     this.lng = $event.coords.lng;
-    CommonMethods.showconsole(this.Tag, "Lat:- " + this.lat)
-    CommonMethods.showconsole(this.Tag, "Long: " + this.lng)
     this.getAddress(this.lat, this.lng)
   }
+
   getAddress(latitude, longitude) {
     this.geoCoder.geocode({ 'location': { lat: latitude, lng: longitude } }, (results, status) => {
-
       if (status === 'OK') {
         if (results[0]) {
-          // this.zoom = 16;
-
-
-          //  CommonMethods.showconsole(this.Tag, "Get Address :- "+JSON.stringify(results[0]) )
-
           var place = results[0]
-          CommonMethods.showconsole(this.Tag, "place Address :- " + place.formatted_address)
-          CommonMethods.showconsole(this.Tag, "place lat :- " + place.geometry.location.lat())
-          CommonMethods.showconsole(this.Tag, "place lng :- " + place.geometry.location.lng())
-
           this.searchElementRef.nativeElement.value = place.formatted_address;
 
           let found: boolean = false;
@@ -530,7 +513,7 @@ export class DeliveryComponent implements OnInit {
     if (this.showItemPage && this.selectedItemList.length > 0) {
       return false;
     }
-    if (this.dateSelectedPage && this.selectedDate != null && this.selectedTimeSlot != '' && this.hasRightNowBooking) {
+    if (this.dateSelectedPage && this.selectedDate != null && this.selectedTimeSlot != '') {
       return false;
     }
     if (this.formFieldshow && this.formGroup.valid) {
@@ -731,13 +714,15 @@ export class DeliveryComponent implements OnInit {
       this.getDateNextThree();
       this.selecteddatebutton = true;
       this.rightNowButton = false;
-      this.hasRightNowBooking = true;
+      this.hasRightNowBooking = false;
     } else {
       this.showtimefalse = false;
       this.timearrayList = [];
       this.selectedDate = new Date();
-      if ((this.selectedDate.getHours() >= 9 && this.selectedDate.getMinutes() >= 45) && (this.selectedDate.getHours() <= 20 && this.selectedDate.getMinutes() >= 15)) {
-        this.selectedTimeSlot = this.datepipe.transform(this.selectedDate, "medium");
+      this.selectedTimeSlot = "";
+      if (this.validateRightNow()) {
+        this.selectedTimeSlot = "Right Now";
+        this.hasRightNowBooking = true;
       }
       else {
         this.hasRightNowBooking = false;
@@ -746,6 +731,23 @@ export class DeliveryComponent implements OnInit {
       this.rightNowButton = true;
     }
 
+  }
+
+  /**
+   * validate Right Now button
+   */
+  validateRightNow():boolean{
+    if(this.selectedDate.getHours()<=2){
+      if(this.selectedDate.getMinutes() <= 45){
+        return false;
+      }
+    }
+    if(this.selectedDate.getHours()>=20){
+      if(this.selectedDate.getMinutes() >= 15){
+        return false;
+      }
+    }
+    return true;
   }
 
   /**
@@ -765,17 +767,16 @@ export class DeliveryComponent implements OnInit {
   opensweetalert() {
     Swal.fire({
       title: "Are you sure?",
-      text: "Once you click , you will not be able to recover this imaginary file!",
+      text: "Once you click Ok, you will not be able to recover booking details!",
       icon: 'warning',
       confirmButtonText: 'Yes',
       showCancelButton: true,
+      allowOutsideClick: false,
       dangerMode: true,
     }).then((willDelete) => {
       if (willDelete.value) {
         this.dataReset();
-      } else {
-
-      }
+      } 
     });
   }
 
@@ -800,7 +801,7 @@ export class DeliveryComponent implements OnInit {
     this.selectedItemList = [];
     this.searchItemList = [];
     this.showtimefalse = false;
-    this.hasRightNowBooking = true;
+    this.hasRightNowBooking = false;
     this.timearrayList = [];
     this.formGroup.reset();
     this.temparyNameDesination = "";
@@ -820,17 +821,43 @@ export class DeliveryComponent implements OnInit {
   }
 
   checkoutClick() {
-    this.modalOpen()
+    this.setBookingData();
+    if(!this.hasRightNowBooking){
+      this.bookingData.amount = parseFloat(this.priceForDelivery.match('[\\d]+')[0]);
+      this.bookingData.currency = 'inr';
+      this.bookingData.receipt_email = this.formGroup.get('email').value;
+      this.bookingData.phone = this.formGroup.get('mobileNumber').value;
+      this.modalOpen()
+    }
+    else{
+      this.spinner.show();
+      console.log("this.bookingData :", this.bookingData);
+      this.userBackEndService.makePaymentFinal(this.bookingData).subscribe((responseData) => {
+        this.spinner.hide();
+        if (responseData.success) {
+          Swal.fire({
+            title: "Booking successful",
+            text: "A driver will contact you shortly.",
+            icon: 'success',
+            allowOutsideClick: false,
+            closeOnEsc: false,
+          }).then((result) => {
+            if (result.value === true) {
+              this.dataReset()
+              MyRoutingMethods.gotoHome(this.router)
+            }
+          });
+        } else {
+          CommonMethods.opensweetalertError(responseData.message)
+        }
+      },error => {
+        this.spinner.hide();
+        CommonMethods.opensweetalertError("Something went wrong! Please try again later!")
+      });
+    }
   }
 
   modalOpen() {
-    let user = {
-      name: this.formGroup.get('name').value,
-      email: this.formGroup.get('email').value,
-      price: parseFloat(this.priceForDelivery.match('[\\d]+')[0])
-    }
-
-
     this.modalReference = this.modalService.open(PaymentGatewayComponent, {
       ariaLabelledBy: 'modal-basic-title',
       windowClass: 'paymentModal',
@@ -838,20 +865,18 @@ export class DeliveryComponent implements OnInit {
       centered: true,
 
     });
-
-    this.modalReference.componentInstance.name = user;
+    this.modalReference.componentInstance.bookingDetails = this.bookingData;
     this.modalReference.result.then(
       (data: any) => {
         if (data != "") {
           Swal.fire({
             title: "Payment successful",
             text: "Your payment was successful! A driver will contact you shortly.",
-            // icon: 'success'
             imageUrl: './assets/imgs/payment-successful.png',
             imageWidth: 100,
             imageHeight: 100,
             imageAlt: 'Custom image',
-            closeOnClickOutside: false,
+            allowOutsideClick: false,
             closeOnEsc: false,
           }).then((result) => {
             if (result.value === true) {
@@ -863,7 +888,6 @@ export class DeliveryComponent implements OnInit {
         } else {
           CommonMethods.showconsole(this.Tag, "Token Id :- " + data)
         }
-        // this.processData(data);
       },
       (reason: any) => { }
     );
@@ -871,7 +895,6 @@ export class DeliveryComponent implements OnInit {
 
   /**Contact US Pop */
   contactUsPop(contactForm) {
-
     if (MyCookies.checkLoginStatus(this.cookiesSerive) == true) {
       var userName = MyCookies.getUserFistName(this.cookiesSerive) + " " + MyCookies.getUseLastName(this.cookiesSerive)
       let emailregex: RegExp = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
@@ -881,11 +904,9 @@ export class DeliveryComponent implements OnInit {
         'userContactNo': [MyCookies.getUsercontact(this.cookiesSerive), [Validators.required, Validators.pattern('[0-9]{10}')]],
         'userComment': [null, Validators.required]
       });
-
     } else {
       this.contactFormPopup()
     }
-
     this.modalReference = this.modalService.open(contactForm, {
       ariaLabelledBy: 'modal-basic-title',
       backdrop: "static",
@@ -911,8 +932,6 @@ export class DeliveryComponent implements OnInit {
   messageSend() {
     this.JoinAndClose();
     this.spinner.show()
-    CommonMethods.showconsole(this.Tag, "Name value :- " + this.contactUsForm.get('userEmail').value)
-
     let contactUsDetails: any = {
       name: this.contactUsForm.get('userName').value,
       email: this.contactUsForm.get('userEmail').value,
@@ -929,6 +948,37 @@ export class DeliveryComponent implements OnInit {
         CommonMethods.opensweetalertError(res.message);
       }
     });
+  }
 
+  /**
+   * create delivery data for booking
+   */
+  setBookingData(){
+    let pickupAddress:any = {};
+    pickupAddress.formatted_address = this.pickUpLocationName;
+    pickupAddress.lat = this.origin.lat();
+    pickupAddress.lng = this.origin.lng();
+    let deliveryAddress:any = {};
+
+    deliveryAddress.formatted_address = this.destinationLocationName;
+    deliveryAddress.lat = this.destination.lat();
+    deliveryAddress.lng = this.destination.lng();
+
+    let contactDetails:any = {
+      name: this.formGroup.get('name').value,
+      email: this.formGroup.get('email').value,
+      phone: this.formGroup.get('mobileNumber').value
+    };
+
+    this.bookingData.user = MyCookies.getId(this.cookiesSerive);
+    this.bookingData.amount = parseFloat(this.priceForDelivery.match('[\\d.]+')[0]);
+    this.bookingData.pickUpAddress = pickupAddress;
+    this.bookingData.deliveryAddress = deliveryAddress;
+    this.bookingData.itemList = this.selectedItemList;
+    this.bookingData.rightNow = this.hasRightNowBooking;
+    this.bookingData.timeSlot = this.selectedTimeSlot;
+    this.bookingData.bookingDate = this.selectedDate.getTime();
+    this.bookingData.contact_details = contactDetails;
+    this.bookingData.special_instructions = this.formGroup.get('any_special_instruction').value;
   }
 }

@@ -274,12 +274,13 @@
             <ul>
                 <li style="padding:0;">
                     <div class="productShow">
-                        <div *ngFor="let item of selectedItemList;let i=index;" class="outerdiv col-md-6" [ngClass]="i%2==0? 'float-left' : 'float-right'">
+                        <div *ngFor="let item of selectedItemList;let i=index;" class="outerdiv col-md-6" [ngClass]="[i%2==0? 'float-left' : 'float-right', (selectedItemList.length == (i+1) && i%2==0)? 'max-width-none': '']">
                             <div class="imagesdiv">
                                 <img src="./assets/imgs/{{item.item_icon}}" alt="item.item_Name">
                             </div>
                             <div class="showQuanity">
-                                <span title="{{item.item_Name.length>24 ? item.item_Name : ''}}">{{item.item_Name.length>24 ? (item.item_Name | slice:0:14)+'...' : item.item_Name}}</span>
+                                <span *ngIf="!(selectedItemList.length == (i+1) && i%2==0)" title="{{item.item_Name.length>24 ? item.item_Name : ''}}">{{item.item_Name.length>24 ? (item.item_Name | slice:0:14)+'...' : item.item_Name}}</span>
+                                <span *ngIf="selectedItemList.length == (i+1) && i%2==0">{{item.item_Name}}</span>
                                 <p> Quanity: <span>{{item.quantity}}</span></p>
                             </div>
                         </div>

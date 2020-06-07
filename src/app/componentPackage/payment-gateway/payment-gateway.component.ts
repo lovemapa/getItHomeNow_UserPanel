@@ -76,7 +76,8 @@ export class PaymentGatewayComponent implements OnInit {
   };
 
   stripeTest: FormGroup;
-  @Input() name;
+  @Input() bookingDetails;
+  
   constructor(
     private formBuilder: FormBuilder,
     private stripeService: StripeService,
@@ -134,12 +135,6 @@ export class PaymentGatewayComponent implements OnInit {
 
   }
 
-  // getErrorEmail() {
-  //   return this.stripeTest.get('email').hasError('required') ? 'Email address is required' :
-  //     this.stripeTest.get('email').hasError('pattern') ? 'Email address is not valid' : '';
-
-  // }
-
   _keyPress(event: any) {
     const pattern = /[0-9]/;
     let inputChar = String.fromCharCode(event.charCode);
@@ -163,38 +158,32 @@ export class PaymentGatewayComponent implements OnInit {
 
 
   buy() {
-    // this.modalRef.close()
     const name = this.stripeTest.get('name').value;
     const address_line1 = this.stripeTest.get('address_line1').value;
     const address_city = this.stripeTest.get('address_city').value;
     const address_state = this.stripeTest.get('address_state').value;
     const address_zip = this.stripeTest.get('address_zip').value;
     const address_country = this.stripeTest.get('address_country').value;
-    // const address = this.stripeTest.get('name').value;
-    // const name = this.stripeTest.get('name').value;
-    // const name = this.stripeTest.get('name').value;
     this.stripeService
       .createToken(this.card.getCard(), { name, address_line1, address_city, address_state, address_zip, address_country })
       .subscribe(result => {
         if (result.token) {
           this.spinner.show();
-          console.log(result.token.id);
-          let paymentData: any = {};
-          paymentData.amount = this.name.price;
-          paymentData.currency = "inr";
-          paymentData.receipt_email = this.name.email;
-          paymentData.token = result.token.id;
-          this.userBackEndService.makePaymentFinal(paymentData).subscribe((responseData) => {
+          this.bookingDetails.token = result.token.id;
+          console.log("this.bookingDetails :", this.bookingDetails);
+          this.userBackEndService.makePaymentFinal(this.bookingDetails).subscribe((responseData) => {
             this.spinner.hide();
             if (responseData.success) {
               this.activemodal.close('success');
             } else {
               CommonMethods.opensweetalertError(responseData.message)
             }
+          },error => {
+            this.spinner.hide();
+            CommonMethods.opensweetalertError("Something went wrong! Please try again later!")
           });
         } else if (result.error) {
           this.spinner.hide();
-          console.log(result.error.message);
           CommonMethods.opensweetalertError(result.error.message)
         }
       });

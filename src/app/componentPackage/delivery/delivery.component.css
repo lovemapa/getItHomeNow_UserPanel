@@ -46,8 +46,11 @@ agm-map {
 
 .positiondiv {
     position: absolute;
-    width: 100%;
+    width: 500px;
     z-index: 1;
+    top: 66%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     bottom: 130px;
     background: transparent;
     text-align: center;
@@ -789,6 +792,10 @@ a:hover {
     flex-flow: row;
     justify-content: center; 
 } */
+
+.max-width-none{
+    max-width: none;
+}
 
 .finallist .card .card-body .productShow .outerdiv {
     display: flex;

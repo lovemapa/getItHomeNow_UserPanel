@@ -18,7 +18,7 @@
   </div>
   <div class="d-flex justify-content-between w-100 py-3 border-bottom">
     <p class="mb-0 text-center py-2 font-weight-bold"> Deposit Amount </p>
-    <h4 class="mb-0 text-center py-1 font-weight-bold">{{name.price | currency:'USD'}}</h4>
+    <h4 class="mb-0 text-center py-1 font-weight-bold">{{bookingDetails.amount | currency:'USD'}}</h4>
 
   </div>
 
@@ -100,7 +100,7 @@
 
 
     <button type="submit" class="btn btn-lg w-75 text-center custommodalbutton" [disabled]="!stripeTest.valid" >
-      <span>Pay</span> <span class="pl-2">{{name.price | currency:'USD'}}</span>
+      <span>Pay</span> <span class="pl-2">{{bookingDetails.amount | currency:'USD'}}</span>
     </button>
   </form>
   </div>
