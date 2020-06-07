@@ -264,6 +264,12 @@ button {
     background: #e5e5e5;
     padding: 30px 10px;
 }
+.close-modal-button{
+    position: absolute !important;
+    top: 47% !important;
+    left: 95% !important;
+    font-size: 2rem !important;
+}
 
 .divliveryItem .titleheading h4 {
     text-align: center;

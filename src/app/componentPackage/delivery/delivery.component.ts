@@ -255,7 +255,7 @@ export class DeliveryComponent implements OnInit {
 
           let found: boolean = false;
           this.selectedLocationIds.forEach(element => {
-            let placeRegex = '(.*(' + element.place_Name.toUpperCase() + ').+(FL|FLORIDA).+(USA|UNITED STATES))+';
+            let placeRegex = '(.*(' + element.place_Name.toUpperCase() + ')[, ]+(FL|FLORIDA) .+(USA|UNITED STATES))+';
             if (place.formatted_address.toUpperCase().match(placeRegex)) {
               found = true;
               if (this.pickupLocation == true) {

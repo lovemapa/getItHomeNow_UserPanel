@@ -364,36 +364,45 @@
     </div>
 </div>
 
-<ng-template #sameLocationModalDiaolg>
+<ng-template #sameLocationModalDiaolg let-sameLocationModal>
     <div class="modal-body" style="text-align: center; ">
         <div class="title-heading">
             <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
             <span>Sorry, you can't select same Pick-Up and Delivery location.</span>
+            <button type="button" class="close" aria-label="Close" (click)="sameLocationModal.dismiss('Cross click')">
+                <span aria-hidden="true" class="close-modal-button">&times;</span>
+            </button>
         </div>
-        <div class="lowerText">
+        <div class="lowerText" ngbAutofocus>
             <span>kindly select different Delivery location!</span>
         </div>
     </div>
 </ng-template>
 
-<ng-template #modalDiaolg>
+<ng-template #modalDiaolg let-outOfServiceModal>
     <div class="modal-body" style="text-align: center; ">
         <div class="title-heading">
             <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
             <span>Sorry, you're out of our service area</span>
+            <button type="button" class="close " aria-label="Close" (click)="outOfServiceModal.dismiss('Cross click')">
+                <span aria-hidden="true" class="close-modal-button">&times;</span>
+            </button>
         </div>
-        <div class="lowerText">
+        <div class="lowerText" ngbAutofocus>
             <span>We're not available in your area yet. Check back with us again soon!</span>
         </div>
     </div>
 </ng-template>
-<ng-template #distanceModal>
+<ng-template #distanceModal let-outOfDistanceModal>
     <div class="modal-body" style="text-align: center; ">
-        <div class="title-heading">
+          <div class="title-heading">
             <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
             <span>Sorry, you're out of our service area</span>
+            <button type="button" class="close " aria-label="Close" (click)="outOfDistanceModal.dismiss('Cross click')">
+                <span aria-hidden="true" class="close-modal-button">&times;</span>
+            </button>
         </div>
-        <div class="lowerText">
+        <div class="lowerText" ngbAutofocus>
             <span>We're unable to deliver 25 miles outside of your service area. Questions? Please call us </span>
         </div>
     </div>
