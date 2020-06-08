@@ -737,12 +737,12 @@ export class DeliveryComponent implements OnInit {
    * validate Right Now button
    */
   validateRightNow():boolean{
-    if(this.selectedDate.getHours()<=2){
+    if(this.selectedDate.getHours()<=9){
       if(this.selectedDate.getMinutes() <= 45){
         return false;
       }
     }
-    if(this.selectedDate.getHours()>=20){
+    if(this.selectedDate.getHours()>=23){
       if(this.selectedDate.getMinutes() >= 15){
         return false;
       }
@@ -955,12 +955,12 @@ export class DeliveryComponent implements OnInit {
    */
   setBookingData(){
     let pickupAddress:any = {};
-    pickupAddress.formatted_address = this.pickUpLocationName;
+    pickupAddress.formattedAddress = this.pickUpLocationName;
     pickupAddress.lat = this.origin.lat();
     pickupAddress.lng = this.origin.lng();
     let deliveryAddress:any = {};
 
-    deliveryAddress.formatted_address = this.destinationLocationName;
+    deliveryAddress.formattedAddress = this.destinationLocationName;
     deliveryAddress.lat = this.destination.lat();
     deliveryAddress.lng = this.destination.lng();
 
