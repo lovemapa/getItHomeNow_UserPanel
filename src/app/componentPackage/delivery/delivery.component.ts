@@ -33,6 +33,7 @@ export class DeliveryComponent implements OnInit {
   selectedLocationIds: Array<any>;
   itemList: Array<any>;
   @ViewChild('search', { static: true }) searchElementRef: ElementRef;
+  @ViewChild('apartment', { static: true }) apartmentElementRef: ElementRef;
   @ViewChild('sameLocationModalDiaolg', { static: true }) sameLocationModal: NgbModal;
   @ViewChild('modalDiaolg', { static: true }) modalConent: NgbModal;
   @ViewChild('distanceModal', { static: true }) distanceModal: NgbModal;
@@ -77,6 +78,8 @@ export class DeliveryComponent implements OnInit {
   hasRightNowBooking = false;
   totalDistance: number = 0;
   bookingData:any = {};
+  pickupApartment:string = '';
+  deliveryApartment :string = '';
 
   constructor(private mapsAPILoader: MapsAPILoader, public ngZone: NgZone, public userBackEndService: UserpanelServiceService,
     public modalService: NgbModal, public cookiesSerive: CookieService, public spinner: NgxSpinnerService,
@@ -349,6 +352,7 @@ export class DeliveryComponent implements OnInit {
       this.showItemPage = false;
       this.itemList = []
       this.searchElementRef.nativeElement.value = this.destinationLocationName;
+      this.apartmentElementRef.nativeElement.value = this.deliveryApartment;
       this.textboxLabel = "Delivery  Address";
       this.textBoxPLaceBolder = "Enter Delivery Address"
       this.iconDisplay = "fa fa-arrow-circle-down";
@@ -357,6 +361,7 @@ export class DeliveryComponent implements OnInit {
       this.temparyNameDesination = "";
       this.destinationboolean = false
       this.searchElementRef.nativeElement.value = this.pickUpLocationName;
+      this.apartmentElementRef.nativeElement.value = this.pickupApartment;
       this.textboxLabel = "Pick Up Address";
       this.textBoxPLaceBolder = "Enter PickUp Address"
       this.iconDisplay = "fa fa-arrow-circle-up";
@@ -373,6 +378,7 @@ export class DeliveryComponent implements OnInit {
       if (this.origin == '') {
         this.origin = new google.maps.LatLng(this.lat, this.lng);
       }
+      this.pickupApartment = this.apartmentElementRef.nativeElement.value;
       this.pickupLocation = false;
       this.destinationboolean = true;
       if (this.destinationLocationName == '') {
@@ -381,6 +387,12 @@ export class DeliveryComponent implements OnInit {
       else {
         this.searchElementRef.nativeElement.value = this.destinationLocationName;
         this.temparyNameDesination = this.destinationLocationName;
+      }
+      if(this.deliveryApartment == ''){
+        this.apartmentElementRef.nativeElement.value = '';
+      }
+      else{
+        this.apartmentElementRef.nativeElement.value = this.deliveryApartment;
       }
       this.textboxLabel = "Delivery  Address";
       this.textBoxPLaceBolder = "Enter Delivery Address"
@@ -434,6 +446,7 @@ export class DeliveryComponent implements OnInit {
             }
         }
       });
+      this.deliveryApartment = this.apartmentElementRef.nativeElement.value;
       if (this.destinationLocationName.length != 0 && this.temparyNameDesination.length == 0) {
         this.temparyNameDesination = this.destinationLocationName;
         this.searchElementRef.nativeElement.value = this.destinationLocationName;
@@ -742,7 +755,7 @@ export class DeliveryComponent implements OnInit {
         return false;
       }
     }
-    if(this.selectedDate.getHours()>=23){
+    if(this.selectedDate.getHours()>=20){
       if(this.selectedDate.getMinutes() >= 15){
         return false;
       }
@@ -789,14 +802,15 @@ export class DeliveryComponent implements OnInit {
     this.destinationboolean = false;
     this.dateSelectedPage = false;
     this.selectedDate = null;
-    this.searchingValue = ""
+    this.searchingValue = "";
     this.formFieldshow = false;
-    this.showFinallist = false
+    this.showFinallist = false;
     this.dateList = [];
     this.origin = "";
     this.destination = "";
-    this.selectedTimeSlot = ""
+    this.selectedTimeSlot = "";
     this.pickUpLocationName = "";
+    this.pickupApartment = "";
     this.itemList = [];
     this.selectedItemList = [];
     this.searchItemList = [];
@@ -806,9 +820,11 @@ export class DeliveryComponent implements OnInit {
     this.formGroup.reset();
     this.temparyNameDesination = "";
     this.destinationLocationName = "";
+    this.deliveryApartment = "";
     this.searchElementRef.nativeElement.value = "";
+    this.apartmentElementRef.nativeElement.value = "";
     this.textboxLabel = "Pick Up Address";
-    this.textBoxPLaceBolder = "Enter PickUp Address"
+    this.textBoxPLaceBolder = "Enter PickUp Address";
     this.iconDisplay = "fa fa-arrow-circle-up";
     this.setCurrentLocation()
   }
@@ -955,12 +971,14 @@ export class DeliveryComponent implements OnInit {
    */
   setBookingData(){
     let pickupAddress:any = {};
-    pickupAddress.formattedAddress = this.pickUpLocationName;
+    let _pickupApartment = this.pickupApartment == '' ? '' : '#'+this.pickupApartment+', ';
+    pickupAddress.formattedAddress = _pickupApartment + this.pickUpLocationName;
     pickupAddress.lat = this.origin.lat();
     pickupAddress.lng = this.origin.lng();
-    let deliveryAddress:any = {};
 
-    deliveryAddress.formattedAddress = this.destinationLocationName;
+    let deliveryAddress:any = {};
+    let _deliveryApartment = this.deliveryApartment == '' ? '' : '#'+this.deliveryApartment+', ';
+    deliveryAddress.formattedAddress = _deliveryApartment + this.destinationLocationName;
     deliveryAddress.lat = this.destination.lat();
     deliveryAddress.lng = this.destination.lng();
 

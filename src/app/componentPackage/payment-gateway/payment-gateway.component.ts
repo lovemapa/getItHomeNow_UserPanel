@@ -40,37 +40,6 @@ export class PaymentGatewayComponent implements OnInit {
     hidePostalCode: true,
   };
 
-
-  //   var card = elements.create('card', {
-  //     iconStyle: 'solid',
-  //     style: {
-  //       base: {
-  //         iconColor: '#c4f0ff',
-  //         color: '#fff',
-  //         fontWeight: 500,
-  //         fontFamily: 'Roboto, Open Sans, Segoe UI, sans-serif',
-  //         fontSize: '16px',
-  //         fontSmoothing: 'antialiased',
-
-  //         ':-webkit-autofill': {
-  //           color: '#fce883',
-  //         },
-  //         '::placeholder': {
-  //           color: '#87BBFD',
-  //         },
-  //       },
-  //       invalid: {
-  //         iconColor: '#FFC7EE',
-  //         color: '#FFC7EE',
-  //       },
-  //     },
-  //   });
-  //   card.mount('#example1-card');
-
-  //   registerElements([card], 'example1');
-  // })();
-
-
   elementsOptions: ElementsOptions = {
     locale: 'en',
   };
@@ -196,16 +165,9 @@ export class PaymentGatewayComponent implements OnInit {
     this.error = undefined;
   }
 
-  // keyUpdated() {
-  //   this._stripe.changeKey(this.stripeKey);
-  // }
-
-
-
   paymentModal(modalContent) {
     this.modalRef = this.ngbModalService.open(modalContent, {
       ariaLabelledBy: 'modal-basic-title',
-      // windowClass: 'custom-class',
       centered: true
     });
   }
@@ -213,27 +175,6 @@ export class PaymentGatewayComponent implements OnInit {
   joincolse() {
     this.modalRef.close();
   }
-
-
-  /**
-   * show confirmation popup before resetting data
-   */
-  // opensweetalert() {
-  //   Swal.fire({
-  //     title: "Are you sure?",
-  //     text: "Once you click , you will not be able to recover this imaginary file!",
-  //     icon: 'warning',
-  //     confirmButtonText: 'Yes',
-  //     showCancelButton: true,
-  //     dangerMode: true,
-  //   }).then((willDelete) => {
-  //     if (willDelete.value) {
-  //       this.dataReset();
-  //     } else {
-
-  //     }
-  //   });
-  // }
 
   closeModal() {
     this.activemodal.close("");

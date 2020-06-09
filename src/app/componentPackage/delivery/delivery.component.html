@@ -10,26 +10,35 @@
         </p>
     </div>
 </div>
-<div class="toplocationshow" *ngIf="pickupLocation == false">
+<div class="toplocationshow" *ngIf="pickupLocation == false && !showFinallist">
     <div class="origin" *ngIf="pickUpLocationName.length != 0">
         <div class="leftside">
             <i class="fa fa-arrow-circle-up" aria-hidden="true"></i>
             <span>Pick Up Address</span>
         </div>
         <div class="showLocation">
-            {{pickUpLocationName}}
+            {{pickupApartment == '' ? '' : '#'+pickupApartment+', '}}{{pickUpLocationName}}
         </div>
 
     </div>
-    <div class="destination" *ngIf="destinationLocationName.length != 0">
+    <div class="origin" *ngIf="destinationLocationName.length != 0">
         <div class="leftside">
             <i class="fa fa-arrow-circle-down" aria-hidden="true"></i>
             <span>Delivery Address</span>
         </div>
         <div class="showLocation">
-            {{destinationLocationName}}
+            {{deliveryApartment == '' ? '' : '#'+deliveryApartment+', '}}{{destinationLocationName}}
         </div>
-
+    </div>
+    <div class="destination" *ngIf="selectedDate != null && !dateSelectedPage">
+        <div class="leftside">
+            <i class="fa fa-clock-o" aria-hidden="true"></i>
+            <span>Delivery Date & Time</span>
+           
+        </div>
+        <div class="showLocation">
+           {{ selectedDate | date:'EEEE, MMMM d' }} | {{selectedTimeSlot}}
+        </div>
     </div>
 
 </div>
@@ -45,10 +54,12 @@
             <div class="card-body">
                 <form class="login100-form">
                     <div class="form-element">
-                        <label> <i [ngClass]="getReturnClass(iconDisplay)"
-                                aria-hidden="true"></i>{{textboxLabel}}</label>
-                        <input placeholder="{{textBoxPLaceBolder}}" type="text" id="address" autocomplete="off"
-                            name="address" required autocorrect="off" autocapitalize="off" spellcheck="off" #search />
+                        <label> <i [ngClass]="getReturnClass(iconDisplay)" aria-hidden="true"></i>{{textboxLabel}}</label>
+                        <label class="float-right">Suite/Apt</label>
+                        <input placeholder="{{textBoxPLaceBolder}}" type="text" id="address" autocomplete="off" name="address" required
+                            autocorrect="off" autocapitalize="off" spellcheck="off" #search />
+                        <input placeholder="Suite/Apt" type="text" id="address" autocomplete="off" name="address" required autocorrect="off"
+                            autocapitalize="off" spellcheck="off" #apartment />
                     </div>
                 </form>
             </div>
@@ -257,14 +268,14 @@
                 <mat-form-field class="p-0" [hideRequiredMarker]="hideRequiredControl.value"
                     [floatLabel]="floatLabelControl.value">
                     <mat-label>Any special instructions?(optional)</mat-label>
-                    <input matInput placeholder="Any special instructions?" formControlName="any_special_instruction" (keypress)="_keyPresscharacter($event)">
+                    <input matInput placeholder="Any special instructions?" formControlName="any_special_instruction">
                 </mat-form-field>
             </form>
         </div>
     </div>
 
 </div>
-<div class="divliveryItem finallist" *ngIf="showFinallist">
+<div [ngClass]="{'mt-0':showFinallist}" class="divliveryItem finallist" *ngIf="showFinallist">
 
     <div class="titleheading">
         <h4>Confirm Your PICKUP Delivery Order</h4>
@@ -293,7 +304,7 @@
                         <span>Pick Up Address</span>
                     </div>
                     <div class="address addShiftSpace">
-                        <span>{{pickUpLocationName}}</span>
+                        <span>{{pickupApartment == '' ? '' : '#'+pickupApartment+', '}}{{pickUpLocationName}}</span>
                     </div>
                 </li>
                 <li>
@@ -302,7 +313,7 @@
                         <span>Delivery Address</span>
                     </div>
                     <div class="address addShiftSpace">
-                        <span>{{destinationLocationName}}</span>
+                        <span>{{deliveryApartment == '' ? '' : '#'+deliveryApartment+', '}}{{destinationLocationName}}</span>
                     </div>
                 </li>
                 <li>

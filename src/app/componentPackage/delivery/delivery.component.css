@@ -170,10 +170,17 @@ button {
 }
 
 .login100-form .form-element label {
+    width: 80%;
     font-size: 20px;
     margin-bottom: 20px;
     text-align: left;
-    display: block;
+    text-transform: none;
+}
+.login100-form .form-element label:nth-of-type(even) {
+    width: 20%;
+    font-size: 20px;
+    margin: 6px 0px;
+    text-align: left;
     text-transform: none;
 }
 
@@ -184,7 +191,15 @@ button {
 }
 
 .login100-form .form-element input {
-    width: 100%;
+    width: 70%;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 8px 15px;
+}
+
+.login100-form .form-element input:nth-of-type(even) {
+    float: right;
+    width: 22%;
     border: 1px solid #ccc;
     border-radius: 4px;
     padding: 8px 15px;
@@ -253,6 +268,10 @@ button {
 
 .mapdiaplay {
     display: none;
+}
+
+.finallist {
+    height: calc(100vh - 103px) !important;
 }
 
 .divliveryItem {
@@ -330,6 +349,7 @@ color: #fff !important;
 }
 
 .divliveryItem .searchDiv .card .login100-form .form-element input {
+    width: 100%;
     padding: 12px 3px 13px 12px;
     background-color: #e5e5e5;
     border-top-left-radius: 4px;
