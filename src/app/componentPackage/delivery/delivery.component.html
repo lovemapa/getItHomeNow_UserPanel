@@ -1,4 +1,4 @@
-<div class="nav d-flex justify-content-between">
+<div class="nav d-flex justify-content-between" *ngIf="showFinallist == false">
     <a class="navbar-brand" routerLink="">
         <img src="assets/imgs/logoSmall3.png" class="logo-small">
         <span class="faltu-text">The Uber® of Moving Stuff</span>
@@ -53,13 +53,17 @@
         <div class="card">
             <div class="card-body">
                 <form class="login100-form">
-                    <div class="form-element">
-                        <label> <i [ngClass]="getReturnClass(iconDisplay)" aria-hidden="true"></i>{{textboxLabel}}</label>
+                    <div class="form-element d-flex ">
+                       <div class="d-block w-25">
                         <label class="float-right">Suite/Apt</label>
-                        <input placeholder="{{textBoxPLaceBolder}}" type="text" id="address" autocomplete="off" name="address" required
-                            autocorrect="off" autocapitalize="off" spellcheck="off" #search />
                         <input placeholder="Suite/Apt" type="text" id="address" autocomplete="off" name="address" required autocorrect="off"
-                            autocapitalize="off" spellcheck="off" #apartment />
+                        autocapitalize="off" spellcheck="off" #apartment />
+                       </div>
+                       <div class="d-block w-75">
+                        <label> <i [ngClass]="getReturnClass(iconDisplay)" aria-hidden="true"></i>{{textboxLabel}}</label>
+                        <input placeholder="{{textBoxPLaceBolder}}" type="text" id="address" autocomplete="off" name="address" required
+                        autocorrect="off" autocapitalize="off" spellcheck="off" #search />
+                       </div>
                     </div>
                 </form>
             </div>
@@ -238,8 +242,8 @@
     <div class="titleheading">
         <h4>Enter Your Contact Details</h4>
     </div>
-    <div class="card">
-        <div class="card-body">
+    <div class="card ">
+        <div class="card-body ">
             <form [formGroup]="formGroup" class="form cutomform">
                 <mat-form-field [hideRequiredMarker]="hideRequiredControl.value" [floatLabel]="floatLabelControl.value" >
                     <mat-label>Full Name</mat-label>
