@@ -53,16 +53,16 @@
         <div class="card">
             <div class="card-body">
                 <form class="login100-form">
-                    <div class="form-element d-flex ">
-                       <div class="d-block w-25">
-                        <label class="float-right">Suite/Apt</label>
+                    <div class="form-element d-flex align-items-center ">
+                       <div class="d-block w-25 text-left">
+                        <label class="text-left pt-1">Suite/Apt</label>
                         <input placeholder="Suite/Apt" type="text" id="address" autocomplete="off" name="address" required autocorrect="off"
-                        autocapitalize="off" spellcheck="off" #apartment />
+                        autocapitalize="off" spellcheck="off" #apartment class="w-100  " />
                        </div>
-                       <div class="d-block w-75">
-                        <label> <i [ngClass]="getReturnClass(iconDisplay)" aria-hidden="true"></i>{{textboxLabel}}</label>
+                       <div class="d-block w-75 text-left pl-4">
+                        <label> <i [ngClass]="getReturnClass(iconDisplay)" class="ml-0 mt-1" aria-hidden="true"></i>{{textboxLabel}}</label>
                         <input placeholder="{{textBoxPLaceBolder}}" type="text" id="address" autocomplete="off" name="address" required
-                        autocorrect="off" autocapitalize="off" spellcheck="off" #search />
+                        autocorrect="off" autocapitalize="off" spellcheck="off" #search class="w-100" />
                        </div>
                     </div>
                 </form>
