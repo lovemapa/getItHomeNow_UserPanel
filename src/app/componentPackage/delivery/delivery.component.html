@@ -294,8 +294,11 @@
                                 <img src="./assets/imgs/{{item.item_icon}}" alt="item.item_Name">
                             </div>
                             <div class="showQuanity">
-                                <span *ngIf="!(selectedItemList.length == (i+1) && i%2==0)" title="{{item.item_Name.length>24 ? item.item_Name : ''}}">{{item.item_Name.length>24 ? (item.item_Name | slice:0:14)+'...' : item.item_Name}}</span>
-                                <span *ngIf="selectedItemList.length == (i+1) && i%2==0">{{item.item_Name}}</span>
+                                <span *ngIf="!(selectedItemList.length == (i+1) && i%2==0)"
+                                    mat-raised-button
+                                    matTooltip="{{item.item_Name.length>24 ? item.item_Name : ''}}"
+                                    matTooltipPosition="right"
+                                    matTooltipHideDelay="300">{{item.item_Name.length>24 ? (item.item_Name | slice:0:14)+'...' : item.item_Name}}</span><span *ngIf="selectedItemList.length == (i+1) && i%2==0">{{item.item_Name}}</span>
                                 <p> Quantity: <span>{{item.quantity}}</span></p>
                             </div>
                         </div>
