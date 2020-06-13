@@ -19,7 +19,6 @@
         <div class="showLocation">
             {{pickupApartment == '' ? '' : '#'+pickupApartment+', '}}{{pickUpLocationName}}
         </div>
-
     </div>
     <div class="origin" *ngIf="destinationLocationName.length != 0">
         <div class="leftside">
@@ -54,12 +53,12 @@
             <div class="card-body">
                 <form class="login100-form">
                     <div class="form-element d-flex align-items-center ">
-                       <div class="d-block w-25 text-left">
-                        <label class="text-left pt-1">Suite/Apt</label>
+                       <div class="d-block w-25 pt-1 text-left suiteApt">
+                        <label class="d-flex"> <i [ngClass]="getReturnClass('fa fa-home')"  class=" ml-0 " aria-hidden="true"></i>Suite/Apt</label>
                         <input placeholder="Suite/Apt" type="text" id="address" autocomplete="off" name="address" required autocorrect="off"
                         autocapitalize="off" spellcheck="off" #apartment class="w-100  " />
                        </div>
-                       <div class="d-block w-75 text-left pl-4">
+                       <div class="d-block w-75 text-left pl-4 searchBox">
                         <label> <i [ngClass]="getReturnClass(iconDisplay)" class="ml-0 mt-1" aria-hidden="true"></i>{{textboxLabel}}</label>
                         <input placeholder="{{textBoxPLaceBolder}}" type="text" id="address" autocomplete="off" name="address" required
                         autocorrect="off" autocapitalize="off" spellcheck="off" #search class="w-100" />

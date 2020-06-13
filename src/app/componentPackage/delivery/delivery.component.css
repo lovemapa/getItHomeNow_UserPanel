@@ -904,15 +904,35 @@ a:hover {
     .positiondiv{
         top: 50%;
         bottom: unset;
-        transform: translate(0,-50%);
+        /* transform: translate(0,-50%); */
+        width: 100%;
+    }
+   
+
+    .suiteApt{
+        width: 100% !important;
+    }
+    .searchBox{
+        width: 100% !important;
+        padding-left: 0px !important
     }
 
     .login100-form .form-element label{font-size: 16px;margin-bottom: 15px;}
-    .login100-form .form-element{padding: 10px 0;}
+    .login100-form .form-element{padding: 10px 0; flex-flow: column;}
     .positiondiv .card{max-width: 400px;}
     .positiondiv .card-body{padding: 10px 8px;}
 }
-@media (max-width: 500px) {
+@media (max-width: 567px) {
+    .positiondiv{
+        bottom: 0;
+    top: unset;
+        transform: translate(-50%,-50%) !important;
+        width: 100%;
+    }
+    agm-map{
+        height: calc(100vh - -25px);
+    }
+
     .nav .struck_Imag{width: 100px;height: 40px;}
     .toplocationshow{top: 55px;padding: 0;}
     .faltu-text{display: none;}
