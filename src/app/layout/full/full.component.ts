@@ -1,7 +1,8 @@
 import { Component, OnInit, ViewChild, Renderer2, ElementRef } from '@angular/core';
 import * as $ from 'jquery';
 import { NavbarComponent } from 'src/app/componentPackage/navbar/navbar.component';
-import { Router } from '@angular/router';
+import { Router, NavigationEnd } from '@angular/router';
+import { CommonMethods } from 'src/app/utillpackage/common-method';
 @Component({
   selector: 'app-full',
   templateUrl: './full.component.html',
@@ -108,18 +109,26 @@ export class FullComponent implements OnInit {
     // });
     // }
 
+    this.router.events.subscribe((ev) => {
+      if (ev instanceof NavigationEnd) { 
 
-
-
-    nav.find('a').on('click', function () {
-      $('.navbar-collapse').hide();
-      $("#mytoggle").attr("aria-expanded", "false");
-      document.getElementById('probootstrap-navbar').classList.remove('show')
-      document.getElementById('mytoggle').classList.add('collapsed')
-      document.getElementById('probootstrap-navbar').style.display = "none"
-      // document.getElementById('probootstrap-navbar').style.background="initial"
-
+        if (this.router.url != "/delivery") {
+           CommonMethods.showconsole(this.Tag,"Common Method if is Working")
+          nav.find('a').on('click', function () {
+            $('.navbar-collapse').hide();
+            $("#mytoggle").attr("aria-expanded", "false");
+            document.getElementById('probootstrap-navbar').classList.remove('show')
+            document.getElementById('mytoggle').classList.add('collapsed')
+            document.getElementById('probootstrap-navbar').style.display = "none"
+            // document.getElementById('probootstrap-navbar').style.background="initial"
+      
+          });
+        } 
+      }
     });
+
+    
+
     nav.find('#mytoggle').on('click', function () {
       //  CommonMethods.showLog(this.Tag,'aria Value : '+$("#mytoggle").attr("aria-expanded"))
       if ($("#mytoggle").attr("aria-expanded") == 'true') {

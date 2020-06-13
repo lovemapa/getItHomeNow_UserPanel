@@ -7,34 +7,25 @@ import { BlankLoginandsignupComponent } from './layout/blank-loginandsignup/blan
 import { LoginSignupComponent } from './componentPackage/login-signup/login-signup.component';
 import { ProfileshowComponent } from './componentPackage/profileshow/profileshow.component';
 import { DeliveryComponent } from './componentPackage/delivery/delivery.component';
+import { PaymentGatewayComponent} from './componentPackage/payment-gateway/payment-gateway.component'
+import { from } from 'rxjs';
 const routes: Routes = [
 
 
   { path: '', redirectTo: 'home', pathMatch: 'full' },
-  {
-    path: 'home',component: FullComponent
-  },
-  {
-    path: '',
-    component: BlankComponent,
+  { path: 'home', component: FullComponent },
+  { path: '', component: BlankComponent,
     children: [
       { path: 'promotions', component: AdvertismentsComponent },
       { path: 'profile/setting', component: ProfileshowComponent },
       { path: 'delivery', component: DeliveryComponent },
-      // { path: 'privacy', component: PrivacyPolicyComponent },
-      // { path: 'share/:name/:username', component: ShareComponent },
     ]
-
   },
-  {
-    path: '',
-    component: BlankLoginandsignupComponent,
+  { path: '', component: BlankLoginandsignupComponent,
     children: [
       { path: 'login', component: LoginSignupComponent },
-      // { path: 'privacy', component: PrivacyPolicyComponent },
-      // { path: 'share/:name/:username', component: ShareComponent },
+      { path: 'paymentgateway', component: PaymentGatewayComponent },
     ]
-
   },
   { path: '**', redirectTo: 'home' }
 ];

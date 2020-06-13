@@ -1,0 +1,106 @@
+<!-- <button (click)="paymentModal(distanceModal)" class="btn btn-lg">OPen Modal</button>
+
+  <ng-template #distanceModal> -->
+<div class="modal-body py-3 px-3  customModalBody" style="text-align: center; ">
+
+  <div class="closediv">
+    <i class="fa fa-times" aria-hidden="true" (click)="closeModal()"></i>
+  </div>
+
+  <div class="d-flex flex-row py-2">
+    <div class="divimages">
+      <img src="assets/imgs/logoSmall3.png" alt="logo" class="imd-fluid">
+    </div>
+    <div class="d-block w-100">
+      <h1 class="text-center p-0 mb-0 font-weight-bold mainheading">GetItHomeNow.com</h1>
+      <p class="text-center p-0 mb-0">The Uber® of Moving Stuff</p>
+    </div>
+  </div>
+  <div class="d-flex justify-content-between w-100 py-3 border-bottom">
+    <p class="mb-0 text-center py-2 font-weight-bold"> Deposit Amount </p>
+    <h4 class="mb-0 text-center py-1 font-weight-bold">{{bookingDetails.amount | currency:'USD'}}</h4>
+
+  </div>
+
+  <form novalidate (ngSubmit)="buy()" [formGroup]="stripeTest " class="customForm p-2">
+    <mat-form-field   >
+      <mat-label>Full Name</mat-label>
+      <input matInput placeholder="Enter Full Name" formControlName="name" (keypress)="_keyPresscharacter($event)" required>
+      <mat-error *ngIf="stripeTest.controls.name.hasError('required')">
+        Full Name is required
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field   >
+      <mat-label>Address</mat-label>
+      <input matInput placeholder="Enter address" formControlName="address_line1" required>
+      <mat-error *ngIf="stripeTest.controls.address_line1.hasError('required')">
+        Address is required
+      </mat-error>
+    </mat-form-field>
+
+
+    <div class="form-group">
+      <div class="row m-0">
+        <div class="col-md-6 p-1">
+          <mat-form-field  >
+            <mat-label>City</mat-label>
+            <input matInput placeholder="Enter city" formControlName="address_city" (keypress)="_keyPresscharacter($event)" required>
+            <mat-error *ngIf="stripeTest.controls.address_city.hasError('required')">
+              City is required
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col-md-6 p-1">
+
+          <mat-form-field  >
+            <mat-label>State</mat-label>
+            <input matInput placeholder="Enter State" formControlName="address_state" (keypress)="_keyPresscharacter($event)" required>
+            <mat-error *ngIf="stripeTest.controls.address_state.hasError('required')">
+              State is required
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="row m-0">
+        <div class="col-md-6 p-1">
+          <mat-form-field  >
+            <mat-label>Zip Code</mat-label>
+            <input matInput placeholder="Enter zip code" formControlName="address_zip" (keypress)="_keyPress($event)" maxlength="5" required>
+            <mat-error *ngIf="stripeTest.controls.address_zip.hasError('required')">
+              Zip code is required
+            </mat-error>
+            <mat-error *ngIf="stripeTest.controls.address_zip.hasError('pattern')">
+              Zip code is not valid
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col-md-6 p-1">
+
+          <mat-form-field >
+            <mat-label>Country</mat-label>
+            <input matInput placeholder="Enter country" formControlName="address_country"  (keypress)="_keyPresscharacter($event)" required>
+            <mat-error *ngIf="stripeTest.controls.address_country.hasError('required')">
+              Country is required
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+    </div>
+    <!-- <ngx-stripe-card [options]="cardOptions" [elementsOptions]="elementsOptions"></ngx-stripe-card> -->
+    <div class="customformCreate border-bottom my-3">
+      <ngx-stripe-card [options]="cardOptions" [elementsOptions]="elementsOptions" (error)="error = $event">
+      </ngx-stripe-card>
+      <div class="error">
+        {{error?.message}}
+      </div>
+    </div>
+
+
+    <button type="submit" class="btn btn-lg w-75 text-center custommodalbutton" [disabled]="!stripeTest.valid" >
+      <span>Pay</span> <span class="pl-2">{{bookingDetails.amount | currency:'USD'}}</span>
+    </button>
+  </form>
+  </div>
+<!-- </ng-template> -->

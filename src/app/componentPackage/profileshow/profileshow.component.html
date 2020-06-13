@@ -42,9 +42,11 @@
                             <label for="">Contact Number</label>
                             <span>{{userDetailsModal.contact}}</span>
                         </div>
-                        <div class="textshow">
+                        <div class="textshow" style="display: flex;">
                             <label for="">Address</label>
-                            <span>{{address}}</span>
+                            <span style="    display: block;
+                            width: 250px;
+                            line-height: 22px;">{{address}}</span>
                         </div>
                         <div class="field" style="margin-bottom: 0;" *ngIf="showCompleteProfileButton == false">
                             <button type="submit" class="submit button" (click)="showUpdateProfileMOdal(content,'Compelte Profile')">Complete Profile</button>
@@ -73,35 +75,39 @@
             <div class="formconatiner">
                 <div class="form-element">
                     <label>First Name</label>
-                    <input placeholder="Enter first name" type="text" name="first_name" id="first_name" [(ngModel)]="userDetailsModal.firstName" required autocomplete="off" />
+                    <input placeholder="Enter first name" type="text" name="first_name" id="first_name" [(ngModel)]="userDetailsModal.firstName" (keypress)="_keyPresscharacter($event)" required autocomplete="off" />
                 </div>
                 <div class="form-element">
                     <label>Last Name</label>
-                    <input placeholder="Enter last name" type="text" name="last_name" id="last_name" [(ngModel)]="userDetailsModal.lastName" required autocomplete="off" />
+                    <input placeholder="Enter last name" type="text" name="last_name" id="last_name" [(ngModel)]="userDetailsModal.lastName" (keypress)="_keyPresscharacter($event)" required autocomplete="off" />
                 </div>
                 <!-- <div class="form-element">
                     <label>Email</label>
                     <input placeholder="Enter email" type="email" name="email" id="email" [(ngModel)]="userDetailsModal.email" required autocomplete="off" />
                 </div> -->
                 <div class="form-element">
-                    <label> Contact Number</label>
-                    <input placeholder="Enter contact number" type="text" (keypress)="keyPress($event)" name="conatct_number" id="contact_number" [(ngModel)]="userDetailsModal.contact" required autocomplete="off" />
+                    <label>Contact Number</label>
+                    <input placeholder="Enter Contact Number" type="text" (keypress)="keyPress($event)" name="conatct_number" id="contact_number" [(ngModel)]="userDetailsModal.contact" required autocomplete="off" />
                 </div>
                 <div class="form-element">
                     <label>Address</label>
-                    <input placeholder="Enter address" type="text" name="address" id="address" [(ngModel)]="userDetailsModal.address" required autocomplete="off" />
+                    <input placeholder="Enter Address" type="text" name="address" id="address" [(ngModel)]="userDetailsModal.address" required autocomplete="off" />
                 </div>
                 <div class="form-element">
-                    <label>city</label>
-                    <input placeholder="Enter city" type="text" name="city" id="city" [(ngModel)]="userDetailsModal.city" required autocomplete="off" />
+                    <label>City</label>
+                    <input placeholder="Enter City" type="text" name="city" id="city" (keypress)="_keyPresscharacter($event)" [(ngModel)]="userDetailsModal.city" required autocomplete="off" />
                 </div>
                 <div class="form-element">
                     <label>State</label>
-                    <input placeholder="Enter state" type="text" name="state" id="state" [(ngModel)]="userDetailsModal.state" required autocomplete="off" />
+                    <input placeholder="Enter State" type="text" name="state" id="state" (keypress)="_keyPresscharacter($event)" [(ngModel)]="userDetailsModal.state" required autocomplete="off" />
+                </div>
+                <div class="form-element">
+                    <label>Country</label>
+                    <input placeholder="Enter Country" type="text" name="country" id="country" (keypress)="_keyPresscharacter($event)" [(ngModel)]="userDetailsModal.country" required autocomplete="off" />
                 </div>
                 <div class="form-element">
                     <label>Zip Code</label>
-                    <input placeholder="Enter zip code" type="text" name="zip_code" id="zip_code" [(ngModel)]="userDetailsModal.zip" required autocomplete="off" />
+                    <input placeholder="Enter Zip Code" type="text" name="zip_code" id="zip_code" (keypress)="_keyPress($event)" [(ngModel)]="userDetailsModal.zip" maxlength="5" required autocomplete="off" />
                 </div>
             </div>
             <div class="errorMessage">

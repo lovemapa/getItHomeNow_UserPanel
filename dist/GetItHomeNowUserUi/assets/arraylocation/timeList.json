@@ -1,0 +1,72 @@
+[
+    {
+        "time_slot_id": "12000",
+        "starting_Time": "9",
+        "starting_timeFormat": "am",
+        "full_length_statingtime": "09:00 am",
+        "ending_time": "11",
+        "ending_timeFormat": "am",
+        "full_length_endingtime": "11:00 am",
+        "isactive": false
+    },
+    {
+        "time_slot_id": "12001",
+        "starting_Time": "11",
+        "starting_timeFormat": "am",
+        "full_length_statingtime": "11:00 am",
+        "ending_time": "1",
+        "ending_timeFormat": "pm",
+        "full_length_endingtime": "01:00 pm",
+        "isactive": false
+    },
+    {
+        "time_slot_id": "12002",
+        "starting_Time": "12",
+        "starting_timeFormat": "pm",
+        "full_length_statingtime": "12:00 pm",
+        "ending_time": "2",
+        "ending_timeFormat": "pm",
+        "full_length_endingtime": "02:00 pm",
+        "isactive": false
+    },
+    {
+        "time_slot_id": "12003",
+        "starting_Time": "2",
+        "starting_timeFormat": "pm",
+        "full_length_statingtime": "02:00 pm",
+        "ending_time": "04",
+        "ending_timeFormat": "pm",
+        "full_length_endingtime": "04:00 pm",
+        "isactive": false
+    },
+    {
+        "time_slot_id": "12004",
+        "starting_Time": "3",
+        "starting_timeFormat": "pm",
+        "full_length_statingtime": "03:00 pm",
+        "ending_time": "05",
+        "ending_timeFormat": "pm",
+        "full_length_endingtime": "05:00 am",
+        "isactive": false
+    },
+    {
+        "time_slot_id": "12005",
+        "starting_Time": "5",
+        "starting_timeFormat": "pm",
+        "full_length_statingtime": "05:00 pm",
+        "ending_time": "6",
+        "ending_timeFormat": "pm",
+        "full_length_endingtime": "06:00 am",
+        "isactive": false
+    },
+    {
+        "time_slot_id": "12006",
+        "starting_Time": "6",
+        "starting_timeFormat": "pm",
+        "full_length_statingtime": "06:00 pm",
+        "ending_time": "8",
+        "ending_timeFormat": "pm",
+        "full_length_endingtime": "08:00 am",
+        "isactive": false
+    }
+]

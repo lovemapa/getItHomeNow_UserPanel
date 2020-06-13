@@ -1,0 +1,69 @@
+.paymentModal.modal.show .modal-dialog {
+    /* width: 300px !important; */
+  }
+
+
+  .customModalBody .divimages {
+    width: 280px;
+    height: 42px;
+    margin-top: 8px;
+  }
+
+  .customModalBody .divimages img {
+    width: 100%;
+    height: 100%;
+  }
+
+  .customModalBody .mainheading{
+    color: #ec3441;
+  }
+  .customModalBody .custommodalbutton{
+    color: #ffffff;
+    background: #ec3441;
+    font-size: 16px;
+    font-weight: 300;
+  }
+  .customModalBody .customformCreate{
+        border-radius: 6px;
+        padding-left: 15px;
+        border-color: #ced4da !important;
+  }
+
+  .customModalBody .customForm  .mat-form-field{
+       width: 100%;
+  }
+  /* .customModalBody .customForm  input{
+        height: 46px;;
+  } */
+
+  .customModalBody .customForm .mat-form-field-infix {
+    padding: .5em 0;
+    border-top: unset !important;
+}
+
+
+  ::-webkit-input-placeholder { /* Edge */
+    color: #9ea4a9;
+  }
+  
+  :-ms-input-placeholder { /* Internet Explorer 10-11 */
+    color: #9ea4a9;
+  }
+  
+  ::placeholder {
+    color: #9ea4a9;
+  }
+ 
+
+.closediv{
+  position: absolute;
+  right: 6px;
+  top: 3px;
+  font-size: 18px;
+  cursor: pointer;
+  color: #ec3441;
+}
+
+
+
+

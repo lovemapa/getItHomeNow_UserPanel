@@ -280,6 +280,8 @@ button:focus {
 @media screen and (max-width:600px) {
     .navbar-transparent #probootstrap-navbar {
         /* background: rgba(44, 154, 155, 0.47); */
+
+        display: none;
     }
 }
 
@@ -408,9 +410,9 @@ button:focus {
     }
 }
 
-.custom-class .modal-dialog {
+/* .custom-class .modal-dialog {
     max-width: 27%;
-}
+} */
 
 .custom-class .modal-dialog .modal-content .modal-body {
     padding: 0;
@@ -455,4 +457,27 @@ button:focus {
 button:disabled {
     background: #a9a9a985 !important;
     cursor: not-allowed !important;
+}
+
+.cutomform .mat-form-field{
+    display: block !important;
+    padding-bottom: 16px;
+} 
+
+
+
+/*PAyment Modal*/
+
+/* .paymentModal  .modal-dialog-centered {
+  width: 300px !important;
+  min-width: 300px !important;
+} */
+/* .customModalBody .customForm .mat-form-field-infix {
+    padding: .5em 0;
+    border-top: unset !important;
+} */
+
+
+@media (max-width: 500px){
+    .custom-class .modal-dialog .modal-content .modal-body .title-heading span{position: relative;top: unset;left: unset; transform: none;margin: 0;line-height: normal;}
 }

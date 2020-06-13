@@ -1,45 +1,69 @@
-<div class="nav">
+<div class="nav d-flex justify-content-between" >
     <a class="navbar-brand" routerLink="">
         <img src="assets/imgs/logoSmall3.png" class="logo-small">
         <span class="faltu-text">The Uber® of Moving Stuff</span>
     </a>
+    <div class="struck_Imag position-relative">
+        <img src="./assets/imgs/truck_Logo_White.png" class="img-fluid" alt="truck">
+        <p class="position-absolute mb-0 countclass">
+            {{countTotalQuantityOfSelectedItems()}}
+        </p>
+    </div>
 </div>
-<div class="toplocationshow" *ngIf="pickupLocation == false">
+<div class="toplocationshow" *ngIf="pickupLocation == false && !showFinallist">
     <div class="origin" *ngIf="pickUpLocationName.length != 0">
         <div class="leftside">
             <i class="fa fa-arrow-circle-up" aria-hidden="true"></i>
             <span>Pick Up Address</span>
         </div>
         <div class="showLocation">
-            {{pickUpLocationName}}
+            {{pickupApartment == '' ? '' : '#'+pickupApartment+', '}}{{pickUpLocationName}}
         </div>
 
     </div>
-    <div class="destination" *ngIf="destinationLocationName.length != 0">
+    <div class="origin" *ngIf="destinationLocationName.length != 0">
         <div class="leftside">
             <i class="fa fa-arrow-circle-down" aria-hidden="true"></i>
             <span>Delivery Address</span>
         </div>
         <div class="showLocation">
-            {{destinationLocationName}}
+            {{deliveryApartment == '' ? '' : '#'+deliveryApartment+', '}}{{destinationLocationName}}
         </div>
-
+    </div>
+    <div class="destination" *ngIf="selectedDate != null && !dateSelectedPage">
+        <div class="leftside">
+            <i class="fa fa-clock-o" aria-hidden="true"></i>
+            <span>Delivery Date & Time</span>
+           
+        </div>
+        <div class="showLocation">
+           {{ selectedDate | date:'EEEE, MMMM d' }} | {{selectedTimeSlot}}
+        </div>
     </div>
 
 </div>
 <div [ngClass]="{'mapdiaplay':itemList.length != 0}">
-    <!-- <div *ngIf="itemList.length == 0"> -->
-    <agm-map [latitude]='lat' [longitude]='lng' [zoom]="13" [mapTypeControl]="false" [streetViewControl]="false" [rotateControl]="true" [fullscreenControl]="false" [zoomControl]="false" gestureHandling="none" *ngIf="itemList.length == 0">
-        <agm-marker [latitude]="lat" [longitude]="lng" [markerDraggable]="false"></agm-marker>
+    <agm-map [latitude]='lat' [longitude]='lng' [zoom]="15" [mapDraggable]="true" [mapTypeControl]="false"
+        [streetViewControl]="false" [rotateControl]="true" [fullscreenControl]="false" [zoomControl]="false"
+        *ngIf="itemList.length == 0"   (mapClick)="mapClicked($event)">
+        <agm-marker [latitude]="lat" [longitude]="lng" [markerDraggable]="false" 
+        ></agm-marker>
     </agm-map>
     <div class="positiondiv">
         <div class="card">
             <div class="card-body">
                 <form class="login100-form">
-                    <div class="form-element">
-                        <label> <i [ngClass]="getReturnClass(iconDisplay)"
-                                aria-hidden="true"></i>{{textboxLabel}}</label>
-                        <input placeholder="{{textBoxPLaceBolder}}" type="text" id="address" autocomplete="off" name="address" required autocorrect="off" autocapitalize="off" spellcheck="off" #search />
+                    <div class="form-element d-flex align-items-center ">
+                       <div class="d-block w-25 text-left">
+                        <label class="text-left pt-1">Suite/Apt</label>
+                        <input placeholder="Suite/Apt" type="text" id="address" autocomplete="off" name="address" required autocorrect="off"
+                        autocapitalize="off" spellcheck="off" #apartment class="w-100  " />
+                       </div>
+                       <div class="d-block w-75 text-left pl-4">
+                        <label> <i [ngClass]="getReturnClass(iconDisplay)" class="ml-0 mt-1" aria-hidden="true"></i>{{textboxLabel}}</label>
+                        <input placeholder="{{textBoxPLaceBolder}}" type="text" id="address" autocomplete="off" name="address" required
+                        autocorrect="off" autocapitalize="off" spellcheck="off" #search class="w-100" />
+                       </div>
                     </div>
                 </form>
             </div>
@@ -53,50 +77,50 @@
 
 <div class="divliveryItem" *ngIf="showItemPage && itemList.length != 0">
 
+      <!-- <div class="deliverygrackground">
+            <img src="../../../assets/imgs/delivery_background2.jpg" alt="background">
+      </div> -->
+
     <div class="titleheading">
         <h4>Book a Delivery</h4>
     </div>
-    <div class="searchDiv">
+    <div class="searchDiv position-relative">
+        <div class="d-block  notes">
+            <span>Want to move more than 20 items? <a (click)="contactUsPop(contactUs)" style="width: max-content;display: contents;cursor: pointer;"><u>Click Here</u></a> to request a quote.</span>
+     </div>
         <div class="card">
             <div class="card-body">
                 <div class="searchingHeading">
-                    <h5>Searching Items</h5>
+                    <h5>Search Items</h5>
                 </div>
                 <form class="login100-form">
                     <div class="form-element">
-                        <!-- <label> <i [ngClass]="getReturnClass(iconDisplay)" aria-hidden="true"></i>{{textboxLabel}}</label> -->
-                        <input placeholder="Searching...." type="text" id="seaching" autocomplete="off" required autocorrect="off" autocapitalize="off" [(ngModel)]="searchingValue" (keyup)="searching(searchingValue)" [ngModelOptions]="{standalone: true}" />
+                        <input placeholder="Search...." type="text" id="seaching" autocomplete="off" required
+                            autocorrect="off" autocapitalize="off" [(ngModel)]="searchingValue"
+                            (keyup)="searching(searchingValue)" [ngModelOptions]="{standalone: true}" />
                         <button><i class="fa fa-search" aria-hidden="true"></i></button>
                     </div>
                 </form>
-                <div class="listBox" *ngIf="searchItemList.length != 0 ">
-                    <!-- <div class="card">
-                                        <div class="card-body">
-                                            <div class="outerdiv">
-                                                <div class="imagesdiv">
-                                                    <img src="./assets/imgs/household.svg" alt="">
-                                                </div>
-                
-                                                <h3>Hello</h3>
-                                            </div>
-                                        </div>
-                                    </div> -->
-                    <div class="card mycard">
-                        <div class="card-body col-12">
+                <div id="accordion" class="listBox " *ngIf="searchItemList.length != 0 ">
+
+                    <div class="card ">
+                        <div class="card-block col-12">
                             <ul>
-                                <li *ngFor="let submenu of searchItemList ; let j = index">
-                                    <div class="outerdiv" (click)="submenu.item_boolean = !submenu.item_boolean">
+                                <li *ngFor="let submenu of searchItemList">
+                                    <div class="outerdiv"
+                                        (click)="submenu.item_boolean = !submenu.item_boolean; onItemClicked(submenu);">
                                         <div class="imagesdiv">
                                             <img src="./assets/imgs/{{submenu.item_icon}}" alt="">
                                         </div>
                                         <span>{{submenu.item_Name}}</span>
                                     </div>
-                                    <div class="showcount" *ngIf="submenu.item_boolean">
+                                    <div class="showcount" *ngIf="submenu.item_boolean || submenu.quantity>0">
                                         <div class="count">
-                                            <!-- [(ngModel)]="submenu.quantity" -->
-                                            <i class="fa fa-plus" aria-hidden="true" (click)="updateSelectedItemList(submenu,submenu.quantity=submenu.quantity+1)"></i>
+                                            <i class="fa fa-plus" aria-hidden="true"
+                                                (click)="updateSelectedItemList(submenu,submenu.quantity=submenu.quantity+1)"></i>
                                             <span>{{submenu.quantity}}</span>
-                                            <i class="fa fa-minus" aria-hidden="true" (click)="submenu.quantity>0?updateSelectedItemList(submenu,submenu.quantity=submenu.quantity-1): null"></i>
+                                            <i class="fa fa-minus" aria-hidden="true"
+                                                (click)="submenu.quantity>0?updateSelectedItemList(submenu,submenu.quantity=submenu.quantity-1): null"></i>
                                         </div>
                                     </div>
                                 </li>
@@ -106,6 +130,7 @@
                 </div>
             </div>
         </div>
+        
     </div>
     <div class="itemHeading">
         <h4>Select Your Item By Size</h4>
@@ -115,12 +140,12 @@
     <div id="accordion" role="tablist" aria-multiselectable="true">
 
         <!-- Accordion Item 1 -->
-
         <div class="card" *ngFor="let items of itemList;let i=index;">
             <div class="card-header" role="tab" id="items.item_type_id">
                 <div class="mb-0 row">
                     <div class="col-12  accordion-head">
-                        <a data-toggle="collapse" data-parent="#accordion" href="#accordionBodyOne_{{i}}" aria-expanded="false" aria-controls="accordionBodyOne" class="collapsed ">
+                        <a data-toggle="collapse" data-parent="#accordion" href="#accordionBodyOne_{{i}}"
+                            aria-expanded="false" aria-controls="accordionBodyOne" class="collapsed ">
                             <div class="outerdiv">
                                 <div class="imagesdiv">
                                     <img src="./assets/imgs/{{items.item_type_icon}}" alt="">
@@ -128,32 +153,32 @@
                                 <i class="fa fa-angle-down" aria-hidden="true"></i>
                                 <h3>{{items.item_type_name}}</h3>
                             </div>
-
                         </a>
                     </div>
                 </div>
             </div>
 
-            <div id="accordionBodyOne_{{i}}" class="collapse" role="tabpanel" aria-labelledby="items.item_type_id" aria-expanded="false" data-parent="accordion">
+            <div id="accordionBodyOne_{{i}}" class="collapse" role="tabpanel" aria-labelledby="items.item_type_id"
+                aria-expanded="false" data-parent="accordion">
                 <div class="card-block col-12">
                     <ul>
-                        <li *ngFor="let submenu of items.item_list ; let j = index">
-                            <div class="outerdiv" (click)="submenu.item_boolean = !submenu.item_boolean">
+                        <li *ngFor="let submenu of items.item_list">
+                            <div class="outerdiv"
+                                (click)="submenu.item_boolean = !submenu.item_boolean; onItemClicked(submenu);">
                                 <div class="imagesdiv">
                                     <img src="./assets/imgs/{{submenu.item_icon}}" alt="">
                                 </div>
-
                                 <span>{{submenu.item_Name}}</span>
                             </div>
-                            <div class="showcount" *ngIf="submenu.item_boolean">
+                            <div class="showcount" *ngIf="submenu.item_boolean  || submenu.quantity>0">
                                 <div class="count">
-                                    <i class="fa fa-plus" aria-hidden="true" (click)="updateSelectedItemList(submenu,submenu.quantity=submenu.quantity+1)"></i>
+                                    <i class="fa fa-plus" aria-hidden="true"
+                                        (click)="updateSelectedItemList(submenu,submenu.quantity=submenu.quantity+1)"></i>
                                     <span>{{submenu.quantity}}</span>
-                                    <i class="fa fa-minus" aria-hidden="true" (click)="submenu.quantity>0?updateSelectedItemList(submenu,submenu.quantity=submenu.quantity-1): null"></i>
+                                    <i class="fa fa-minus" aria-hidden="true"
+                                        (click)="submenu.quantity>0?updateSelectedItemList(submenu,submenu.quantity=submenu.quantity-1): null"></i>
                                 </div>
                             </div>
-
-
                         </li>
                     </ul>
                 </div>
@@ -168,96 +193,93 @@
     </div>
     <div class="card">
         <div class="card-body">
-            <div style="text-align: center;">Select your preferred date and time</div>
-            <div class="dateShow">
-                <div class="data" *ngFor="let datedata of dateList ;let i=index;" [ngClass]="{'active':datedata.showtime == true}" (click)="clickOnselectdate(datedata.date_Id)">
-                    <Span>{{datedata.date}}</Span>
+
+            <div class="d-flex flex-row calsstopButton">
+                <a (click)="selctedDateCategory('selectbydatetime')"
+                    [ngClass]="{'topbuttonactive':selecteddatebutton == true}">Select date and Time </a>
+                <a (click)="selctedDateCategory('rightnow')"
+                    [ngClass]="{'topbuttonactive':rightNowButton == true}">Right Now</a>
+            </div>
+            <div *ngIf="selecteddatebutton">
+                <div style="text-align: center;">
+                    <p class="text-center font-weight-bold w-100 py-3">Select your preferred date and time</p>
+                </div>
+                <div class="dateShow">
+                    <div class="data" *ngFor="let datedata of dateList ;let i=index;"
+                        [ngClass]="{'active':datedata.showtime == true}" (click)="setSelectedDate(datedata.date_Id)">
+                        <Span class="day">{{datedata.date | date:'EEE' }}</Span>
+                        <Span class="date">{{datedata.date | date:'dd/MM' }}</Span>
+                    </div>
+                </div>
+                <div class="timeShow" *ngIf="showtimefalse">
+                    <ng-container *ngFor="let timedata of timearrayList">
+                        <div class="dataTime" [ngClass]="{'selectedTimeClass':timedata.isactive}"
+                            (click)="setTimeSlot(timedata.time_slot_id)">
+                            <div class="timeSlotDiv">
+                                <span class="text">{{timedata.full_length_statingtime}}</span>
+                            </div>
+                            <span class="minus">-</span>
+                            <div class="timeSlotDiv">
+                                <span class="text">{{timedata.full_length_endingtime}}</span>
+                            </div>
+                        </div>
+                    </ng-container>
                 </div>
             </div>
-            <div class="timeShow" *ngIf="showtimefalse">
 
-                <div class="dataTime">
-                    <div class="mydiv">
-                        <span class="text">2</span>
-                        <span>PM</span>
-                    </div>
-                    <span class="minus">-</span>
-                    <div class="mydiv">
-                        <span class="text">4</span>
-                        <span>PM</span>
-                    </div>
-                </div>
-
-                <div class="dataTime">
-                    <div class="mydiv">
-                        <span class="text">3</span>
-                        <span>PM</span>
-                    </div>
-                    <span class="minus">-</span>
-                    <div class="mydiv">
-                        <span class="text">5</span>
-                        <span>PM</span>
-                    </div>
-                </div>
-                <div class="dataTime">
-                    <div class="mydiv">
-                        <span class="text">4</span>
-                        <span>PM</span>
-                    </div>
-                    <span class="minus">-</span>
-                    <div class="mydiv">
-                        <span class="text">6</span>
-                        <span>PM</span>
-                    </div>
-                </div>
-                <div class="dataTime">
-                    <div class="mydiv">
-                        <span class="text">5</span>
-                        <span>PM</span>
-                    </div>
-                    <span class="minus">-</span>
-                    <div class="mydiv">
-                        <span class="text">7</span>
-                        <span>PM</span>
-                    </div>
-                </div>
-
+            <div *ngIf="rightNowButton">
+                <p *ngIf="hasRightNowBooking" class="py-3 w-100 text-center font-weight-bold">Get It Home Now</p>
+                <p *ngIf="!hasRightNowBooking" class="py-3 w-100 text-center font-weight-bold">We have no drivers available at the moment. Please call <br>(727 678 9214) for assistance.</p>
             </div>
+
         </div>
 
     </div>
 </div>
+
 <div class="divliveryItem formFiled" *ngIf="formFieldshow">
 
     <div class="titleheading">
         <h4>Enter Your Contact Details</h4>
     </div>
-    <div class="card">
-        <div class="card-body">
-            <div class="contact-form siteForm">
-
-                <div class="form-wrapper">
-                    <input type="text" placeholder="Name" autocomplete="off" [(ngModel)]="name" />
-                </div>
-                <div class="form-wrapper">
-                    <input type="email" placeholder="Email" autocomplete="off" [(ngModel)]="email" />
-                </div>
-                <div class="form-wrapper">
-                    <input type="tel" placeholder="Contact Number" (keypress)="keyPress($event)" onkeypress="" autocomplete="off" maxlength="11" [(ngModel)]="phoneNumber" />
-                </div>
-                <div class="form-wrapper">
-                    <input type="tel" placeholder="Any special instructions?" (keypress)="keyPress($event)" onkeypress="" autocomplete="off" maxlength="11" />
-                </div>
-
-                <!-- <div class="form-wrapper submit-btn">
-                    <a>Submit</a>
-                </div> -->
-            </div>
+    <div class="card ">
+        <div class="card-body ">
+            <form [formGroup]="formGroup" class="form cutomform">
+                <mat-form-field [hideRequiredMarker]="hideRequiredControl.value" [floatLabel]="floatLabelControl.value" >
+                    <mat-label>Full Name</mat-label>
+                    <input matInput placeholder="Enter Full Name" formControlName="name" (keypress)="_keyPresscharacter($event)"  required>
+                    <mat-error *ngIf="formGroup.controls.name.hasError('required')">
+                        Full Name is required
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field [hideRequiredMarker]="hideRequiredControl.value" [floatLabel]="floatLabelControl.value">
+                    <mat-label>Email</mat-label>
+                    <input matInput placeholder="Enter email address" formControlName="email" required>
+                    <mat-error *ngIf="!formGroup.controls['email'].valid && formGroup.controls['email'].touched">
+                        {{ getErrorEmail() }}
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field [hideRequiredMarker]="hideRequiredControl.value" [floatLabel]="floatLabelControl.value">
+                    <mat-label>Phone Number </mat-label>
+                    <input matInput formControlName="mobileNumber" maxlength="10" (keypress)=_keyPress($event) required>
+                    <mat-error *ngIf="formGroup.controls.mobileNumber.hasError('required')">
+                        Phone number is required
+                    </mat-error>
+                    <mat-error *ngIf="formGroup.controls.mobileNumber.hasError('pattern')">
+                        Phone number is not a valid
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field class="p-0" [hideRequiredMarker]="hideRequiredControl.value"
+                    [floatLabel]="floatLabelControl.value">
+                    <mat-label>Any special instructions?(optional)</mat-label>
+                    <input matInput placeholder="Any special instructions?" formControlName="any_special_instruction">
+                </mat-form-field>
+            </form>
         </div>
     </div>
 
 </div>
-<div class="divliveryItem finallist" *ngIf="showFinallist">
+<div [ngClass]="{'mt-0':showFinallist}" class="divliveryItem finallist" *ngIf="showFinallist">
 
     <div class="titleheading">
         <h4>Confirm Your PICKUP Delivery Order</h4>
@@ -267,54 +289,29 @@
             <ul>
                 <li style="padding:0;">
                     <div class="productShow">
-                        <div class="outerdiv">
+                        <div *ngFor="let item of selectedItemList;let i=index;" class="outerdiv col-md-6" [ngClass]="[i%2==0? 'float-left' : 'float-right', (selectedItemList.length == (i+1) && i%2==0)? 'max-width-none': '']">
                             <div class="imagesdiv">
-                                <img src="./assets/imgs/buffet.svg" alt="">
+                                <img src="./assets/imgs/{{item.item_icon}}" alt="item.item_Name">
                             </div>
                             <div class="showQuanity">
-                                <span>Product Name</span>
-                                <p> Quanity: <span>0</span></p>
+                                <span *ngIf="!(selectedItemList.length == (i+1) && i%2==0)"
+                                    mat-raised-button
+                                    matTooltip="{{item.item_Name.length>24 ? item.item_Name : ''}}"
+                                    matTooltipPosition="right"
+                                    matTooltipHideDelay="300">{{item.item_Name.length>24 ? (item.item_Name | slice:0:14)+'...' : item.item_Name}}</span><span *ngIf="selectedItemList.length == (i+1) && i%2==0">{{item.item_Name}}</span>
+                                <p> Quantity: <span>{{item.quantity}}</span></p>
                             </div>
                         </div>
-                        <div class="outerdiv">
-                            <div class="imagesdiv">
-                                <img src="./assets/imgs/buffet.svg" alt="">
-                            </div>
-                            <div class="showQuanity">
-                                <span>Product Name</span>
-                                <p> Quanity: <span>0</span></p>
-                            </div>
-                        </div>
-
-                        <div class="outerdiv">
-                            <div class="imagesdiv">
-                                <img src="./assets/imgs/buffet.svg" alt="">
-                            </div>
-                            <div class="showQuanity">
-                                <span>Product Name</span>
-                                <p> Quanity: <span>0</span></p>
-                            </div>
-                        </div>
-                        <div class="outerdiv">
-                            <div class="imagesdiv">
-                                <img src="./assets/imgs/buffet.svg" alt="">
-                            </div>
-                            <div class="showQuanity">
-                                <span>Product Name</span>
-                                <p> Quanity: <span>0</span></p>
-                            </div>
-                        </div>
+                        <br style="clear:both;"/>
                     </div>
-
                 </li>
                 <li>
                     <div class="topheading">
                         <i class="fa fa-arrow-circle-up" aria-hidden="true"></i>
                         <span>Pick Up Address</span>
-
                     </div>
-                    <div class="address">
-                        <span>{{pickUpLocationName}}</span>
+                    <div class="address addShiftSpace">
+                        <span>{{pickupApartment == '' ? '' : '#'+pickupApartment+', '}}{{pickUpLocationName}}</span>
                     </div>
                 </li>
                 <li>
@@ -322,8 +319,8 @@
                         <i class="fa fa-arrow-circle-down" aria-hidden="true"></i>
                         <span>Delivery Address</span>
                     </div>
-                    <div class="address">
-                        <span>{{destinationLocationName}}</span>
+                    <div class="address addShiftSpace">
+                        <span>{{deliveryApartment == '' ? '' : '#'+deliveryApartment+', '}}{{destinationLocationName}}</span>
                     </div>
                 </li>
                 <li>
@@ -331,24 +328,36 @@
                         <i class="fa fa-clock-o" aria-hidden="true"></i>
                         <span>Delivery Date & Time</span>
                     </div>
-                    <div class="time">
-                        <span>WednesDay 10-may-2020</span>
-                        <span>1 PM - 2 PM</span>
+                    <div class="time addShiftSpace">
+                        <span>Date : {{ selectedDate | date:'fullDate' }}</span>
+                        <span>Time Slot : {{selectedTimeSlot}}</span>
                     </div>
                 </li>
                 <li>
                     <div class="topheading">
-                        <i class="fa fa-usd pricelogo" aria-hidden="true"></i>
+                        <i class="fa fa-usd pricelogo fix-alignment" aria-hidden="true"></i>
                         <span>Price</span>
+                    </div>
+                    <div class="total addShiftSpace">
+                        <span>Total Price per hour</span>
+                        <span><b>{{priceForDelivery}}</b></span>
 
                     </div>
-                    <div class="total">
-                        <span>Total</span>
-                        <span>$20.00</span>
-
-                    </div>
-                    <div class="Price">
+                    <!-- <div class="Price">
                         <span>Promo Code?</span>
+                    </div> -->
+                </li>
+                <li *ngIf="!rightNowButton">
+                    <div class="topheading ">
+                        <i class="fa fa-paper-plane" aria-hidden="true"></i>
+                        <span>Deposit Amount</span>
+                        <span class="addShiftSpace align-amount"><b>${{showTokenAmount()}}</b></span>
+                    </div>
+                </li>
+                <li *ngIf="rightNowButton">
+                    <div class="topheading">
+                        <i class="fa fa-paper-plane" aria-hidden="true"></i>
+                        <span>Pay on Pick-Up</span>
                     </div>
                 </li>
             </ul>
@@ -361,37 +370,118 @@
 
 
 
-<div class="stepper">
-    <div class="rightSide">
-        <button (click)="clickReset()">Reset</button>
+<div class="stepper py-2 ">
+    <div class="rightSide pt-2 stepperButtons">
+        <button class="mb-0" (click)="clickReset()" [disabled]="pickupLocation">Reset</button>
     </div>
-    <div class="leftside">
-        <button class="backbutton" (click)="gotoBack()" *ngIf="pickupLocation == false">Back</button>
-        <button class="nextbuton" (click)="gotoNext()" [disabled]="toggelNextBtn()">Next</button>
+    <div class="leftside pt-2 stepperButtons">
+        <button class="backbutton mb-0" (click)="gotoBack()" *ngIf="pickupLocation == false">Back</button>
+        <button class="nextbuton mb-0" (click)="gotoNext()" [disabled]="toggelNextBtn()"
+            *ngIf="showFinallist == false">Next</button>
+        <button class="nextbuton mb-0" (click)="checkoutClick()" *ngIf="showFinallist == true">Checkout</button>
     </div>
 </div>
 
+<ng-template #sameLocationModalDiaolg let-sameLocationModal>
+    <div class="modal-body" style="text-align: center; ">
+        <div class="title-heading">
+            <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
+            <span>Sorry, you can't select same Pick-Up and Delivery location.</span>
+            <button type="button" class="close" aria-label="Close" (click)="sameLocationModal.dismiss('Cross click')">
+                <span aria-hidden="true" class="close-modal-button">&times;</span>
+            </button>
+        </div>
+        <div class="lowerText" ngbAutofocus>
+            <span>kindly select different Delivery location!</span>
+        </div>
+    </div>
+</ng-template>
 
-
-<ng-template #modalDiaolg>
+<ng-template #modalDiaolg let-outOfServiceModal>
     <div class="modal-body" style="text-align: center; ">
         <div class="title-heading">
             <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
             <span>Sorry, you're out of our service area</span>
+            <button type="button" class="close " aria-label="Close" (click)="outOfServiceModal.dismiss('Cross click')">
+                <span aria-hidden="true" class="close-modal-button">&times;</span>
+            </button>
         </div>
-        <div class="lowerText">
+        <div class="lowerText" ngbAutofocus>
             <span>We're not available in your area yet. Check back with us again soon!</span>
         </div>
     </div>
 </ng-template>
-<ng-template #distanceModal>
+<ng-template #distanceModal let-outOfDistanceModal>
     <div class="modal-body" style="text-align: center; ">
-        <div class="title-heading">
+          <div class="title-heading">
             <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
             <span>Sorry, you're out of our service area</span>
+            <button type="button" class="close " aria-label="Close" (click)="outOfDistanceModal.dismiss('Cross click')">
+                <span aria-hidden="true" class="close-modal-button">&times;</span>
+            </button>
         </div>
-        <div class="lowerText">
+        <div class="lowerText" ngbAutofocus>
             <span>We're unable to deliver 25 miles outside of your service area. Questions? Please call us </span>
         </div>
     </div>
 </ng-template>
+<ng-template #contactUs>
+    <div class="modal-body" style="text-align: center; ">
+        <div class="close-icon" (click)="JoinAndClose()"><i class="fa fa-times"></i></div>
+        <div class="title-heading">
+            <h3>Contact Us</h3>
+        </div>
+        <div class="lowerText">
+            <form [formGroup]="contactUsForm" (ngSubmit)="messageSend()"  class="form cutomform">
+                <mat-form-field class="example-full-width p-0" >
+                    <mat-label> Name</mat-label>
+                    <input matInput placeholder="Enter Name" formControlName="userName" (keypress)="_keyPresscharacter($event)"  required>
+                    <mat-error *ngIf="contactUsForm.controls.userName.hasError('required')">
+                        Name is required
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field class="example-full-width p-0" >
+                    <mat-label>Email</mat-label>
+                    <input matInput placeholder="Enter email address" formControlName="userEmail" required>
+                    <mat-error *ngIf="!contactUsForm.controls['userEmail'].valid && contactUsForm.controls['userEmail'].touched">
+                        {{ getErrorEmail() }}
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field class="example-full-width p-0" >
+                    <mat-label>Phone Number </mat-label>
+                    <input matInput formControlName="userContactNo" maxlength="10" (keypress)=_keyPress($event) required>
+                    <mat-error *ngIf="contactUsForm.controls.userContactNo.hasError('required')">
+                        Phone number is required
+                    </mat-error>
+                    <mat-error *ngIf="contactUsForm.controls.userContactNo.hasError('pattern')">
+                        Phone number is not a valid
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field class="example-full-width p-0" >
+                    <mat-label>Leave a message</mat-label>
+                    <textarea matInput placeholder="Message" style="resize: none;    height: 80px;" formControlName="userComment"></textarea>
+                    <mat-error *ngIf="contactUsForm.controls.userComment.hasError('required')">
+                        Message is required
+                    </mat-error>
+                  </mat-form-field>
+                  <div class="py3">
+                      <button type="submit"    class="btn text-black " style="color: #fff;background: #ec3441;"  [disabled]="!contactUsForm.valid">Send</button>
+                  </div>
+            </form>
+        </div>
+    </div>
+</ng-template>
+
+
+<!-- <ng-template #contactUs>
+    <div class="modal-body" style="text-align: center; ">
+        <div class="close-icon" (click)="JoinAndClose()"><i class="fa fa-times"></i></div>
+        <div class="title-heading">
+            <h3>Contact Us</h3>
+        </div>
+
+
+    </div>
+</ng-template> -->
+
+

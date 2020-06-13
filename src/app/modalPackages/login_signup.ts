@@ -10,6 +10,7 @@ export class LoginSignupModal {
     public address: string;
     public state: string;
     public city: string;
+    public country : string;
     public zip: string;
     public profilePic: any;
     public oldPassword: string;

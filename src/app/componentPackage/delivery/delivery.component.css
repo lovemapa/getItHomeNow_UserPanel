@@ -21,30 +21,51 @@
     transition: 0.5s all;
 }
 
+
+.nav .struck_Imag{
+    width: 117px;
+    height: 43px;
+
+}
+.nav .struck_Imag .countclass{
+    top: 4px;
+    right: 42px;
+    font-weight: bolder;
+    color: #fff;
+    font-size: 25px;
+}
+
+.nav .struck_Imag img{
+    width: 100%;
+    height: 100%;
+}
+
 agm-map {
-    height: calc(100vh - 117px);
+    height: calc(100vh - 103px);
 }
 
 .positiondiv {
     position: absolute;
-    width: 100%;
+    width: 500px;
     z-index: 1;
-    bottom: 167px;
+    top: 66%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    bottom: 130px;
     background: transparent;
     text-align: center;
 }
 
 .positiondiv .card {
-    width: 25%;
+    max-width: 500px;
     margin: 0 auto;
-    padding-bottom: 10px;
 }
 
 .stepper {
     position: fixed;
     box-shadow: 0px 0px 21px 0px #000000ad;
     width: 100%;
-    bottom: 0;
+    bottom: -22px;
     height: 65px;
     display: flex;
     flex-flow: row;
@@ -70,11 +91,11 @@ button {
 }
 
 .stepper .rightSide button {
-    background: #a9a9a985;
+    background: #ec3441;
 }
 
 .stepper .leftside .backbutton {
-    background: #a9a9a985;
+    background: #ec3441;
 }
 
 .stepper .leftside .nextbuton {
@@ -82,6 +103,10 @@ button {
     margin-left: 10px;
 }
 
+.stepperButtons{
+    position: relative;
+    top: -12px;
+}
 
 /*Form Field*/
 
@@ -141,25 +166,40 @@ button {
 }
 
 .login100-form .form-element {
-    margin-top: 20px;
+    padding: 20px 0;
 }
 
 .login100-form .form-element label {
+    width: 80%;
     font-size: 20px;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
     text-align: left;
-    display: block;
+    text-transform: none;
+}
+.login100-form .form-element label:nth-of-type(even) {
+    width: 20%;
+    font-size: 20px;
+    margin: 6px 0px;
+    text-align: left;
     text-transform: none;
 }
 
 .login100-form .form-element label i {
-    font-size: 24px;
+    font-size: 19px;
     margin: 0px 10px;
     color: #ec3441;
 }
 
 .login100-form .form-element input {
-    width: 100%;
+    width: 70%;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 8px 15px;
+}
+
+.login100-form .form-element input:nth-of-type(even) {
+    float: right;
+    width: 22%;
     border: 1px solid #ccc;
     border-radius: 4px;
     padding: 8px 15px;
@@ -167,7 +207,7 @@ button {
 
 .toplocationshow {
     position: absolute;
-    top: 50px;
+    top: 59px;
     z-index: 1;
     background: #fff;
     width: 100%;
@@ -179,7 +219,7 @@ button {
     display: flex;
     justify-content: space-between;
     flex-flow: row;
-    padding: 10px 10px;
+    padding: 5px 10px;
     border-bottom: 1px solid #d2d2d2;
 }
 
@@ -205,7 +245,8 @@ button {
     display: flex;
     justify-content: space-between;
     flex-flow: row;
-    padding: 10px 10px;
+    padding: 5px 10px;
+    border-bottom: 1px solid #d2d2d2;
 }
 
 .toplocationshow .destination .leftside {
@@ -230,14 +271,25 @@ button {
     display: none;
 }
 
+.finallist {
+    height: calc(100vh - 59px) !important;
+    padding-top: 0px !important;
+}
+
 .divliveryItem {
-    height: 443px;
+    height: calc(100vh - 176px);
     max-height: 100%;
     overflow-y: auto;
-    margin-top: 76px;
+    margin-top: 74px;
     z-index: 0;
     background: #e5e5e5;
     padding: 30px 10px;
+}
+.close-modal-button{
+    position: absolute !important;
+    top: 47% !important;
+    left: 95% !important;
+    font-size: 2rem !important;
 }
 
 .divliveryItem .titleheading h4 {
@@ -250,6 +302,20 @@ button {
 
 .divliveryItem .searchDiv {
     background: transparent;
+}
+.divliveryItem .searchDiv .notes {
+    position: absolute;
+    right: 83px;
+    top: 33px;
+    color: #ec3441;
+    font-size: 15px;
+    width: 279px;
+    padding: 10px;
+    border-left: 4px solid #ec3441;
+    background: #ec344154;
+}
+.divliveryItem .searchDiv .notes span {
+color: #fff !important;
 }
 
 .divliveryItem .searchDiv .card {
@@ -285,6 +351,7 @@ button {
 }
 
 .divliveryItem .searchDiv .card .login100-form .form-element input {
+    width: 100%;
     padding: 12px 3px 13px 12px;
     background-color: #e5e5e5;
     border-top-left-radius: 4px;
@@ -367,6 +434,7 @@ a:hover {
     text-align: center;
     margin: 20px auto 0;
     background: #fff;
+    border-radius: 20px;
 }
 
 .divliveryItem #accordion .card {
@@ -433,11 +501,19 @@ a:hover {
     padding: 10px 10px;
     border-bottom: 1px solid #dcdbdb;
     cursor: pointer;
-}
-
-.divliveryItem #accordion .card-block ul li .outerdiv {
     display: flex;
     flex-flow: row;
+    justify-content: space-between;
+    position: relative;
+}
+/* .card-block ul li:hover{
+    background-color: rgba(244,67,54,0.3);
+    opacity: 0.5;
+} */
+.divliveryItem #accordion .card-block ul li .outerdiv {
+        display: flex;
+    flex-flow: row;
+    width: 100%
 }
 
 .divliveryItem #accordion .card-block ul li .outerdiv .imagesdiv {
@@ -450,17 +526,22 @@ a:hover {
 }
 
 .divliveryItem #accordion .card-block ul li .outerdiv span {
-    padding: 19px 0;
+  
+    padding: 19px 5px;
+    display: block;
+    width: 318px;
+    word-wrap: break-word;
 }
 
-.divliveryItem #accordion .card-block ul li .showcount {
+/* .divliveryItem #accordion .card-block ul li .showcount {
     text-align: right;
-    width: 100%;
-}
+    width: 100%; 
+} */
 
 .divliveryItem #accordion .card-block ul li .showcount .count {
-    text-align: right;
-    width: 100%;
+    position: absolute; 
+    right: 0;
+    top: 25px;
 }
 
 .divliveryItem #accordion .card-block ul li .showcount .count i {
@@ -493,8 +574,9 @@ a:hover {
 }
 
 .mycard ul li .showcount .count {
-    text-align: right;
-    width: 100%;
+    position: absolute;
+    right: 12px;
+    top: 41px;
 }
 
 .mycard ul li .showcount .count i {
@@ -508,28 +590,52 @@ a:hover {
 }
 
 .selectDateandTime .card {
-    max-width: 350px;
+    max-width: 450px;
     margin: 20px auto 100px;
+}
+
+.selectDateandTime  .calsstopButton {
+    text-align: center;
+}
+.selectDateandTime  .calsstopButton a{
+    padding: 8px;
+    text-align: center;
+    width: 100%;
+    margin: 3px;
+    font-size: 13px;
+    border: 2px solid #ec3441;
+    cursor: pointer;
+    border-radius: 50px;
+    color: #ec3441
+}
+.topbuttonactive{
+    border: 1px solid #fff !important;
+    background: #ec3441;
+    color: #fff !important;
+}
+
+.card {
+    border-radius: 20px;
 }
 
 .selectDateandTime .card .dateShow {
     display: flex;
-    padding: 10px 15px;
+    margin-top: -20px;
+    padding-bottom: 10px;
     justify-content: center;
 }
 
 .selectDateandTime .card .dateShow .data {
-    width: 50px;
-    height: 50px;
-    border: 2px solid;
+    width: 70px;
+    height: 70px;
     position: relative;
     border-radius: 100%;
     color: #ec3542;
     background: initial;
     cursor: pointer;
-    border: 1px solid #ec3441;
-    margin: 6px;
-    font-weight: 600;
+    border: 3px solid #ec3441;
+    margin: 8px;
+    font-weight: 500;
 }
 
 .selectDateandTime .card .dateShow .data.active {
@@ -539,9 +645,15 @@ a:hover {
     border: 2px solid #fff;
 }
 
-.selectDateandTime .card .dateShow .data span {
+.selectDateandTime .card .dateShow .data .day {
     position: absolute;
-    top: 50%;
+    top: 32%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.selectDateandTime .card .dateShow .data .date {
+    position: absolute;
+    top: 64%;
     left: 50%;
     transform: translate(-50%, -50%);
 }
@@ -564,20 +676,19 @@ a:hover {
     border-radius: 4px
 }
 
-.selectDateandTime .card .timeShow .dataTime .mydiv {
+.selectDateandTime .card .timeShow .dataTime .timeSlotDiv {
     display: flex;
     flex-flow: column;
     justify-content: center;
-    padding: 17px;
     font-weight: 600;
 }
 
-.selectDateandTime .card .timeShow .dataTime .mydiv .text {
-    padding-left: 5px;
+.selectDateandTime .card .timeShow .dataTime .timeSlotDiv .text {
+    padding: 0px 5px;
 }
 
 .selectDateandTime .card .timeShow .dataTime .minus {
-    padding: 22px 4px;
+    padding: 22px 2px;
     font-size: 41px;
     font-weight: 500;
 }
@@ -653,40 +764,43 @@ a:hover {
     font-weight: 700;
 }
 
+.finallist .card .card-body ul li .topheading .addShiftSpace{
+    float: right;
+}
+
+.align-amount{
+    position: relative;
+    top: 5px;
+}
+
 .finallist .card .card-body ul li .topheading i {
-    margin-right: 10px;
-    font-size: 21px;
+    margin-right: 5px;
+    font-size: 24px;
     color: #e92330;
+    position: relative;
+    top: 2px;
 }
 
 .finallist .card .card-body ul li .topheading i.pricelogo {
-    padding: 2px;
-    width: 22px;
-    height: 22px;
-    font-size: 15px;
-    border: 2px solid;
-    border-radius: 50px;
     padding-left: 5px;
-    color: #fff;
-    background: #E92331;
 }
 
 .finallist .card .card-body ul li .address span {
-    padding: 13px 13px;
+    padding-left: 50px;
     font-size: 15px;
     font-weight: 400;
 }
 
 .finallist .card .card-body ul li .time span {
+    padding-left: 50px;
     display: block;
-    padding: 1px 13px;
-    padding: 0px 13px;
+    margin-bottom: 5px;
     font-size: 15px;
     font-weight: 400;
 }
 
 .finallist .card .card-body ul li .total {
-    padding: 4px 13px;
+    padding-left: 50px;
     font-size: 15px;
     font-weight: 400;
     display: flex;
@@ -700,10 +814,15 @@ a:hover {
     color: #E92331;
 }
 
-.finallist .card .card-body .productShow {
-    /* display: flex;
+
+/* .finallist .card .card-body .productShow {
+     display: flex;
     flex-flow: row;
-    justify-content: center; */
+    justify-content: center; 
+} */
+
+.max-width-none{
+    max-width: none;
 }
 
 .finallist .card .card-body .productShow .outerdiv {
@@ -718,6 +837,8 @@ a:hover {
 
 .finallist .card .card-body .productShow .outerdiv .showQuanity {
     padding: 15px 0px;
+    font-weight: 700;
+    color: #dc3545;
 }
 
 .finallist .card .card-body .outerdiv h3 {
@@ -742,6 +863,105 @@ a:hover {
     width: 100%;
 }
 
+.selectedTimeClass {
+    color: #fff !important;
+    background: #ec3441;
+    cursor: pointer !important;
+}
+/* 
+.divliveryItem {
+    /* background: url("../../../assets/imgs/delivery_background2.jpg");
+    background-repeat: no-repeat;
+    background-size: cover; 
+}*/
+@media (max-width: 1200px){
+        .divliveryItem .searchDiv .notes{right: 0;top: 0;max-width: 260px;}
+        .divliveryItem .searchDiv .card{max-width: 400px;}
+        .divliveryItem #accordion{max-width: 400px;margin-bottom: 80px;}
+        .divliveryItem #accordion .card .card-header .outerdiv{align-items: center;}
+        .divliveryItem #accordion .card .card-header .outerdiv h3{padding: 0 10px;}
+        .divliveryItem #accordion .card .card-header .outerdiv .imagesdiv{height: unset;width: unset;}
+        .divliveryItem #accordion .card .card-header .outerdiv .imagesdiv img{max-width: 60px;}
+        .divliveryItem #accordion .card{padding: 15px;}
+        .divliveryItem #accordion .card-block ul li{padding-bottom: 20px;}
+        .divliveryItem #accordion .card-block ul li .showcount .count{    position: absolute;
+            bottom: 0;
+            right: 0;
+            align-items: center;
+            display: flex;}
+            .formFiled .card{margin-bottom: 80px;padding:0}
+}
+@media (max-width: 992px){
+    .divliveryItem{height: 100%;}
+    .divliveryItem .searchDiv .notes{margin: 0 auto;position: relative;}
+    .divliveryItem #accordion .card-block ul li .outerdiv .imagesdiv img{max-width: 50px;}
+    .divliveryItem #accordion .card-block ul li .outerdiv{align-items: center;}
+    .divliveryItem #accordion .card-block ul{margin-bottom: 0;padding-left: 0;}
+    .divliveryItem #accordion .card-block ul li .outerdiv .imagesdiv{height: unset;width: unset;}
+    .divliveryItem #accordion .card-block ul li .outerdiv span{padding: 0 10px;}
+}
+@media (max-width: 767px){
+    .positiondiv{
+        top: 50%;
+        bottom: unset;
+        transform: translate(0,-50%);
+    }
+
+    .login100-form .form-element label{font-size: 16px;margin-bottom: 15px;}
+    .login100-form .form-element{padding: 10px 0;}
+    .positiondiv .card{max-width: 400px;}
+    .positiondiv .card-body{padding: 10px 8px;}
+}
+@media (max-width: 500px) {
+    .nav .struck_Imag{width: 100px;height: 40px;}
+    .toplocationshow{top: 55px;padding: 0;}
+    .faltu-text{display: none;}
+    .nav .struck_Imag .countclass{font-size: 20px;right: 40;}
+    .login100-form .form-element{padding:0;}
+    .positiondiv .card{max-width: 300px;}
+
+    .toplocationshow .origin .leftside{    display: flex;
+        align-items: center;}
+        .showLocation{font-size: 12px;}
+    .toplocationshow .origin .leftside span{font-size: 12px;top: 0}  
+    .toplocationshow .destination .leftside{display: flex; align-items: center;}
+    .toplocationshow .destination .leftside span{font-size: 12px;}
+    .divliveryItem #accordion .card{padding: 10px}
+    .divliveryItem #accordion .card .card-header .outerdiv h3{font-size: 16px;}
+    .divliveryItem #accordion .card .card-header .outerdiv .imagesdiv img{max-width: 50px;}
+
+    .selectDateandTime .calsstopButton{flex-wrap: wrap;}
+    .selectDateandTime .calsstopButton a{padding: 7px}
+    .selectDateandTime .card .timeShow .dataTime{width: 100%;font-size: 15px;}
+    .selectDateandTime .card .timeShow .dataTime .minus{padding:12px 2px}
+    .finallist .card .card-body ul li .topheading{
+        font-size: 12px;
+    }
+    .finallist .card .card-body ul li .address span{
+        font-size: 12px;
+    }
+    .finallist .card .card-body ul li .time span{
+        font-size: 12px;
+    }
+    .finallist .card .card-body ul li .total{
+        font-size: 12px;
+    }
+
+    .finallist .card .card-body ul li .topheading i {
+        font-size: 15px;;
+    }
+    .divliveryItem #accordion .card-block ul li .showcount .count{
+        top: -12px;
+    }
+    .divliveryItem .titleheading h4{
+        font-size: 15px;
+    }
+   
+}
+
+
+
+
 
 /* @media (max-width: 767px) {
     .faq-section {
@@ -761,3 +981,4 @@ a:hover {
         letter-spacing: normal;
     }
 } */
+

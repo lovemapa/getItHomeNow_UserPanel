@@ -1,0 +1,82 @@
+[
+    {
+        "time_slot_id": "12001",
+        "starting_Time": 10,
+        "full_length_statingtime": "10:00 AM",
+        "ending_time": 12,
+        "full_length_endingtime": "12:00 PM",
+        "isactive": false
+    },
+    {
+        "time_slot_id": "12002",
+        "starting_Time": 11,
+        "full_length_statingtime": "11:00 AM",
+        "ending_time": 13,
+        "full_length_endingtime": "1:00 PM",
+        "isactive": false
+    }, 
+    {
+        "time_slot_id": "12003",
+        "starting_Time": 12,
+        "full_length_statingtime": "12:00 PM",
+        "ending_time": 14,
+        "full_length_endingtime": "2:00 PM",
+        "isactive": false
+    },
+    {
+        "time_slot_id": "12004",
+        "starting_Time": 13,
+        "full_length_statingtime": "1:00 PM",
+        "ending_time": 15,
+        "full_length_endingtime": "3:00 PM",
+        "isactive": false
+    },
+    {
+        "time_slot_id": "12005",
+        "starting_Time": 14,
+        "full_length_statingtime": "2:00 PM",
+        "ending_time": 16,
+        "full_length_endingtime": "4:00 PM",
+        "isactive": false
+    },
+    {
+        "time_slot_id": "12006",
+        "starting_Time": 15,
+        "full_length_statingtime": "3:00 PM",
+        "ending_time": 17,
+        "full_length_endingtime": "5:00 PM",
+        "isactive": false
+    },
+    {
+        "time_slot_id": "12007",
+        "starting_Time": 16,
+        "full_length_statingtime": "4:00 PM",
+        "ending_time": 18,
+        "full_length_endingtime": "6:00 PM",
+        "isactive": false
+    },
+    {
+        "time_slot_id": "12008",
+        "starting_Time": 17,
+        "full_length_statingtime": "5:00 PM",
+        "ending_time": 19,
+        "full_length_endingtime": "7:00 PM",
+        "isactive": false
+    },
+    {
+        "time_slot_id": "12009",
+        "starting_Time": 18,
+        "full_length_statingtime": "6:00 PM",
+        "ending_time": 20,
+        "full_length_endingtime": "8:00 PM",
+        "isactive": false
+    },
+    {
+        "time_slot_id": "12010",
+        "starting_Time": 19,
+        "full_length_statingtime": "7:00 PM",
+        "ending_time": 21,
+        "full_length_endingtime": "9:00 PM",
+        "isactive": false
+    }
+]

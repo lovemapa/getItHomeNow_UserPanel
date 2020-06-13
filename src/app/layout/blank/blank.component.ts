@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, NavigationEnd } from '@angular/router';
 import { CommonMethods } from 'src/app/utillpackage/common-method';
 
 @Component({
@@ -8,18 +8,22 @@ import { CommonMethods } from 'src/app/utillpackage/common-method';
   styleUrls: ['./blank.component.css']
 })
 export class BlankComponent implements OnInit {
-  Tag="BlankComponent";
-  showFooter=true;
-  constructor(public router:Router) {
+  Tag = "BlankComponent";
+  showFooter = true;
+  constructor(public router: Router) {
+    this.router.events.subscribe((ev) => {
+      if (ev instanceof NavigationEnd) { 
 
-     CommonMethods.showconsole(this.Tag,"SHow Current Url :- "+router.url)
-       if( router.url == "/delivery")
-       {
-        this.showFooter=false;
-       }else{
-         this.showFooter=true;
-       }
-   }
+        if (router.url == "/delivery") {
+          this.showFooter = false;
+          CommonMethods.showconsole(this.Tag, "working if ")
+        } else {
+          CommonMethods.showconsole(this.Tag, "working else ")
+          this.showFooter = true;
+        }
+      }
+    });
+  }
 
   ngOnInit(): void {
   }

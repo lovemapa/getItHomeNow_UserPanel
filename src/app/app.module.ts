@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AosToken, aos } from './aos';
-import { HashLocationStrategy, LocationStrategy, PathLocationStrategy } from '@angular/common';
+import { HashLocationStrategy, LocationStrategy, PathLocationStrategy, DatePipe } from '@angular/common';
 import { CarouselModule } from 'ngx-owl-carousel-o';
 import { NavbarComponent } from './componentPackage/navbar/navbar.component';
 import { HomeComponent } from './componentPackage/home/home.component';
@@ -26,7 +26,8 @@ import { CookieService } from 'ngx-cookie-service';
 import { ProfileshowComponent } from './componentPackage/profileshow/profileshow.component';
 import { DeliveryComponent } from './componentPackage/delivery/delivery.component';
 import { AgmCoreModule, GoogleMapsAPIWrapper } from '@agm/core';
-// import { AgmDirectionModule } from 'agm-direction';
+import { PaymentGatewayComponent } from './componentPackage/payment-gateway/payment-gateway.component';
+import { NgxStripeModule } from 'ngx-stripe';
 @NgModule({
   declarations: [
     AppComponent,
@@ -43,7 +44,8 @@ import { AgmCoreModule, GoogleMapsAPIWrapper } from '@agm/core';
     LoginSignupComponent,
     ProfileshowComponent,
     DeliveryComponent,
-
+    PaymentGatewayComponent,
+   
   ],
   imports: [
     BrowserModule,
@@ -60,7 +62,7 @@ import { AgmCoreModule, GoogleMapsAPIWrapper } from '@agm/core';
       apiKey: 'AIzaSyBMrKj9G0-f3QPF-P1D99iBChHT-PIICwo',
       libraries: ["places", "geometry"]
     }),
-    // AgmDirectionModule,
+    NgxStripeModule.forRoot('pk_test_1FZfVATEwV5aVeB0V8kqfjOu00Zel0aPAe'),
 
 
   ],
@@ -68,10 +70,12 @@ import { AgmCoreModule, GoogleMapsAPIWrapper } from '@agm/core';
     PathLocationStrategy,
     HashLocationStrategy,
     { provide: AosToken, useValue: aos },
-    { provide: LocationStrategy, useClass: HashLocationStrategy },
+    // { provide: LocationStrategy, useClass: PathLocationStrategy },
     CookieService,
-    GoogleMapsAPIWrapper
+    GoogleMapsAPIWrapper,
+    DatePipe
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [PaymentGatewayComponent]
 })
 export class AppModule { }
