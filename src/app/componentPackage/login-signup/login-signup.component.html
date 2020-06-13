@@ -169,7 +169,7 @@
             </div>
             <div class="form-element">
                 <label for="email">Contact Number</label>
-                <input type="text" name="contact_Number" id="contact_Number" (keypress)="keyPress($event)" placeholder="Enter Contact Number " autocomplete="off" [(ngModel)]="loginsignup.contact" required/>
+                <input type="text" name="contact_Number" id="contact_Number" (keypress)="keyPress($event)" placeholder="Enter Contact Number " maxlength="10" autocomplete="off" [(ngModel)]="loginsignup.contact" required/>
             </div>
             <div class="form-element">
                 <label for="password">Password</label>

@@ -847,7 +847,7 @@ export class DeliveryComponent implements OnInit {
     }
     else{
       this.spinner.show();
-      console.log("this.bookingData :", this.bookingData);
+      // console.log("this.bookingData :", this.bookingData);
       this.userBackEndService.makePaymentFinal(this.bookingData).subscribe((responseData) => {
         this.spinner.hide();
         if (responseData.success) {

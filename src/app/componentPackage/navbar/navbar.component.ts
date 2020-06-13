@@ -7,6 +7,8 @@ import { CommonMethods } from 'src/app/utillpackage/common-method';
 import { MyRoutingMethods } from 'src/app/utillpackage/utillpackage/my-routing-methods';
 import { UserpanelServiceService } from 'src/app/backendServices/userpanel-service.service';
 import { MyConstants } from 'src/app/utillpackage/constant';
+import { NgxSpinner } from 'ngx-spinner/lib/ngx-spinner.enum';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-navbar',
@@ -22,7 +24,7 @@ export class NavbarComponent implements OnInit {
   fullname:string;
 
   constructor(public router: Router, public location: Location, public cookiesService: CookieService,
-    public userPanelBackEndService:UserpanelServiceService) {
+    public userPanelBackEndService:UserpanelServiceService,public spinner:NgxSpinnerService) {
     this.showAdvertisment = false;
     this.cookiesIsExit = false;
     // this.profilepic = "";
@@ -69,12 +71,17 @@ export class NavbarComponent implements OnInit {
 
   /**Logout */
   clickLogoutFunction() {
+    this.spinner.show()
     MyCookies.deletecookies(this.cookiesService);
-    if (this.router.url == '/home') {
-      location.reload(true);
-    } else {
-      MyRoutingMethods.gotoHome(this.router);
-    }
+    setTimeout(() => {
+      if (this.router.url == '/home') {
+        location.reload(true);
+        this.spinner.hide()
+      } else {
+        MyRoutingMethods.gotoHome(this.router);
+      }
+    }, 200);
+   
     //  
   }
 

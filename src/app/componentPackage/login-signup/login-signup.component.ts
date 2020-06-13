@@ -10,6 +10,7 @@ import { CookieService } from 'ngx-cookie-service';
 import { MyRoutingMethods } from 'src/app/utillpackage/utillpackage/my-routing-methods';
 import Swal from 'sweetalert2/dist/sweetalert2.js';
 import { Router } from '@angular/router';
+
 @Component({
   selector: 'app-login-signup',
   templateUrl: './login-signup.component.html',
@@ -22,7 +23,6 @@ export class LoginSignupComponent implements OnInit {
   signupForm = false;
   titlebelow = "";
   mainTitle = "";
-
 
 
 
@@ -189,9 +189,12 @@ export class LoginSignupComponent implements OnInit {
         CommonMethods.showconsole(this.tag, "Response:- " + JSON.stringify(response))
         if (response.success) {
           this.spinner.hide();
-          CommonMethods.showSuccessDialog(this.snackBar, "Resgister Successfully");
+           CommonMethods.showconsole(this.tag,"JSon Ocode:- "+JSON.stringify(response))
+          CommonMethods.showSuccessDialog(this.snackBar, "Register Successfully");
+         
           this.signupForm = false;
           this.resetFields();
+          MyRoutingMethods.gotoHome(this.router)
         }
         else {
           this.spinner.hide();

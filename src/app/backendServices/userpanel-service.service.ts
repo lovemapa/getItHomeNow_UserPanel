@@ -70,7 +70,13 @@ export class UserpanelServiceService {
    * @param contactUsData 
    */
   signUp(signupData: any): Observable<any> {
-    return this.http.post(this.signupUrl, signupData);
+    return this.http.post(this.signupUrl, signupData).pipe(map(response => {
+        // MyCookies.saveLoginDataInCookies(this.cookiesServices, new CookiesModel(response.user));
+        // this.profilePic.next(this.cookiesServices.get('profilePic'));
+        if(response['success'] && response['result'].token)
+        MyCookies.saveLoginDataInCookies(this.cookiesServices, new CookiesModel(response['result']));
+      return response;
+    }));
   }
 
   /**

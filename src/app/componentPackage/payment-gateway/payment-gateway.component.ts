@@ -139,7 +139,7 @@ export class PaymentGatewayComponent implements OnInit {
         if (result.token) {
           this.spinner.show();
           this.bookingDetails.token = result.token.id;
-          console.log("this.bookingDetails :", this.bookingDetails);
+          // console.log("this.bookingDetails :", this.bookingDetails);
           this.userBackEndService.makePaymentFinal(this.bookingDetails).subscribe((responseData) => {
             this.spinner.hide();
             if (responseData.success) {
