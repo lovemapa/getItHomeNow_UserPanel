@@ -70,7 +70,7 @@ import { NgxStripeModule } from 'ngx-stripe';
     PathLocationStrategy,
     HashLocationStrategy,
     { provide: AosToken, useValue: aos },
-    // { provide: LocationStrategy, useClass: PathLocationStrategy },
+    { provide: LocationStrategy, useClass: PathLocationStrategy },
     CookieService,
     GoogleMapsAPIWrapper,
     DatePipe
