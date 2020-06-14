@@ -117,7 +117,7 @@ export class LoginSignupComponent implements OnInit {
       CommonMethods.showErrorDialog(this.snackbar, "Enter last name");
       return false;
     } else if (this.loginsignup.email.trim().length == 0) {
-      CommonMethods.showErrorDialog(this.snackbar, "Enter email");
+      CommonMethods.showErrorDialog(this.snackbar, "Enter email address");
       return false;
     } else if (!EMAIL_REGEXP.test(this.loginsignup.email.trim())) {
       CommonMethods.showErrorDialog(this.snackbar, "Email is invalid");
@@ -132,7 +132,7 @@ export class LoginSignupComponent implements OnInit {
       CommonMethods.showErrorDialog(this.snackbar, "Enter Confirm password");
       return false;
     } else if (this.loginsignup.password.trim() != this.loginsignup.confirm_password.trim()) {
-      CommonMethods.showErrorDialog(this.snackbar, "Password is not match");
+      CommonMethods.showErrorDialog(this.snackbar, "Password and confirm password does not match");
       return false;
     } else {
       return true;
@@ -243,6 +243,13 @@ export class LoginSignupComponent implements OnInit {
     });
   }
   
+  _keyPresscharacter(event: any) {
+    const pattern = /^[a-zA-Z\s]*$/;
+    let inputChar = String.fromCharCode(event.charCode);
+    if (!pattern.test(inputChar)) {
+      event.preventDefault();
 
+    }
+  }
 
 }

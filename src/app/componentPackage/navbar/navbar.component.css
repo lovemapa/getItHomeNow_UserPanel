@@ -208,16 +208,25 @@
     .navbar {
         padding: 0;
     }
+    .profile-settings:hover .dropdown-menu {
+        transform: scaleY(1);
+        transition: 0.3s all;
+        display: unset;
+        position: relative;
+        top: -8px !important;
+        right: 0 !important;
+        text-align: start;
+    }
     /* .navbar-collapse {
       display: none;
     } */
     /* .navbar-collapse{
         display: none;
     } */
-    .mynavbarmobile{
+    .mynavbarmobile {
         display: none;
     }
-    .navbar-collapse{
+    .navbar-collapse {
         position: absolute;
         top: 100%;
         background: #fff;

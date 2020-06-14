@@ -28,7 +28,7 @@
     margin: 0px 10px;
 }
 
-.swal2-content{
+.swal2-content {
     text-transform: capitalize !important;
 }
 
@@ -409,6 +409,11 @@ figure figcaption i {
 }
 
 @media (max-width: 767px) {
+    .profilediv .contentcard .topview {
+        flex-flow: column;
+        justify-content: center;
+        text-align: center;
+    }
     label.cabinet {
         height: 150px;
         width: 150px;
@@ -468,6 +473,14 @@ figure figcaption i {
 }
 
 @media (max-width: 575px) {
+    .profilediv .contentcard .mainTextDiv .textshow {
+        flex-flow: column;
+    }
+    .profilediv .contentcard .topview {
+        flex-flow: column;
+        justify-content: center;
+        text-align: center;
+    }
     .profilediv {
         display: flex;
         flex-flow: column;
@@ -495,10 +508,10 @@ figure figcaption i {
     .profilediv .contentcard .mainTextDiv .textshow label {
         font-size: 14px;
     }
-    .customModalBody .mainheading{
+    .customModalBody .mainheading {
         font-size: 18px !important;
     }
-    .customModalBody .divimages{
+    .customModalBody .divimages {
         width: 209px !important;
         height: 27px !important;
         margin-top: 16px !important;

@@ -157,11 +157,11 @@
         <div class="form" *ngIf="signupForm == true">
             <div class="form-element">
                 <label for="email">First Name</label>
-                <input type="text" name="first_name" id="first_name" placeholder="Enter First Name " autocomplete="off" [(ngModel)]="loginsignup.firstName" required/>
+                <input type="text" name="first_name" id="first_name" placeholder="Enter First Name " autocomplete="off" (keypress)="_keyPresscharacter($event)" [(ngModel)]="loginsignup.firstName" required/>
             </div>
             <div class="form-element">
                 <label for="email">Last Name</label>
-                <input type="text" name="last_name" id="last_name" placeholder="Enter Last Name " autocomplete="off" [(ngModel)]="loginsignup.lastName" required/>
+                <input type="text" name="last_name" id="last_name" placeholder="Enter Last Name " (keypress)="_keyPresscharacter($event)" autocomplete="off" [(ngModel)]="loginsignup.lastName" required/>
             </div>
             <div class="form-element">
                 <label for="email">Email</label>
@@ -191,7 +191,6 @@
         </div>
         <div class="signuplink" *ngIf="signupForm == true">
             <span>Go back to<a (click)="toggleButtonFunction()">{{titlebelow}}</a></span>
-
         </div>
 
     </div>

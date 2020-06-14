@@ -17,14 +17,23 @@
     border-radius: 500%;
     overflow: hidden;
 }
-#myBtn i{animation: move 0.8s infinite alternate;}
+
+#myBtn i {
+    animation: move 0.8s infinite alternate;
+}
 
 @keyframes move {
-    0%{transform: translateY(0px);}
-    50%{transform: translateY(2px);}
-    100%{transform: translateY(0px);}
-
+    0% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(2px);
+    }
+    100% {
+        transform: translateY(0px);
+    }
 }
+
 #myBtn:hover {
     background-color: #d6504f8f;
     transform: rotate(360deg);
@@ -121,4 +130,8 @@
         transform: translate3d(100%, 0, 0) skewX(30deg);
         opacity: 0;
     }
+}
+
+.gotbacktoptop {
+    bottom: 55px !important;
 }
