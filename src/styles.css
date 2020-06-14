@@ -251,7 +251,7 @@ button:focus {
 .mat-typography .title-heading {
     text-align: center;
     margin-bottom: 40px;
-    text-transform: uppercase;
+   
     line-height: 36px;
     font-size: 28px;
     letter-spacing: 1.5px;
@@ -283,6 +283,8 @@ button:focus {
 
 
 /* ends */
+
+
 
 @media screen and (max-width:600px) {
     .navbar-transparent #probootstrap-navbar {

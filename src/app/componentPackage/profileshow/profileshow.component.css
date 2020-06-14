@@ -28,6 +28,10 @@
     margin: 0px 10px;
 }
 
+.swal2-content{
+    text-transform: capitalize !important;
+}
+
 .profilediv .contentcard .topview {
     display: flex;
     flex-direction: row;

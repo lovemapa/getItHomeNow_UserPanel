@@ -208,7 +208,16 @@
     .navbar {
         padding: 0;
     }
-    .navbar-collapse {
+    /* .navbar-collapse {
+      display: none;
+    } */
+    /* .navbar-collapse{
+        display: none;
+    } */
+    .mynavbarmobile{
+        display: none;
+    }
+    .navbar-collapse{
         position: absolute;
         top: 100%;
         background: #fff;

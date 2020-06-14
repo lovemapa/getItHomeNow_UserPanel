@@ -53,7 +53,7 @@
                 </div>
             </div>
             <!-- Pagination -->
-            <div class="pagination-wrapper" *ngIf="adsList.length != 0">
+            <div class="pagination-wrapper" *ngIf="adsList.length != 0 && paggination.length != 1">
                 <button class="paginate_btn previous " (click)="previous()" [ngClass]="{'disabled': previousButton}" [disabled]="previousButton">Previous</button>
                 <a class="paginate_btn " *ngFor=" let page of paggination" [ngClass]="{'current': page.status == true}" (click)="pageNumberClick(page.pageNo)">{{page.pageNo}}</a>
                 <button class="paginate_btn next" (click)="next()" [ngClass]="{'disabled': nextButton}" [disabled]="nextButton">Next</button>

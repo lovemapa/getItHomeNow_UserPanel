@@ -929,9 +929,9 @@ a:hover {
         transform: translate(-50%,-50%) !important;
         width: 100%;
     }
-    agm-map{
+    /* agm-map{
         height: calc(100vh - -25px);
-    }
+    } */
 
     .nav .struck_Imag{width: 100px;height: 40px;}
     .toplocationshow{top: 55px;padding: 0;}

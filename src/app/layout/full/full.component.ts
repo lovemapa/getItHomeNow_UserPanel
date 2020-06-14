@@ -20,7 +20,8 @@ export class FullComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    //  console.log("on  ngOnInit  working", this.url);
+
+         //  console.log("on  ngOnInit  working", this.url);
   if(this.url != "/delivery"){
      
     var navbar: HTMLElement = this.element.nativeElement.children[0].children[0];
@@ -144,6 +145,9 @@ export class FullComponent implements OnInit {
       }
     });
   }
+
+    
+   
     
   }
 
