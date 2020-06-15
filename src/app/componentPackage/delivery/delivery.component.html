@@ -260,7 +260,7 @@
                 </mat-form-field>
                 <mat-form-field [hideRequiredMarker]="hideRequiredControl.value" [floatLabel]="floatLabelControl.value">
                     <mat-label>Phone Number </mat-label>
-                    <input matInput formControlName="mobileNumber" maxlength="10" (keypress)=_keyPress($event) required>
+                    <input matInput formControlName="mobileNumber" maxlength="14" (keyup)='onInputChange($event.target.value, false)' (keydown.backspace)='onInputChange($event.target.value, true)'  (keypress)=_keyPress($event) required >
                     <mat-error *ngIf="formGroup.controls.mobileNumber.hasError('required')">
                         Phone number is required
                     </mat-error>

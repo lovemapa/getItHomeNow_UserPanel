@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ElementRef, NgZone } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, NgZone, TemplateRef, ContentChild } from '@angular/core';
 import { MapsAPILoader, MouseEvent } from '@agm/core';
 import { CommonMethods } from 'src/app/utillpackage/common-method';
 import { GoogleMap } from '@agm/core/services/google-maps-types';
@@ -33,6 +33,7 @@ export class DeliveryComponent implements OnInit {
   selectedLocationIds: Array<any>;
   itemList: Array<any>;
   @ViewChild('search', { static: true }) searchElementRef: ElementRef;
+  @ViewChild('contactUs') contactUsTemplatetRef: TemplateRef<any>;
   @ViewChild('apartment', { static: true }) apartmentElementRef: ElementRef;
   @ViewChild('sameLocationModalDiaolg', { static: true }) sameLocationModal: NgbModal;
   @ViewChild('modalDiaolg', { static: true }) modalConent: NgbModal;
@@ -493,7 +494,7 @@ export class DeliveryComponent implements OnInit {
         this.formGroup = this.formBuilder.group({
           'name': [userfullname, [Validators.required]],
           'email': [MyCookies.getEmaild(this.cookiesSerive), [Validators.required, Validators.pattern(emailregex)]],
-          'mobileNumber': [MyCookies.getUsercontact(this.cookiesSerive), [Validators.required, Validators.pattern('[0-9]{10}')]],
+          'mobileNumber': [MyCookies.getUsercontact(this.cookiesSerive), [Validators.required, Validators.pattern('[(]\\d{0,3}[)] \\d{0,3}-\\d{0,4}')]],
           'any_special_instruction': [null]
         });
       }
@@ -619,6 +620,9 @@ export class DeliveryComponent implements OnInit {
     else {
       this.selectedItemList.splice(index, 1);
     }
+    if(this.countTotalQuantityOfSelectedItems()>=20){
+      this.contactUsPop(this.contactUsTemplatetRef);
+    }
   }
 
 
@@ -676,7 +680,7 @@ export class DeliveryComponent implements OnInit {
     this.formGroup = this.formBuilder.group({
       'email': [null, [Validators.required, Validators.pattern(emailregex)]],
       'name': [null, Validators.required],
-      'mobileNumber': [null, [Validators.required, Validators.pattern('[0-9]{10}')]],
+      'mobileNumber': [null, [Validators.required, Validators.pattern('[(]\\d{0,3}[)] \\d{0,3}-\\d{0,4}')]],
       'any_special_instruction': [null]
     });
   }
@@ -751,14 +755,16 @@ export class DeliveryComponent implements OnInit {
    */
   validateRightNow():boolean{
     if(this.selectedDate.getHours()<=9){
-      if(this.selectedDate.getMinutes() <= 45){
-        return false;
+      if(this.selectedDate.getHours()==9 && this.selectedDate.getMinutes() >= 45){
+        return true;
       }
+      return false;
     }
     if(this.selectedDate.getHours()>=20){
-      if(this.selectedDate.getMinutes() >= 15){
-        return false;
+      if(this.selectedDate.getHours()==20 && this.selectedDate.getMinutes() <= 15){
+        return true;
       }
+      return false;
     }
     return true;
   }
@@ -860,7 +866,7 @@ export class DeliveryComponent implements OnInit {
           }).then((result) => {
             if (result.value === true) {
               this.dataReset()
-              MyRoutingMethods.gotoHome(this.router)
+              MyRoutingMethods.gotoHome(this.router);
             }
           });
         } else {
@@ -879,7 +885,6 @@ export class DeliveryComponent implements OnInit {
       windowClass: 'paymentModal',
       backdrop: "static",
       centered: true,
-
     });
     this.modalReference.componentInstance.bookingDetails = this.bookingData;
     this.modalReference.result.then(
@@ -896,13 +901,12 @@ export class DeliveryComponent implements OnInit {
             closeOnEsc: false,
           }).then((result) => {
             if (result.value === true) {
-              this.dataReset()
-              MyRoutingMethods.gotoHome(this.router)
+              this.dataReset();
+              MyRoutingMethods.gotoHome(this.router);
             }
           });
-
         } else {
-          CommonMethods.showconsole(this.Tag, "Token Id :- " + data)
+          CommonMethods.showconsole(this.Tag, "Token Id :- " + data);
         }
       },
       (reason: any) => { }
@@ -928,6 +932,31 @@ export class DeliveryComponent implements OnInit {
       backdrop: "static",
       centered: true,
     });
+  }
+
+  /**
+   * format mobile number into (XXX) XXX-XXXX
+   * @param value 
+   * @param backspace 
+   */
+  onInputChange(value, backspace) {
+    let formattedMobileNumber = value.replace(/\D/g, '');
+    if (backspace && formattedMobileNumber.length <= 6) {
+      formattedMobileNumber = formattedMobileNumber.substring(0, formattedMobileNumber.length - 1);
+    }
+    if (formattedMobileNumber.length === 0) {
+      formattedMobileNumber = '';
+    } else if (formattedMobileNumber.length <= 3) {
+      formattedMobileNumber = formattedMobileNumber.replace(/^(\d{0,3})/, '($1)');
+    } else if (formattedMobileNumber.length <= 6) {
+      formattedMobileNumber = formattedMobileNumber.replace(/^(\d{0,3})/, '($1) $1');
+    } else if (formattedMobileNumber.length <= 10) {
+      formattedMobileNumber = formattedMobileNumber.replace(/^(\d{0,3})(\d{0,3})(\d{0,4})/, '($1) $2-$3');
+    } else {
+      formattedMobileNumber = formattedMobileNumber.substring(0, 10);
+      formattedMobileNumber = formattedMobileNumber.replace(/^(\d{0,3})(\d{0,3})(\d{0,4})/, '($1) $2-$3');
+    }
+    this.formGroup.controls.mobileNumber.setValue(formattedMobileNumber);
   }
 
 
