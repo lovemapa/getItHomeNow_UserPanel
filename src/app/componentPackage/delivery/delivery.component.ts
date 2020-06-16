@@ -81,6 +81,7 @@ export class DeliveryComponent implements OnInit {
   bookingData:any = {};
   pickupApartment:string = '';
   deliveryApartment :string = '';
+  itemsGreaterThan20 : boolean =  false;
 
   constructor(private mapsAPILoader: MapsAPILoader, public ngZone: NgZone, public userBackEndService: UserpanelServiceService,
     public modalService: NgbModal, public cookiesSerive: CookieService, public spinner: NgxSpinnerService,
@@ -524,7 +525,7 @@ export class DeliveryComponent implements OnInit {
     if (this.destinationboolean && this.temparyNameDesination != '') {
       return false;
     }
-    if (this.showItemPage && this.selectedItemList.length > 0) {
+    if (this.showItemPage && this.selectedItemList.length > 0 && !this.itemsGreaterThan20) {
       return false;
     }
     if (this.dateSelectedPage && this.selectedDate != null && this.selectedTimeSlot != '') {
@@ -609,18 +610,22 @@ export class DeliveryComponent implements OnInit {
    */
   updateSelectedItemList(item: any, quantity: number) {
     let index = this.selectedItemList.map(x => x.item_id).indexOf(item.item_id);
-    if (quantity > 0) {
-      if (index > -1) {
-        this.selectedItemList[index] = item;
+    if (this.countTotalQuantityOfSelectedItems() < 20) {
+      if (quantity > 0) {
+        if (index > -1) {
+          this.selectedItemList[index] = item;
+        }
+        else {
+          this.selectedItemList.push(item);
+        }
       }
       else {
-        this.selectedItemList.push(item);
+        this.selectedItemList.splice(index, 1);
       }
     }
     else {
-      this.selectedItemList.splice(index, 1);
-    }
-    if(this.countTotalQuantityOfSelectedItems()>=20){
+      item.quantity = item.quantity-1;
+      this.itemsGreaterThan20 = true;
       this.contactUsPop(this.contactUsTemplatetRef);
     }
   }
@@ -941,7 +946,7 @@ export class DeliveryComponent implements OnInit {
    */
   onInputChange(value, backspace) {
     let formattedMobileNumber = value.replace(/\D/g, '');
-    if (backspace && formattedMobileNumber.length <= 6) {
+    if (backspace && formattedMobileNumber.length <= 3) {
       formattedMobileNumber = formattedMobileNumber.substring(0, formattedMobileNumber.length - 1);
     }
     if (formattedMobileNumber.length === 0) {
@@ -949,7 +954,7 @@ export class DeliveryComponent implements OnInit {
     } else if (formattedMobileNumber.length <= 3) {
       formattedMobileNumber = formattedMobileNumber.replace(/^(\d{0,3})/, '($1)');
     } else if (formattedMobileNumber.length <= 6) {
-      formattedMobileNumber = formattedMobileNumber.replace(/^(\d{0,3})/, '($1) $1');
+      formattedMobileNumber = formattedMobileNumber.replace(/^(\d{0,3})(\d{0,3})/, '($1) $2');
     } else if (formattedMobileNumber.length <= 10) {
       formattedMobileNumber = formattedMobileNumber.replace(/^(\d{0,3})(\d{0,3})(\d{0,4})/, '($1) $2-$3');
     } else {
