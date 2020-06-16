@@ -618,6 +618,9 @@ a:hover {
     border-radius: 20px;
 }
 
+.contactUsFormHeading{
+   color : #ec3441
+}
 .selectDateandTime .card .dateShow {
     display: flex;
     margin-top: -20px;

@@ -307,6 +307,7 @@ export class DeliveryComponent implements OnInit {
    * close Modal Function 
    */
   JoinAndClose() {
+    this.itemsGreaterThan20 = false;
     this.modalReference.close();
   }
 
@@ -611,6 +612,7 @@ export class DeliveryComponent implements OnInit {
   updateSelectedItemList(item: any, quantity: number) {
     let index = this.selectedItemList.map(x => x.item_id).indexOf(item.item_id);
     if (this.countTotalQuantityOfSelectedItems() < 20) {
+      this.itemsGreaterThan20 = false;
       if (quantity > 0) {
         if (index > -1) {
           this.selectedItemList[index] = item;

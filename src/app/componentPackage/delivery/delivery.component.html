@@ -427,8 +427,9 @@
 <ng-template #contactUs>
     <div class="modal-body" style="text-align: center; ">
         <div class="close-icon" (click)="JoinAndClose()"><i class="fa fa-times"></i></div>
-        <div class="title-heading">
-            <h3>Contact Us</h3>
+        <div class="title-heading contactUsFormHeading">
+            <h3 *ngIf="itemsGreaterThan20" >Want to move more than 20 items? Contact Us to request a quote.</h3>
+            <h3 *ngIf="!itemsGreaterThan20">Contact Us</h3>
         </div>
         <div class="lowerText">
             <form [formGroup]="contactUsForm" (ngSubmit)="messageSend()"  class="form cutomform">
