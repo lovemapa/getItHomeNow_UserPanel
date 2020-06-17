@@ -995,6 +995,7 @@ export class DeliveryComponent implements OnInit {
         this.spinner.hide()
         this.contactFormPopup();
         CommonMethods.opensweetalert(res.message)
+        MyRoutingMethods.gotoHome(this.router)
       }
       else {
         CommonMethods.opensweetalertError(res.message);
