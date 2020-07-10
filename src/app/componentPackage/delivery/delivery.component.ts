@@ -496,7 +496,7 @@ export class DeliveryComponent implements OnInit {
         this.formGroup = this.formBuilder.group({
           'name': [userfullname, [Validators.required]],
           'email': [MyCookies.getEmaild(this.cookiesSerive), [Validators.required, Validators.pattern(emailregex)]],
-          'mobileNumber': [MyCookies.getUsercontact(this.cookiesSerive), [Validators.required, Validators.pattern('[(]\\d{0,3}[)] \\d{0,3}-\\d{0,4}')]],
+          'mobileNumber': [MyCookies.getUsercontact(this.cookiesSerive), [Validators.required, Validators.pattern('\\+1 [(]\\d{3}[)] \\d{3}-\\d{4}')]],
           'any_special_instruction': [null]
         });
       }
@@ -687,7 +687,7 @@ export class DeliveryComponent implements OnInit {
     this.formGroup = this.formBuilder.group({
       'email': [null, [Validators.required, Validators.pattern(emailregex)]],
       'name': [null, Validators.required],
-      'mobileNumber': [null, [Validators.required, Validators.pattern('[(]\\d{0,3}[)] \\d{0,3}-\\d{0,4}')]],
+      'mobileNumber': [null, [Validators.required, Validators.pattern('\\+1 [(]\\d{3}[)] \\d{3}-\\d{4}')]],
       'any_special_instruction': [null]
     });
   }
@@ -860,7 +860,6 @@ export class DeliveryComponent implements OnInit {
     }
     else{
       this.spinner.show();
-      // console.log("this.bookingData :", this.bookingData);
       this.userBackEndService.makePaymentFinal(this.bookingData).subscribe((responseData) => {
         this.spinner.hide();
         if (responseData.success) {
@@ -942,11 +941,15 @@ export class DeliveryComponent implements OnInit {
   }
 
   /**
-   * format mobile number into (XXX) XXX-XXXX
-   * @param value 
+   * format mobile number into +1 (XXX) XXX-XXXX
+   * @param event 
    * @param backspace 
    */
-  onInputChange(value, backspace) {
+  onInputChange(event,backspace) {
+    let value:string = event.target.value;
+    if (value.includes('+1 ')) {
+      value = value.slice(3);
+    }
     let formattedMobileNumber = value.replace(/\D/g, '');
     if (backspace && formattedMobileNumber.length <= 3) {
       formattedMobileNumber = formattedMobileNumber.substring(0, formattedMobileNumber.length - 1);
@@ -962,6 +965,9 @@ export class DeliveryComponent implements OnInit {
     } else {
       formattedMobileNumber = formattedMobileNumber.substring(0, 10);
       formattedMobileNumber = formattedMobileNumber.replace(/^(\d{0,3})(\d{0,3})(\d{0,4})/, '($1) $2-$3');
+    }
+    if (formattedMobileNumber.length > 0) {
+      formattedMobileNumber = '+1 ' + formattedMobileNumber;
     }
     this.formGroup.controls.mobileNumber.setValue(formattedMobileNumber);
   }
