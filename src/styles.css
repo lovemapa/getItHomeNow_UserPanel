@@ -5,7 +5,6 @@
 
 * {
     outline: none;
-    
 }
 
 html,
@@ -16,10 +15,10 @@ body {
     width: 100%;
     padding: unset !important;
 }
+
 body.mat-typography {
     padding: unset !important;
 }
-
 
 body {
     margin: 0;
@@ -139,6 +138,7 @@ body {
     transition: 0.3s all;
     padding: 10px 15px;
     border-radius: 4px;
+    letter-spacing: 0.7px;
 }
 
 
@@ -251,7 +251,6 @@ button:focus {
 .mat-typography .title-heading {
     text-align: center;
     margin-bottom: 40px;
-   
     line-height: 36px;
     font-size: 28px;
     letter-spacing: 1.5px;
@@ -284,12 +283,9 @@ button:focus {
 
 /* ends */
 
-
-
 @media screen and (max-width:600px) {
     .navbar-transparent #probootstrap-navbar {
         /* background: rgba(44, 154, 155, 0.47); */
-
         display: none;
     }
 }
@@ -419,6 +415,7 @@ button:focus {
     }
 }
 
+
 /* .custom-class .modal-dialog {
     max-width: 27%;
 } */
@@ -468,25 +465,33 @@ button:disabled {
     cursor: not-allowed !important;
 }
 
-.cutomform .mat-form-field{
+.cutomform .mat-form-field {
     display: block !important;
     padding-bottom: 16px;
-} 
-
+}
 
 
 /*PAyment Modal*/
+
 
 /* .paymentModal  .modal-dialog-centered {
   width: 300px !important;
   min-width: 300px !important;
 } */
+
+
 /* .customModalBody .customForm .mat-form-field-infix {
     padding: .5em 0;
     border-top: unset !important;
 } */
 
-
-@media (max-width: 500px){
-    .custom-class .modal-dialog .modal-content .modal-body .title-heading span{position: relative;top: unset;left: unset; transform: none;margin: 0;line-height: normal;}
+@media (max-width: 500px) {
+    .custom-class .modal-dialog .modal-content .modal-body .title-heading span {
+        position: relative;
+        top: unset;
+        left: unset;
+        transform: none;
+        margin: 0;
+        line-height: normal;
+    }
 }
