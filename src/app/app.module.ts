@@ -67,10 +67,8 @@ import { NgxStripeModule } from 'ngx-stripe';
 
   ],
   providers: [
-    PathLocationStrategy,
-    HashLocationStrategy,
     { provide: AosToken, useValue: aos },
-    { provide: LocationStrategy, useClass: HashLocationStrategy },
+    { provide: LocationStrategy, useClass: PathLocationStrategy },
     CookieService,
     GoogleMapsAPIWrapper,
     DatePipe
