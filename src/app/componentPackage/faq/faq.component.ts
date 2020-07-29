@@ -10,6 +10,8 @@ export class FaqComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    //  const deseeret= {type:'pie'}
+    //  deseeret.type="hello";
   }
 
 }
