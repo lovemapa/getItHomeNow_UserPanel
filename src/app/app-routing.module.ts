@@ -10,10 +10,7 @@ import { DeliveryComponent } from './componentPackage/delivery/delivery.componen
 import { PaymentGatewayComponent} from './componentPackage/payment-gateway/payment-gateway.component'
 import { from } from 'rxjs';
 const routes: Routes = [
-
-
-  { path: '', redirectTo: 'home', pathMatch: 'full' },
-  { path: 'home', component: FullComponent },
+  { path: '', component: FullComponent },
   { path: '', component: BlankComponent,
     children: [
       { path: 'promotions', component: AdvertismentsComponent },
@@ -27,7 +24,7 @@ const routes: Routes = [
       { path: 'paymentgateway', component: PaymentGatewayComponent },
     ]
   },
-  { path: '**', redirectTo: 'home' }
+  { path: '**', redirectTo: '' }
 ];
 
 @NgModule({
