@@ -11,6 +11,7 @@
 
 .navbar-nav .nav-link.active {
     background: #e92330;
+    border-radius: 20px;
     color: #fff;
 }
 
@@ -57,7 +58,7 @@
     text-transform: uppercase;
     background: #e92330;
     color: #fff;
-    border-radius: 4px;
+    border-radius: 20px;
     transition: 0.3s all;
     cursor: pointer;
     -webkit-animation: scale 2s infinite;
@@ -192,7 +193,8 @@
 
 @media (max-width: 991px) {
     .navbar .navbar-nav .nav-item .nav-link {
-        font-size: 13px;
+        font-size: 14px;
+        text-align: center;
         padding: 10px 6px;
     }
 }
@@ -228,10 +230,10 @@
     }
     .navbar-collapse {
         position: absolute;
-        top: 100%;
-        background: #fff;
-        width: 100%;
-        left: 0;
+        top: 83%;
+        background: #f7ecec;
+        border-radius: 20px;
+        right: 4px;
     }
     .navbar .navbar-nav .nav-item .nav-link {
         color: #1b1b1b;
@@ -239,7 +241,7 @@
     .navbar .navbar-nav .nav-item .profile-settings .navdrop-box {
         display: flex;
         justify-content: flex-start;
-        padding: 10px 5px;
+        /* padding: 10px 5px; */
     }
     .navbar .navbar-nav .nav-item .profile-settings .navdrop-box h5 {
         color: #000000;
@@ -251,7 +253,7 @@
         color: #fff;
     }
     .navbar-nav .nav-item {
-        margin: 0;
+        margin: 6px;
     }
 }
 

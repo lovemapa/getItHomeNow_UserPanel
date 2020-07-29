@@ -159,8 +159,8 @@ body {
 .navbar-nav .nav-item .nav-link:hover {
     background: #e92330;
     color: #fff;
-    transition: 0.3s all;
-    /* border-bottom: 1px solid #d6504f; */
+    border-radius: 20px;
+    transition: 0.4s all;
 }
 
 .navbar.navbar-transparent .nav-link.active {
