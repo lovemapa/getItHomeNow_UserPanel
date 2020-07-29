@@ -30,9 +30,9 @@ export class NavbarComponent implements OnInit {
     // this.profilepic = "";
     this.fullname="";
 
-    // console.log("Current Url:- "+this.router.url)
+    console.log("Current Url:- "+this.router.url)
 
-    if (this.router.url == "/home") {
+    if (this.router.url == "/") {
       this.showAdvertisment = false
     } else {
       this.showAdvertisment = true
@@ -65,7 +65,7 @@ export class NavbarComponent implements OnInit {
   }
 
   goBack() {
-    this.router.navigate(["/home"])
+    this.router.navigate(["/"])
     window.scrollTo(0, 0)
   }
 
@@ -74,7 +74,7 @@ export class NavbarComponent implements OnInit {
     this.spinner.show()
     MyCookies.deletecookies(this.cookiesService);
     setTimeout(() => {
-      if (this.router.url == '/home') {
+      if (this.router.url == '/') {
         location.reload(true);
         this.spinner.hide()
       } else {
